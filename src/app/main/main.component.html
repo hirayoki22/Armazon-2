@@ -11,7 +11,6 @@
             {{ textClipper(product.productName, 68) }}
           </a>
   
-          <!-- <p>{{ product.productDesc }}</p> -->
           <p class="price">{{ product.price | currency }}</p>
           <p class="stock-label">
             {{ product.totalStock > 0 ? 'In stock' : 'Not in stock' }}
