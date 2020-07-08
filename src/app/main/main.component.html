@@ -9,9 +9,8 @@
         <div class="product-info">
           <h3>{{ product.productName }}</h3>
   
-          <p>{{ product.productDesc }}</p>
+          <!-- <p>{{ product.productDesc }}</p> -->
           <p>{{ product.price | currency }}</p>
-          <p>{{ product.availability ? 'Available' : 'Unavailable' }}</p>
           <p>{{ product.totalStock > 0 ? 'In stock' : 'Not in stock' }}</p>
         </div>
       </li>
