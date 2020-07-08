@@ -1,5 +1,13 @@
-.overlay {
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
 
+.overlay {
   .cart-container {
     position: absolute;
     right: 0;
@@ -8,6 +16,7 @@
     height: 100%;
     padding: 1.5rem;
     background-color: #fff;
+    animation: slideIn 0.3s ease;
 
     .top {
       display: flex;
