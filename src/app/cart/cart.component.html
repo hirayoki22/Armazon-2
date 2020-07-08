@@ -1,4 +1,4 @@
-<div *ngIf="viewCart" class="overlay">
+<div *ngIf="viewCart" class="overlay" (click)="overlayClick($event)">
   <section class="cart">
     <div class="top">
       <p>Shopping Cart</p>

@@ -80,4 +80,8 @@ export class CartComponent implements OnInit {
     this.cartItems = [];
   }
 
+  overlayClick(e: MouseEvent): void {
+    if (e.target == e.currentTarget) { this.onClose(); }
+  }
+
 }
