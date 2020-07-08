@@ -6,7 +6,7 @@ import { Product } from './product.model';
   providedIn: 'root'
 })
 export class CartService {
-  private cartItems: Product[] = [];
+  cartItems: Product[] = [];
 
   private cartViewStateSource: Subject<boolean> = new Subject();
   cartViewState$: Observable<boolean> = this.cartViewStateSource.asObservable();

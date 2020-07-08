@@ -17,12 +17,11 @@ export class CartComponent implements OnInit {
   constructor(private cs: CartService) { }
 
   ngOnInit(): void {
+    this.cartItems = this.cs.cartItems;
 
     this.cs.cartViewState$.subscribe(state => {
-      if (state) {
-        this.viewCart = state;
-        document.body.classList.add('active-overlay');
-      }
+      this.viewCart = state;
+      document.body.classList.add('active-overlay');
     });
   }
 
@@ -35,6 +34,7 @@ export class CartComponent implements OnInit {
 
     setTimeout(() => {
       this.viewCart = false;
+      document.body.classList.remove('active-overlay');
       overlay.classList.remove('hide');
       section.classList.remove('slide-out');
     }, 400);
