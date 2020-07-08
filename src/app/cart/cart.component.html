@@ -10,7 +10,7 @@
       </button>
     </div>
 
-    <div class="content">
+    <div *ngIf="cartItems.length; else empty" class="content">
       <ul class="item-list">
         <li *ngFor="let product of cartItems">
           <div *ngIf="product.productImage" class="product-image">
@@ -24,39 +24,22 @@
     
             <p class="price">{{ product.price | currency }}</p>
 
-            <button class="remove-btn" title="Remove from Cart">Remove</button>
+            <div class="options">
+              <label for="quantity">
+                Quantity: 
+                <input 
+                  [value]="product.quantity"
+                  name="quantity"
+                  id="quantity"
+                  type="number" min="1" [max]="product.totalStock">
+              </label>
+
+              <button 
+                (click)="onRemove(product.productId)"
+                class="remove-btn">Remove</button>
+            </div>
           </div>
         </li>
-        <!-- <li>
-          <div class="product-image">
-            <img src="assets/img/product-images/product1.jpg" alt="">
-          </div>
-
-          <div class="product-info">
-            <a href="#" class="product-name" >
-              Mehron Makeup Stage Blood (16 Ounce) (Dark Venous)
-            </a>
-    
-            <p class="price">{{ 19.51 | currency }}</p>
-
-            
-          </div>
-        </li>
-        <li>
-          <div class="product-image">
-            <img src="assets/img/product-images/product2.jpg" alt="">
-          </div>
-
-          <div class="product-info">
-            <a href="#" class="product-name" >
-              Mehron Makeup Stage Blood (16 Ounce) (Dark Venous)
-            </a>
-    
-            <p class="price">{{ 19.51 | currency }}</p>
-
-            <button class="remove-btn">Remove</button>
-          </div>
-        </li> -->
       </ul>
     </div>
 
@@ -65,3 +48,7 @@
     </div>
   </section>
 </div>
+
+<ng-template #empty>
+  <h3>Your cart is empty</h3>
+</ng-template>

@@ -32,7 +32,7 @@ export class MainComponent implements OnInit {
 
   onAddToCart(product: Product, quantity = 1): void {
     product.quantity = quantity;
-    this.cs.updateCart(product);
+    this.cs.addToCart(product);
   }
 
 }

@@ -146,9 +146,25 @@
           font-weight: 600;
         }
 
+        .options {
+          display: flex;
+          align-items: center;
+          width: 100%;
+
+          input[name="quantity"] {
+            display: inline-block;
+            width: 70px;
+            margin-right: 1rem;
+            padding: 0.2rem;
+            text-align: center;
+            border-radius: 6px;
+            background-color: #fff0eb;
+          }
+        }
+
         .remove-btn {
           position: relative;
-          
+
           &::before {
             content: '';
             position: absolute;

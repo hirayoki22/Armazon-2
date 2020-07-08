@@ -40,6 +40,11 @@ export class CartComponent implements OnInit {
     }, 400);
   }
 
+  onRemove(productId: number): void {
+    this.cs.removeFromCart(productId);
+    this.cartItems = this.cs.cartItems;
+  }
+
   textClipper(text: string, limit: number): string {
     return text.length > limit ? text.slice(0, limit) + ' . . .' : text;
   }
