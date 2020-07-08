@@ -1,1 +1,20 @@
-<p>main works!</p>
+<section class="products-section">
+  <div class="wrapper">
+    <ul>
+      <li *ngFor="let product of products">
+        <div *ngIf="product.productImage" class="product-image">
+          <img [src]="product.productImage" [alt]="product.productName">
+        </div>
+  
+        <div class="product-info">
+          <h3>{{ product.productName }}</h3>
+  
+          <p>{{ product.productDesc }}</p>
+          <p>{{ product.price | currency }}</p>
+          <p>{{ product.availability ? 'Available' : 'Unavailable' }}</p>
+          <p>{{ product.totalStock > 0 ? 'In stock' : 'Not in stock' }}</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
