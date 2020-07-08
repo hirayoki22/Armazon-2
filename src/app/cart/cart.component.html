@@ -1,7 +1,7 @@
-<div *ngIf="viewCart" class="overlay">
-  <section class="cart-container">
+<div *ngIf="!viewCart" class="overlay">
+  <section class="cart">
     <div class="top">
-      <p>Your items</p>
+      <p>Shopping Cart</p>
 
       <button 
         (click)="onClose()" 
@@ -10,9 +10,9 @@
       </button>
     </div>
 
-    <div *ngIf="cartItems.length; else empty" class="content">
+    <div class="content">
       <ul class="item-list">
-        <li *ngFor="let product of cartItems">
+        <!-- <li *ngFor="let product of cartItems">
           <div *ngIf="product.productImage" class="product-image">
             <img [src]="product.productImage" [alt]="product.productName">
           </div>
@@ -37,6 +37,33 @@
               <button 
                 (click)="onRemove(product.productId)"
                 class="remove-btn">Remove</button>
+            </div>
+          </div>
+        </li> -->
+
+        <li>
+          <div class="product-image">
+            <img src="assets/img/product-images/product3.jpg">
+          </div>
+
+          <div class="product-info">
+            <a href="#" class="product-name">
+              Mehron Makeup Paradise AQ Face & Body Paint 8 Color Palette (Nuance)
+            </a>
+    
+            <p class="price">{{ 39.99 | currency }}</p>
+
+            <div class="options">
+              <label for="quantity">
+                Quantity: 
+                <input 
+                  value="1"
+                  name="quantity"
+                  id="quantity"
+                  type="number" min="1" max="10">
+              </label>
+
+              <button class="remove-btn">Remove</button>
             </div>
           </div>
         </li>

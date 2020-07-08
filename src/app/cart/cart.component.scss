@@ -16,11 +16,11 @@
   }
 }
 
-.cart-container {
+.cart {
   position: absolute;
   right: 0;
   top: 0;
-  width: 500px;
+  width: 700px;
   height: 100%;
   padding: 1.5rem;
   background-color: #fff;
@@ -192,7 +192,8 @@
     width: 100%;
     height: auto;
     padding: 1.5rem;
-    background-color: #fff;
+    // background-color: #fff;
+    background-color: #eee;
 
     button {
       position: relative;

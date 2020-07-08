@@ -23,8 +23,13 @@ export class CartService {
   addToCart(product: Product): void {
     const existingItem = this.cartItems.find(item => item.productId == product.productId);
     
-    this.cartItems.unshift(product);
-    this.itemCountSource.next(this.cartItems.length);    
+    if (existingItem) {
+      existingItem.quantity++;  
+      console.log(existingItem.quantity);
+    } else {
+      this.cartItems.unshift(product);
+      this.itemCountSource.next(this.cartItems.length);
+    }
   }
 
   removeFromCart(id: number): void {
