@@ -17,4 +17,7 @@ export class MainComponent implements OnInit {
     this.ps.getProducts().subscribe(prodcuts => this.products = prodcuts);
   }
 
+  textClipper(text: string, limit: number): string {
+    return text.length > limit ? text.slice(0, limit) + ' . . .' : text;
+  }
 }

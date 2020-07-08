@@ -7,11 +7,22 @@
         </div>
   
         <div class="product-info">
-          <h3>{{ product.productName }}</h3>
+          <h3 [title]="product.productName">
+            {{ textClipper(product.productName, 68) }}
+          </h3>
   
           <!-- <p>{{ product.productDesc }}</p> -->
-          <p>{{ product.price | currency }}</p>
-          <p>{{ product.totalStock > 0 ? 'In stock' : 'Not in stock' }}</p>
+          <p class="price">{{ product.price | currency }}</p>
+          <p class="stock-label">
+            {{ product.totalStock > 0 ? 'In stock' : 'Not in stock' }}
+          </p>
+          
+          <div class="action-buttons">
+            <button type="button" class="buy-now-btn">Buy Now</button>
+            <button type="button" class="add-to-cart-btn">
+              <i class="material-icons">add_shopping_cart</i>
+            </button>
+          </div>
         </div>
       </li>
     </ul>
