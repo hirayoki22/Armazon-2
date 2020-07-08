@@ -10,12 +10,26 @@
       </button>
     </div>
 
-    <ul class="item-list">
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
+    <div class="content">
+      <ul class="item-list">
+        <li *ngFor="let product of cartItems">
+          <div *ngIf="product.productImage" class="product-image">
+            <img [src]="product.productImage" [alt]="product.productName">
+          </div>
+
+          <div class="product-info">
+            <a href="#" class="product-name" [title]="product.productName">
+              {{ textClipper(product.productName, 68) }}
+            </a>
+    
+            <p class="price">{{ product.price | currency }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="action-btns">
+      <button>Proceed to Checkout</button>
+    </div>
   </section>
 </div>
