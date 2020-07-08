@@ -23,7 +23,6 @@ export class CartComponent implements OnInit {
     return this.cartItems.map(item => item.quantity).reduce((a, b) => a + b, 0);
   }
 
-
   constructor(private cs: CartService) { }
 
   ngOnInit(): void {
