@@ -6,14 +6,25 @@
 
     li {
       display: flex;
+      flex-direction: column;
       width: 100%;
+      padding: 1.5rem;
+      background-color: #fff;
 
       &:not(:last-of-type) {
         margin-bottom: 2rem;
       }
 
       .product-image {
-        
+        width: 100px;
+        height: 100px;
+        background-color: #fff;
+
+        img {
+          height: 100%;
+          object-fit: contain;
+          object-position: center center;
+        }
       }
 
       .product-info {
