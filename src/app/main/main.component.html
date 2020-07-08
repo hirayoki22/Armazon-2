@@ -17,8 +17,13 @@
           </p>
           
           <div class="action-buttons">
-            <button type="button" class="buy-now-btn">Buy Now</button>
-            <button type="button" class="add-to-cart-btn" title="Add to Cart">
+            <button 
+              (click)="onBuyNow(product)"
+              type="button" class="buy-now-btn">Buy Now</button>
+
+            <button 
+              (click)="onAddToCart(product)"
+              type="button" class="add-to-cart-btn" title="Add to Cart">
               <i class="material-icons">add_shopping_cart</i>
             </button>
           </div>
