@@ -14,8 +14,15 @@ export class CartService {
   constructor() { }
 
   updateCart(product: Product): void {
-    this.cartItems.unshift(product);
-    this.itemCountSource.next(this.cartItems.length);
+    const existingItem = this.cartItems.find(item => item.productId == product.productId);
+    
+    if (existingItem) {
+      existingItem.quantity += 1;  
+    } else {
+      this.cartItems.unshift(product);
+      this.itemCountSource.next(this.cartItems.length);
+    }
+    console.log(this.cartItems);
   }
 
 }

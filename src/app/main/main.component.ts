@@ -30,9 +30,9 @@ export class MainComponent implements OnInit {
     console.log('Buying product ', product);
   }
 
-  onAddToCart(product: Product): void {
+  onAddToCart(product: Product, quantity = 1): void {
+    product.quantity = quantity;
     this.cs.updateCart(product);
-    console.log('Added!');
   }
 
 }

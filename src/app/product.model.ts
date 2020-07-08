@@ -6,4 +6,5 @@ export interface Product {
   price: number;
   availability: boolean;
   totalStock: number;
+  quantity?: number;
 }
