@@ -10,7 +10,9 @@
       </button>
     </div>
 
-    <div *ngIf="!cartItems?.length && !isLoading;" class="empty-cart-msg">
+    <div 
+      *ngIf="!cartItems?.length && !isLoading;" 
+      class="empty-cart-msg">
       <h3>Your cart is empty</h3>
     </div>
 
