@@ -51,6 +51,5 @@ export class CartService {
   removeFromCart(id: number) {
     this.cartItems = this.cartItems.filter(product => product.productId !== id);
     this.itemCountSource.next(this.cartItems.length);
-    // return this.getCartItems();
   }
 }

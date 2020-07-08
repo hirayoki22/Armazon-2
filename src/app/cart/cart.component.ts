@@ -29,7 +29,7 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.cs.cartViewState$.subscribe(state => {
       this.viewCart = state;
-      
+
       document.body.classList.add('active-overlay');
       window.onkeyup = (e: KeyboardEvent) => {
         if (e.key == 'Escape') { this.onClose(); }
@@ -40,10 +40,6 @@ export class CartComponent implements OnInit {
         this.isLoading = false;
       });
     });
-  }
-
-  initCart(items: Product[]): void {
-    
   }
 
   onClose(): void {
