@@ -32,6 +32,10 @@ export class CartComponent implements OnInit {
       this.viewCart = state;
       document.body.classList.add('active-overlay');
 
+      window.onkeyup = (e: KeyboardEvent) => {
+        if (e.key == 'Escape') { this.onClose(); }
+      }
+
       this.cs.getCartItems().subscribe(items => {
         this.initCart(items);
         this.isLoading = false;
@@ -60,6 +64,7 @@ export class CartComponent implements OnInit {
 
     section.classList.add('slide-out');
     overlay.classList.add('hide');
+    window.onkeyup = null;
 
     setTimeout(() => {
       this.viewCart = false;

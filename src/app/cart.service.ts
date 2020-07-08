@@ -15,6 +15,7 @@ export class CartService {
   private itemCountSource: Subject<number> = new Subject();
   itemCount$: Observable<number> = this.itemCountSource.asObservable();
 
+  
   constructor() { }
 
   getCartItems(): Observable<Product[]> {
