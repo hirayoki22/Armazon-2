@@ -14,6 +14,7 @@ export class CartComponent implements OnInit {
   private _cartItems: Product[];
   cartItems: Product[] = [];
   viewCart: boolean;
+  isLoading: boolean = true;
 
   get subtotal(): number {
     return Math.round(this._cartItems.map(item => item.price)
