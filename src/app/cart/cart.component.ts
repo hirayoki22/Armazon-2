@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { CartService } from '../cart.service';
 import { Product } from '../product.model';
-import { Observable } from 'rxjs';
 
 
 @Component({
@@ -29,13 +28,14 @@ export class CartComponent implements OnInit {
   constructor(private cs: CartService) { }
 
   ngOnInit(): void {
-    this.cs.cartItems$.subscribe(items => {
-      this.initCart(items);
-    });
-
     this.cs.cartViewState$.subscribe(state => {
       this.viewCart = state;
       document.body.classList.add('active-overlay');
+
+      this.cs.getCartItems().subscribe(items => {
+        this.initCart(items);
+        this.isLoading = false;
+      });
     });
   }
 
@@ -63,6 +63,7 @@ export class CartComponent implements OnInit {
 
     setTimeout(() => {
       this.viewCart = false;
+      this.isLoading = true;
       document.body.classList.remove('active-overlay');
       overlay.classList.remove('hide');
       section.classList.remove('slide-out');

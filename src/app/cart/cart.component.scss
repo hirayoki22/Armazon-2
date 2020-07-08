@@ -27,6 +27,7 @@
   background-color: #fff;
   box-shadow: -2px 0 20px rgba(0, 0, 0, 0.1);
   animation: slideIn 0.3s ease;
+  overflow: hidden;
 
   &.slide-out {
     animation: slideOut 0.3s ease forwards;
@@ -76,8 +77,9 @@
   .content {
     position: relative;
     width: 100%;
-    height: auto;
+    height: calc(100vh - 132px);
     padding: 0 1.5rem;
+    animation: reveal 0.4s ease;
 
     &::before {
       content: '';
@@ -105,7 +107,6 @@
   .item-list {
     position: relative;
     width: 100%;
-    max-height: calc(100vh - 132px);
     padding: 1rem 0;
     overflow: hidden;
     overflow-y: auto;

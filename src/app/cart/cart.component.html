@@ -1,4 +1,4 @@
-<div *ngIf="!viewCart" class="overlay">
+<div *ngIf="viewCart" class="overlay">
   <section class="cart">
     <div class="top">
       <p>Shopping Cart</p>
@@ -10,7 +10,9 @@
       </button>
     </div>
 
-    <div *ngIf="cartItems?.length; else emptyCart" class="content">
+    <div 
+      *ngIf="cartItems?.length && isLoading; else emptyCart" 
+      class="content">
       <ul class="item-list">
         <li *ngFor="let product of cartItems">
           <div *ngIf="product.productImage" class="product-image">
@@ -43,8 +45,8 @@
       </ul>
     </div>
 
-    <div class="bottom">
-      <div *ngIf="cartItems?.length" class="subtotal">
+    <div *ngIf="cartItems?.length" class="bottom">
+      <div class="subtotal">
         <span class="subtotal-items">Items: <strong>{{ itemCount | number }}</strong></span>
         <span class="subtotal-amount">Subtotal: <strong>{{ subtotal | currency }}</strong></span>
       </div>
@@ -52,7 +54,7 @@
       <button>Proceed to Checkout</button>
     </div>
 
-    <app-spinner></app-spinner>
+    <app-spinner [loading]="isLoading"></app-spinner>
   </section>
 </div>
 

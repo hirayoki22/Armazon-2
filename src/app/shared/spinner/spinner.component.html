@@ -1,4 +1,6 @@
-<div class="spinner-overlay">
+<div  
+  [@showSpinner]="loading ? 'show' : 'hide'"
+  class="spinner-overlay">
   <div class="spinner">
     <div class="inner-ring"></div>
     <div class="outer-ring"></div>

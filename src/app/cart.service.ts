@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 import { Product } from './product.model';
 
 @Injectable({
@@ -7,9 +8,6 @@ import { Product } from './product.model';
 })
 export class CartService {
   private cartItems: Product[] = [];
-
-  private cartItemsSource: Subject<Product[]> = new Subject();
-  cartItems$: Observable<Product[]> = this.cartItemsSource.asObservable();
 
   private cartViewStateSource: Subject<boolean> = new Subject();
   cartViewState$: Observable<boolean> = this.cartViewStateSource.asObservable();
@@ -19,19 +17,21 @@ export class CartService {
 
   constructor() { }
 
+  getCartItems(): Observable<Product[]> {
+    return of(this.cartItems).pipe(delay(1000));
+  }
+
   changeCartViewState(view: boolean): void {
     this.cartViewStateSource.next(view);
   }
 
-  addToCart(product: Product): void {
+  addToCart(product: Product) {
     this.cartItems.unshift(product);
-    this.cartItemsSource.next(this.cartItems);
     this.itemCountSource.next(this.cartItems.length);
   }
 
   removeFromCart(id: number): void {
     this.cartItems = this.cartItems.filter(product => product.productId !== id);
-    this.cartItemsSource.next(this.cartItems);
     this.itemCountSource.next(this.cartItems.length);
   }
 }
