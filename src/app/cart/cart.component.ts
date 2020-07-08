@@ -70,6 +70,7 @@ export class CartComponent implements OnInit {
 
   onRemove(productId: number): void {
     this.cs.removeFromCart(productId);
+    this.cartItems = [];
   }
 
   textClipper(text: string, limit: number): string {
