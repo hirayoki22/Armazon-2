@@ -17,12 +17,13 @@
 }
 
 .cart {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   right: 0;
   top: 0;
   width: 700px;
   height: 100%;
-  padding: 1.5rem;
   background-color: #fff;
   box-shadow: -2px 0 20px rgba(0, 0, 0, 0.1);
   animation: slideIn 0.3s ease;
@@ -36,7 +37,8 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin-bottom: 3rem;
+    height: 66px;
+    padding: 0 1.5rem;
 
     p {
       color: #555;
@@ -48,6 +50,7 @@
 
       .material-icons {
         color: #666;
+        font-size: 1.4rem;
         transition: color .2s ease;
       }
 
@@ -63,6 +66,8 @@
     position: relative;
     width: 100%;
     height: auto;
+    padding: 0 1.5rem;
+    // background-color: #555;
 
     &::before {
       content: '';
@@ -90,8 +95,8 @@
   .item-list {
     position: relative;
     width: 100%;
-    max-height: calc(120px * 7 - 81.78px);
-    padding: 1rem;
+    max-height: calc(100vh - 132px);
+    padding: 1rem 0;
     overflow: hidden;
     overflow-y: auto;
     scrollbar-width: 0;
@@ -104,11 +109,10 @@
       display: flex;
       align-items: center;
       width: inherit;
-      padding: 1rem 0;
+      padding: 0.5rem 0;
       
       &:not(:last-of-type) {
-        border-bottom: thin solid #ff9a9e;
-        // margin-bottom: 1.5rem;
+        border-bottom: thin solid #ffc7c9;
       }
 
       .product-image {
@@ -119,7 +123,7 @@
 
         img {
           height: 100%;
-          object-fit: cover;
+          object-fit: fit;
           object-position: center center;
         }
       }
@@ -131,7 +135,8 @@
 
         .product-name {
           display: block;
-          margin-bottom: 1rem;
+          margin-bottom: 0.5rem;
+          color: royalblue;
           font-size: 1rem;
           font-weight: 400;
           line-height: 1.5rem;
@@ -140,7 +145,7 @@
         }
 
         .price {
-          margin-bottom: 1rem;
+          margin-bottom: 0.5rem;
           color: #555;
           font-size: 1rem;
           font-weight: 600;
@@ -185,15 +190,25 @@
     }
   }
 
-  .action-btns {
+  .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     position: absolute;      
     left: 0;
     bottom: 0;
     width: 100%;
-    height: auto;
-    padding: 1.5rem;
+    height: 66px;
+    padding: 0 1.5rem;
     // background-color: #fff;
     background-color: #eee;
+
+    .subtotal {
+
+      &-items {
+        margin-right: 1rem;
+      }
+    }
 
     button {
       position: relative;

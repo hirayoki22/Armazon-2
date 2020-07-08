@@ -10,9 +10,9 @@
       </button>
     </div>
 
-    <div class="content">
+    <div *ngIf="cartItems.length; else emptyCart" class="content">
       <ul class="item-list">
-        <!-- <li *ngFor="let product of cartItems">
+        <li *ngFor="let product of cartItems">
           <div *ngIf="product.productImage" class="product-image">
             <img [src]="product.productImage" [alt]="product.productName">
           </div>
@@ -39,43 +39,21 @@
                 class="remove-btn">Remove</button>
             </div>
           </div>
-        </li> -->
-
-        <li>
-          <div class="product-image">
-            <img src="assets/img/product-images/product3.jpg">
-          </div>
-
-          <div class="product-info">
-            <a href="#" class="product-name">
-              Mehron Makeup Paradise AQ Face & Body Paint 8 Color Palette (Nuance)
-            </a>
-    
-            <p class="price">{{ 39.99 | currency }}</p>
-
-            <div class="options">
-              <label for="quantity">
-                Quantity: 
-                <input 
-                  value="1"
-                  name="quantity"
-                  id="quantity"
-                  type="number" min="1" max="10">
-              </label>
-
-              <button class="remove-btn">Remove</button>
-            </div>
-          </div>
         </li>
       </ul>
     </div>
 
-    <div class="action-btns">
+    <div class="bottom">
+      <div class="subtotal">
+        <span class="subtotal-items">Items: <strong>{{ itemCount | number }}</strong></span>
+        <span class="subtotal-amount">Subtotal: <strong>{{ subtotal | currency }}</strong></span>
+      </div>
+
       <button>Proceed to Checkout</button>
     </div>
   </section>
 </div>
 
-<ng-template #empty>
+<ng-template #emptyCart>
   <h3>Your cart is empty</h3>
 </ng-template>
