@@ -21,8 +21,6 @@ export class CartService {
   }
 
   addToCart(product: Product): void {
-    const existingItem = this.cartItems.find(item => item.productId == product.productId);
-
     this.cartItems.unshift(product);
     this.itemCountSource.next(this.cartItems.length);
   }
