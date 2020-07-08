@@ -19,4 +19,7 @@ export class NavbarComponent implements OnInit {
     });
   }
 
+  openCart(): void {
+    this.cs.changeCartViewState(true);
+  }
 }

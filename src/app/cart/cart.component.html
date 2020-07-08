@@ -1,5 +1,7 @@
-
-  <section *ngIf="viewCart" class="cart-container">
+<div class="overlay">
+  <section  
+    [@showCart]="(viewCart | async) ? 'open' : 'close'"
+    class="cart-container">
     <div class="top">
       <p>Your items</p>
 
@@ -32,3 +34,4 @@
       <button>Proceed to Checkout</button>
     </div>
   </section>
+</div>
