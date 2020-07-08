@@ -56,21 +56,16 @@ img {
 }
 
 .overlay {
-  visibility: hidden;
-  opacity: 0;
   position: fixed;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
+  animation: reveal 0.4s ease forwards;
   z-index: 1000;
 
-  .show {
-    animation: reveal 0.4s ease forwards;
-  }
-
-  .hide {
+  &.hide {
     animation: hide 0.4s ease forwards;
   }
 }

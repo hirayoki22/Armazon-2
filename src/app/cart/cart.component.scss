@@ -1,3 +1,21 @@
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
 .cart-container {
   position: absolute;
   right: 0;
@@ -7,7 +25,11 @@
   padding: 1.5rem;
   background-color: #fff;
   box-shadow: -2px 0 20px rgba(0, 0, 0, 0.1);
-  // animation: slideIn 0.3s ease;
+  animation: slideIn 0.3s ease;
+
+  &.slide-out {
+    animation: slideOut 0.3s ease forwards;
+  }
 
   .top {
     display: flex;

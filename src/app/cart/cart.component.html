@@ -1,7 +1,5 @@
-<div class="overlay">
-  <section  
-    [@showCart]="(viewCart | async) ? 'open' : 'close'"
-    class="cart-container">
+<div *ngIf="viewCart" class="overlay">
+  <section class="cart-container">
     <div class="top">
       <p>Your items</p>
 
