@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../product.service';
+
+import { Product } from '../product.model';
 
 @Component({
   selector: 'app-main',
@@ -6,16 +9,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
+  products: Product[] = [];
 
-  constructor() { }
+  constructor(private ps: ProductService) { }
 
   ngOnInit(): void {
-    const url = 'http://127.0.0.1/market-api/products.php';
-
-    fetch(url)
-    .then(res => res.json())
-    .then(res => console.log(res))
-    .catch(err => console.log(err.message()));
+    this.ps.getProducts().subscribe(prodcuts => this.products = prodcuts);
   }
 
 }
