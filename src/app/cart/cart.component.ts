@@ -1,15 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 
+import { CartService } from '../cart.service';
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
+  viewCart: boolean = false;
 
-  constructor() { }
+  constructor(private cs: CartService) { }
 
   ngOnInit(): void {
+
+  }
+
+  onClose(): void {
+    this.cs.changeCartViewState(false);
   }
 
 }

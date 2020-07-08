@@ -8,10 +8,17 @@ import { Product } from './product.model';
 export class CartService {
   private cartItems: Product[] = [];
 
+  private cartViewStateSource: Subject<boolean> = new Subject();
+  cartViewState$: Observable<boolean> = this.cartViewStateSource.asObservable();
+
   private itemCountSource: Subject<number> = new Subject();
-  itemCountSource$: Observable<number> = this.itemCountSource.asObservable();
+  itemCount$: Observable<number> = this.itemCountSource.asObservable();
 
   constructor() { }
+
+  changeCartViewState(view: boolean): void {
+    this.cartViewStateSource.next(view);
+  }
 
   updateCart(product: Product): void {
     const existingItem = this.cartItems.find(item => item.productId == product.productId);
