@@ -10,6 +10,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { CartComponent } from './cart/cart.component';
 import { MainComponent } from './main/main.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { TextClipPipe } from './shared/text-clip.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
     NavbarComponent,
     CartComponent,
     MainComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    TextClipPipe
   ],
   imports: [
     BrowserModule,

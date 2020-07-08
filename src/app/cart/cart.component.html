@@ -21,7 +21,7 @@
 
           <div class="product-info">
             <a href="#" class="product-name">
-              {{ textClipper(product.productName, 68) }}
+              {{ product.productName | textClip:80 }}
             </a>
     
             <p class="price">{{ product.price | currency }}</p>
