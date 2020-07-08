@@ -1,6 +1,6 @@
 <section class="products-section">
   <div class="wrapper">
-    <ul>
+    <ul class="products">
       <li *ngFor="let product of products">
         <div *ngIf="product.productImage" class="product-image">
           <img [src]="product.productImage" [alt]="product.productName">
