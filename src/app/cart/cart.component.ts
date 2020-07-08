@@ -76,8 +76,12 @@ export class CartComponent implements OnInit {
   }
 
   onRemove(productId: number): void {
-    this.cs.removeFromCart(productId);
-    this.cartItems = [];
+    this.isLoading = true;
+
+    this.cs.removeFromCart(productId).subscribe(items => {
+      this.cartItems = items;
+      this.isLoading = false;
+    });    
   }
 
   overlayClick(e: MouseEvent): void {

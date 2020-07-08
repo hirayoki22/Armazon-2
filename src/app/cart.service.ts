@@ -15,7 +15,7 @@ export class CartService {
   private itemCountSource: Subject<number> = new Subject();
   itemCount$: Observable<number> = this.itemCountSource.asObservable();
 
-  
+
   constructor() { }
 
   getCartItems(): Observable<Product[]> {
@@ -31,8 +31,9 @@ export class CartService {
     this.itemCountSource.next(this.cartItems.length);
   }
 
-  removeFromCart(id: number): void {
+  removeFromCart(id: number): Observable<Product[]> {
     this.cartItems = this.cartItems.filter(product => product.productId !== id);
     this.itemCountSource.next(this.cartItems.length);
+    return this.getCartItems();
   }
 }

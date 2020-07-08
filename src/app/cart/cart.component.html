@@ -10,8 +10,12 @@
       </button>
     </div>
 
+    <div *ngIf="!cartItems?.length && !isLoading;" class="empty-cart-msg">
+      <h3>Your cart is empty</h3>
+    </div>
+
     <div 
-      *ngIf="cartItems?.length && !isLoading; else emptyCart" 
+      *ngIf="cartItems?.length && !isLoading;" 
       class="content">
       <ul class="item-list">
         <li *ngFor="let product of cartItems">
@@ -57,9 +61,3 @@
     <app-spinner [loading]="isLoading"></app-spinner>
   </section>
 </div>
-
-<ng-template #emptyCart>
-  <div class="empty-cart-msg">
-    <h3>Your cart is empty</h3>
-  </div>
-</ng-template>
