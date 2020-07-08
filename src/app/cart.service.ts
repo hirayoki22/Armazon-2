@@ -6,7 +6,10 @@ import { Product } from './product.model';
   providedIn: 'root'
 })
 export class CartService {
-  cartItems: Product[] = [];
+  private cartItems: Product[] = [];
+
+  private cartItemsSource: Subject<Product[]> = new Subject();
+  cartItems$: Observable<Product[]> = this.cartItemsSource.asObservable();
 
   private cartViewStateSource: Subject<boolean> = new Subject();
   cartViewState$: Observable<boolean> = this.cartViewStateSource.asObservable();
@@ -22,11 +25,13 @@ export class CartService {
 
   addToCart(product: Product): void {
     this.cartItems.unshift(product);
+    this.cartItemsSource.next(this.cartItems);
     this.itemCountSource.next(this.cartItems.length);
   }
 
   removeFromCart(id: number): void {
     this.cartItems = this.cartItems.filter(product => product.productId !== id);
+    this.cartItemsSource.next(this.cartItems);
     this.itemCountSource.next(this.cartItems.length);
   }
 }
