@@ -35,7 +35,7 @@ export class CartService {
         });
         return cartItems;
       }),
-      delay(500)
+      delay(300)
     );
   }
 
@@ -48,8 +48,9 @@ export class CartService {
     this.itemCountSource.next(this.cartItems.length);
   }
 
-  removeFromCart(id: number) {
+  removeFromCart(id: number): Observable<Product[]> {
     this.cartItems = this.cartItems.filter(product => product.productId !== id);
     this.itemCountSource.next(this.cartItems.length);
+    return this.getCartItems();
   }
 }
