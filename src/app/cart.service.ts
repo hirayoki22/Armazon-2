@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { delay, map } from 'rxjs/operators';
 import { Product } from './product.model';
 
 @Injectable({
@@ -19,7 +19,23 @@ export class CartService {
   constructor() { }
 
   getCartItems(): Observable<Product[]> {
-    return of(this.cartItems).pipe(delay(1000));
+    return of(this.cartItems).pipe(
+      map((items: Product[]) => {
+        let cartItems = [];
+
+        items.forEach(product => {
+          if (!cartItems.some(cur => cur.productId == product.productId)) {
+            cartItems.push(product);
+          }
+        });
+    
+        cartItems.map(item => {
+          const matches = items.filter(cur => cur.productId == item.productId);
+          item.quantity = matches.length;
+        });
+        return cartItems;
+      })
+    );
   }
 
   changeCartViewState(view: boolean): void {
@@ -31,9 +47,9 @@ export class CartService {
     this.itemCountSource.next(this.cartItems.length);
   }
 
-  removeFromCart(id: number): Observable<Product[]> {
+  removeFromCart(id: number) {
     this.cartItems = this.cartItems.filter(product => product.productId !== id);
     this.itemCountSource.next(this.cartItems.length);
-    return this.getCartItems();
+    // return this.getCartItems();
   }
 }

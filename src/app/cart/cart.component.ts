@@ -16,12 +16,12 @@ export class CartComponent implements OnInit {
   isLoading: boolean = true;
 
   get subtotal(): number {
-    return Math.round(this._cartItems.map(item => item.price)
+    return Math.round(this.cartItems.map(item => item.price * item.quantity)
     .reduce((a, b) => a + b, 0) * 100) / 100;
   }
 
   get itemCount(): number {
-    return this._cartItems.length;
+    return this.cartItems.map(item => item.quantity).reduce((a, b) => a + b, 0);
   }
 
 
@@ -37,7 +37,7 @@ export class CartComponent implements OnInit {
       }
 
       this.cs.getCartItems().subscribe(items => {
-        this.initCart(items);
+        this.cartItems = items;
         this.isLoading = false;
       });
     });
@@ -78,10 +78,11 @@ export class CartComponent implements OnInit {
   onRemove(productId: number): void {
     this.isLoading = true;
 
-    this.cs.removeFromCart(productId).subscribe(items => {
-      this.cartItems = items;
+    this.cs.removeFromCart(productId);
+    this.cs.getCartItems().subscribe(items => {
+      this.initCart(items);
       this.isLoading = false;
-    });    
+    });
   }
 
   overlayClick(e: MouseEvent): void {
