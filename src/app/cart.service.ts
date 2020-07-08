@@ -34,7 +34,8 @@ export class CartService {
           item.quantity = matches.length;
         });
         return cartItems;
-      })
+      }),
+      delay(500)
     );
   }
 

@@ -10,7 +10,6 @@ import { Product } from '../product.model';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  private _cartItems: Product[];
   cartItems: Product[] = [];
   viewCart: boolean;
   isLoading: boolean = true;
@@ -30,8 +29,8 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.cs.cartViewState$.subscribe(state => {
       this.viewCart = state;
+      
       document.body.classList.add('active-overlay');
-
       window.onkeyup = (e: KeyboardEvent) => {
         if (e.key == 'Escape') { this.onClose(); }
       }
@@ -44,18 +43,7 @@ export class CartComponent implements OnInit {
   }
 
   initCart(items: Product[]): void {
-    this._cartItems = items;
-
-    this._cartItems.forEach(product => {
-      if (!this.cartItems.some(cur => cur.productId == product.productId)) {
-        this.cartItems.push(product);
-      }
-    });
-
-    this.cartItems.map(item => {
-      const matches = this._cartItems.filter(cur => cur.productId == item.productId);
-      item.quantity = matches.length;
-    });
+    
   }
 
   onClose(): void {
@@ -80,7 +68,7 @@ export class CartComponent implements OnInit {
 
     this.cs.removeFromCart(productId);
     this.cs.getCartItems().subscribe(items => {
-      this.initCart(items);
+      this.cartItems = items;
       this.isLoading = false;
     });
   }
