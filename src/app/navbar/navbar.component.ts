@@ -8,13 +8,13 @@ import { CartService } from '../cart.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  itemCountSource: number | string;
+  itemCount: number | string;
 
   constructor(private cs: CartService) { }
 
   ngOnInit(): void {
-    this.cs.itemCountSource$.subscribe(count => {
-      this.itemCountSource = (count > 0 && count) < 100 ? count : 
+    this.cs.itemCount$.subscribe(count => {
+      this.itemCount = (count > 0 && count) < 100 ? count : 
       (count >= 100) ? '99+' : null; 
     });
   }

@@ -39,8 +39,11 @@ html, body {
 }
 
 body {
-  // background-color: #F1F3FA;
   background-image: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+
+  &.active-overlay {
+    overflow: hidden;
+  }
 }
 
 img {
@@ -50,4 +53,16 @@ img {
 .wrapper {
   max-width: 1200px;
   margin: auto;
+}
+
+.overlay {
+  // visibility: hidden;
+  // opacity: 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
 }
