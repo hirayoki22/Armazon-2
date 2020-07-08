@@ -15,7 +15,12 @@ export class CartComponent implements OnInit {
   constructor(private cs: CartService) { }
 
   ngOnInit(): void {
-    document.body.classList.add('active-overlay');
+    this.cs.cartViewState$.subscribe(state => {
+      if (state) {
+        this.viewCart = true;
+        document.body.classList.add('active-overlay');
+      }
+    });
   }
 
   onClose(): void {
