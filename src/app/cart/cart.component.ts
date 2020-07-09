@@ -58,6 +58,10 @@ export class CartComponent implements OnInit {
     }, 400);
   }
 
+  quantityChanges(product: Product, value: number): void {
+    this.cs.addToCart(product);
+  }
+
   onRemove(productId: number): void {
     this.isLoading = true;
 

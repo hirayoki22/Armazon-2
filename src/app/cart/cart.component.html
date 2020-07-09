@@ -36,6 +36,7 @@
               <label for="quantity">
                 Quantity: 
                 <input 
+                  (change)="quantityChanges(product, +$event.target.value)"
                   [value]="product.quantity"
                   name="quantity"
                   id="quantity"
