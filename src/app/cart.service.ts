@@ -46,6 +46,7 @@ export class CartService {
   addToCart(product: Product) {
     this.cartItems.unshift(product);
     this.itemCountSource.next(this.cartItems.length);
+    this.cartViewStateSource.next(true);
   }
 
   removeFromCart(id: number): Observable<Product[]> {
