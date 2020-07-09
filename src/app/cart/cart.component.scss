@@ -241,3 +241,43 @@
     }
   }
 }
+
+
+@media (max-width: 746px) {
+  .cart {
+    width: 100%;
+
+    .product-info {
+      width: calc(100% - 130px);
+      padding: 1.5rem;
+      overflow: hidden;
+
+      .product-name {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: royalblue;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .price {
+        margin-bottom: 0.5rem;
+        color: #555;
+        font-size: 1rem;
+        font-weight: 600;
+      }
+
+      .options {
+        flex-direction: column;
+
+        input[name="quantity"] {
+          margin: 0;
+          margin-bottom: 0.4rem;
+        }
+      }
+    }
+  }
+}
