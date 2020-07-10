@@ -64,7 +64,7 @@
     <div *ngIf="cartItems?.length && !isLoading" class="bottom">
       <div class="subtotal">
         <span class="subtotal-items">Items: <strong>{{ itemCount | number }}</strong></span>
-        <span class="subtotal-amount">Subtotal: <strong>{{ subtotal | currency }}</strong></span>
+        <span class="subtotal-amount">Order Total: <strong>{{ subtotal | currency }}</strong></span>
       </div>
 
       <button>Proceed to Checkout</button>

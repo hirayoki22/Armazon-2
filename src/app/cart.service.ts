@@ -27,7 +27,10 @@ export class CartService {
 
   getShoppingCart(userId: number): Observable<CartItem[]> {
     return this.http.get<CartItem[]>(`${this.URL}/${userId}`)
-    .pipe(catchError(this.errorHandler));
+    .pipe(
+      delay(300),
+      catchError(this.errorHandler)
+    );
   }
 
   // getCartItems(): Observable<Product[]> { // Temporary
@@ -57,10 +60,8 @@ export class CartService {
     quantity: number }
   ): Observable<any> {
     // this.itemCountSource.next(this.cartItems.length);
-    // this.cartViewStateSource.next(true);
-
     return this.http.post<any>(this.URL, item).pipe(
-      tap(res => console.log(res)),
+      tap(() => this.cartViewStateSource.next(true)),
       catchError(this.errorHandler)
     );
   }
