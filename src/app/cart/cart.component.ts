@@ -63,8 +63,13 @@ export class CartComponent implements OnInit {
     }, 400);
   }
 
-  quantityChanges(product: Product, value: number): void {
-    // this.cs.addToCart(product);
+  quantityChanges(productId: number, quantity: number): void {
+    const details = {
+      userId: 1,
+      productId: productId,
+      quantity: quantity
+    }
+    this.cs.addToCart(details).subscribe();
   }
 
   onRemove(productId: number): void {

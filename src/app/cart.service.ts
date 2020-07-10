@@ -43,8 +43,8 @@ export class CartService {
   addToCart(item: { 
     userId: number, 
     productId: number, 
-    quantity: number }
-  ): Observable<any> {
+    quantity: number 
+  }): Observable<any> {
     return this.http.post<any>(this.URL, item).pipe(
       tap(() => {
         this.cartViewStateSource.next(true);
@@ -54,11 +54,16 @@ export class CartService {
     );
   }
 
-  // removeFromCart(id: number): Observable<Product[]> { // Temporary
-  //   this.cartItems = this.cartItems.filter(product => product.productId !== id);
-  //   this.itemCountSource.next(this.cartItems.length);
-  //   return this.getCartItems();
-  // }
+  removeFromCart(userId: number, productId: number): Observable<any> { 
+    return this.http.delete<any>(`${this.URL}?userId=${userId}&productId=${productId}`)
+    .pipe(
+      tap(() => {
+        this.cartViewStateSource.next(true);
+        this.cartChangeSource.next(true);
+      }),
+      catchError(this.errorHandler)
+    );
+  }
 
   private errorHandler(err: HttpErrorResponse) {
     let error = '';
@@ -70,5 +75,4 @@ export class CartService {
     }
     return throwError(error);
   }
-  
 }
