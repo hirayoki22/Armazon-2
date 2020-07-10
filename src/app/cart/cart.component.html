@@ -20,32 +20,41 @@
       *ngIf="cartItems?.length && !isLoading;" 
       class="content">
       <ul class="item-list">
-        <li *ngFor="let product of cartItems">
-          <div *ngIf="product.productImage" class="product-image">
-            <img [src]="product.productImage" [alt]="product.productName">
+        <li *ngFor="let item of cartItems">
+          <div *ngIf="item.productImage" class="product-image">
+            <img [src]="item.productImage" [alt]="item.productName">
           </div>
 
           <div class="product-info">
             <a href="#" class="product-name">
-              {{ product.productName | textClip:80 }}
-            </a>
+              {{ item.productName | textClip:80 }}
+            </a>  
     
-            <p class="price">{{ product.price | currency }}</p>
+            <p class="price">{{ item.price | currency }}</p>
 
             <div class="options">
               <label for="quantity">
                 Quantity: 
                 <input 
-                  (change)="quantityChanges(product, +$event.target.value)"
-                  [value]="product.quantity"
+                  (change)="quantityChanges(item, +$event.target.value)"
+                  [value]="item.quantity"
                   name="quantity"
                   id="quantity"
-                  type="number" min="1" [max]="product.totalStock">
+                  type="number" min="1" [max]="item.totalStock">
               </label>
 
               <button 
-                (click)="onRemove(product.productId)"
+                (click)="onRemove(item.productId)"
                 class="remove-btn">Remove</button>
+            </div>
+
+            <div *ngIf="item.quantity > 1" class="subtotal">
+              <p>
+                Subtotal (<span>{{ item.quantity }} items</span>):
+                <span class="price">
+                  {{ item.subtotal | currency }}
+                </span>
+              </p>
             </div>
           </div>
         </li>

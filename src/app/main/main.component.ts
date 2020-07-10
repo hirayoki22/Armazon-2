@@ -26,9 +26,13 @@ export class MainComponent implements OnInit {
     console.log('Buying product ', product);
   }
 
-  onAddToCart(product: Product, quantity = 1): void {
-    product.quantity = quantity;
-    this.cs.addToCart(product);
+  onAddToCart(productId: number, quantity = 1): void {
+    const details = {
+      userId: 1,
+      productId: productId,
+      quantity: quantity
+    }
+    this.cs.addToCart(details).subscribe();
   }
 
 }

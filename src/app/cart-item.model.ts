@@ -1,9 +1,10 @@
-export interface Product {
+export interface CartItem {
   productId: number;
   productName: string;
-  productDesc: string;
   productImage: string;
-  price: number;
   available: boolean;
   totalStock: number;
+  price: number;
+  quantity: number;
+  subtotal: number;
 }

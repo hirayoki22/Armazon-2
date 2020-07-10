@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, Subject, of, throwError } from 'rxjs';
-import { delay, map } from 'rxjs/operators';
+import { delay, map, catchError, tap } from 'rxjs/operators';
 
 import { Product } from './product.model';
-import { Cart } from './cart.model';
+import { CartItem } from './cart-item.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +22,13 @@ export class CartService {
 
   constructor(private http: HttpClient) { }
 
-  getShoppingCart(userId: number): Observable<Cart> {
-    return this.http.get<Cart>(`${this.URL}/${userId}`);
+  changeCartViewState(view: boolean): void {
+    this.cartViewStateSource.next(view);
+  }
+
+  getShoppingCart(userId: number): Observable<CartItem[]> {
+    return this.http.get<CartItem[]>(`${this.URL}/${userId}`)
+    .pipe(catchError(this.errorHandler));
   }
 
   getCartItems(): Observable<Product[]> { // Temporary
@@ -47,14 +52,19 @@ export class CartService {
     );
   }
 
-  changeCartViewState(view: boolean): void {
-    this.cartViewStateSource.next(view);
-  }
-
-  addToCart(product: Product) { // Temporary
-    this.cartItems.unshift(product);
+  addToCart(item: { 
+    userId: number, 
+    productId: number, 
+    quantity: number }
+  ): Observable<any> {
+    // this.cartItems.unshift(product);
     this.itemCountSource.next(this.cartItems.length);
     this.cartViewStateSource.next(true);
+
+    return this.http.post<any>(this.URL, item).pipe(
+      tap(res => console.log(res)),
+      catchError(this.errorHandler)
+    );
   }
 
   removeFromCart(id: number): Observable<Product[]> { // Temporary

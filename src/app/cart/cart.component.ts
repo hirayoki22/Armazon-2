@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { CartService } from '../cart.service';
 import { Product } from '../product.model';
+import { CartItem } from '../cart-item.model';
 
 
 @Component({
@@ -10,12 +11,12 @@ import { Product } from '../product.model';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  cartItems: Product[] = [];
+  cartItems: CartItem[] = [];
   viewCart: boolean;
   isLoading: boolean = true;
 
   get subtotal(): number {
-    return Math.round(this.cartItems.map(item => item.price * item.quantity)
+    return Math.round(this.cartItems.map(item => item.subtotal)
     .reduce((a, b) => a + b, 0) * 100) / 100;
   }
 
@@ -34,15 +35,16 @@ export class CartComponent implements OnInit {
         if (e.key == 'Escape') { this.onClose(); }
       }
 
-      this.cs.getCartItems().subscribe(items => {
+      this.cs.getShoppingCart(1).subscribe(items => {
         this.cartItems = items;
         this.isLoading = false;
       });
     });
 
-    this.cs.getShoppingCart(1).subscribe(cart => {
-      console.log(cart);
-    });
+    // this.cs.getShoppingCart(1).subscribe(items => {
+    //   this.cartItems = items;
+    //   this.isLoading = false;
+    // });
   }
 
   onClose(): void {
@@ -63,16 +65,16 @@ export class CartComponent implements OnInit {
   }
 
   quantityChanges(product: Product, value: number): void {
-    this.cs.addToCart(product);
+    // this.cs.addToCart(product);
   }
 
   onRemove(productId: number): void {
-    this.isLoading = true;
+    // this.isLoading = true;
 
-    this.cs.removeFromCart(productId).subscribe(items => {
-      this.cartItems = items;
-      this.isLoading = false;
-    });
+    // this.cs.removeFromCart(productId).subscribe(items => {
+    //   this.cartItems = items;
+    //   this.isLoading = false;
+    // });
   }
 
   overlayClick(e: MouseEvent): void {
