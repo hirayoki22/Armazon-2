@@ -60,12 +60,14 @@ export class CartComponent implements OnInit {
   }
 
   quantityChanges(productId: number, quantity: number): void {
-    const details = {
+    const item = {
       userId: 1,
       productId: productId,
       quantity: quantity
     }
-    this.cs.addToCart(details).subscribe();
+
+    this.isLoading = true;
+    this.cs.updateItemQuantity(item).subscribe();
   }
 
   onRemove(productId: number): void {

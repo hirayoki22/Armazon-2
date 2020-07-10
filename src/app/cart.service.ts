@@ -54,6 +54,20 @@ export class CartService {
     );
   }
 
+  updateItemQuantity(item: { 
+    userId: number, 
+    productId: number, 
+    quantity: number 
+  }): Observable<any> {
+    return this.http.put<any>(this.URL, item).pipe(
+      tap(() => {
+        this.cartViewStateSource.next(true);
+        this.cartChangeSource.next(true);
+      }),
+      catchError(this.errorHandler)
+    );
+  }
+
   removeFromCart(userId: number, productId: number): Observable<any> { 
     return this.http.delete<any>(`${this.URL}?userId=${userId}&productId=${productId}`)
     .pipe(
