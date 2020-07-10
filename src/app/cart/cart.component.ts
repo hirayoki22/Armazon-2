@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ViewChild, ElementRef } from '@angular/core';
 
 import { CartService } from '../cart.service';
-import { Product } from '../product.model';
 import { CartItem } from '../cart-item.model';
 
 
@@ -11,6 +11,7 @@ import { CartItem } from '../cart-item.model';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
+  @ViewChild('itemList') itemList: ElementRef<HTMLElement>;
   cartItems: CartItem[] = [];
   viewCart: boolean;
   isLoading: boolean = true;
@@ -66,8 +67,10 @@ export class CartComponent implements OnInit {
       quantity: quantity
     }
 
-    this.isLoading = true;
-    this.cs.updateItemQuantity(item).subscribe();
+    // this.isLoading = true;
+    this.cs.updateItemQuantity(item).subscribe(() => {
+      this.itemList.nativeElement.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   }
 
   onRemove(productId: number): void {
