@@ -67,18 +67,23 @@ export class CartComponent implements OnInit {
       quantity: quantity
     }
 
-    // this.isLoading = true;
+    this.isLoading = true;
     this.cs.updateItemQuantity(item).subscribe(() => {
       this.itemList.nativeElement.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 
   onRemove(productId: number): void {
+    this.isLoading = true;
     this.cs.removeFromCart(1, productId).subscribe();
   }
 
   overlayClick(e: MouseEvent): void {
     if (e.target == e.currentTarget) { this.onClose(); }
+  }
+
+  proceedToCheckOut(): void {
+    console.log(this.cartItems);
   }
 
 }

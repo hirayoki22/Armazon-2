@@ -11,13 +11,13 @@
     </div>
 
     <div 
-      *ngIf="!cartItems?.length && !isLoading;" 
+      *ngIf="!cartItems?.length && !isLoading" 
       class="empty-cart-msg">
       <h3>Your cart is empty</h3>
     </div>
 
     <div 
-      *ngIf="cartItems?.length && !isLoading;" 
+      *ngIf="cartItems?.length" 
       class="content">
       <ul #itemList class="item-list">
         <li *ngFor="let item of cartItems">
