@@ -25,7 +25,7 @@ export class CartService {
   }
 
   getItemCount(userId: number): Observable<number> {
-    return this.http.get<{total: number}>(`${this.URL}?id=${userId}&count=true`)
+    return this.http.get<{total: number}>(`${this.URL}?userId=${userId}&count=true`)
     .pipe(
       map(count => count.total),
       catchError(this.errorHandler)
@@ -33,7 +33,7 @@ export class CartService {
   }
 
   getShoppingCart(userId: number): Observable<CartItem[]> {
-    return this.http.get<CartItem[]>(`${this.URL}?id=${userId}`)
+    return this.http.get<CartItem[]>(`${this.URL}?userId=${userId}`)
     .pipe(
       delay(300),
       catchError(this.errorHandler)
