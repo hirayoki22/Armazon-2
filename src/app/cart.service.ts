@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject, of } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, Subject, of, throwError } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
+
 import { Product } from './product.model';
+import { Cart } from './cart.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private cartItems: Product[] = [];
+  private URL = 'http://127.0.0.1/market-api/shopping-cart.php';
+  private cartItems: Product[] = []; // Temporary
 
   private cartViewStateSource: Subject<boolean> = new Subject();
   cartViewState$: Observable<boolean> = this.cartViewStateSource.asObservable();
@@ -16,9 +20,13 @@ export class CartService {
   itemCount$: Observable<number> = this.itemCountSource.asObservable();
 
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getCartItems(): Observable<Product[]> {
+  getShoppingCart(userId: number): Observable<Cart> {
+    return this.http.get<Cart>(this.URL);
+  }
+
+  getCartItems(): Observable<Product[]> { // Temporary
     return of(this.cartItems).pipe(
       map((items: Product[]) => {
         let cartItems = [];
@@ -43,15 +51,27 @@ export class CartService {
     this.cartViewStateSource.next(view);
   }
 
-  addToCart(product: Product) {
+  addToCart(product: Product) { // Temporary
     this.cartItems.unshift(product);
     this.itemCountSource.next(this.cartItems.length);
     this.cartViewStateSource.next(true);
   }
 
-  removeFromCart(id: number): Observable<Product[]> {
+  removeFromCart(id: number): Observable<Product[]> { // Temporary
     this.cartItems = this.cartItems.filter(product => product.productId !== id);
     this.itemCountSource.next(this.cartItems.length);
     return this.getCartItems();
   }
+
+  private errorHandler(err: HttpErrorResponse) {
+    let error = '';
+
+    if (err.error instanceof ErrorEvent) {
+      error = err.error.message;
+    } else {
+      error = err.error;
+    }
+    return throwError(error);
+  }
+  
 }

@@ -9,7 +9,7 @@ export class AppComponent implements OnInit {
   title = 'marketplace';
 
   ngOnInit(): void {
-    this.getShoppingCart();
+    // this.getShoppingCart();
     // this.addToCart();
   }
 
