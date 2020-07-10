@@ -7,7 +7,19 @@ import { delay, map, catchError, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class OrderService {
-  private URL = 'http://127.0.0.1/market-api/shopping-cart.php';
+  private URL = 'http://127.0.0.1/market-api/orders.php';
 
   constructor(private http: HttpClient) { }
+
+
+  private errorHandler(err: HttpErrorResponse) {
+    let error = '';
+
+    if (err.error instanceof ErrorEvent) {
+      error = err.error.message;
+    } else {
+      error = err.error;
+    }
+    return throwError(error);
+  }
 }
