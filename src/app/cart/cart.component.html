@@ -22,7 +22,7 @@
       <ul class="item-list">
         <li *ngFor="let item of cartItems">
           <div *ngIf="item.productImage" class="product-image">
-            <img [src]="item.productImage" [alt]="item.productName">
+            <img image-loader [src]="item.productImage" [alt]="item.productName">
           </div>
 
           <div class="product-info">

@@ -3,7 +3,7 @@
     <ul class="products">
       <li *ngFor="let product of products">
         <div *ngIf="product.productImage" class="product-image">
-          <img [src]="product.productImage" [alt]="product.productName">
+          <img image-loader [src]="product.productImage" [alt]="product.productName">
         </div>
   
         <div class="product-info">

@@ -11,6 +11,7 @@ import { CartComponent } from './cart/cart.component';
 import { MainComponent } from './main/main.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { TextClipPipe } from './shared/text-clip.pipe';
+import { ImageLoaderDirective } from './shared/image-loader.directive';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { TextClipPipe } from './shared/text-clip.pipe';
     CartComponent,
     MainComponent,
     SpinnerComponent,
-    TextClipPipe
+    TextClipPipe,
+    ImageLoaderDirective
   ],
   imports: [
     BrowserModule,
