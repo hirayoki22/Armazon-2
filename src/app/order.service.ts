@@ -11,6 +11,10 @@ export class OrderService {
 
   constructor(private http: HttpClient) { }
 
+  placeOrder(oder: any) {
+    
+  }
+
 
   private errorHandler(err: HttpErrorResponse) {
     let error = '';
