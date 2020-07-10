@@ -18,11 +18,11 @@
           
           <div class="action-buttons">
             <button 
-              (click)="onBuyNow(product)"
+              (click)="onBuyNow(product.productId)"
               type="button" class="buy-now-btn">Buy Now</button>
 
             <button 
-              (click)="onAddToCart(product)"
+              (click)="onAddToCart(product.productId)"
               type="button" class="add-to-cart-btn" title="Add to Cart">
               <i class="material-icons">add_shopping_cart</i>
             </button>

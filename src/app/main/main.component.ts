@@ -22,8 +22,8 @@ export class MainComponent implements OnInit {
     this.ps.getProducts().subscribe(prodcuts => this.products = prodcuts);
   }
 
-  onBuyNow(product: Product): void {
-    console.log('Buying product ', product);
+  onBuyNow(productId: number): void {
+    console.log('Buying product ', productId);
   }
 
   onAddToCart(productId: number, quantity = 1): void {

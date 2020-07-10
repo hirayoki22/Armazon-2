@@ -11,7 +11,6 @@ import { CartItem } from './cart-item.model';
 })
 export class CartService {
   private URL = 'http://127.0.0.1/market-api/shopping-cart.php';
-  private cartItems: Product[] = []; // Temporary
 
   private cartViewStateSource: Subject<boolean> = new Subject();
   cartViewState$: Observable<boolean> = this.cartViewStateSource.asObservable();
@@ -31,35 +30,34 @@ export class CartService {
     .pipe(catchError(this.errorHandler));
   }
 
-  getCartItems(): Observable<Product[]> { // Temporary
-    return of(this.cartItems).pipe(
-      map((items: Product[]) => {
-        let cartItems = [];
+  // getCartItems(): Observable<Product[]> { // Temporary
+  //   return of(this.cartItems).pipe(
+  //     map((items: Product[]) => {
+  //       let cartItems = [];
 
-        items.forEach(product => {
-          if (!cartItems.some(cur => cur.productId == product.productId)) {
-            cartItems.push(product);
-          }
-        });
+  //       items.forEach(product => {
+  //         if (!cartItems.some(cur => cur.productId == product.productId)) {
+  //           cartItems.push(product);
+  //         }
+  //       });
     
-        cartItems.map(item => {
-          const matches = items.filter(cur => cur.productId == item.productId);
-          item.quantity = matches.length;
-        });
-        return cartItems;
-      }),
-      delay(300)
-    );
-  }
+  //       cartItems.map(item => {
+  //         const matches = items.filter(cur => cur.productId == item.productId);
+  //         item.quantity = matches.length;
+  //       });
+  //       return cartItems;
+  //     }),
+  //     delay(300)
+  //   );
+  // }
 
   addToCart(item: { 
     userId: number, 
     productId: number, 
     quantity: number }
   ): Observable<any> {
-    // this.cartItems.unshift(product);
-    this.itemCountSource.next(this.cartItems.length);
-    this.cartViewStateSource.next(true);
+    // this.itemCountSource.next(this.cartItems.length);
+    // this.cartViewStateSource.next(true);
 
     return this.http.post<any>(this.URL, item).pipe(
       tap(res => console.log(res)),
@@ -67,11 +65,11 @@ export class CartService {
     );
   }
 
-  removeFromCart(id: number): Observable<Product[]> { // Temporary
-    this.cartItems = this.cartItems.filter(product => product.productId !== id);
-    this.itemCountSource.next(this.cartItems.length);
-    return this.getCartItems();
-  }
+  // removeFromCart(id: number): Observable<Product[]> { // Temporary
+  //   this.cartItems = this.cartItems.filter(product => product.productId !== id);
+  //   this.itemCountSource.next(this.cartItems.length);
+  //   return this.getCartItems();
+  // }
 
   private errorHandler(err: HttpErrorResponse) {
     let error = '';
