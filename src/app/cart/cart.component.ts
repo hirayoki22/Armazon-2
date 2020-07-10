@@ -39,6 +39,10 @@ export class CartComponent implements OnInit {
         this.isLoading = false;
       });
     });
+
+    this.cs.getShoppingCart(1).subscribe(cart => {
+      console.log(cart);
+    });
   }
 
   onClose(): void {

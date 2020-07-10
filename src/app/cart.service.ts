@@ -23,7 +23,7 @@ export class CartService {
   constructor(private http: HttpClient) { }
 
   getShoppingCart(userId: number): Observable<Cart> {
-    return this.http.get<Cart>(this.URL);
+    return this.http.get<Cart>(`${this.URL}/${userId}`);
   }
 
   getCartItems(): Observable<Product[]> { // Temporary
