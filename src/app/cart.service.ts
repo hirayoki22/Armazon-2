@@ -15,8 +15,8 @@ export class CartService {
   private cartViewStateSource: Subject<boolean> = new Subject();
   cartViewState$: Observable<boolean> = this.cartViewStateSource.asObservable();
 
-  private itemCountSource: Subject<number> = new Subject();
-  itemCount$: Observable<number> = this.itemCountSource.asObservable();
+  private cartChangeSource: Subject<boolean> = new Subject();
+  cartChange$: Observable<boolean> = this.cartChangeSource.asObservable();
 
 
   constructor(private http: HttpClient) { }
@@ -25,43 +25,32 @@ export class CartService {
     this.cartViewStateSource.next(view);
   }
 
+  getItemCount(userId: number): Observable<number> {
+    return this.http.get<{total: number}>(`${this.URL}?id=${userId}&count=true`)
+    .pipe(
+      map(count => count.total),
+      catchError(this.errorHandler)
+    );
+  }
+
   getShoppingCart(userId: number): Observable<CartItem[]> {
-    return this.http.get<CartItem[]>(`${this.URL}/${userId}`)
+    return this.http.get<CartItem[]>(`${this.URL}?id=${userId}`)
     .pipe(
       delay(300),
       catchError(this.errorHandler)
     );
   }
 
-  // getCartItems(): Observable<Product[]> { // Temporary
-  //   return of(this.cartItems).pipe(
-  //     map((items: Product[]) => {
-  //       let cartItems = [];
-
-  //       items.forEach(product => {
-  //         if (!cartItems.some(cur => cur.productId == product.productId)) {
-  //           cartItems.push(product);
-  //         }
-  //       });
-    
-  //       cartItems.map(item => {
-  //         const matches = items.filter(cur => cur.productId == item.productId);
-  //         item.quantity = matches.length;
-  //       });
-  //       return cartItems;
-  //     }),
-  //     delay(300)
-  //   );
-  // }
-
   addToCart(item: { 
     userId: number, 
     productId: number, 
     quantity: number }
   ): Observable<any> {
-    // this.itemCountSource.next(this.cartItems.length);
     return this.http.post<any>(this.URL, item).pipe(
-      tap(() => this.cartViewStateSource.next(true)),
+      tap(() => {
+        this.cartViewStateSource.next(true);
+        this.cartChangeSource.next(true);
+      }),
       catchError(this.errorHandler)
     );
   }

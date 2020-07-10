@@ -41,10 +41,9 @@ export class CartComponent implements OnInit {
       });
     });
 
-    // this.cs.getShoppingCart(1).subscribe(items => {
-    //   this.cartItems = items;
-    //   this.isLoading = false;
-    // });
+    this.cs.getShoppingCart(1).subscribe(items => {
+      console.log(items);
+    });
   }
 
   onClose(): void {

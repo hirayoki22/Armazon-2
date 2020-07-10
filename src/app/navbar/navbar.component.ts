@@ -13,10 +13,24 @@ export class NavbarComponent implements OnInit {
   constructor(private cs: CartService) { }
 
   ngOnInit(): void {
-    this.cs.itemCount$.subscribe(count => {
-      this.itemCount = (count > 0 && count) < 100 ? count : 
-      (count >= 100) ? '99+' : null; 
+    this.initItemCount();
+
+    this.cs.cartChange$.subscribe(isChanged => {
+      if (isChanged) {
+        this.initItemCount();
+      }
     });
+  }
+
+  private initItemCount(): void {
+    this.cs.getItemCount(1).subscribe(count => {
+      this.itemCount = this.formatItemCount(count);
+    });
+  }
+
+  private formatItemCount(count: number): number | string {
+    return (count > 0 && count) < 100 ? count : 
+    (count >= 100) ? '99+' : null;
   }
 
   openCart(): void {
