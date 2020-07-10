@@ -3,7 +3,6 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, Subject, of, throwError } from 'rxjs';
 import { delay, map, catchError, tap } from 'rxjs/operators';
 
-import { Product } from './product.model';
 import { CartItem } from './cart-item.model';
 
 @Injectable({
