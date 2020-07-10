@@ -4,7 +4,7 @@ export interface Product {
   productDesc: string;
   productImage: string;
   price: number;
-  availability: boolean;
+  available: boolean;
   totalStock: number;
   quantity?: number;
 }
