@@ -19,6 +19,12 @@ export class ProductService {
     );
   }
 
+  getProductById(id: number): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.URL}/${id}`).pipe(
+      catchError(this.errorHandler)
+    );
+  }
+
   private errorHandler(err: HttpErrorResponse) {
     let error = '';
 

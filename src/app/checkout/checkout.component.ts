@@ -5,7 +5,6 @@ import { OrderService } from '../order.service';
 import { CartItem } from '../cart-item.model';
 import { Order } from '../order.model';
 
-
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
