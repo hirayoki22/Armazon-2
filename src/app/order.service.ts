@@ -3,6 +3,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, Subject, of, throwError } from 'rxjs';
 import { delay, map, catchError, tap } from 'rxjs/operators';
 
+import { Order } from './order.model';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,8 +13,11 @@ export class OrderService {
 
   constructor(private http: HttpClient) { }
 
-  placeOrder(oder: any) {
-    
+  createOrder(order: Order): Observable<any> {
+    return this.http.post<any>(this.URL, order).pipe(
+      tap(res => console.log(res)),
+      catchError(this.errorHandler)
+    );
   }
 
 

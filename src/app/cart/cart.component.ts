@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ViewChild, ElementRef } from '@angular/core';
 
 import { CartService } from '../cart.service';
+import { OrderService } from '../order.service';
 import { CartItem } from '../cart-item.model';
+import { Order } from '../order.model';
 
 
 @Component({
@@ -25,7 +27,10 @@ export class CartComponent implements OnInit {
     return this.cartItems.map(item => item.quantity).reduce((a, b) => a + b, 0);
   }
 
-  constructor(private cs: CartService) { }
+  constructor(
+    private cs: CartService,
+    private os: OrderService
+  ) { }
 
   ngOnInit(): void {
     this.cs.cartViewState$.subscribe(state => {
@@ -83,7 +88,13 @@ export class CartComponent implements OnInit {
   }
 
   proceedToCheckOut(): void {
-    console.log(this.cartItems);
+    const order: Order = {
+      userId: 1,
+      items: this.cartItems,
+      total: this.subtotal
+    };
+    
+    this.os.createOrder(order).subscribe();
   }
 
 }
