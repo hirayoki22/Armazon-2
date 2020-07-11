@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, Subject, of, throwError } from 'rxjs';
+import { Observable, Subject, throwError } from 'rxjs';
 import { delay, map, catchError, tap } from 'rxjs/operators';
 
 import { CartItem } from './cart-item.model';
