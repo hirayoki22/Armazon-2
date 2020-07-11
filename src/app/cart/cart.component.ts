@@ -5,6 +5,7 @@ import { CartService } from '../cart.service';
 import { OrderService } from '../order.service';
 import { CartItem } from '../cart-item.model';
 import { Order } from '../order.model';
+import { Product } from '../product.model';
 
 
 @Component({
@@ -65,17 +66,29 @@ export class CartComponent implements OnInit {
     }, 400);
   }
 
-  quantityChanges(productId: number, quantity: number): void {
-    const item = {
-      userId: 1,
-      productId: productId,
-      quantity: quantity
-    };
-
+  quantityChanges(product: Product, quantity: number): void {
     this.isLoading = true;
-    this.cs.updateItemQuantity(item).subscribe(() => {
-      this.itemList.nativeElement.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+
+    switch (true) {
+      case quantity == 0:
+        this.onRemove(product.productId);
+        break;
+
+      case quantity <= product.totalStock:
+        const item = {
+          userId: 1,
+          productId: product.productId,
+          quantity: quantity
+        };
+    
+        this.cs.updateItemQuantity(item).subscribe(() => {
+          this.itemList.nativeElement.scrollTo({ top: 0, behavior: 'smooth' });
+        });        
+        break;
+    
+      default:
+        return;
+    }
   }
 
   onRemove(productId: number): void {
