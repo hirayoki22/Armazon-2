@@ -67,8 +67,7 @@
         <span class="subtotal-amount">Order Total: <strong>{{ subtotal | currency }}</strong></span>
       </div>
 
-      <button 
-        (click)="proceedToCheckOut()" type="button">
+      <button routerLink="./order-checkout" type="button">
         Proceed to Checkout
       </button>
     </div>

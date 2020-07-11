@@ -28,10 +28,7 @@ export class CartComponent implements OnInit {
     return this.cartItems.map(item => item.quantity).reduce((a, b) => a + b, 0);
   }
 
-  constructor(
-    private cs: CartService,
-    private os: OrderService
-  ) { }
+  constructor(private cs: CartService) { }
 
   ngOnInit(): void {
     this.cs.cartViewState$.subscribe(state => {
@@ -98,16 +95,6 @@ export class CartComponent implements OnInit {
 
   overlayClick(e: MouseEvent): void {
     if (e.target == e.currentTarget) { this.onClose(); }
-  }
-
-  proceedToCheckOut(): void {
-    const order: Order = {
-      userId: 1,
-      items: this.cartItems,
-      total: this.subtotal
-    };
-    
-    this.os.createOrder(order).subscribe();
   }
 
 }
