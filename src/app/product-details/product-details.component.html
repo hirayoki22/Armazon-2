@@ -1,5 +1,11 @@
-<div *ngIf="!isLoading">
-  <h1>{{ product | json }}</h1>
-</div>
+<section class="product-detail-section">
+  <div class="wrapper">
+    <div *ngIf="!isLoading">
+      {{ product.productName }}
+    </div>
+  </div>
+
+</section>
+
 
 <app-spinner [loading]="isLoading"></app-spinner>

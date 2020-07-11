@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { Input } from '@angular/core';
 import { trigger, state, transition, animate, style } from '@angular/animations';
 
@@ -10,24 +10,31 @@ import { trigger, state, transition, animate, style } from '@angular/animations'
     trigger('showSpinner', [
       state('hide', style({
         visibility: 'hidden',
-        opacity: 0,
-        transform: 'scale(1.5, 1.5)'
+        opacity: 0
       })),
       state('show', style({
         visibility: 'visible',
-        opacity: 1,
-        transform: 'scale(1, 1)'
+        opacity: 1
       })),
       transition('hide <=> show', animate('0.4s ease'))
     ])
   ]
 })
-export class SpinnerComponent implements OnInit {
+export class SpinnerComponent implements OnInit, OnChanges {
   @Input() loading: boolean;
 
   constructor() { }
 
   ngOnInit(): void {
+    // document.body.classList.remove('active-overlay');
+  }
+
+  ngOnChanges(): void {
+    if (!this.loading) {
+      document.body.classList.remove('active-overlay');
+    } else {
+      document.body.classList.add('active-overlay');
+    }
   }
 
 }
