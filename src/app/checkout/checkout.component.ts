@@ -21,7 +21,7 @@ export class CheckoutComponent implements OnInit {
 
   }
 
-  proceedToCheckOut(): void {
+  completeCheckout(): void {
     const order: Order = {
       userId: 1,
       items: this.cartItems,
