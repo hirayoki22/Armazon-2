@@ -12,6 +12,8 @@ import { MainComponent } from './main/main.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { TextClipPipe } from './shared/text-clip.pipe';
 import { ImageLoaderDirective } from './shared/image-loader.directive';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { ImageLoaderDirective } from './shared/image-loader.directive';
     MainComponent,
     SpinnerComponent,
     TextClipPipe,
-    ImageLoaderDirective
+    ImageLoaderDirective,
+    CheckoutComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
