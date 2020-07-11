@@ -1,11 +1,15 @@
+<app-spinner [loading]="isLoading"></app-spinner>
+
 <section class="product-detail-section">
   <div class="wrapper">
-    <div *ngIf="!isLoading">
-      {{ product.productName }}
+
+    <div class="grid-container">
+      <div class="grid-item"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item"></div>
     </div>
+
   </div>
 
 </section>
 
-
-<app-spinner [loading]="isLoading"></app-spinner>
