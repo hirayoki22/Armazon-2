@@ -100,6 +100,7 @@ export class CartComponent implements OnInit {
   }
 
   proceedToCheckOut(): void {
+    this.onClose();
     this.router.navigate(['./order-checkout']);
   }
 }
