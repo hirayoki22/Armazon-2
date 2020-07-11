@@ -7,7 +7,8 @@
         </div>
   
         <div class="product-info">
-          <a href="#" class="product-name" [title]="product.productName">
+          <a [routerLink]="['/product', product.productId]" 
+            class="product-name" [title]="product.productName">
             {{ product.productName | textClip:68 }}
           </a>
   
