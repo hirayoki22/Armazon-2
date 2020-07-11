@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewChild, ElementRef } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { CartService } from '../cart.service';
 import { CartItem } from '../cart-item.model';
@@ -26,7 +27,10 @@ export class CartComponent implements OnInit {
     return this.cartItems.map(item => item.quantity).reduce((a, b) => a + b, 0);
   }
 
-  constructor(private cs: CartService) { }
+  constructor(
+    private router: Router,
+    private cs: CartService
+  ) { }
 
   ngOnInit(): void {
     this.cs.cartViewState$.subscribe(state => {
@@ -96,6 +100,6 @@ export class CartComponent implements OnInit {
   }
 
   proceedToCheckOut(): void {
-
+    this.router.navigate(['./order-checkout']);
   }
 }

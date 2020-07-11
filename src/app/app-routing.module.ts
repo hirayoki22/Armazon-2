@@ -7,9 +7,9 @@ import { CheckoutComponent } from './checkout/checkout.component';
 
 const routes: Routes = [
   { path: 'home', component: MainComponent },
-  { path: 'product-details', component: ProductDetailsComponent },
+  { path: 'product/:id', component: ProductDetailsComponent },
   { path: 'order-checkout', component: CheckoutComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full' }
+  { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
 @NgModule({
