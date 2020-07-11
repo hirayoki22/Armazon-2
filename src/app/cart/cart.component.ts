@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ViewChild, ElementRef } from '@angular/core';
 
 import { CartService } from '../cart.service';
-import { OrderService } from '../order.service';
 import { CartItem } from '../cart-item.model';
-import { Order } from '../order.model';
 import { Product } from '../product.model';
 
 
@@ -97,4 +95,7 @@ export class CartComponent implements OnInit {
     if (e.target == e.currentTarget) { this.onClose(); }
   }
 
+  proceedToCheckOut(): void {
+
+  }
 }
