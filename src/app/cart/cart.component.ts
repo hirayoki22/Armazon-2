@@ -70,7 +70,7 @@ export class CartComponent implements OnInit {
       userId: 1,
       productId: productId,
       quantity: quantity
-    }
+    };
 
     this.isLoading = true;
     this.cs.updateItemQuantity(item).subscribe(() => {
