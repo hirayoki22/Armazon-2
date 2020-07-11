@@ -23,7 +23,8 @@ export class CheckoutComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+    this.cartItems = history.state.data;
+    console.log(this.cartItems);
   }
 
   completeCheckout(): void {

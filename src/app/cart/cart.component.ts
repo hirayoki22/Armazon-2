@@ -101,6 +101,6 @@ export class CartComponent implements OnInit {
 
   proceedToCheckOut(): void {
     this.onClose();
-    this.router.navigate(['./order-checkout']);
+    this.router.navigate(['./order-checkout'], { state: { data: this.cartItems } });
   }
 }
