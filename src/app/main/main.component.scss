@@ -18,6 +18,7 @@
       overflow: hidden;
 
       .product-image {
+        display: block;
         width: 100%;
         height: 230px;
         padding: 1.5rem;
@@ -39,11 +40,17 @@
         .product-name {
           display: block;
           margin-bottom: 1rem;
+          color: royalblue;
           font-size: 1rem;
           font-weight: 400;
           line-height: 1.5rem;
           overflow: hidden;
           text-overflow: ellipsis;
+          transition: color 0.3s ease;
+
+          &:hover {
+            color: #66a6ff;
+          }
         }
 
         .price {

@@ -2,9 +2,11 @@
   <div class="wrapper">
     <ul class="products">
       <li *ngFor="let product of products">
-        <div *ngIf="product.productImage" class="product-image">
+        <a *ngIf="product.productImage" 
+          [routerLink]="['/product', product.productId]"
+          class="product-image">
           <img image-loader [src]="product.productImage" [alt]="product.productName">
-        </div>
+        </a>
   
         <div class="product-info">
           <a [routerLink]="['/product', product.productId]" 
