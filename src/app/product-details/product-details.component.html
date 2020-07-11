@@ -6,14 +6,19 @@
     <h1 class="product-name">{{ product.productName }}</h1>
 
     <div class="grid-container">
-      <div class="grid-item">
-        <img image-loader [src]="product.productImage" [alt]="product.productName">
+      <div class="small-container">
+        <div class="item">
+          <img src="https://images-na.ssl-images-amazon.com/images/I/81aot0jAfFL._AC_SL1500_.jpg" alt="">
+        </div>
+        <div class="item">
+          <img src="https://images-na.ssl-images-amazon.com/images/I/718Pz9bYxWL._AC_SL1500_.jpg" alt="">
+        </div>
       </div>
-      <div class="grid-item">
-        <img src="https://images-na.ssl-images-amazon.com/images/I/81aot0jAfFL._AC_SL1500_.jpg" alt="">
-      </div>
-      <div class="grid-item">
-        <img src="https://images-na.ssl-images-amazon.com/images/I/718Pz9bYxWL._AC_SL1500_.jpg" alt="">
+
+      <div class="big-container">
+        <div class="item">
+          <img image-loader [src]="product.productImage" [alt]="product.productName">
+        </div>
       </div>
     </div>
 
