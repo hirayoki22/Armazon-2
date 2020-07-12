@@ -1,6 +1,6 @@
 <app-spinner [loading]="isLoading" overlayStyle="fixed"></app-spinner>
 
-<section class="product-detail-section">
+<section *ngIf="!isLoading" class="product-detail-section">
   <div class="wrapper">
 
     <h1 class="product-name">{{ product.productName }}</h1>
