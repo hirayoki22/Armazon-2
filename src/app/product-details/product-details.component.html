@@ -5,7 +5,7 @@
 
     <h1 class="product-name">{{ product.productName }}</h1>
 
-    <div class="product-image-container">
+    <section class="product-image-container">
       <div class="small-container">
         <div class="item">
           <img src="https://images-na.ssl-images-amazon.com/images/I/81aot0jAfFL._AC_SL1500_.jpg" alt="">
@@ -24,14 +24,18 @@
             draggable="false">
         </div>
       </div>
-    </div>
+    </section>
     
-    <div class="product-details-container">
-      <div class="info">
+    <section class="product-details-container">
+      <article class="info">
         <p>Price: <span class="price">{{ product.price | currency }}</span></p>
-        <p>{{ product.productDesc }}</p>
         <p>{{ product.totalStock > 0 ? 'In stock' : 'Not in stock' }}</p>
-      </div>
+        
+        <div class="desc">
+          <h3>Product description:</h3>
+          <p>{{ product.productDesc }}</p>
+        </div>
+      </article>
 
       <div class="action-buttons">
         <button 
@@ -45,7 +49,7 @@
           <span>Add to cart</span>
         </button>
       </div>
-    </div>
+    </section>
 
   </div>
 
