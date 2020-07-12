@@ -1,7 +1,7 @@
 .product-detail-section {
   width: 100%;
   min-height: 100vh;
-  margin: 4rem 0;
+  margin: 2rem 0;
   padding: 70px 1rem 0;
 
   .product-name {
@@ -64,10 +64,9 @@
     margin-top: 1.5rem;
     padding: 1.5rem;
     background-color: #fff;
+    overflow: hidden;
 
     .info {
-      width: 45%;
-
       p:not(:last-of-type) {
         margin-bottom: 1rem;
       }
@@ -84,31 +83,32 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: 45%;
+      width: 424px;
 
       button {
+        flex-shrink: 0;
         position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
         width: 200px;
         height: 40px;
-        border: 2px solid #F98A95;
+        border: 2px solid #F72551;
       }
 
       .buy-now-btn {
         margin-right: 1rem;
         color: #fff;
-        background-color: #F98A95;
+        background-color: #F72551;
       }
 
       .add-to-cart-btn {
         span {
-          color: #F98A95
+          color: #F72551
         }
 
         .material-icons {
-          color: #F98A95;
+          color: #F72551;
           transition: color .3s ease;
         }
 
