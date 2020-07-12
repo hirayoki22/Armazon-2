@@ -9,6 +9,7 @@
     width: 100%;
 
     li {
+      position: relative;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -61,7 +62,7 @@
         }
 
         .stock-label {
-          color: #66a6ff;
+          color: #ec9045;
         }
       }
 
