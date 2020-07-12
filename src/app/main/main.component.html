@@ -1,5 +1,16 @@
 <section class="products-section">
   <div class="wrapper">
+    <div class="banner">
+      <div class="banner-text">
+        <h3>We're here with you!</h3>
+
+        <p>During this harsh times, online shopping has never been easier. We're giving you elegible products off sales taxes through July - August</p>
+
+        <button routerLink="/" type="button">Learn more</button>
+      </div>
+      <img src="assets/img/banner-2.webp">
+    </div>
+
     <ul class="products">
       <li *ngFor="let product of products">
         <a *ngIf="product.productImage" 
