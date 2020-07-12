@@ -14,6 +14,7 @@ import { TextClipPipe } from './shared/text-clip.pipe';
 import { ImageLoaderDirective } from './shared/image-loader.directive';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { SearchBarComponent } from './navbar/search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     TextClipPipe,
     ImageLoaderDirective,
     CheckoutComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,

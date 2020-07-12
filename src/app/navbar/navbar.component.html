@@ -4,12 +4,22 @@
       <span>A</span>
       <span>rmazon</span>
     </a>
+    
+    <div class="user-options">
+      <button class="search-btn nav-btn" type="button">
+        <i class="material-icons">search</i>
+      </button>
 
-    <button (click)="openCart()" class="cart-btn">
-      <i class="material-icons">shopping_cart</i>
-      <span *ngIf="itemCount" class="badge">
-        {{ itemCount }}
-      </span>
-    </button>
+      <button class="login-btn nav-btn" type="button">
+        <i class="material-icons">person</i>
+      </button>
+  
+      <button (click)="openCart()" class="cart-btn nav-btn" type="button">
+        <i class="material-icons">shopping_cart</i>
+        <span *ngIf="itemCount" class="badge">
+          {{ itemCount }}
+        </span>
+      </button>
+    </div>
   </div>
 </nav>
