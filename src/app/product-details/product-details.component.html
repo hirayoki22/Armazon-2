@@ -1,11 +1,11 @@
-<app-spinner [loading]="isLoading"></app-spinner>
+<!-- <app-spinner [loading]="isLoading"></app-spinner> -->
 
 <section class="product-detail-section">
   <div class="wrapper">
 
     <h1 class="product-name">{{ product.productName }}</h1>
 
-    <div class="grid-container">
+    <div class="product-image-container">
       <div class="small-container">
         <div class="item">
           <img src="https://images-na.ssl-images-amazon.com/images/I/81aot0jAfFL._AC_SL1500_.jpg" alt="">
@@ -17,8 +17,33 @@
 
       <div class="big-container">
         <div class="item">
-          <img image-loader [src]="product.productImage" [alt]="product.productName">
+          <img 
+            image-loader 
+            [src]="product.productImage"
+            [alt]="product.productName"
+            draggable="false">
         </div>
+      </div>
+    </div>
+    
+    <div class="product-details-container">
+      <div class="info">
+        <p>Price: <span class="price">{{ product.price | currency }}</span></p>
+        <p>{{ product.productDesc }}</p>
+        <p>{{ product.totalStock > 0 ? 'In stock' : 'Not in stock' }}</p>
+      </div>
+
+      <div class="action-buttons">
+        <button 
+          (click)="onBuyNow(product.productId)"
+          type="button" class="buy-now-btn">Buy Now</button>
+
+        <button 
+          (click)="onAddToCart(product.productId)"
+          type="button" class="add-to-cart-btn" title="Add to Cart">
+          <i class="material-icons">add_shopping_cart</i>
+          <span>Add to cart</span>
+        </button>
       </div>
     </div>
 

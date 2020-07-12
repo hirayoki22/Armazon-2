@@ -3,7 +3,7 @@
   left: 0;
   top: 0;
   width: 100%;
-  height: 60px;
+  height: 50px;
   overflow: hidden;
   background-color: #fff;
   box-shadow: 0 1px 20px rgba(190, 190, 190, 0.2);
@@ -14,7 +14,30 @@
     align-items: center;
     height: inherit;
     margin: auto;
-    padding: 0 1rem;
+    // padding: 0 1rem;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.1rem;
+    user-select: none;
+    overflow: hidden;
+
+    span:first-of-type {
+      margin-right: 0.5rem;
+      color: #F72551;
+      font-size: 2.5rem;
+      font-weight: 300;
+      border-radius: 100px;
+    }
+
+    span:last-of-type {
+      color: #000;
+      padding: 0.1rem 0.7rem;
+      font-size: 1rem;
+      border-left: thin solid #ce9b9b;
+    }
   }
   
   .cart-btn {
