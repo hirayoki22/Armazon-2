@@ -21,6 +21,8 @@ export class ProductDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    window.scrollTo({ top: 0 });
+
     this.route.paramMap.subscribe(params => {
       const productId = +params.get('id');
 
