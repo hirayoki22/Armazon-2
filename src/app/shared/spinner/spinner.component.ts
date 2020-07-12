@@ -22,19 +22,14 @@ import { trigger, state, transition, animate, style } from '@angular/animations'
 })
 export class SpinnerComponent implements OnInit, OnChanges {
   @Input() loading: boolean;
+  @Input() overlayStyle: 'fixed' | 'absolute';
 
   constructor() { }
 
   ngOnInit(): void {
-    // document.body.classList.remove('active-overlay');
   }
 
   ngOnChanges(): void {
-    if (!this.loading) {
-      document.body.classList.remove('active-overlay');
-    } else {
-      document.body.classList.add('active-overlay');
-    }
   }
 
 }
