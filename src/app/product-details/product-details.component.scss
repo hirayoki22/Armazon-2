@@ -75,10 +75,14 @@
 
       .price {
         margin-bottom: 1rem;
-        color: #555;
+        color: #333;
         font-size: 1.2rem;
         font-weight: 600;
       }  
+
+      .stock-label {
+        color: #ec9045;
+      }
 
       .desc {
         max-width: 500px;

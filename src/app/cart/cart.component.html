@@ -26,7 +26,7 @@
           </div>
 
           <div class="product-info">
-            <a href="#" class="product-name">
+            <a [routerLink]="['/product', item.productId]" target="_blank" class="product-name">
               {{ item.productName | textClip:80 }}
             </a>  
     

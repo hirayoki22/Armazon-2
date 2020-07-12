@@ -120,7 +120,7 @@
 
         .price {
           margin-bottom: 1rem;
-          color: #555;
+          color: #333;
           font-size: 1rem;
           font-weight: 600;
         }
@@ -176,12 +176,9 @@
 
 @media (max-width: 768px) {
   .products-section {
-
     .banner {
-
       .banner-text {
         width: 100%;
-
 
         h3 {
           line-height: 3.5rem;        
@@ -193,5 +190,4 @@
       }
     }
   }
-
 }

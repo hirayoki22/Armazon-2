@@ -29,7 +29,7 @@
     <section class="product-details-container">
       <article class="info">
         <p>Price: <span class="price">{{ product.price | currency }}</span></p>
-        <p>{{ product.totalStock > 0 ? 'In stock' : 'Not in stock' }}</p>
+        <p class="stock-label">{{ product.totalStock > 0 ? 'In stock' : 'Not in stock' }}</p>
         
         <div class="desc">
           <h3>Product description:</h3>
