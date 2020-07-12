@@ -122,16 +122,17 @@
       display: flex;
       align-items: center;
       width: inherit;
-      padding: 0.5rem 0;
+      padding: 1.5rem 0;
       
       &:not(:last-of-type) {
-        border-bottom: thin solid #ffc7c9;
+        border-bottom: thin solid #eca5b4;
       }
 
       .product-image {
         flex-shrink: 0;
         width: 130px;
         height: 130px;
+        margin-right: 1.5rem;
         background-color: #fff;
 
         img {
@@ -143,7 +144,6 @@
 
       .product-info {
         width: calc(100% - 130px);
-        padding: 1.5rem;
         overflow: hidden;
 
         .product-name {
@@ -159,28 +159,31 @@
 
         .price {
           margin-bottom: 0.5rem;
-          color: #555;
+          color: #333;
           font-size: 1rem;
           font-weight: 600;
         }
 
         .options {
           display: flex;
+          flex-wrap: wrap;
           align-items: center;
           width: 100%;
 
           input[name="quantity"] {
+            flex-shrink: 0;
             display: inline-block;
             width: 70px;
-            margin-right: 1rem;
+            margin-left: 0.2rem;
             padding: 0.2rem;
             text-align: center;
             border-radius: 6px;
-            background-color: #e7edff;
+            background-color: #f0f4ff;
           }
           
           .remove-btn {
             position: relative;
+            margin-left: 1rem;
   
             &::before {
               content: '';
@@ -221,9 +224,16 @@
     background-color: #fff;
 
     .subtotal {
-
+      display: flex;
+      
       &-items {
         margin-right: 1rem;
+      }
+
+      &-items, &-amount {
+        strong {
+          font-size: 1rem;
+        }
       }
     }
 
@@ -250,40 +260,60 @@
   }
 }
 
-@media (max-width: 746px) {
+@media (max-width: 500px) {
   .cart {
     width: 100%;
 
+    .top {
+      height: 60px; 
+    }
+
+    .content {
+      height: calc(100vh - 175px); 
+    }
+
     .product-info {
-      width: calc(100% - 130px);
-      padding: 1.5rem;
-      overflow: hidden;
 
       .product-name {
-        display: block;
-        margin-bottom: 0.5rem;
-        color: #2587f7;
-        font-size: 1rem;
-        font-weight: 400;
-        line-height: 1.5rem;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .price {
-        margin-bottom: 0.5rem;
-        color: #555;
-        font-size: 1rem;
-        font-weight: 600;
+        margin-bottom: 1rem;
       }
 
       .options {
-        flex-direction: column;
-
+      
         input[name="quantity"] {
           margin: 0;
           margin-bottom: 0.4rem;
         }
+
+        .remove-btn {
+          margin-left: 0 !important;
+        }
+      }
+    }
+
+    .bottom {
+      flex-direction: column;
+      justify-content: center;
+      height: 120px;
+      padding: 0.5rem 1.5rem;
+
+      .subtotal {
+        justify-content: space-between;
+        width: 100%;
+      }
+  
+      button {
+        margin: 0;
+        margin-top: 1rem;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 40px;
+        color: #fff;
+        border: 2px solid #F72551;
+        background-color: #F72551;
       }
     }
   }

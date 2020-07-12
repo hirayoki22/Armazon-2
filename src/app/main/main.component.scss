@@ -5,8 +5,10 @@
   .banner {
     position: relative;
     width: 100%;
-    height: 250px;
+    min-height: 250px;
     margin-bottom: 3rem;
+    padding: 2rem;
+    background: url('../../assets/img/banner-2.webp') center center/cover;
     overflow: hidden;
 
     &::after {
@@ -20,10 +22,10 @@
     }
 
     .banner-text {
-      position: absolute;
-      left: 2rem;
-      top: 50%;
-      transform: translateY(-50%);
+      position: relative;
+      // left: 2rem;
+      // top: 50%;
+      // transform: translateY(-50%);
       width: 50%;
       z-index: 1;
 
@@ -170,4 +172,26 @@
       }
     }
   }
+}
+
+@media (max-width: 768px) {
+  .products-section {
+
+    .banner {
+
+      .banner-text {
+        width: 100%;
+
+
+        h3 {
+          line-height: 3.5rem;        
+        }
+  
+        p {
+          font-size: 1.1rem;
+        }
+      }
+    }
+  }
+
 }
