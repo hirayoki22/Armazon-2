@@ -4,7 +4,7 @@
   margin: 2rem 0;
   padding: 70px 1rem 0;
 
-  .product-name {
+  .product-name-xl {
     margin-bottom: 2.5rem;
     padding-bottom: 2rem;
     color: #2587f7;
@@ -73,15 +73,20 @@
         margin-bottom: 1rem;
       }
 
+      .product-name {
+        font-size: 1rem;
+        font-weight: 500;
+      }
+
       .price {
         margin-bottom: 1rem;
         color: #333;
-        font-size: 1.2rem;
+        font-size: 1rem;
         font-weight: 600;
       }  
 
       .stock-label {
-        color: #ec9045;
+        color: #4da861;
       }
 
       .desc {

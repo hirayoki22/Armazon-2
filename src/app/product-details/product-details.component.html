@@ -3,7 +3,7 @@
 <section *ngIf="!isLoading" class="product-detail-section">
   <div class="wrapper">
 
-    <h1 class="product-name">{{ product.productName }}</h1>
+    <h1 class="product-name-xl">{{ product.productName }}</h1>
 
     <section class="product-image-container">
       <div *ngIf="product.otherImages" class="small-container">
@@ -30,6 +30,10 @@
     
     <section class="product-details-container">
       <article class="info">
+        <p class="product-name">{{ product.productName }}</p>
+
+        <p>By {{ product.brand }}</p> 
+
         <p>Price: <span class="price">{{ product.price | currency }}</span></p>
         <p class="stock-label">{{ product.totalStock > 0 ? 'In stock' : 'Not in stock' }}</p>
         
