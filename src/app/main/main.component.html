@@ -24,24 +24,27 @@
             {{ product.productName | textClip:75 }}
           </a>
   
-          <p class="price">{{ product.price | currency }}</p>
-          <p class="stock-label">
-            {{ product.totalStock > 0 ? 'In stock' : 'Not in stock' }}
-          </p>
-          
-          <div class="action-buttons">
-            <button 
-              (click)="onBuyNow(product.productId)"
-              type="button" class="buy-now-btn">Buy Now</button>
-
-            <button 
-              (click)="onAddToCart(product.productId)"
-              type="button" class="add-to-cart-btn" title="Add to Cart">
-              <i class="material-icons">add_shopping_cart</i>
-            </button>
+          <div>
+            <p class="price">{{ product.price | currency }}</p>
+            <p class="stock-label">
+              {{ product.totalStock > 0 ? 'In stock' : 'Not in stock' }}
+            </p>
           </div>
+        </div>
+
+        <div class="action-buttons">
+          <button 
+            (click)="onBuyNow(product.productId)"
+            type="button" class="buy-now-btn">Buy Now</button>
+
+          <button 
+            (click)="onAddToCart(product.productId)"
+            type="button" class="add-to-cart-btn" title="Add to Cart">
+            <i class="material-icons">add_shopping_cart</i>
+          </button>
         </div>
       </li>
     </ul>
+
   </div>
 </section>
