@@ -30,7 +30,12 @@
               {{ item.productName | textClip:80 }}
             </a>  
     
-            <p class="price">{{ item.price | currency }}</p>
+            <div>
+              <p class="price">{{ item.price | currency }}</p>
+              <p class="stock-label">
+                {{ item.totalStock > 0 ? 'In stock' : 'Not in stock' }}
+              </p>
+            </div>
 
             <div class="options">
               <label for="quantity">
