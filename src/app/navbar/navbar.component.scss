@@ -15,7 +15,6 @@
     align-items: center;
     height: inherit;
     margin: auto;
-    padding: 0 1rem;
   }
 
   .logo {
@@ -89,6 +88,14 @@
         animation: reveal 0.4s ease;
         overflow: hidden;
       }
+    }
+  }
+}
+
+@media (max-width: 1300px) {
+  .navbar {  
+    &-wrapper {
+      padding: 0 1rem;
     }
   }
 }
