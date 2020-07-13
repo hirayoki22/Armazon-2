@@ -6,12 +6,14 @@
     <h1 class="product-name">{{ product.productName }}</h1>
 
     <section class="product-image-container">
-      <div class="small-container">
-        <div class="item">
-          <img src="https://images-na.ssl-images-amazon.com/images/I/81aot0jAfFL._AC_SL1500_.jpg" alt="">
-        </div>
-        <div class="item">
-          <img src="https://images-na.ssl-images-amazon.com/images/I/718Pz9bYxWL._AC_SL1500_.jpg" alt="">
+      <div *ngIf="product.otherImages" class="small-container">
+        <div 
+          *ngFor="let image of product.otherImages" class="item">
+          <img 
+            image-loader 
+            [src]="image"
+            [alt]="product.productName"
+            draggable="false">
         </div>
       </div>
 
