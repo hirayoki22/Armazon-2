@@ -14,7 +14,7 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   addProducts(form: FormData): Observable<any> {
-    return this.http.post<any>('http://127.0.0.1/market-api/test.php', form)
+    return this.http.post<any>(this.URL, form)
     .pipe(
       tap(res => console.log(res))
     );

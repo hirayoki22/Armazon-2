@@ -2,6 +2,15 @@
 
 <section *ngIf="!isLoading" class="product-detail-section">
   <div class="wrapper">
+
+    <!--  -->
+
+    <input 
+      (change)="onChange($event.target)"
+      type="file" name="product-image" id="product-image" multiple>
+
+    <!--  -->
+
     <h1 class="product-name-xl">{{ product.productName }}</h1>
 
     <section class="product-image-container">
