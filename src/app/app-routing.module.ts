@@ -9,7 +9,8 @@ const routes: Routes = [
   { path: 'home', component: MainComponent },
   { path: 'product/:id', component: ProductDetailsComponent },
   { path: 'order-checkout', component: CheckoutComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' }
+  { path: 'admin-page', loadChildren: () => import('./admin-page/admin-page.module').then(m => m.AdminPageModule) },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({

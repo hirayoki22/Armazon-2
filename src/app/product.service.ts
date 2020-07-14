@@ -14,9 +14,8 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   addProducts(form: FormData): Observable<any> {
-    return this.http.post<any>(this.URL, form)
-    .pipe(
-      tap(res => console.log(res))
+    return this.http.post<any>(this.URL, form).pipe(
+      catchError(this.errorHandler)
     );
   }
 
