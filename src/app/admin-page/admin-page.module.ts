@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AdminPageRoutingModule } from './admin-page-routing.module';
 import { AdminPageComponent } from './admin-page.component';
 import { ProductCreationComponent } from './product-creation/product-creation.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { ProductCreationComponent } from './product-creation/product-creation.co
   ],
   imports: [
     CommonModule,
+    SharedModule,
     AdminPageRoutingModule
   ]
 })
