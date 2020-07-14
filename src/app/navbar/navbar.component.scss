@@ -4,6 +4,7 @@
   top: 0;
   width: 100%;
   height: 50px;
+  padding: 0 1rem;
   overflow: hidden;
   background-color: #fff;
   box-shadow: 0 1px 20px rgba(190, 190, 190, 0.2);
@@ -88,14 +89,6 @@
         animation: reveal 0.4s ease;
         overflow: hidden;
       }
-    }
-  }
-}
-
-@media (max-width: 1300px) {
-  .navbar {  
-    &-wrapper {
-      padding: 0 1rem;
     }
   }
 }

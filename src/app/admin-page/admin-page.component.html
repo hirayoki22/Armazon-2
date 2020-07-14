@@ -1,9 +1,11 @@
-<div class="wrapper">
-  <main>
+<main>
+  <div class="wrapper">
     <a routerLink="/">Product list</a>
     <span> | </span>
     <a routerLink="./product-creation">Add new product</a>
-  </main>
+    
+    <router-outlet></router-outlet>
+  </div>
+</main>
   
-  <router-outlet></router-outlet>
-</div>
+  
