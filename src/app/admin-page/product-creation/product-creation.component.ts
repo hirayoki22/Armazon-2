@@ -14,7 +14,6 @@ interface Category { categoryId: number; category: string };
 export class ProductCreationComponent implements OnInit {
   productForm: FormGroup;
   categories: Category[];
-  previews: string[] = [];
 
   constructor(
     private ps: ProductService,
