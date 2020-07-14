@@ -85,13 +85,40 @@
   }
 
   .preview {
+    position: relative;
+    animation: reveal 0.3s ease;
     overflow: hidden;
 
     img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       object-position: center center;
+    }
+
+    .remove-overlay {
+      opacity: 0;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      background-color: rgba(248, 96, 129, 0.6);
+      transition: opacity .3s ease;
+      cursor: pointer;
+
+      .material-icons {
+        color: #fff;
+      }
+    }
+
+    &:hover {
+      .remove-overlay {
+        opacity: 1;
+      }
     }
   }
 }

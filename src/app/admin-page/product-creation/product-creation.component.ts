@@ -36,7 +36,7 @@ export class ProductCreationComponent implements OnInit {
       categoryId:  [ 0, Validators.required ],
       productDesc: [ '', Validators.required ],
       totalStock:  [ 1, [Validators.required, Validators.min(1)]],      
-      images:      [ null, CustomValidators.imageValidator ],
+      images:      [ [], CustomValidators.imageValidator ],
     });
   }
 

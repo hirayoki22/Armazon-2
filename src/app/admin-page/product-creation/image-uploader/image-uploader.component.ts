@@ -1,5 +1,6 @@
 import { Component, ElementRef, HostListener } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-image-uploader',
@@ -13,22 +14,34 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 })
 export class ImageUploaderComponent implements ControlValueAccessor {
   onChange: Function;
-  file: File | null = null;
-  previews: string[] = [];
+  files: File[] | null = [];
 
-  constructor(private host: ElementRef<HTMLInputElement>) { }
+  constructor(
+    private sanitizer: DomSanitizer,
+    private host: ElementRef<HTMLInputElement>
+  ) { }
+
 
   @HostListener('change', ['$event.target.files']) emitFiles(files: FileList) {
-    this.file = files.item(0);
+    Array.from(files).forEach(file => this.files.push(file));
     
-    if (this.file) {
-      this.onChange(this.file);
+    if (this.files && this.files.length) {
+      this.onChange(this.files);
     }
+  }
+
+  getImageUrl(file: File) {
+    return this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(file));
+  }
+
+  onRemove(file: File): void {
+    this.files = this.files.filter(cur => cur.name !== file.name);
+    this.onChange(this.files);
   }
 
   writeValue(value: null) {
     this.host.nativeElement.value = '';
-    this.file = null;
+    this.files = [];
   }
 
   registerOnChange(callback: Function) {

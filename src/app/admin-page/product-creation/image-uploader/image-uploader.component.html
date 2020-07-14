@@ -2,29 +2,23 @@
   <h3>Attach product images</h3>
 
   <div class="scrollable-area">
-    <ul class="preview-list">
-      <li 
-        *ngFor="let preview of previews" 
-        class="preview"
-        [class.alternate]="previews.length > 3">
-        <img [src]="preview" draggable="false">
+    <ul class="preview-list" [class.alternate]="files.length > 3">
+      <li *ngFor="let preview of files" class="preview">
+        <img [src]="getImageUrl(preview)" draggable="false">
+
+        <div (click)="onRemove(preview)" class="remove-overlay">
+          <i class="material-icons">close</i>
+        </div>
       </li>
 
-      <!-- <li class="preview"></li>
-      <li class="preview"></li>
-      <li class="preview"></li>
-      <li class="preview"></li>
-      <li class="preview"></li>
-      <li class="preview"></li>
-      <li class="preview"></li>
-      <li class="preview"></li>
-      <li class="preview"></li>
-      <li class="preview"></li>
-      <li class="preview"></li>
-      <li class="preview"></li>
-      <li class="preview"></li>
-      <li class="preview"></li>
-      <li class="preview"></li> -->
+      <!-- <li class="preview">
+        <img src="https://images-na.ssl-images-amazon.com/images/I/91pXB%2BUIWhL._AC_UX625_.jpg">
+
+        <div class="remove-overlay">
+          <i class="material-icons">close</i>
+        </div>
+      </li> -->
+
 
       <label class="image-selector">
         <input type="file" multiple>
