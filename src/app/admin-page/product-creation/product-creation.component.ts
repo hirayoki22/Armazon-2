@@ -50,7 +50,7 @@ export class ProductCreationComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.productForm.get('categoryId').value);
+    console.log(this.productForm.value);
   }
 
 }
