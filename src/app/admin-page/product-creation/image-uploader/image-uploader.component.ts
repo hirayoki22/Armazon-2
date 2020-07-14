@@ -34,9 +34,13 @@ export class ImageUploaderComponent implements ControlValueAccessor {
     return this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(file));
   }
 
-  onRemove(file: File): void {
-    this.files = this.files.filter(cur => cur.name !== file.name);
-    this.onChange(this.files);
+  onRemove(file: File, previewEle: HTMLElement): void {
+    previewEle.classList.add('removed');
+    
+    setTimeout(() => {
+      this.files = this.files.filter(cur => cur.name !== file.name);
+      this.onChange(this.files);
+    }, 300);
   }
 
   writeValue(value: null) {

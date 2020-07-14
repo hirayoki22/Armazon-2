@@ -1,3 +1,25 @@
+@keyframes fileAdded {
+  from {
+    transform: scale(0.94, 0.94);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+}
+
+@keyframes fileRemoved {
+  from {
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.90, 0.90);
+    opacity: 0;
+  }
+}
+
 .container {
   width: 100%;
   height: inherit;
@@ -86,8 +108,12 @@
 
   .preview {
     position: relative;
-    animation: reveal 0.3s ease;
+    animation: fileAdded 0.3s ease;
     overflow: hidden;
+
+    &.removed {
+      animation: fileRemoved 0.3s ease forwards;
+    }
 
     img {
       width: 100%;
