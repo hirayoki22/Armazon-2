@@ -9,9 +9,8 @@ const routes: Routes = [
   { path: 'home', component: MainComponent },
   { path: 'product/:id', component: ProductDetailsComponent },
   { path: 'order-checkout', component: CheckoutComponent },
-  { path: 'admin-page', loadChildren: () => import('./admin-page/admin-page.module').then(m => m.AdminPageModule) },
-  { path: 'shared', loadChildren: () => import('./shared/shared.module').then(m => m.SharedModule) },
   { path: 'product', loadChildren: () => import('./product/product.module').then(m => m.ProductModule) },
+  { path: 'admin-page', loadChildren: () => import('./admin-page/admin-page.module').then(m => m.AdminPageModule) },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 

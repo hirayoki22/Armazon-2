@@ -9,7 +9,8 @@ import { Product } from './product.model';
   providedIn: 'root'
 })
 export class ProductService {
-  private URL = 'http://127.0.0.1/market-api/products.php';
+  private URL  = 'http://127.0.0.1/market-api/products.php';
+  private URL2 = 'http://127.0.0.1/market-api/product-category.php';
 
   constructor(private http: HttpClient) { }
 
@@ -27,6 +28,12 @@ export class ProductService {
 
   getProductById(id: number): Observable<Product> {
     return this.http.get<Product>(`${this.URL}/${id}`).pipe(
+      catchError(this.errorHandler)
+    );
+  }
+
+  getCategories(): Observable<any> {
+    return this.http.get<any>(this.URL2).pipe(
       catchError(this.errorHandler)
     );
   }

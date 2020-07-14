@@ -5,8 +5,15 @@ import { AdminPageComponent } from './admin-page.component';
 import { ProductCreationComponent } from './product-creation/product-creation.component';
 
 const routes: Routes = [
-  { path: '', component: AdminPageComponent },
-  { path: 'product-creation', component: ProductCreationComponent }
+  { 
+    path: '', 
+    component: AdminPageComponent,
+    children: [
+      { path: 'product-creation', component: ProductCreationComponent },
+      { path: '', redirectTo: 'product-creation' }
+    ]
+  },
+  
 ];
 
 @NgModule({
