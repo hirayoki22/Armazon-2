@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
+import { tap, catchError, delay } from 'rxjs/operators';
 
 import { Product } from './product.model';
 
@@ -16,6 +16,8 @@ export class ProductService {
 
   addProducts(form: FormData): Observable<any> {
     return this.http.post<any>(this.URL, form).pipe(
+      delay(500),
+      tap(res => console.log(res)),
       catchError(this.errorHandler)
     );
   }

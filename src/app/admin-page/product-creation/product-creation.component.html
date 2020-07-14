@@ -4,6 +4,8 @@
     [formGroup]="productForm" 
     (ngSubmit)="onSubmit()"
     id="productForm">
+    <app-spinner [loading]="isLoading"></app-spinner>
+    
     <div class="column-s">
       <div class="form-group">
         <label>Product name</label>
@@ -25,7 +27,7 @@
         <select formControlName="categoryId">
           <option 
             *ngFor="let category of categories" 
-            [value]="category.categoryId">
+            [ngValue]="category.categoryId">
             {{ category.category }}
           </option>
         </select>

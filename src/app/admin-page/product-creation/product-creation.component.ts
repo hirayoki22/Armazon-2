@@ -14,6 +14,7 @@ interface Category { categoryId: number; category: string };
 export class ProductCreationComponent implements OnInit {
   productForm: FormGroup;
   categories: Category[];
+  isLoading: boolean = false;
 
   constructor(
     private ps: ProductService,
@@ -25,6 +26,10 @@ export class ProductCreationComponent implements OnInit {
 
     this.ps.getCategories().subscribe((categories: Category[]) => {
       this.categories = categories;
+    });
+
+    this.productForm.get('categoryId').valueChanges.subscribe(val => {
+      
     });
   }
 
@@ -40,17 +45,16 @@ export class ProductCreationComponent implements OnInit {
     });
   }
 
-  private toFormData(form: FormGroup): FormData {
-    const formData = new FormData();
-
-    for (let key in form.controls) {
-      formData.append(key, form.get(key).value);
-    }
-    return formData;
-  }
-
   onSubmit(): void {
-    console.log(this.productForm.value);
+    const images = <File[]>this.productForm.get('images').value;
+    const formData = new FormData();
+    formData.append('product', JSON.stringify(this.productForm.value));
+    
+    images.forEach(image => {
+      formData.append('images[]', image);
+    });
+
+    this.ps.addProducts(formData).subscribe();
   }
 
 }
