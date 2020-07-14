@@ -14,6 +14,7 @@ interface Category { categoryId: number; category: string };
 export class ProductCreationComponent implements OnInit {
   productForm: FormGroup;
   categories: Category[];
+  previews: string[] = [];
 
   constructor(
     private ps: ProductService,
@@ -32,10 +33,10 @@ export class ProductCreationComponent implements OnInit {
     return this.fb.group({
       productName: [ '', Validators.required ],
       brand:       [ '', Validators.required ],
-      price:       [ 1, Validators.required ],
+      price:       [ 1, [Validators.required, Validators.min(1)] ],
       categoryId:  [ 0, Validators.required ],
       productDesc: [ '', Validators.required ],
-      totalStock:  [ 1, Validators.required ],      
+      totalStock:  [ 1, [Validators.required, Validators.min(1)]],      
       images:      [ null, CustomValidators.imageValidator ],
     });
   }

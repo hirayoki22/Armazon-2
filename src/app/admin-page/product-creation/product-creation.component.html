@@ -47,10 +47,41 @@
     </div>
 
     <div class="column-l">
-      <label class="image-selector">
-        <input type="file" formControlName="images" multiple>
-        <span>Choose images</span>
-      </label>
+      <h3>Attach product images</h3>
+
+      <div class="scrollable-area">
+        <ul class="preview-list">
+          <li 
+            *ngFor="let preview of previews" 
+            class="preview"
+            [class.alternate]="previews.length > 3">
+            <img [src]="preview" draggable="false">
+          </li>
+
+          <!-- <li class="preview"></li>
+          <li class="preview"></li>
+          <li class="preview"></li>
+          <li class="preview"></li>
+          <li class="preview"></li>
+          <li class="preview"></li>
+          <li class="preview"></li>
+          <li class="preview"></li>
+          <li class="preview"></li>
+          <li class="preview"></li>
+          <li class="preview"></li>
+          <li class="preview"></li>
+          <li class="preview"></li>
+          <li class="preview"></li>
+          <li class="preview"></li> -->
+  
+          <label class="image-selector">
+            <input type="file" formControlName="images" multiple>
+            <i class="material-icons">add</i>
+          </label>
+        </ul>
+      </div>
+
+      
     </div>
   </form>
 
