@@ -48,11 +48,9 @@ export class ProductDetailsComponent implements OnInit {
   
 
   onChange(input: HTMLInputElement): void {
-    const url = 'http:127.0.0.1/market-api/test.php';
     const form = new FormData();
 
     const product: Product = {
-      productId: null,
       productName: 'Emeril Everyday 8 QT With Accessories Pressure Air Fryer, 5 Pc Pack, Silver',
       brand: 'Emeril Everyday',
       productDesc: 'Accessory Pack Includes : 1550 watt electric pressure cooker base, air fryer crisper lid, steam/air fryer basket, air fryer rack/multi-purpose roasting rack, pressure cooker lid, glass lid, stainless steel 8-qt pressure cooker pot, ladle, measuring cup, recipe book, Emeril Lagasse Cookbook with air fryer recipes, pressure cooker recipes, and pressure cooker/air fryer combo recipes',
@@ -63,14 +61,12 @@ export class ProductDetailsComponent implements OnInit {
     };
 
     form.append('product', JSON.stringify(product));
-    form.append('images', input.files.item(1));
+    
+    Array.from(input.files).forEach(image => {
+      form.append('images[]', image, image.name);
+    });
 
-    fetch(url, {
-      body: form
-    })
-    .then(res => res.text())
-    .then(res => console.log(res))
-    .catch(err => console.log(err.message));
+    this.ps.addProducts(form).subscribe();
   }
 
 }

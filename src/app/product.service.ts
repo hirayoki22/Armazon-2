@@ -13,6 +13,13 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
+  addProducts(form: FormData): Observable<any> {
+    return this.http.post<any>('http://127.0.0.1/market-api/test.php', form)
+    .pipe(
+      tap(res => console.log(res))
+    );
+  }
+
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.URL).pipe(
       catchError(this.errorHandler)
