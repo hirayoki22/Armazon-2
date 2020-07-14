@@ -50,7 +50,7 @@ export class ProductCreationComponent implements OnInit {
   }
 
   onSubmit(): void {
-
+    
   }
 
 }
