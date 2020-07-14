@@ -32,10 +32,10 @@ export class ProductCreationComponent implements OnInit {
     return this.fb.group({
       productName: [ '', Validators.required ],
       brand:       [ '', Validators.required ],
-      price:       [ 0, Validators.required ],
+      price:       [ 1, Validators.required ],
       categoryId:  [ 0, Validators.required ],
       productDesc: [ '', Validators.required ],
-      totalStock:  [ 0, Validators.required ],      
+      totalStock:  [ 1, Validators.required ],      
       images:      [ null, CustomValidators.imageValidator ],
     });
   }
@@ -50,7 +50,7 @@ export class ProductCreationComponent implements OnInit {
   }
 
   onSubmit(): void {
-    
+    console.log(this.productForm.get('categoryId').value);
   }
 
 }

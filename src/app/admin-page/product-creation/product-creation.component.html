@@ -1,6 +1,9 @@
 <section class="product-form-section">
 
-  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+  <form 
+    [formGroup]="productForm" 
+    (ngSubmit)="onSubmit()"
+    id="productForm">
     <div class="column-s">
       <div class="form-group">
         <label>Product name</label>
@@ -30,12 +33,12 @@
 
       <div class="form-group">
         <label>Description</label>
-        <textarea formControlName="productDesc" cols="30" rows="10"></textarea>
+        <textarea formControlName="productDesc" cols="30" rows="5"></textarea>
       </div>
 
       <div class="form-group">
         <label>Total in stock</label>
-        <input formControlName="totalStock" min="0">
+        <input formControlName="totalStock" type="number" min="1">
       </div>
   
       <div class="form-group">
@@ -44,7 +47,7 @@
     </div>
 
     <div class="column-l">
-      <label>
+      <label class="image-selector">
         <input type="file" formControlName="images" multiple>
         <span>Choose images</span>
       </label>
