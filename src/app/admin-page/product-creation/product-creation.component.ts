@@ -54,7 +54,11 @@ export class ProductCreationComponent implements OnInit {
       formData.append('images[]', image);
     });
 
-    this.ps.addProducts(formData).subscribe();
+    this.isLoading = true;
+    this.ps.addProducts(formData).subscribe(() => {
+      this.productForm.reset();
+      this.isLoading = false;
+    });
   }
 
 }

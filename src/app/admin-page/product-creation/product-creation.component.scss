@@ -56,6 +56,11 @@
           border: 2px solid #F72551;
           background-color: #F72551;
 
+          &:disabled {
+            opacity: 0.6 !important;
+            cursor: default;
+          }
+
           &::after {
             content: '';
             opacity: 0;
@@ -68,7 +73,7 @@
             transition: opacity .4s ease;
           }
   
-          &:hover::after {
+          &:not(:disabled):hover::after {
             opacity: 1;
           }
         }
