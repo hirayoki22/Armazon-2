@@ -24,7 +24,7 @@ export class ProductCreationComponent implements OnInit {
     this.productForm = this.initForm();
 
     this.ps.getCategories().subscribe((categories: Category[]) => {
-      console.log(categories);
+      this.categories = categories;
     });
   }
 
@@ -32,10 +32,10 @@ export class ProductCreationComponent implements OnInit {
     return this.fb.group({
       productName: [ '', Validators.required ],
       brand:       [ '', Validators.required ],
-      productDesc: [ '', Validators.required ],
       price:       [ 0, Validators.required ],
-      totalStock:  [ 0, Validators.required ],
       categoryId:  [ 0, Validators.required ],
+      productDesc: [ '', Validators.required ],
+      totalStock:  [ 0, Validators.required ],      
       images:      [ null, CustomValidators.imageValidator ],
     });
   }
