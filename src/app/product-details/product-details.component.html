@@ -5,9 +5,9 @@
     <h1 class="product-name-xl">{{ product.productName }}</h1>
 
     <section class="product-image-container">
-      <div *ngIf="product.otherImages" class="small-container">
+      <div *ngIf="productImages" class="small-container">
         <div 
-          *ngFor="let image of product.otherImages" class="item">
+          *ngFor="let image of productImages" class="item">
           <img 
             image-loader 
             [src]="image"
@@ -20,41 +20,43 @@
         <div class="item">
           <img 
             image-loader 
-            [src]="product.productImage"
+            [src]="productImages[0]"
             [alt]="product.productName"
             draggable="false">
         </div>
       </div>
-    </section>
-    
-    <section class="product-details-container">
-      <article class="info">
-        <p class="product-name">{{ product.productName }}</p>
 
-        <p>By {{ product.brand }}</p> 
-
-        <p>Price: <span class="price">{{ product.price | currency }}</span></p>
-        <p class="stock-label">{{ product.totalStock > 0 ? 'In stock' : 'Not in stock' }}</p>
-        
-        <div class="desc">
-          <h3>Product description:</h3>
-          <p>{{ product.productDesc }}</p>
+      <div class="product-details-container">
+        <article class="info">
+          <p class="product-name">{{ product.productName }}</p>
+  
+          <p>By {{ product.brand }}</p> 
+  
+          <p>Price: <span class="price">{{ product.price | currency }}</span></p>
+          <p class="stock-label">{{ product.totalStock > 0 ? 'In stock' : 'Not in stock' }}</p>
+          
+          <div class="desc">
+            <h3>Product description:</h3>
+            <p>{{ product.productDesc }}</p>
+          </div>
+        </article>
+  
+        <div class="action-buttons">
+          <button 
+            (click)="onBuyNow(product.productId)"
+            type="button" class="buy-now-btn">Buy Now</button>
+  
+          <button 
+            (click)="onAddToCart(product.productId)"
+            type="button" class="add-to-cart-btn">
+            <i class="material-icons">add_shopping_cart</i>
+            <span>Add to cart</span>
+          </button>
         </div>
-      </article>
-
-      <div class="action-buttons">
-        <button 
-          (click)="onBuyNow(product.productId)"
-          type="button" class="buy-now-btn">Buy Now</button>
-
-        <button 
-          (click)="onAddToCart(product.productId)"
-          type="button" class="add-to-cart-btn">
-          <i class="material-icons">add_shopping_cart</i>
-          <span>Add to cart</span>
-        </button>
       </div>
     </section>
+    
+    
 
   </div>
 
