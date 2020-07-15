@@ -55,6 +55,8 @@
           color: #fff;
           border: 2px solid #F72551;
           background-color: #F72551;
+          transition: opacity .3s ease, 
+          background-color .3s ease;
 
           &:disabled {
             opacity: 0.6 !important;

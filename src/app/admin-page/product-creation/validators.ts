@@ -3,18 +3,22 @@ import { AbstractControl, ValidationErrors } from '@angular/forms';
 export class CustomValidators {
   
   static imageValidator(control: AbstractControl): ValidationErrors {
-    const file: File = control.value;
+    const files: File[] = control.value;
+    const allowedExts = ['image/jpeg', 'image/png', 'image/webp'];
+    const maxImgSize = 10000000;
+    let validExt;
+    let validSize;
 
-    if (file && typeof file !== 'string') {
-      const allowedExts = ['image/jpeg', 'image/png', 'image/webp'];
-      const maxImgSize = 10000000;
-      
-      const validExt = allowedExts.some(ext => ext == file.type);
-      const validSize = file.size <= maxImgSize;
-
-      return !validExt ? { extension: { allowed: allowedExts.join(', ') } } :
-      !validSize ? { size: { maxSize: maxImgSize, current: file.size } } : null;
+    if (files) {
+      files.forEach(file => {
+        if (file && typeof file !== 'string') {
+          validExt = allowedExts.some(ext => ext == file.type);
+          validSize = file.size <= maxImgSize;
+        }
+      });
     }
-    return null;
+
+    return !validExt ? { extension: { allowed: allowedExts.join(', ') } } :
+      !validSize ? { size: { maxSize: maxImgSize } } : null;
   }
 }

@@ -4,7 +4,7 @@
     [formGroup]="productForm" 
     (ngSubmit)="onSubmit()"
     id="productForm">
-    <app-spinner [loading]="isLoading"></app-spinner>
+    <app-spinner *ngIf="isLoading" [loading]="isLoading"></app-spinner>
 
     <div class="column-s">
       <div class="form-group">

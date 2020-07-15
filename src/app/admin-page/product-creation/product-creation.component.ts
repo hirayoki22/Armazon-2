@@ -27,10 +27,6 @@ export class ProductCreationComponent implements OnInit {
     this.ps.getCategories().subscribe((categories: Category[]) => {
       this.categories = categories;
     });
-
-    this.productForm.get('categoryId').valueChanges.subscribe(val => {
-      
-    });
   }
 
   private initForm(): FormGroup {
