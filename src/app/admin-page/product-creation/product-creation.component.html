@@ -46,12 +46,20 @@
       <div class="form-group">
         <button 
           [disabled]="productForm.invalid" 
+          class="add-btn add-btn-1"
           type="submit">Add to inventory</button>
       </div>
     </div>
 
     <div class="column-l">
       <app-image-uploader formControlName="images"></app-image-uploader>
+    </div>
+
+    <div class="add-btn-2">
+      <button 
+        [disabled]="productForm.invalid" 
+        class="add-btn"
+        type="submit">Add to inventory</button>
     </div>
   </form>
 
