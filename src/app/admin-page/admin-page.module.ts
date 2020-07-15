@@ -6,12 +6,13 @@ import { AdminPageComponent } from './admin-page.component';
 import { ProductCreationComponent } from './product-creation/product-creation.component';
 import { SharedModule } from '../shared/shared.module';
 import { ImageUploaderComponent } from './product-creation/image-uploader/image-uploader.component';
+import { ProductListComponent } from './product-list/product-list.component';
 
 
 @NgModule({
   declarations: [
     AdminPageComponent, 
-    ProductCreationComponent, ImageUploaderComponent
+    ProductCreationComponent, ImageUploaderComponent, ProductListComponent
   ],
   imports: [
     CommonModule,
