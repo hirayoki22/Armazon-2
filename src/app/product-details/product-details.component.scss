@@ -14,21 +14,22 @@
     border-bottom: thin solid #fff;
   }
 
-  .product-image-container {
+  .product-container {
     display: flex;
     width: 100%;
-    height: auto;
+    height: 700px;
+    padding: 1.5rem;
+    background-color: #fff;
     user-select: none;
 
     .product-images-area {
       display: flex;
       flex-direction: column;
       width: 100%;
-      background-color: #fff;
-
+      
       .product-image-viewer {
         width: 100%;
-        padding: 1rem;
+        height: inherit;
         overflow: hidden;
 
         img {
@@ -64,9 +65,7 @@
     .product-details {
       display: flex;
       justify-content: space-between;
-      // align-items: center;
       width: 100%;
-      padding: 1.5rem;
       background-color: #fff;
       overflow: hidden;
   
