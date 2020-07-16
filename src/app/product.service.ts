@@ -11,20 +11,28 @@ import { Product } from './product.model';
 export class ProductService {
   private URL  = 'http://127.0.0.1/market-api/products.php';
   private URL2 = 'http://127.0.0.1/market-api/product-category.php';
-  
+
 
   constructor(private http: HttpClient) { }
 
   addProducts(form: FormData): Observable<any> {
     return this.http.post<any>(this.URL, form).pipe(
       delay(1000),
-      tap(res => console.log(res)),
+      // tap(res => console.log(res)),
       catchError(this.errorHandler)
     );
   }
 
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.URL).pipe(
+      catchError(this.errorHandler)
+    );
+  }
+
+  getProducts2(start: number, end: number): Observable<Product[]> {
+    const URL = 'http://127.0.0.1/market-api/test.php';
+    return this.http.get<Product[]>(`${URL}?start=${start}&end=${end}`)
+    .pipe(
       catchError(this.errorHandler)
     );
   }
