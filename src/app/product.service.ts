@@ -31,8 +31,9 @@ export class ProductService {
 
   getProducts2(start: number, end: number): Observable<Product[]> {
     const URL = 'http://127.0.0.1/market-api/test.php';
-    return this.http.get<Product[]>(`${URL}?start=${start}&end=${end}`)
+    return this.http.get<Product[]>(`${URL}?start=${start}&count=${end}`)
     .pipe(
+      delay(300),
       catchError(this.errorHandler)
     );
   }

@@ -1,22 +1,17 @@
 <section class="product-list-section">
-  <!-- <div class="slider">
-    <div class="slide">
-      <img src="assets/temp/1.jpg">
-    </div>
-    <div class="slide">
-      <img src="assets/temp/2.jpg">
-    </div>
-    <div class="slide">
-      <img src="assets/temp/3.jpg">
-    </div>
-    <div class="slide">
-      <img src="assets/temp/4.jpg">
-    </div>
-    <div class="slide">
-      <img src="assets/temp/5.jpg">
-    </div>
-  </div> -->
+  
+  <ul>
+    <li
+      style="display: flex; margin-bottom: 2rem; padding: 1rem; background-color: aliceblue;"
+      *ngFor="let product of products">
 
-  <button (click)="onClick()">Get em!</button>
+      <div class="image" style="width: 120px; height: 120px; overflow: hidden; margin-right: 1.5rem;">
+        <img style="width: 100%; height: 100%; object-fit: contain; object-position: center center;" [src]="product.productImage" [alt]="product.productName">
+      </div>
+      <strong>{{ product.productName }}</strong>
+    </li>
+  </ul>
+
+  <app-spinner overlayStyle="fixed" [loading]="isloading"></app-spinner>
 </section>
 
