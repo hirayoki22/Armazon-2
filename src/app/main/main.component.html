@@ -12,10 +12,13 @@
 
     <ul class="products">
       <li *ngFor="let product of products">
-        <a *ngIf="product.productImage" 
+        <a *ngIf="product.images" 
           [routerLink]="['/product', product.productId]"
           class="product-image">
-          <img image-loader [src]="product.productImage" [alt]="product.productName">
+          <img 
+            image-loader 
+            [src]="product.images[0].imageUrl" 
+            [alt]="product.productName">
         </a>
   
         <div class="product-info">
