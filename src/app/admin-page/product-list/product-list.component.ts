@@ -12,6 +12,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   start: number = 0;
   count: number = 9;
   isloading: boolean = true;
+  noMoreProducts: boolean = false;
 
   constructor(private ps: ProductService) { }
 
@@ -25,21 +26,32 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 
   private loadProducts(): void {
     this.ps.getProducts2(this.start, this.count).subscribe(products => {
-      products.forEach(product => this.products.push(product));
+      if (products.length) {
+        products.forEach(product => this.products.push(product));
+      } else {
+        this.noMoreProducts = true;
+      }
       this.isloading = false;
     });
   }
 
   onScroll(): void {
+    let prevScroll = window.scrollY;
+    let nextScroll = 0;
     const container = document.documentElement;
     
     window.onscroll = () => {
-      const limit = container.scrollHeight - container.clientHeight;
-      
-      if (window.scrollY == limit) {
-        this.start += this.count;
-        this.isloading = true;
-        this.loadProducts();
+      if (!this.noMoreProducts) {
+        const limit = container.scrollHeight - container.clientHeight;
+
+        // if (window.scrollY + 300 >= limit) {
+        //   this.start += this.count;
+        //   this.isloading = true;
+        //   this.loadProducts();
+        // }
+        
+      } else {
+        window.onscroll = null;
       }
     }
   }

@@ -12,7 +12,6 @@ import { CartService } from '../cart.service';
 })
 export class ProductDetailsComponent implements OnInit {
   product: Product;
-  productImages: string[] = [];
   isLoading: boolean = true;
 
   constructor(
@@ -29,7 +28,6 @@ export class ProductDetailsComponent implements OnInit {
 
       this.ps.getProductById(productId).subscribe(product => {
         this.product = product;
-        this.productImages = [this.product.productImage, ...this.product.otherImages];
         this.isLoading = false;
       });
     });

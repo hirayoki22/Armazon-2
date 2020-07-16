@@ -9,17 +9,17 @@
         <div class="product-image-viewer">
           <img 
             image-loader 
-            [src]="productImages[0]"
+            [src]="product.images[0].imageUrl"
             [alt]="product.productName"
             draggable="false">
         </div>
   
-        <div *ngIf="productImages" class="thumbnails-container">
+        <div *ngIf="product.images" class="thumbnails-container">
           <div 
-            *ngFor="let image of productImages" class="thumbnail">
+            *ngFor="let image of product.images" class="thumbnail">
             <img 
               image-loader 
-              [src]="image"
+              [src]="image.imageUrl"
               [alt]="product.productName"
               draggable="false">
           </div>

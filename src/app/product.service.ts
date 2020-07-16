@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { tap, catchError, delay } from 'rxjs/operators';
+import { tap, map, catchError, delay } from 'rxjs/operators';
 
 import { Product } from './product.model';
 
@@ -25,6 +25,11 @@ export class ProductService {
 
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.URL).pipe(
+      // tap(res => console.log(res)),
+      map(products => {
+        products.map(product => product.images.sort((a, b) => a.order - b.order));
+        return products;
+      }),
       catchError(this.errorHandler)
     );
   }
@@ -34,12 +39,20 @@ export class ProductService {
     return this.http.get<Product[]>(`${URL}?start=${start}&count=${end}`)
     .pipe(
       delay(300),
+      map(products => {
+        products.map(product => product.images.sort((a, b) => a.order - b.order));
+        return products;
+      }),
       catchError(this.errorHandler)
     );
   }
 
   getProductById(id: number): Observable<Product> {
     return this.http.get<Product>(`${this.URL}/${id}`).pipe(
+      map(product => {
+        product.images.sort((a, b) => a.order - b.order);
+        return product;
+      }),
       catchError(this.errorHandler)
     );
   }
