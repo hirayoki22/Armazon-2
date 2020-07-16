@@ -9,4 +9,5 @@ export interface Product {
   totalStock: number;
   categoryId: number;
   otherImages?: string[];
+  hasVariant: boolean;
 }

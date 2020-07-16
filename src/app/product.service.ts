@@ -11,6 +11,7 @@ import { Product } from './product.model';
 export class ProductService {
   private URL  = 'http://127.0.0.1/market-api/products.php';
   private URL2 = 'http://127.0.0.1/market-api/product-category.php';
+  
 
   constructor(private http: HttpClient) { }
 
