@@ -3,10 +3,11 @@ export interface Product {
   productName: string;
   brand: string;
   productDesc: string;
+  productImage?: string;
   price: number;
   available?: boolean;
   totalStock: number;
   categoryId: number;
-  images: [];
+  images?: [];
   hasVariant: boolean;
 }
