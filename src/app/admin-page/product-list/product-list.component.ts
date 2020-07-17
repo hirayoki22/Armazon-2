@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ViewChildren, ElementRef, QueryList } from '@angular/core';
 import { ProductService } from 'src/app/product.service';
 import { Product } from 'src/app/product.model';
