@@ -1,4 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { ViewChildren, ElementRef, QueryList } from '@angular/core';
 import { ProductService } from 'src/app/product.service';
 import { Product } from 'src/app/product.model';
 
@@ -7,12 +8,13 @@ import { Product } from 'src/app/product.model';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss']
 })
-export class ProductListComponent implements OnInit, AfterViewInit {
+export class ProductListComponent implements OnInit {
   products: Product[] = [];
   start: number = 0;
-  count: number = 9;
+  count: number = 8;
   isloading: boolean = true;
   noMoreProducts: boolean = false;
+  @ViewChildren('card') cards: QueryList<ElementRef<HTMLElement>>;
 
   constructor(private ps: ProductService) { }
 
@@ -20,39 +22,38 @@ export class ProductListComponent implements OnInit, AfterViewInit {
     this.loadProducts();
   }
 
-  ngAfterViewInit(): void {
-    this.onScroll();
-  }
-
   private loadProducts(): void {
     this.ps.getProducts2(this.start, this.count).subscribe(products => {
       if (products.length) {
         products.forEach(product => this.products.push(product));
       } else {
+        window.onscroll = null;
         this.noMoreProducts = true;
       }
       this.isloading = false;
+      this.onScroll();
     });
   }
 
   onScroll(): void {
-    let prevScroll = window.scrollY;
-    let nextScroll = 0;
-    const container = document.documentElement;
-    
+    const container = document.documentElement;  
+  
     window.onscroll = () => {
       if (!this.noMoreProducts) {
+        const cards = this.cards.map(card => card.nativeElement);
         const limit = container.scrollHeight - container.clientHeight;
-
-        // if (window.scrollY + 300 >= limit) {
-        //   this.start += this.count;
-        //   this.isloading = true;
-        //   this.loadProducts();
-        // }
+  
+        const rect = cards[cards.length - 2].getBoundingClientRect();
         
-      } else {
-        window.onscroll = null;
+        if (rect.top < container.clientHeight) {
+          window.onscroll = null;
+          // this.isloading = true;
+          this.start += this.count;
+          this.loadProducts();
+        }
+  
       }
     }
+    
   }
 }
