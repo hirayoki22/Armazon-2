@@ -1,7 +1,8 @@
 <app-spinner [loading]="isLoading" overlayStyle="fixed"></app-spinner>
 
+
 <section *ngIf="!isLoading" class="product-detail-section">
-  <div class="wrapper">
+  <!-- <div class="wrapper">
     <h1 class="product-name-xl">{{ product.productName }}</h1>
 
     <section class="product-container">
@@ -55,10 +56,37 @@
         </div>
       </div>
     </section>
-    
-    
+  </div> -->
+  
+  <div class="wrapper">
+    <div class="product-images">
 
+      <div class="preview">
+        <img [src]="product.images[0]" [alt]="product.productName">
+      </div>
+
+      <div class="thumbnail-wrapper">
+        <button class="nav-btns nav-left">
+          <i class="material-icons">arrow_left</i>
+        </button>
+
+        <ul class="thumbnail-list">        
+          <li 
+            *ngFor="let thumbnail of product.images" 
+            class="thumbnail">
+            <img [src]="thumbnail" [alt]="product.productName">
+          </li>
+        </ul>
+
+        <button class="nav-btns nav-right">
+          <i class="material-icons">arrow_right</i>
+        </button>
+      </div>
+
+    </div>
+
+    <div class="product-information">
+
+    </div>
   </div>
-
 </section>
-
