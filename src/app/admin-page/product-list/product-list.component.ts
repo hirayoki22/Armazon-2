@@ -41,7 +41,6 @@ export class ProductListComponent implements OnInit {
     window.onscroll = () => {
       if (!this.noMoreProducts) {
         const cards = this.cards.map(card => card.nativeElement);
-        const limit = container.scrollHeight - container.clientHeight;
   
         const rect = cards[cards.length - 2].getBoundingClientRect();
         
