@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { ViewChild, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ProductService } from '../product.service';
 import { Product } from '../product.model';
 import { CartService } from '../cart.service';
+import { fromEvent } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-details',
@@ -11,6 +14,8 @@ import { CartService } from '../cart.service';
   styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit {
+  @ViewChildren('navButton') navButtons: QueryList<ElementRef<HTMLButtonElement>>;
+  @ViewChild('thumbnailList') thumbnailList: ElementRef<HTMLElement>;
   product: Product;
   activePreview: number = 0;
   isLoading: boolean = true;
@@ -45,6 +50,29 @@ export class ProductDetailsComponent implements OnInit {
       quantity: quantity
     }
     this.cs.addToCart(details).subscribe();
+  }
+
+  onNavBtnClick(direction: 'before' | 'next'): void {
+    const thumbnailList = this.thumbnailList.nativeElement;
+    const steps = direction == 'before' ? -268 : 268;
+
+    thumbnailList.scrollBy({ left: steps });
+    this.previewStripScroll();
+  }
+
+  private previewStripScroll(): void {
+    const thumbnailList = this.thumbnailList.nativeElement;
+    const buttons = this.navButtons.map(btn => btn.nativeElement);
+    
+    fromEvent(thumbnailList, 'scroll').pipe(
+      map(e => e.target as HTMLElement)
+    ).subscribe(thumbnailList => {
+      const scrolled = thumbnailList.scrollLeft;
+      const limit = thumbnailList.scrollWidth - thumbnailList.clientWidth;
+
+      buttons[0].disabled = scrolled > 0 ? false : true;
+      buttons[1].disabled = scrolled >= limit ? true : false;
+    });
   }
 
 }

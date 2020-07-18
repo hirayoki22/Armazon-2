@@ -68,11 +68,13 @@
       </div>
 
       <div class="thumbnail-wrapper">
-        <button class="nav-btns nav-left">
+        <button 
+          (click)="onNavBtnClick('before')"
+          #navButton class="nav-btns nav-left" disabled>
           <i class="material-icons">arrow_left</i>
         </button>
 
-        <ul class="thumbnail-list">        
+        <ul #thumbnailList class="thumbnail-list">        
           <li 
             (mouseover)="activePreview = index"
             *ngFor="let thumbnail of product.images; index as index" 
@@ -81,7 +83,9 @@
           </li>
         </ul>
 
-        <button class="nav-btns nav-right">
+        <button 
+          (click)="onNavBtnClick('next')"
+          #navButton class="nav-btns nav-right">
           <i class="material-icons">arrow_right</i>
         </button>
       </div>
