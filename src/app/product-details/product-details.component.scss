@@ -163,19 +163,19 @@
 @mixin ease-gradient($deg) {
   background: linear-gradient(
     $deg,
-    hsl(0, 0%, 28%) 0%,
-    hsla(0, 0%, 28%, 0.738) 19%,
-    hsla(0, 0%, 28%, 0.541) 34%,
-    hsla(0, 0%, 28%, 0.382) 47%,
-    hsla(0, 0%, 28%, 0.278) 56.5%,
-    hsla(0, 0%, 28%, 0.194) 65%,
-    hsla(0, 0%, 28%, 0.126) 73%,
-    hsla(0, 0%, 28%, 0.075) 80.2%,
-    hsla(0, 0%, 28%, 0.042) 86.1%,
-    hsla(0, 0%, 28%, 0.021) 91%,
-    hsla(0, 0%, 28%, 0.008) 95.2%,
-    hsla(0, 0%, 28%, 0.002) 98.2%,
-    hsla(0, 0%, 28%, 0) 100%
+    hsl(347, 56%, 78%) 0%,
+    hsla(347, 56%, 78%, 0.738) 19%,
+    hsla(347, 56%, 78%, 0.541) 34%,
+    hsla(347, 56%, 78%, 0.382) 47%,
+    hsla(347, 56%, 78%, 0.278) 56.5%,
+    hsla(347, 56%, 78%, 0.194) 65%,
+    hsla(347, 56%, 78%, 0.126) 73%,
+    hsla(347, 56%, 78%, 0.075) 80.2%,
+    hsla(347, 56%, 78%, 0.042) 86.1%,
+    hsla(347, 56%, 78%, 0.021) 91%,
+    hsla(347, 56%, 78%, 0.008) 95.2%,
+    hsla(347, 56%, 78%, 0.002) 98.2%,
+    hsla(347, 56%, 78%, 0) 100%
   );
 }
 
@@ -194,6 +194,7 @@
     .product-images {
       width: 50%;
       height: auto;
+      padding: 1.5rem;
       background-color: #fff;
 
       img {
@@ -206,19 +207,26 @@
       .preview {
         width: 100%;
         height: 600px;
-        padding: 1.5rem;
+        // padding: 1.5rem;
+        
+        img {
+          padding: 1rem;
+          border: 1px solid #e7edff;
+          border-radius: 2px;
+        }
       }
 
       .thumbnail-wrapper {        
         position: relative;
         width: 100%;
         height: auto;
+        padding: 1rem 0;
 
         .nav-btns {
           position: absolute;
-          top: 0;
+          top: 1rem;
           padding: 0 0.5rem;
-          height: 100%;
+          height: calc(100% - 2rem);
           transition: opacity .4s ease;
           z-index: 1;          
 
@@ -227,19 +235,27 @@
             opacity: 0;
           }
 
-          &:first-of-type {
+          &.nav-left {
             left: 0;
             @include ease-gradient(90deg);
+
+            &:hover {
+              .material-icons {
+                transform: translateX(2px);
+                background-color: #f6f8ff; 
+              }
+            }
           }
 
-          &:last-of-type {
+          &.nav-right {
             right: 0;
             @include ease-gradient(-90deg);
-          }
 
-          &:hover {
-            .material-icons {
-              background-color: #f6f8ff; 
+            &:hover {
+              .material-icons {
+                transform: translateX(-2px);
+                background-color: #f6f8ff; 
+              }
             }
           }
 
@@ -249,9 +265,10 @@
             align-items: center;
             width: 40px;
             height: 40px;
+            color: #F72551;
             border-radius: 40px;
             background-color: #fff;
-            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             transition: background-color 0.3s ease,
             transform 0.3s ease;
           }
@@ -262,7 +279,6 @@
         display: flex;
         width: 100%;
         height: auto;
-        padding: 1rem;
         overflow: hidden;
         overflow-x: auto;
         scrollbar-width: none;
@@ -274,25 +290,34 @@
           display: none;
         }
 
-        .thumbnail {
-          position: relative;
+        .thumbnail {          
           flex-shrink: 0;
           width: 130px;
           height: 100px;        
           padding: 0.5rem;
-          margin-left: 0.5rem;
+          margin-right: 0.5rem;
           border: 1px solid #e7edff;
           border-radius: 2px;
           scroll-snap-align: center;
-          transition: border-color 0.3s ease;
+          transition: border-color 0.4s ease,
+          background-color 0.4s ease;
           overflow: hidden;
           
           &.active {
-
+            position: relative;
+            border-color: rgba(248, 96, 129, 0.815);
+          
+            &::after {              
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background-color: rgba(255, 255, 255, 0.4);
+            }
           }
-        }
-
-        
+        }        
       }
     }
 
