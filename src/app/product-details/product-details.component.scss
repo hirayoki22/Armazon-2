@@ -209,8 +209,7 @@
         padding: 1.5rem;
       }
 
-      .thumbnail-wrapper {
-        
+      .thumbnail-wrapper {        
         position: relative;
         width: 100%;
         height: auto;
@@ -218,9 +217,9 @@
         .nav-btns {
           position: absolute;
           top: 0;
-          width: 40px;
+          padding: 0 0.5rem;
           height: 100%;
-          z-index: 1;
+          z-index: 1;          
 
           &:first-of-type {
             left: 0;
@@ -231,36 +230,56 @@
             right: 0;
             @include ease-gradient(-90deg);
           }
+
+          &:hover {
+            .material-icons {
+              background-color: #f6f8ff; 
+            }
+          }
+
+          .material-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 40px;
+            background-color: #fff;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease,
+            transform 0.3s ease;
+          }
         }
       }
 
       .thumbnail-list {
-        position: relative;
         display: flex;
         width: 100%;
         height: auto;
-        padding: 0.5rem;
+        padding: 1rem;
         overflow: hidden;
         overflow-x: auto;
         scrollbar-width: none;
         -ms-overflow-style: none;
         scroll-behavior: smooth;
         scroll-snap-type: x mandatory;
-        // background-color: inherit;
 
         &::-webkit-scrollbar {
           display: none;
         }
 
         .thumbnail {
-          width: 130px;
-          height: 100px;
-          scroll-snap-align: start;
+          position: relative;
           flex-shrink: 0;
-          
-          &:not(:last-of-type) {
-            margin-left: 0.5rem;
-          }
+          width: 130px;
+          height: 100px;        
+          padding: 0.5rem;
+          margin-left: 0.5rem;
+          border: 1px solid #e7edff;
+          border-radius: 2px;
+          scroll-snap-align: center;
+          transition: border-color 0.3s ease;
+          overflow: hidden;
           
           &.active {
 
@@ -274,7 +293,8 @@
     .product-information {
       width: 50%;
       height: inherit;
-      background-color: #ddd;
+      padding: 1.5rem;
+      background-color: inherit;
     }
   }  
 }

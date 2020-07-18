@@ -12,6 +12,7 @@ import { CartService } from '../cart.service';
 })
 export class ProductDetailsComponent implements OnInit {
   product: Product;
+  activePreview: number = 0;
   isLoading: boolean = true;
 
   constructor(

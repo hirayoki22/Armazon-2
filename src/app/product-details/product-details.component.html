@@ -62,7 +62,9 @@
     <div class="product-images">
 
       <div class="preview">
-        <img [src]="product.images[0]" [alt]="product.productName">
+        <img 
+          [src]="product.images[activePreview]" 
+          [alt]="product.productName">
       </div>
 
       <div class="thumbnail-wrapper">
@@ -72,7 +74,8 @@
 
         <ul class="thumbnail-list">        
           <li 
-            *ngFor="let thumbnail of product.images" 
+            (mouseover)="activePreview = index"
+            *ngFor="let thumbnail of product.images; index as index" 
             class="thumbnail">
             <img [src]="thumbnail" [alt]="product.productName">
           </li>
