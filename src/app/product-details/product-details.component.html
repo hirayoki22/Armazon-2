@@ -39,17 +39,29 @@
             <i class="material-icons">arrow_right</i>
           </button>
         </div>
-  
-        
       </div>
   
-      <div class="product-information">
-  
-        <div class="column">
+      <div class="product-information">  
+        <div class="content">
           <h3 class="product-name">{{ product.productName }}</h3>
           <p class="brand">By <span>{{ product.brand }}</span></p> 
-          <p class="price">Price: <strong>{{ product.price | currency }}</strong></p>
-          <p class="stock-label">{{ product.totalStock > 0 ? 'In stock' : 'Not in stock' }}</p>          
+          <p class="price">
+            Price: <strong>{{ product.price | currency }}</strong>
+          </p>
+
+          <div [ngSwitch]="product.available">
+            <div *ngSwitchCase="false">
+              <p class="unavailable-message">Currently unavailable</p>
+            </div>
+            <div *ngSwitchDefault>
+              <p 
+                class="stock-label"
+                [class.not-in-stock]="!product.totalStock">
+                {{ product.totalStock > 0 ? 'In stock' : 'Not in stock' }}
+              </p>   
+            </div>
+          </div>     
+            
         </div>
   
         <div class="action-buttons">
@@ -67,7 +79,7 @@
   
         <div class="description">
           <h3>Description:</h3>
-          <p>{{ product.productDesc }}</p>
+          <p [innerHTML]="product.productDesc"></p>
         </div>
       </div>
     </div>

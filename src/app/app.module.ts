@@ -11,6 +11,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { SearchBarComponent } from './navbar/search-bar/search-bar.component';
 import { SharedModule } from './shared/shared.module';
+import { VariantSectionComponent } from './product-details/variant-section/variant-section.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SharedModule } from './shared/shared.module';
     MainComponent,
     CheckoutComponent,
     ProductDetailsComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    VariantSectionComponent
   ],
   imports: [
     BrowserModule,

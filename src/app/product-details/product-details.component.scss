@@ -184,7 +184,7 @@
       padding: 1.5rem;
       background-color: inherit;
 
-      .column {
+      .content {
         width: 100%;
         height: auto;
         margin-bottom: 1.5rem;
@@ -213,7 +213,16 @@
   
         .stock-label {
           color: #4da861;
+          
+          &.not-in-stock {
+            color: #ce8220;
+          }
         }         
+
+        .unavailable-message {
+          color: #963249;
+          font-weight: 500;
+        }
       }
 
       .action-buttons {
