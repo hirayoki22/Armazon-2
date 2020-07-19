@@ -20,7 +20,7 @@
 
         <!-- Small Screen -->
         <div class="preview-s-wrapper">
-          <ul class="preview-s">
+          <ul (scroll)="onPreviewScroll($event.target)" class="preview-s">
             <li *ngFor="let image of product.images;" class="slide">
               <img [src]="image" [alt]="product.productName">
             </li>

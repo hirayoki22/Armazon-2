@@ -49,6 +49,19 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     }, 300);
   }
 
+  onPreviewScroll(list: HTMLElement): void {
+    const slides = Array.from(list.children);
+
+    slides.forEach((slide, index) => {
+      const rects = slide.getBoundingClientRect();
+      const left = rects.left;
+
+      if (index != this.activePreview && left <= 60) {
+        this.activePreview = index;
+      }
+    });
+  }
+
   private navButtonsDisableState(): void {
     const list = this.thumbnailList.nativeElement;
     const navBtns = this.navButtons.map(btn => btn.nativeElement);
