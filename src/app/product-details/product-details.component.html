@@ -2,11 +2,11 @@
 
 <section *ngIf="!isLoading" class="product-detail-section">
   <div class="wrapper">
-    <div class="banner">
+    <!-- <div class="banner">
       <div class="banner-text">
         <h3>New savings of up to 50% on Armazon Choice products</h3>
       </div>
-    </div>
+    </div> -->
 
     <div class="details-container">
       <div class="product-images">
@@ -28,6 +28,7 @@
           <ul #thumbnailList class="thumbnail-list">        
             <li 
               (mouseover)="activePreview = index"
+              (click)="activePreview = index"
               *ngFor="let thumbnail of product.images; index as index" 
               class="thumbnail"
               [class.active]="activePreview == index">
@@ -44,6 +45,13 @@
             #navButton class="nav-btns nav-right">
             <i class="material-icons">arrow_right</i>
           </button>
+
+          <div class="indicator-wrapper">
+            <span 
+              *ngFor="let i of product.images; index as index" 
+              class="indicator"
+              [class.active]="activePreview == index"></span>
+          </div>
         </div>
       </div>
   
