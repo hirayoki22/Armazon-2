@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { ProductService } from 'src/app/product.service';
 import { CustomValidators } from './validators';
+import { Product } from 'src/app/product.model';
 
 interface Category { categoryId: number; category: string };
 
@@ -44,17 +45,27 @@ export class ProductCreationComponent implements OnInit {
   onSubmit(): void {
     const images = <File[]>this.productForm.get('images').value;
     const formData = new FormData();
-    formData.append('product', JSON.stringify(this.productForm.value));
-    
-    images.forEach(image => {
-      formData.append('images[]', image);
-    });
+
+    formData.append('product', this.getSanitizedForm());    
+    images.forEach(image => formData.append('images[]', image));
 
     this.isLoading = true;
     this.ps.addProducts(formData).subscribe(() => {
       this.productForm.reset();
       this.isLoading = false;
     });
+  }
+
+  private getSanitizedForm(): string {
+    let productName = this.productForm.get('productName').value.trim();
+    let productDesc = this.productForm.get('productDesc').value.trim();
+    let brand = this.productForm.get('brand').value.trim();
+
+    this.productForm.get('productName').setValue(productName);
+    this.productForm.get('productDesc').setValue(productDesc);
+    this.productForm.get('brand').setValue(brand);
+
+    return JSON.stringify(this.productForm.value);
   }
 
 }
