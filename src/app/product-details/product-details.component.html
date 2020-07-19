@@ -2,19 +2,36 @@
 
 <section *ngIf="!isLoading" class="product-detail-section">
   <div class="wrapper">
-    <!-- <div class="banner">
+    <div class="banner">
       <div class="banner-text">
         <h3>New savings of up to 50% on Armazon Choice products</h3>
       </div>
-    </div> -->
+    </div>
 
     <div class="details-container">
       <div class="product-images">
-        <div class="preview">
+        <!-- Large screen -->
+        <div class="preview-l">
           <img 
             [src]="product.images[activePreview]" 
             [alt]="product.productName"
             draggable="false">
+        </div>
+
+        <!-- Small Screen -->
+        <div class="preview-s-wrapper">
+          <ul class="preview-s">
+            <li *ngFor="let image of product.images;" class="slide">
+              <img [src]="image" [alt]="product.productName">
+            </li>
+          </ul>
+  
+          <div class="indicator-wrapper">
+            <span 
+              *ngFor="let i of product.images; index as index" 
+              class="indicator"
+              [class.active]="activePreview == index"></span>
+          </div>
         </div>
   
         <div class="thumbnail-wrapper">
@@ -44,14 +61,7 @@
             (click)="onNavBtnClick('next')"
             #navButton class="nav-btns nav-right">
             <i class="material-icons">arrow_right</i>
-          </button>
-
-          <div class="indicator-wrapper">
-            <span 
-              *ngFor="let i of product.images; index as index" 
-              class="indicator"
-              [class.active]="activePreview == index"></span>
-          </div>
+          </button>          
         </div>
       </div>
   
