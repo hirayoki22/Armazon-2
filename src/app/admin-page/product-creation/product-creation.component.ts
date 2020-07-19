@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { ProductService } from 'src/app/product.service';
 import { CustomValidators } from './validators';
-import { Product } from 'src/app/product.model';
 
 interface Category { categoryId: number; category: string };
 
