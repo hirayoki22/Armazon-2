@@ -54,7 +54,6 @@
 
     p {
       color: #7a8196;
-      font-size: 1rem;
     }
 
     .close-btn {
@@ -62,8 +61,8 @@
 
       .material-icons {
         color: #7a8196;
-        font-size: 1.4rem;
-        transition: color .2s ease;
+        font-size: 1.3rem;
+        transition: color .4s ease;
       }
 
       &:hover {
@@ -124,7 +123,8 @@
       padding: 1.5rem 0;
       
       &:not(:last-of-type) {
-        border-bottom: thin solid #eca5b4;
+        // border-bottom: thin solid rgba(248, 96, 129, 0.815);
+        margin-bottom: 1rem;
       }
 
       .product-image {

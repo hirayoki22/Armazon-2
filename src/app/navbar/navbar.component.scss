@@ -3,7 +3,7 @@
   left: 0;
   top: 0;
   width: 100%;
-  height: 50px;
+  height: 46px;
   padding: 0 1rem;
   overflow: hidden;
   background-color: rgba(255, 255, 255, 0.7);
@@ -29,7 +29,7 @@
     span:first-of-type {
       margin-right: 0.5rem;
       color: #F72551;
-      font-size: 2.5rem;
+      font-size: 2.3rem;
       font-weight: 300;
       border-radius: 100px;
     }
@@ -54,7 +54,8 @@
 
       .material-icons {
         color: #7a8196;
-        transition: color .3s ease;
+        font-size: 1.4rem;
+        transition: color .4s ease;
       }
   
       &:hover {
@@ -73,8 +74,8 @@
     
       .badge {
         position: absolute;
-        right: -15px;
-        top: -10px;
+        right: -10px;
+        top: -8px;
         display: flex;
         justify-content: center;
         align-items: center;
