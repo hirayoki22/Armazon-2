@@ -16,9 +16,10 @@
       justify-content: center;
       align-items: center;
       width: 100%;
-      padding: 0.4rem;
+      height: 36px;
       color: #fff;
       border: 2px solid #F72551;
+      border-radius: 4px;
       background-color: #F72551;
       transition: opacity .3s ease, 
       background-color .3s ease;
@@ -73,6 +74,7 @@
           padding: 0.4rem;
           font-size: 0.8rem;
           border: thin solid #f7f9fd;
+          border-radius: 4px;
           background-color: #f7f9fd;
           transition: border-color 0.3s ease;
           
