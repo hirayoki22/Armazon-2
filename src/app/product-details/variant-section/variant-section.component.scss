@@ -28,19 +28,21 @@
         padding: 0.2rem 0.7rem;
         border: 1px solid #e7edff;
         border-radius: 5px;
-        transition: background-color .4s ease;
+        transition: border-color .4s ease, 
+        background-color .4s ease;
         cursor: pointer;
 
         &:not(:last-of-type) {
           margin-right: 0.5rem;
         }
 
-        &:hover {
+        &:not(.selected):hover {
           background-color: #f6f8ff; 
         }
 
         &.selected {
-
+          border-color: rgba(248, 96, 129, 0.815);
+          // background-color: #eaecf5; 
         }
 
         img {
@@ -54,6 +56,11 @@
           color: #4c4e5a;
           font-size: .8rem;
           font-weight: bold;
+        }
+
+        &-l {
+          @extend .option-icon;
+          height: 60px;
         }
       }
     }
