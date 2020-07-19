@@ -49,12 +49,7 @@
           <h3 class="product-name">{{ product.productName }}</h3>
           <p class="brand">By <span>{{ product.brand }}</span></p> 
           <p class="price">Price: <strong>{{ product.price | currency }}</strong></p>
-          <p class="stock-label">{{ product.totalStock > 0 ? 'In stock' : 'Not in stock' }}</p>
-          
-          <div class="description">
-            <h3>Description:</h3>
-            <p>{{ product.productDesc }}</p>
-          </div>
+          <p class="stock-label">{{ product.totalStock > 0 ? 'In stock' : 'Not in stock' }}</p>          
         </div>
   
         <div class="action-buttons">
@@ -70,6 +65,10 @@
           </button>
         </div>
   
+        <div class="description">
+          <h3>Description:</h3>
+          <p>{{ product.productDesc }}</p>
+        </div>
       </div>
     </div>
 
