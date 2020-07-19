@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ViewChild, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -13,7 +13,7 @@ import { map } from 'rxjs/operators';
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss']
 })
-export class ProductDetailsComponent implements OnInit {
+export class ProductDetailsComponent implements OnInit, AfterViewInit {
   @ViewChildren('navButton') navButtons: QueryList<ElementRef<HTMLButtonElement>>;
   @ViewChild('thumbnailList') thumbnailList: ElementRef<HTMLElement>;
   product: Product;
@@ -37,6 +37,27 @@ export class ProductDetailsComponent implements OnInit {
         this.isLoading = false;
       });
     });
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.navButtonsDisableState();
+      
+      fromEvent(window, 'resize').subscribe(() => {
+        this.navButtonsDisableState();
+      });
+    }, 300);
+  }
+
+  private navButtonsDisableState(): void {
+    const list = this.thumbnailList.nativeElement;
+    const navBtns = this.navButtons.map(btn => btn.nativeElement);
+
+    if (list.scrollWidth > list.clientWidth) {
+      navBtns[1].disabled = false;
+    } else {
+      navBtns[1].disabled = true;
+    }
   }
 
   onBuyNow(productId: number): void {
