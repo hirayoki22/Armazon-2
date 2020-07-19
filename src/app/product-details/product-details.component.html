@@ -13,7 +13,8 @@
         <div class="preview">
           <img 
             [src]="product.images[activePreview]" 
-            [alt]="product.productName">
+            [alt]="product.productName"
+            draggable="false">
         </div>
   
         <div class="thumbnail-wrapper">
@@ -29,7 +30,11 @@
               *ngFor="let thumbnail of product.images; index as index" 
               class="thumbnail"
               [class.active]="activePreview == index">
-              <img [src]="thumbnail" [alt]="product.productName">
+
+              <img 
+                [src]="thumbnail" 
+                [alt]="product.productName"
+                draggable="false">
             </li>
           </ul>
   
@@ -61,7 +66,8 @@
               </p>   
             </div>
           </div>     
-            
+           
+          <variant-section></variant-section>
         </div>
   
         <div class="action-buttons">
@@ -77,8 +83,7 @@
           </button>
         </div>
   
-        <div class="description">
-          <h3>Description:</h3>
+        <div class="description">          
           <p [innerHTML]="product.productDesc"></p>
         </div>
       </div>

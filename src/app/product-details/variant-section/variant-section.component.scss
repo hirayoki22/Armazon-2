@@ -1,0 +1,54 @@
+.variant-wrapper {  
+  width: 100%;
+  height: 100px;
+
+  .variant-option {
+    width: 100%;
+
+    &:not(:last-of-type) {
+      margin-bottom: 1.5rem;
+    }
+    
+    h3 {
+      margin-bottom: 1rem;
+      color: #4c4e5a;
+    }
+
+    .option-flex {
+      display: flex;
+      flex-wrap: nowrap;
+      user-select: none;
+
+      .option-icon {
+        display: flex;
+        align-items: center;
+        min-width: 70px;
+        padding: 0.2rem 0.7rem;
+        border: 1px solid #2587f7;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:not(:last-of-type) {
+          margin-right: 0.5rem;
+        }
+
+        &.selected {
+
+        }
+
+        img {
+          width: 35px;
+          height: 100%;
+          margin-right: 0.5rem;
+          object-fit: contain;
+        }
+
+        span {
+          color: #4c4e5a;
+          font-size: .8rem;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
