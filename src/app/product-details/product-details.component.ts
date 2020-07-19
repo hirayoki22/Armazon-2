@@ -78,10 +78,10 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     const steps = direction == 'before' ? -268 : 268;
 
     thumbnailList.scrollBy({ left: steps });
-    this.previewStripScroll();
+    this.thumbnailListScroll();
   }
 
-  private previewStripScroll(): void {
+  private thumbnailListScroll(): void {
     const thumbnailList = this.thumbnailList.nativeElement;
     const buttons = this.navButtons.map(btn => btn.nativeElement);
     
