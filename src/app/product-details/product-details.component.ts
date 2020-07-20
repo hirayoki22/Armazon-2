@@ -56,7 +56,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
       const rects = slide.getBoundingClientRect();
       const left = rects.left;
 
-      if (index != this.activePreview && left <= 60) {
+      if ((index != this.activePreview) && left <= list.clientWidth) {
         this.activePreview = index;
       }
     });
