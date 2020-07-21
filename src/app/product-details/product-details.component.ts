@@ -22,6 +22,8 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
   variants: ProductVariant[] = [];
   activePreview: number = 0;
   isLoading: boolean = true;
+  reolading: boolean = false;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -45,20 +47,25 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
         this.isLoading = false;
       });
     });
+
+    
   }
 
   updateProductInfo(productId: number): void {    
+    this.reolading = true;
+
     this.ps.getProductById(productId).subscribe(product => {
       this.product = product;
-      this.navButtonsDisableState();
-      this.activePreview = 0;
+      this.activePreview = 0;      
+      this.reolading = false;
+      setTimeout(() => this.navButtonsDisableState());
     });
   }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
       this.navButtonsDisableState();
-      
+ 
       fromEvent(window, 'resize').subscribe(() => {
         this.navButtonsDisableState();
       });

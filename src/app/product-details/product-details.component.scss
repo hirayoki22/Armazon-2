@@ -17,6 +17,10 @@
   );
 }
 
+.reloading {
+  opacity: 0.3 !important;
+}
+
 .product-detail-section {
   width: 100%;
   margin: 2rem 0;
@@ -51,6 +55,7 @@
       height: auto;
       padding: 1.5rem;
       background-color: #fff;
+      transition: opacity .3s ease;
 
       img {
         width: 100%;

@@ -28,9 +28,7 @@ export class VariantSectionComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      this.activeVariant = +params.get('id');
-    });
+    this.activeVariant = +this.route.snapshot.paramMap.get('id');
   }
 
   ngOnChanges(): void {
@@ -47,6 +45,7 @@ export class VariantSectionComponent implements OnInit, OnChanges {
   onChange(productId: number): void {
     if (productId !== this.activeVariant) {
       // this.router.navigate(['/product', productId]);
+      this.activeVariant = productId;
       this.notifyChange.emit(productId);
     }
   }

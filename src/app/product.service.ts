@@ -50,6 +50,7 @@ export class ProductService {
 
   getProductById(id: number): Observable<Product> {
     return this.http.get<Product>(`${this.URL}/${id}`).pipe(
+      delay(300),
       catchError(this.errorHandler)
     );
   }
