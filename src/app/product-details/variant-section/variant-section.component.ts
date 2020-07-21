@@ -1,7 +1,8 @@
-import { Component, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
-import { ProductService } from 'src/app/product.service';
+import { ActivatedRoute } from '@angular/router';
 
+import { ProductService } from 'src/app/product.service';
 import { ProductVariant } from '../../product-variant.model';
 
 @Component({
@@ -9,7 +10,7 @@ import { ProductVariant } from '../../product-variant.model';
   templateUrl: './variant-section.component.html',
   styleUrls: ['./variant-section.component.scss']
 })
-export class VariantSectionComponent implements OnChanges {
+export class VariantSectionComponent implements OnInit, OnChanges {
   @Input() variants: ProductVariant[];
   colorVariants: ProductVariant[] = [];
   sizeVariants: ProductVariant[] = [];
@@ -18,7 +19,15 @@ export class VariantSectionComponent implements OnChanges {
   configurationVariants: ProductVariant[] = [];
   capacityVariants: ProductVariant[] = [];
 
-  constructor() { }
+  activeVariant: number = 0;
+
+  constructor(private route: ActivatedRoute) { }
+
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      this.activeVariant = +params.get('id');
+    });
+  }
 
   ngOnChanges(): void {
     if (this.variants.length) {
