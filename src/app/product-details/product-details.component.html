@@ -4,7 +4,9 @@
   <div class="wrapper">
     <div class="banner"></div>
 
-    <div [style.visibility]="isLoading ? 'hidden' : 'visible'" class="details-container">
+    <div 
+      [style.visibility]="isLoading ? 'hidden' : 'visible'" 
+      class="details-container">
       <div class="product-images" [class.reloading]="reolading">
         <!-- Large screen -->
         <div class="preview-l">

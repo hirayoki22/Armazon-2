@@ -44,12 +44,11 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
           this.ps.getProductVariant(this.product.productId)
           .subscribe(variants => this.variants = variants);
         }
+        
         this.isLoading = false;
         this.navButtonsDisableState();
       });
     });
-
-    
   }
 
   updateProductInfo(productId: number): void {    
