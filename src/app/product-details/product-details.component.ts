@@ -1,12 +1,14 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ViewChild, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { fromEvent } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { ProductService } from '../product.service';
 import { Product } from '../product.model';
+import { ProductVariant } from '../product-variant.model';
 import { CartService } from '../cart.service';
-import { fromEvent } from 'rxjs';
-import { map } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-product-details',
@@ -17,6 +19,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
   @ViewChildren('navButton') navButtons: QueryList<ElementRef<HTMLButtonElement>>;
   @ViewChild('thumbnailList') thumbnailList: ElementRef<HTMLElement>;
   product: Product;
+  variants: ProductVariant[] = [];
   activePreview: number = 0;
   isLoading: boolean = true;
 
@@ -34,6 +37,12 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
 
       this.ps.getProductById(productId).subscribe(product => {
         this.product = product;
+
+        if (this.product.hasVariant) {
+          this.ps.getProductVariant(this.product.productId)
+          .subscribe(variants => this.variants = variants);
+        }
+
         this.isLoading = false;
       });
     });

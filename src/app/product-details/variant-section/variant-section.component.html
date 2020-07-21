@@ -1,58 +1,34 @@
 <div class="variant-wrapper">
-  <section class="variant-option color">
+  <section *ngIf="colorVariants?.length" class="variant-option color">
     <h3>Color:</h3>
 
     <div class="option-flex">
-      <button class="option-icon-l selected">
-        <img src="https://images-na.ssl-images-amazon.com/images/I/4193vZldXVL._SS36_.jpg">
-        <span>White</span>
-      </button>
-
-      <button class="option-icon-l">
-        <img src="https://images-na.ssl-images-amazon.com/images/I/41VdOpdCX4L._SS36_.jpg">
-        <span>Black</span>
-      </button>
-
-      <button class="option-icon-l">
-        <img src="https://images-na.ssl-images-amazon.com/images/I/419PMmp5u8L._SS36_.jpg">
-        <span>Black/Red</span>
+      <button 
+        *ngFor="let variant of colorVariants;"
+        class="option-icon-l">
+        <img [src]="variant.iconUrl" draggable="false">
+        <span>{{ variant.optionValue }}</span>
       </button>
     </div>
   </section>
 
-  <section class="variant-option size">
+  <section *ngIf="sizeVariants?.length" class="variant-option size">
     <h3>Size:</h3>
 
-    <div class="option-flex">
-      <div class="option-icon selected">        
-        <span>H510</span>
-      </div>
-
-      <div class="option-icon">       
-        <span>H510 Elite</span>
-      </div>
-
-      <div class="option-icon">        
-        <span>H510i</span>
-      </div>
-
-      <div class="option-icon">       
-        <span>H1</span>
-      </div>
-    </div>
+    <button 
+      *ngFor="let variant of sizeVariants;"
+      class="option-icon">
+      <span>{{ variant.optionValue }}</span>
+    </button>
   </section>
 
-  <section class="variant-option size">
+  <section *ngIf="styleVariants?.length" class="variant-option style">
     <h3>Style:</h3>
 
-    <div class="option-flex">
-      <div class="option-icon selected">       
-        <span>i-Series</span>
-      </div>
-
-      <div class="option-icon">        
-        <span>Non i-Series</span>
-      </div>
-    </div>
+    <button 
+      *ngFor="let variant of styleVariants;"
+      class="option-icon">
+      <span>{{ variant.optionValue }}</span>
+    </button>
   </section>
 </div>
