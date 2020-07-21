@@ -17,77 +17,65 @@
   <section *ngIf="sizeVariants?.length" class="variant-option size">
     <h3>Size:</h3>
 
-    <button 
-      *ngFor="let variant of sizeVariants;"
-      class="option-icon"
-      [class.active]="activeVariant == variant.variantId">
-      <span>{{ variant.optionValue }}</span>
-    </button>
+    <div class="option-flex">
+      <button 
+        *ngFor="let variant of sizeVariants;"
+        class="option-icon"
+        [class.active]="activeVariant == variant.variantId">
+        <span>{{ variant.optionValue }}</span>
+      </button>
+    </div>
   </section>
-
-  <!--  -->
-  <section class="variant-option size">
-    <h3>Size:</h3>
-
-    <button class="option-icon">
-      <span>Small</span>
-    </button>
-
-    <button class="option-icon">
-      <span>Medium</span>
-    </button>
-
-    <button class="option-icon">
-      <span>Large</span>
-    </button>
-
-    <button class="option-icon">
-      <span>X-Large</span>
-    </button>
-  </section>
-  <!--  -->
 
   <section *ngIf="styleVariants?.length" class="variant-option style">
     <h3>Style:</h3>
 
-    <button 
-      *ngFor="let variant of styleVariants;"
-      class="option-icon"
-      [class.active]="activeVariant == variant.variantId">
-      <span>{{ variant.optionValue }}</span>
-    </button>
+    <div class="option-flex">
+      <button 
+        *ngFor="let variant of styleVariants;"
+        class="option-icon"
+        [class.active]="activeVariant == variant.variantId">
+        <span>{{ variant.optionValue }}</span>
+      </button>
+    </div>
   </section>
 
   <section *ngIf="modelVariants?.length" class="variant-option model">
     <h3>Style:</h3>
 
-    <button 
-      *ngFor="let variant of modelVariants;"
-      class="option-icon"
-      [class.active]="activeVariant == variant.variantId">
-      <span>{{ variant.optionValue }}</span>
-    </button>
+    <div class="option-flex">
+      <button 
+        *ngFor="let variant of modelVariants;"
+        class="option-icon"
+        [class.active]="activeVariant == variant.variantId">
+        <span>{{ variant.optionValue }}</span>
+      </button>
+    </div>
   </section>
 
   <section *ngIf="configurationVariants?.length" class="variant-option configuration">
     <h3>Style:</h3>
 
-    <button 
-      *ngFor="let variant of configurationVariants;"
-      class="option-icon"
-      [class.active]="activeVariant == variant.variantId">
-      <span>{{ variant.optionValue }}</span>
-    </button>
+    <div class="option-flex">
+      <button 
+        *ngFor="let variant of configurationVariants;"
+        class="option-icon"
+        [class.active]="activeVariant == variant.variantId">
+        <span>{{ variant.optionValue }}</span>
+      </button>
+    </div>
   </section>
 
   <section *ngIf="capacityVariants?.length" class="variant-option configuration">
     <h3>Style:</h3>
 
-    <button 
-      *ngFor="let variant of capacityVariants;"
-      class="option-icon"
-      [class.active]="activeVariant">
-      <span>{{ variant.optionValue }}</span>
-    </button>
+    <div class="option-flex">
+      <button 
+        *ngFor="let variant of capacityVariants;"
+        class="option-icon"
+        [class.active]="activeVariant">
+        <span>{{ variant.optionValue }}</span>
+      </button>
+    </div>
   </section>
 </div>

@@ -9,6 +9,7 @@
         <!-- Large screen -->
         <div class="preview-l">
           <img 
+            image-loader
             [src]="product.images[activePreview]" 
             [alt]="product.productName"
             draggable="false">
@@ -18,7 +19,7 @@
         <div class="preview-s-wrapper">
           <ul (scroll)="onPreviewScroll($event.target)" class="preview-s">
             <li *ngFor="let image of product.images;" class="slide">
-              <img [src]="image" [alt]="product.productName">
+              <img image-loader [src]="image" [alt]="product.productName">
             </li>
           </ul>
   
@@ -47,6 +48,7 @@
               [class.active]="activePreview == index">
 
               <img 
+                image-loader
                 [src]="thumbnail" 
                 [alt]="product.productName"
                 draggable="false">
@@ -82,7 +84,9 @@
             </div>
           </div>     
            
-          <variant-section [variants]="variants"></variant-section>
+          <variant-section 
+            [variants]="variants"
+            (variantId)="updateProductInfo($event)"></variant-section>
         </div>
   
         <div class="action-buttons">
