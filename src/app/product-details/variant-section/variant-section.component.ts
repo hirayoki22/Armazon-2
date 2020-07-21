@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { ProductService } from 'src/app/product.service';
 import { ProductVariant } from '../../product-variant.model';
@@ -12,6 +12,7 @@ import { ProductVariant } from '../../product-variant.model';
 })
 export class VariantSectionComponent implements OnInit, OnChanges {
   @Input() variants: ProductVariant[];
+  @Output('variantId') notifyChange: EventEmitter<number> = new EventEmitter();
   colorVariants: ProductVariant[] = [];
   sizeVariants: ProductVariant[] = [];
   styleVariants: ProductVariant[] = [];
@@ -21,7 +22,10 @@ export class VariantSectionComponent implements OnInit, OnChanges {
 
   activeVariant: number = 0;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -37,6 +41,12 @@ export class VariantSectionComponent implements OnInit, OnChanges {
       this.modelVariants = this.variants.filter(val => val.option == 'Model');
       this.configurationVariants = this.variants.filter(val => val.option == 'Configuration');
       this.capacityVariants = this.variants.filter(val => val.option == 'Capacity');
+    }
+  }
+
+  onChange(productId: number): void {
+    if (productId !== this.activeVariant) {
+      this.router.navigate(['/product', productId]);
     }
   }
 

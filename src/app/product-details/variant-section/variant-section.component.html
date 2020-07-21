@@ -3,7 +3,8 @@
     <h3>Color:</h3>
 
     <div class="option-flex">
-      <button 
+      <button         
+        (click)="onChange(variant.variantId)"
         *ngFor="let variant of colorVariants;"
         class="option-icon-l"
         [class.active]="activeVariant == variant.variantId">
