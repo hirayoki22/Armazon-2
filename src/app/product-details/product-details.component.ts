@@ -55,7 +55,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
       fromEvent(window, 'resize').subscribe(() => {
         this.navButtonsDisableState();
       });
-    }, 300);
+    }, 100);
   }
 
   onPreviewScroll(list: HTMLElement): void {
