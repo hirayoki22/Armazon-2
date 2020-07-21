@@ -45,6 +45,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
           .subscribe(variants => this.variants = variants);
         }
         this.isLoading = false;
+        this.navButtonsDisableState();
       });
     });
 
@@ -58,18 +59,14 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
       this.product = product;
       this.activePreview = 0;      
       this.reolading = false;
-      setTimeout(() => this.navButtonsDisableState());
+      this.navButtonsDisableState();
     });
   }
 
   ngAfterViewInit(): void {
-    setTimeout(() => {
+    fromEvent(window, 'resize').subscribe(() => {
       this.navButtonsDisableState();
- 
-      fromEvent(window, 'resize').subscribe(() => {
-        this.navButtonsDisableState();
-      });
-    }, 100);
+    });
   }
 
   onPreviewScroll(list: HTMLElement): void {
@@ -89,7 +86,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     const list = this.thumbnailList.nativeElement;
     const navBtns = this.navButtons.map(btn => btn.nativeElement);
 
-    if (list.scrollWidth > list.clientWidth) {
+    if (list.clientWidth < (130 * this.product.images.length)) {
       navBtns[1].disabled = false;
     } else {
       navBtns[1].disabled = true;

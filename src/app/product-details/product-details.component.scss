@@ -253,7 +253,12 @@
           border-radius: 4px;
           border: 1px solid #F72551; 
           transition: background-color .4s ease;
-          overflow: hidden;         
+          overflow: hidden;        
+          
+          &:disabled {
+            opacity: 0.6 !important;
+            cursor: default;
+          }
         }
 
         .buy-now-btn {

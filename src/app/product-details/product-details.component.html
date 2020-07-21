@@ -4,7 +4,7 @@
   <div class="wrapper">
     <div class="banner"></div>
 
-    <div [style.display]="isLoading ? 'none' : 'flex'" class="details-container">
+    <div [style.visibility]="isLoading ? 'hidden' : 'visible'" class="details-container">
       <div class="product-images" [class.reloading]="reolading">
         <!-- Large screen -->
         <div class="preview-l">
@@ -92,13 +92,17 @@
         </div>
   
         <div class="action-buttons">
-          <button 
-            (click)="onBuyNow(product?.productId)"
-            type="button" class="buy-now-btn">Buy Now</button>
+          <button             
+            (click)="onBuyNow(product?.productId)"            
+            [disabled]="!product?.available"
+            type="button" 
+            class="buy-now-btn">Buy Now</button>
   
           <button 
             (click)="onAddToCart(product?.productId)"
-            type="button" class="add-to-cart-btn">
+            [disabled]="!product?.available || !product?.totalStock"
+            type="button" 
+            class="add-to-cart-btn">
             <i class="material-icons">add_shopping_cart</i>
             <span>Add to cart</span>
           </button>
