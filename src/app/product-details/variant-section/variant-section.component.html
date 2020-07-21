@@ -71,6 +71,7 @@
 
     <div class="option-flex">
       <button 
+        (click)="onChange(variant.variantId)"
         *ngFor="let variant of capacityVariants;"
         class="option-icon"
         [class.active]="activeVariant">

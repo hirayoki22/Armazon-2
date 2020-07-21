@@ -44,7 +44,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
           this.ps.getProductVariant(this.product.productId)
           .subscribe(variants => this.variants = variants);
         }
-        
+
         this.isLoading = false;
         this.navButtonsDisableState();
       });
@@ -55,7 +55,17 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     this.reolading = true;
 
     this.ps.getProductById(productId).subscribe(product => {
-      this.product = product;
+      this.product.productId = product.productId;
+      this.product.productName = product.productName;
+      this.product.available = product.available;
+      this.product.productDesc = product.productDesc;
+      this.product.price = product.price;
+      this.product.totalStock = product.totalStock;
+      
+      if (product.images.length) {
+        this.product.images = product.images;
+      }
+
       this.activePreview = 0;      
       this.reolading = false;
       this.navButtonsDisableState();
