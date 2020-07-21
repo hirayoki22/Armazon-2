@@ -41,8 +41,8 @@ export class ProductService {
     );
   }
 
-  getProductVariant(productId: number): Observable<ProductVariant[]> {
-    return this.http.get<ProductVariant[]>(`${this.URL3}?productId=${productId}`)
+  getProductVariant(id: number): Observable<ProductVariant[]> {
+    return this.http.get<ProductVariant[]>(`${this.URL3}/${id}`)
     .pipe(
       catchError(this.errorHandler)
     );

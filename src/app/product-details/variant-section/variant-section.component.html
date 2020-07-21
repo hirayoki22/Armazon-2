@@ -31,4 +31,34 @@
       <span>{{ variant.optionValue }}</span>
     </button>
   </section>
+
+  <section *ngIf="modelVariants?.length" class="variant-option model">
+    <h3>Style:</h3>
+
+    <button 
+      *ngFor="let variant of modelVariants;"
+      class="option-icon">
+      <span>{{ variant.optionValue }}</span>
+    </button>
+  </section>
+
+  <section *ngIf="configurationVariants?.length" class="variant-option configuration">
+    <h3>Style:</h3>
+
+    <button 
+      *ngFor="let variant of configurationVariants;"
+      class="option-icon">
+      <span>{{ variant.optionValue }}</span>
+    </button>
+  </section>
+
+  <section *ngIf="capacityVariants?.length" class="variant-option configuration">
+    <h3>Style:</h3>
+
+    <button 
+      *ngFor="let variant of capacityVariants;"
+      class="option-icon">
+      <span>{{ variant.optionValue }}</span>
+    </button>
+  </section>
 </div>

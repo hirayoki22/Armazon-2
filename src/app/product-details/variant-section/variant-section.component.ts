@@ -26,8 +26,8 @@ export class VariantSectionComponent implements OnChanges {
       this.sizeVariants  = this.variants.filter(val => val.option == 'Size');
       this.styleVariants = this.variants.filter(val => val.option == 'Style');
       this.modelVariants = this.variants.filter(val => val.option == 'Model');
-      this.styleVariants = this.variants.filter(val => val.option == 'Configuration');
-      this.modelVariants = this.variants.filter(val => val.option == 'Capacity');
+      this.configurationVariants = this.variants.filter(val => val.option == 'Configuration');
+      this.capacityVariants = this.variants.filter(val => val.option == 'Capacity');
     }
   }
 
