@@ -9,7 +9,6 @@ import { Product } from '../product.model';
 import { ProductVariant } from '../product-variant.model';
 import { CartService } from '../cart.service';
 
-
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -62,7 +61,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
       this.product.price = product.price;
       this.product.totalStock = product.totalStock;
       
-      if (product.images.length) {
+      if (product.images.length > 1) {
         this.product.images = product.images;
       }
 

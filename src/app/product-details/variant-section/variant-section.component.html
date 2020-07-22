@@ -19,6 +19,7 @@
 
     <div class="option-flex">
       <button 
+        (click)="onChange(variant.variantId)"
         *ngFor="let variant of sizeVariants;"
         class="option-icon"
         [class.active]="activeVariant == variant.variantId">
@@ -32,6 +33,7 @@
 
     <div class="option-flex">
       <button 
+        (click)="onChange(variant.variantId)"
         *ngFor="let variant of styleVariants;"
         class="option-icon"
         [class.active]="activeVariant == variant.variantId">
@@ -45,6 +47,7 @@
 
     <div class="option-flex">
       <button 
+        (click)="onChange(variant.variantId)"
         *ngFor="let variant of modelVariants;"
         class="option-icon"
         [class.active]="activeVariant == variant.variantId">
@@ -58,6 +61,7 @@
 
     <div class="option-flex">
       <button 
+        (click)="onChange(variant.variantId)"
         *ngFor="let variant of configurationVariants;"
         class="option-icon"
         [class.active]="activeVariant == variant.variantId">
