@@ -52,7 +52,7 @@
       </div>
 
       <div
-        *ngIf="isVariant == true" 
+        *ngIf="!isVariant" 
         formArrayName="variantInfo"
         class="variant-fields"> 
         <div [formGroupName]="0" class="">
@@ -62,22 +62,27 @@
           </div>
           
           <div class="form-group">
-            <label>Option ID</label>
-            <input formControlName="optionId" type="number">
+            <label>Option</label>
+            <select formControlName="optionId">
+              <option [ngValue]="null">Choose an Option</option>
+              <option 
+                *ngFor="let option of variantOptions" 
+                [ngValue]="option.optionId">
+                {{ option.option }}
+              </option>
+            </select>
           </div>
   
           <div class="form-group">
-            <label>Option Value</label>
+            <label>Value label</label>
             <input formControlName="optionValue">
           </div>
         </div>
       </div>
-
-
   
       <div class="form-group">
         <button 
-          
+          [disabled]="productForm.invalid" 
           class="add-btn add-btn-1"
           type="submit">Add to inventory</button>
       </div>

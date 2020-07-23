@@ -5,6 +5,7 @@ import { ProductService } from 'src/app/product.service';
 import { CustomValidators } from './validators';
 
 interface Category { categoryId: number; category: string };
+interface VariantOption { optionId: number; option: string };
 
 @Component({
   selector: 'app-product-creation',
@@ -14,6 +15,7 @@ interface Category { categoryId: number; category: string };
 export class ProductCreationComponent implements OnInit {
   productForm: FormGroup;
   categories: Category[];
+  variantOptions: VariantOption[];
   isVariant: boolean = false;
   isLoading: boolean = false;
 
@@ -27,6 +29,10 @@ export class ProductCreationComponent implements OnInit {
 
     this.ps.getCategories().subscribe((categories: Category[]) => {
       this.categories = categories;
+    });
+
+    this.ps.getVariantOptions().subscribe(options => {
+      this.variantOptions = options;
     });
   }
 

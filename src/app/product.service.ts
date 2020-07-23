@@ -69,6 +69,12 @@ export class ProductService {
     );
   }
 
+  getVariantOptions(): Observable<any> {
+    return this.http.get<any>(this.URL3).pipe(
+      catchError(this.errorHandler)
+    );
+  }
+
   private errorHandler(err: HttpErrorResponse) {
     let error = '';
 
