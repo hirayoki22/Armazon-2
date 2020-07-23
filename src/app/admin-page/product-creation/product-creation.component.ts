@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 
 import { ProductService } from 'src/app/product.service';
 import { CustomValidators } from './validators';
@@ -14,6 +14,7 @@ interface Category { categoryId: number; category: string };
 export class ProductCreationComponent implements OnInit {
   productForm: FormGroup;
   categories: Category[];
+  isVariant: boolean = false;
   isLoading: boolean = false;
 
   constructor(
@@ -38,21 +39,35 @@ export class ProductCreationComponent implements OnInit {
       productDesc: [ '', Validators.required ],
       totalStock:  [ 1, [Validators.required, Validators.min(1)]],      
       images:      [ [], CustomValidators.imageValidator ],
+      variantInfo: this.fb.array([ this.variantForm() ])
     });
   }
 
-  onSubmit(): void {
-    const images = <File[]>this.productForm.get('images').value;
-    const formData = new FormData();
-
-    formData.append('product', this.getSanitizedForm());    
-    images.forEach(image => formData.append('images[]', image));
-
-    this.isLoading = true;
-    this.ps.addProducts(formData).subscribe(() => {
-      this.productForm.reset();
-      this.isLoading = false;
+  private variantForm(): FormGroup {
+    return this.fb.group({ 
+      originalProductId: [ null, Validators.required ],
+      optionId:          [ null, Validators.required ],
+      optionValue:       [ null, Validators.required ] 
     });
+  }
+
+  get variantInfo(): FormArray {
+    return <FormArray>this.productForm.get('variantInfo');
+  }
+
+  onSubmit(): void {
+    // const images = <File[]>this.productForm.get('images').value;
+    // const formData = new FormData();
+
+    // formData.append('product', this.getSanitizedForm());    
+    // images.forEach(image => formData.append('images[]', image));
+
+    // this.isLoading = true;
+    // this.ps.addProducts(formData).subscribe(() => {
+    //   this.productForm.reset();
+    //   this.isLoading = false;
+    // });
+    console.log(this.productForm.value);
   }
 
   private getSanitizedForm(): string {
