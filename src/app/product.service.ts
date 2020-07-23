@@ -12,21 +12,14 @@ import { ProductVariant } from './product-variant.model';
 export class ProductService {
   private URL  = 'http://127.0.0.1/market-api/products.php';
   private URL2 = 'http://127.0.0.1/market-api/product-category.php';
-  private URL3  = 'http://127.0.0.1/market-api/product-variant.php';
+  private URL3 = 'http://127.0.0.1/market-api/product-variant.php';
+  private URL4 = 'http://127.0.0.1/market-api/product-variant-options.php';
 
   constructor(private http: HttpClient) { }
 
   addProducts(form: FormData): Observable<any> {
     return this.http.post<any>(this.URL, form).pipe(
       delay(1000),
-      tap(res => console.log(res)),
-      catchError(this.errorHandler)
-    );
-  }
-
-  addProductVariant(form: FormData): Observable<any> {
-    return this.http.post<any>(this.URL3, form).pipe(
-      // delay(1000),
       tap(res => console.log(res)),
       catchError(this.errorHandler)
     );
@@ -49,13 +42,6 @@ export class ProductService {
     );
   }
 
-  getProductVariant(id: number): Observable<ProductVariant[]> {
-    return this.http.get<ProductVariant[]>(`${this.URL3}/${id}`)
-    .pipe(
-      catchError(this.errorHandler)
-    );
-  }
-
   getProductById(id: number): Observable<Product> {
     return this.http.get<Product>(`${this.URL}/${id}`).pipe(
       delay(300),
@@ -69,8 +55,25 @@ export class ProductService {
     );
   }
 
+  /** Product Variant Requests */
+  
+  addProductVariant(form: FormData): Observable<any> {
+    return this.http.post<any>(this.URL3, form).pipe(
+      delay(1000),
+      tap(res => console.log(res)),
+      catchError(this.errorHandler)
+    );
+  }
+
+  getProductVariant(id: number): Observable<ProductVariant[]> {
+    return this.http.get<ProductVariant[]>(`${this.URL3}/${id}`)
+    .pipe(
+      catchError(this.errorHandler)
+    );
+  }
+
   getVariantOptions(): Observable<any> {
-    return this.http.get<any>(this.URL3).pipe(
+    return this.http.get<any>(this.URL4).pipe(
       catchError(this.errorHandler)
     );
   }

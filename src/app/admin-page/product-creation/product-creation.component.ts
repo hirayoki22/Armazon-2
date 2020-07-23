@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 import { ProductService } from 'src/app/product.service';
 import { CustomValidators } from './validators';
@@ -16,6 +16,7 @@ interface VariantOption { optionId: number; option: string };
 })
 export class ProductCreationComponent implements OnInit {
   productForm: FormGroup;
+  variantForm: FormGroup;
   categories: Category[];
   variantOptions: VariantOption[];
   isVariant: boolean = false;
@@ -29,6 +30,7 @@ export class ProductCreationComponent implements OnInit {
 
   ngOnInit(): void {
     this.productForm = this.initForm();
+    this.variantForm = this.initVariantForm();
 
     this.ps.getCategories().subscribe((categories: Category[]) => {
       this.categories = categories;
@@ -48,11 +50,11 @@ export class ProductCreationComponent implements OnInit {
       productDesc: [ '', Validators.required ],
       totalStock:  [ 1, [Validators.required, Validators.min(1)]],      
       images:      [ [], CustomValidators.imageValidator ],
-      variantInfo: this.fb.array([ this.variantForm() ])
+      variantInfo: null
     });
   }
 
-  private variantForm(): FormGroup {
+  private initVariantForm(): FormGroup {
     return this.fb.group({ 
       originalProductId: [ 
         null, 
@@ -67,45 +69,43 @@ export class ProductCreationComponent implements OnInit {
     });
   }
 
-  get variantInfo(): FormArray {
-    return <FormArray>this.productForm.get('variantInfo');
-  }
-
   get originalProductId(): FormControl {
-    return <FormControl>this.variantInfo.get('0').get('originalProductId');
+    return <FormControl>this.variantForm.get('originalProductId');
   }
 
   onSubmit(): void {
-    // const images = <File[]>this.productForm.get('images').value;
-    // const formData = new FormData();
+    const images = <File[]>this.productForm.get('images').value;
+    const formData = new FormData();
 
-    // formData.append('product', this.getSanitizedForm());    
-    // images.forEach(image => formData.append('images[]', image));
+    formData.append('product', this.getSanitizedForm());    
+    images.forEach(image => formData.append('images[]', image));
+    this.isLoading = true;
 
-    // this.isLoading = true;
-    // if (!this.isVariant) {
-    //   this.ps.addProducts(formData).subscribe(() => {
-    //     this.productForm.reset();
-    //     this.isLoading = false;
-    //   });
-    // } else {
-    //   this.ps.addProductVariant(formData).subscribe(() => {
-    //     this.productForm.reset();
-    //     this.isLoading = false;
-    //     this.isVariant = false;
-    //   });
-    // }
-    
+    if (!this.isVariant) {
+      this.ps.addProducts(formData).subscribe(() => {
+        this.productForm.reset();
+        this.isLoading = false;
+      });
+    } else {
+      this.ps.addProductVariant(formData).subscribe(() => {
+        this.productForm.reset();
+        this.isLoading = false;
+        this.isVariant = false;
+      });
+    }
   }
 
   private getSanitizedForm(): string {
     let productName = this.productForm.get('productName').value.trim();
     let productDesc = this.productForm.get('productDesc').value.trim();
+    let optionValue = this.variantForm.get('optionValue').value.trim();
     let brand = this.productForm.get('brand').value.trim();
 
     this.productForm.get('productName').setValue(productName);
     this.productForm.get('productDesc').setValue(productDesc);
-    this.productForm.get('brand').setValue(brand);
+    this.variantForm.get('optionValue').setValue(optionValue);   
+    this.productForm.get('variantInfo').setValue(this.variantForm.value);
+    this.productForm.get('brand').setValue(brand);     
 
     return JSON.stringify(this.productForm.value);
   }

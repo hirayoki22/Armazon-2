@@ -53,51 +53,51 @@
 
       <div
         *ngIf="isVariant" 
-        formArrayName="variantInfo"
+        [formGroup]="variantForm"
         class="variant-fields"> 
-        <div [formGroupName]="0" class="">
-          <div class="form-group">
-            <label>Original product ID</label>
-            
-            <div class="input-wrapper">
-              <input formControlName="originalProductId" type="number">
-            
-              <div *ngIf="originalProductId.pending" class="loader">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-            </div>
-
-            <div 
-              *ngIf="!originalProductId.pending && originalProductId?.errors.notFound" 
-              class="invalid-feedback">
-              Product not found
-            </div>
-          </div>
+        <div class="form-group">
+          <label>Original product ID</label>
           
-          <div class="form-group">
-            <label>Option</label>
-            <select formControlName="optionId">
-              <option [ngValue]="null">Choose an Option</option>
-              <option 
-                *ngFor="let option of variantOptions" 
-                [ngValue]="option.optionId">
-                {{ option.option }}
-              </option>
-            </select>
+          <div class="input-wrapper">
+            <input formControlName="originalProductId" type="number">
+          
+            <div *ngIf="originalProductId.pending" class="loader">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
           </div>
-  
-          <div class="form-group">
-            <label>Value label</label>
-            <input formControlName="optionValue">
+
+          <div 
+            *ngIf="!originalProductId.pending &&
+            originalProductId?.errors?.notFound" 
+            class="invalid-feedback">
+            Product not found
           </div>
+        </div>
+        
+        <div class="form-group">
+          <label>Option</label>
+          <select formControlName="optionId">
+            <option [ngValue]="null">Choose an Option</option>
+            <option 
+              *ngFor="let option of variantOptions" 
+              [ngValue]="option.optionId">
+              {{ option.option }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Value label</label>
+          <input formControlName="optionValue">
         </div>
       </div>
   
       <div class="form-group">
         <button 
-          [disabled]="productForm.invalid" 
+          [disabled]="(!isVariant && productForm.invalid) ||
+          (isVariant && (productForm.invalid || variantForm.invalid))" 
           class="add-btn add-btn-1"
           type="submit">Add to inventory</button>
       </div>
@@ -109,7 +109,8 @@
 
     <div class="add-btn-2">
       <button 
-        [disabled]="productForm.invalid" 
+        [disabled]="(!isVariant && productForm.invalid) ||
+        (isVariant && (productForm.invalid || variantForm.invalid))"  
         class="add-btn"
         type="submit">Add to inventory</button>
     </div>
