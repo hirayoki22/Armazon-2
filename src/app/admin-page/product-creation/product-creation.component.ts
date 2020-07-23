@@ -72,6 +72,7 @@ export class ProductCreationComponent implements OnInit {
       this.ps.addProductVariant(formData).subscribe(() => {
         this.productForm.reset();
         this.isLoading = false;
+        this.isVariant = false;
       });
     }
   }
