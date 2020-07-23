@@ -15,7 +15,7 @@ export class MyAsyncValidators {
       return this.ps.getProductById(productId).pipe(
         distinctUntilChanged(),        
         map(product => {
-          return !product ? { productNotFound: true } : null;
+          return !product ? { notFound: true } : null;
         })
       );
     }

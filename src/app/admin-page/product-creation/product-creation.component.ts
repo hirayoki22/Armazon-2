@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 
 import { ProductService } from 'src/app/product.service';
 import { CustomValidators } from './validators';
@@ -59,7 +59,7 @@ export class ProductCreationComponent implements OnInit {
         {
           validators: [Validators.required],
           asyncValidators: [this.productValidator.productValidator()],
-          // updateOn: 'blur'
+          updateOn: 'blur'
         }
       ],
       optionId:          [ null, Validators.required ],
@@ -69,6 +69,10 @@ export class ProductCreationComponent implements OnInit {
 
   get variantInfo(): FormArray {
     return <FormArray>this.productForm.get('variantInfo');
+  }
+
+  get originalProductId(): FormControl {
+    return <FormControl>this.variantInfo.get('0').get('originalProductId');
   }
 
   onSubmit(): void {
@@ -91,7 +95,7 @@ export class ProductCreationComponent implements OnInit {
     //     this.isVariant = false;
     //   });
     // }
-    console.log(this.variantInfo.get('0').get('originalProductId').errors);
+    
   }
 
   private getSanitizedForm(): string {
