@@ -44,7 +44,6 @@ export class VariantSectionComponent implements OnInit, OnChanges {
 
   onChange(productId: number): void {
     if (productId !== this.activeVariant) {
-      // this.router.navigate(['/product', productId]);
       this.activeVariant = productId;
       this.notifyChange.emit(productId);
     }

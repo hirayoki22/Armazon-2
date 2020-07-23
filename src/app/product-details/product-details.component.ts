@@ -53,7 +53,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
   updateProductInfo(productId: number): void {    
     this.reolading = true;
 
-    this.ps.getProductById(productId).subscribe(product => {
+    this.ps.getProductById(productId).subscribe((product: Product) => {
       this.product.productId = product.productId;
       this.product.productName = product.productName;
       this.product.available = product.available;
@@ -61,9 +61,10 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
       this.product.price = product.price;
       this.product.totalStock = product.totalStock;
       
-      if (product.images.length > 1) {
-        this.product.images = product.images;
-      }
+      // if (!this.product.images.some(img => img == this.product.images[0])) {
+      //   this.product.images = product.images;
+      // }
+      this.product.images = product.images;
 
       this.activePreview = 0;      
       this.reolading = false;
