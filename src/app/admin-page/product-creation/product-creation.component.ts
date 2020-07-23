@@ -62,8 +62,8 @@ export class ProductCreationComponent implements OnInit {
           updateOn: 'blur'
         }
       ],
-      optionId:          [ null, Validators.required ],
-      optionValue:       [ null, Validators.required ] 
+      optionId: [ null, Validators.required ],
+      optionValue: [ null, Validators.required ] 
     });
   }
 
