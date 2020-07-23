@@ -89,6 +89,7 @@ export class ProductCreationComponent implements OnInit {
     } else {
       this.ps.addProductVariant(formData).subscribe(() => {
         this.productForm.reset();
+        this.variantForm.reset();
         this.isLoading = false;
         this.isVariant = false;
       });
@@ -98,12 +99,10 @@ export class ProductCreationComponent implements OnInit {
   private getSanitizedForm(): string {
     let productName = this.productForm.get('productName').value.trim();
     let productDesc = this.productForm.get('productDesc').value.trim();
-    let optionValue = this.variantForm.get('optionValue').value.trim();
     let brand = this.productForm.get('brand').value.trim();
 
     this.productForm.get('productName').setValue(productName);
     this.productForm.get('productDesc').setValue(productDesc);
-    this.variantForm.get('optionValue').setValue(optionValue);   
     this.productForm.get('variantInfo').setValue(this.variantForm.value);
     this.productForm.get('brand').setValue(brand);     
 
