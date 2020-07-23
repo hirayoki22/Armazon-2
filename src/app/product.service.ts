@@ -26,7 +26,7 @@ export class ProductService {
 
   addProductVariant(form: FormData): Observable<any> {
     return this.http.post<any>(this.URL3, form).pipe(
-      delay(1000),
+      // delay(1000),
       tap(res => console.log(res)),
       catchError(this.errorHandler)
     );

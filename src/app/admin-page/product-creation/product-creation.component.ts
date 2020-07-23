@@ -74,7 +74,6 @@ export class ProductCreationComponent implements OnInit {
         this.isLoading = false;
       });
     }
-    // console.log(JSON.stringify(this.productForm.value));
   }
 
   private getSanitizedForm(): string {
