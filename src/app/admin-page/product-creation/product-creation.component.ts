@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 
 import { ProductService } from 'src/app/product.service';
 import { CustomValidators } from './validators';
+import { MyAsyncValidators } from './async-validators';
 
 interface Category { categoryId: number; category: string };
 interface VariantOption { optionId: number; option: string };
@@ -21,7 +22,8 @@ export class ProductCreationComponent implements OnInit {
 
   constructor(
     private ps: ProductService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private productValidator: MyAsyncValidators
   ) { }
 
   ngOnInit(): void {
@@ -51,7 +53,14 @@ export class ProductCreationComponent implements OnInit {
 
   private variantForm(): FormGroup {
     return this.fb.group({ 
-      originalProductId: [ null, Validators.required ],
+      originalProductId: [ 
+        null, 
+        {
+          validators: Validators.required,
+          asyncValidators: this.productValidator.productValidator(),
+          updateOn: 'blur'
+        }
+      ],
       optionId:          [ null, Validators.required ],
       optionValue:       [ null, Validators.required ] 
     });
