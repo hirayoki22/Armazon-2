@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 
 import { ProductService } from 'src/app/product.service';
 import { CustomValidators } from './validators';
-import { MyAsyncValidators } from './async-validators';
+import { MyAsyncValidators } from './async-validators.service';
 
 interface Category { categoryId: number; category: string };
 interface VariantOption { optionId: number; option: string };
@@ -11,7 +11,8 @@ interface VariantOption { optionId: number; option: string };
 @Component({
   selector: 'app-product-creation',
   templateUrl: './product-creation.component.html',
-  styleUrls: ['./product-creation.component.scss']
+  styleUrls: ['./product-creation.component.scss'],
+  providers: [MyAsyncValidators]
 })
 export class ProductCreationComponent implements OnInit {
   productForm: FormGroup;
@@ -56,9 +57,9 @@ export class ProductCreationComponent implements OnInit {
       originalProductId: [ 
         null, 
         {
-          validators: Validators.required,
-          asyncValidators: this.productValidator.productValidator(),
-          updateOn: 'blur'
+          validators: [Validators.required],
+          asyncValidators: [this.productValidator.productValidator()],
+          // updateOn: 'blur'
         }
       ],
       optionId:          [ null, Validators.required ],
@@ -71,25 +72,26 @@ export class ProductCreationComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const images = <File[]>this.productForm.get('images').value;
-    const formData = new FormData();
+    // const images = <File[]>this.productForm.get('images').value;
+    // const formData = new FormData();
 
-    formData.append('product', this.getSanitizedForm());    
-    images.forEach(image => formData.append('images[]', image));
+    // formData.append('product', this.getSanitizedForm());    
+    // images.forEach(image => formData.append('images[]', image));
 
-    this.isLoading = true;
-    if (!this.isVariant) {
-      this.ps.addProducts(formData).subscribe(() => {
-        this.productForm.reset();
-        this.isLoading = false;
-      });
-    } else {
-      this.ps.addProductVariant(formData).subscribe(() => {
-        this.productForm.reset();
-        this.isLoading = false;
-        this.isVariant = false;
-      });
-    }
+    // this.isLoading = true;
+    // if (!this.isVariant) {
+    //   this.ps.addProducts(formData).subscribe(() => {
+    //     this.productForm.reset();
+    //     this.isLoading = false;
+    //   });
+    // } else {
+    //   this.ps.addProductVariant(formData).subscribe(() => {
+    //     this.productForm.reset();
+    //     this.isLoading = false;
+    //     this.isVariant = false;
+    //   });
+    // }
+    console.log(this.variantInfo.get('0').get('originalProductId').errors);
   }
 
   private getSanitizedForm(): string {

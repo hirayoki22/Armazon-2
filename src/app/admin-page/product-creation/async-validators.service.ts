@@ -1,12 +1,10 @@
 import { AsyncValidatorFn, AbstractControl, ValidationErrors,  } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { ProductService } from 'src/app/product.service';
-import { map } from 'rxjs/operators';
+import { map, distinctUntilChanged } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class MyAsyncValidators {
   constructor(private ps: ProductService) { }
 
@@ -15,7 +13,10 @@ export class MyAsyncValidators {
       const productId = +control.value;
 
       return this.ps.getProductById(productId).pipe(
-        map(product => !product ?  { productNotFound: true } : null)
+        distinctUntilChanged(),        
+        map(product => {
+          return !product ? { productNotFound: true } : null;
+        })
       );
     }
   } 
