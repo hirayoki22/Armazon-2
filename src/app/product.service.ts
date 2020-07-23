@@ -24,6 +24,14 @@ export class ProductService {
     );
   }
 
+  addProductVariant(form: FormData): Observable<any> {
+    return this.http.post<any>(this.URL3, form).pipe(
+      delay(1000),
+      tap(res => console.log(res)),
+      catchError(this.errorHandler)
+    );
+  }
+
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.URL).pipe(
       // tap(res => console.log(res)),

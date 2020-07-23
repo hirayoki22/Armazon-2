@@ -56,18 +56,25 @@ export class ProductCreationComponent implements OnInit {
   }
 
   onSubmit(): void {
-    // const images = <File[]>this.productForm.get('images').value;
-    // const formData = new FormData();
+    const images = <File[]>this.productForm.get('images').value;
+    const formData = new FormData();
 
-    // formData.append('product', this.getSanitizedForm());    
-    // images.forEach(image => formData.append('images[]', image));
+    formData.append('product', this.getSanitizedForm());    
+    images.forEach(image => formData.append('images[]', image));
 
-    // this.isLoading = true;
-    // this.ps.addProducts(formData).subscribe(() => {
-    //   this.productForm.reset();
-    //   this.isLoading = false;
-    // });
-    console.log(this.productForm.value);
+    this.isLoading = true;
+    if (!this.isVariant) {
+      this.ps.addProducts(formData).subscribe(() => {
+        this.productForm.reset();
+        this.isLoading = false;
+      });
+    } else {
+      this.ps.addProductVariant(formData).subscribe(() => {
+        this.productForm.reset();
+        this.isLoading = false;
+      });
+    }
+    // console.log(JSON.stringify(this.productForm.value));
   }
 
   private getSanitizedForm(): string {
