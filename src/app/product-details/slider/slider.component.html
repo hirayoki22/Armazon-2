@@ -1,0 +1,57 @@
+<div class="product-images" >
+  <!-- Large screen -->
+  <div class="preview-l">
+    <img 
+      image-loader
+      [src]="product?.images[activePreview]" 
+      [alt]="product?.productName"
+      draggable="false">
+  </div>
+
+  <!-- Small Screen -->
+  <div class="preview-s-wrapper">
+    <ul (scroll)="onPreviewScroll($event.target)" class="preview-s">
+      <li *ngFor="let image of product?.images;" class="slide">
+        <img image-loader [src]="image" [alt]="product?.productName">
+      </li>
+    </ul>
+
+    <div class="indicator-wrapper">
+      <span 
+        *ngFor="let i of product?.images; index as index" 
+        class="indicator"
+        [class.active]="activePreview == index"></span>
+    </div>
+  </div>
+
+  <div class="thumbnail-wrapper">
+    <button 
+      (click)="onNavBtnClick('before')"
+      #navButton class="nav-btns nav-left" 
+      disabled>
+      <i class="material-icons">arrow_left</i>
+    </button>
+
+    <ul #thumbnailList class="thumbnail-list">        
+      <li 
+        (mouseover)="activePreview = index"
+        (click)="activePreview = index"
+        *ngFor="let thumbnail of product?.images; index as index" 
+        class="thumbnail"
+        [class.active]="activePreview == index">
+
+        <img 
+          image-loader
+          [src]="thumbnail" 
+          [alt]="product?.productName"
+          draggable="false">
+      </li>
+    </ul>
+
+    <button 
+      (click)="onNavBtnClick('next')"
+      #navButton class="nav-btns nav-right">
+      <i class="material-icons">arrow_right</i>
+    </button>          
+  </div>   
+</div>
