@@ -31,7 +31,10 @@
                   {{ product?.totalStock > 0 ? 'In stock' : 'Not in stock' }}
                 </p>   
               </div>
-            </div>    
+            </div>   
+            
+            <!-- Product rating / review -->
+            <star-rating [rating]="4.5"></star-rating>
           </div>
 
           <variant-section 

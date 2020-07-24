@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -17,13 +18,16 @@ import { StarRating } from './star-rating/star-rating.component';
     TextClipPipe,
     StarRating
   ],
-  imports: [],
+  imports: [ 
+    CommonModule
+  ],
   exports: [
     ReactiveFormsModule,
     HttpClientModule,
     SpinnerComponent,
     ImageLoaderDirective,
-    TextClipPipe
+    TextClipPipe,
+    StarRating
   ]
 })
 export class SharedModule { }

@@ -1,15 +1,9 @@
-<div title="{{ rating }} out of 5" class="outer-stars">
-  <i (click)="onClick(1)" class="fas fa-star"></i>
-  <i (click)="onClick(2)" class="fas fa-star"></i>
-  <i (click)="onClick(3)" class="fas fa-star"></i>
-  <i (click)="onClick(4)" class="fas fa-star"></i>
-  <i (click)="onClick(5)" class="fas fa-star"></i>
+<div title="{{ rating }} out of 5 stars" class="outer-stars">
+  <i *ngFor="let star of totalStars; index as index" 
+    (click)="onClick(index + 1)" class="material-icons">grade</i>
   
   <div [style.width.%]="starWidth" class="inner-stars">
-    <i (click)="onClick(1)" class="fas fa-star"></i>
-    <i (click)="onClick(2)" class="fas fa-star"></i>
-    <i (click)="onClick(3)" class="fas fa-star"></i>
-    <i (click)="onClick(4)" class="fas fa-star"></i>
-    <i (click)="onClick(5)" class="fas fa-star"></i>
+    <i *ngFor="let star of totalStars; index as index" 
+      (click)="onClick(index + 1)" class="material-icons">grade</i>
   </div>
 </div>

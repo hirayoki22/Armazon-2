@@ -10,12 +10,13 @@ export class StarRating implements OnInit, OnChanges {
   @Input() rating: number;
   @Output() changeNotify: EventEmitter<number> = new EventEmitter();
   starWidth: number;
-  starTotal: number = 5;
+  totalStars: any[] = Array(5);
   
 
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
   ngOnChanges(): void {
@@ -23,7 +24,7 @@ export class StarRating implements OnInit, OnChanges {
   }
 
   convertRating(value: number): number {
-    return Math.round(((value / this.starTotal) * 100) / 10) * 10;
+    return Math.round(((value / this.totalStars.length) * 100) / 10) * 10;
   }
 
   onClick(rating: number): void {

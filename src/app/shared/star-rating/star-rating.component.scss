@@ -4,22 +4,24 @@
   white-space: nowrap;
   user-select: none;
   cursor: pointer;
+
+  .material-icons {
+    font-size: 1.3rem;
+    color: #cccfd8;
+  }
+
+  .inner-stars {
+    position: absolute;
+    left: 0;
+    top: 0;
+    white-space: nowrap;
+    overflow: hidden;
+  
+    .material-icons {
+      color: #F72551;
+    }
+  }
 }
 
-.inner-stars {
-  position: absolute;
-  left: 0;
-  top: 0;
-  white-space: nowrap;
-  overflow: hidden;
-}
 
-.outer-stars .fa-star {
-  font-size: 1rem;
-  color: #ccc;
-}
 
-.inner-stars .fa-star {
-  font-size: 1rem;
-  color: #545ee7;
-}
