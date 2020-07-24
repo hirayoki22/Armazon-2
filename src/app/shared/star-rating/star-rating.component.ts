@@ -11,6 +11,7 @@ import { ReviewRatingService } from './review-rating.service';
 })
 export class StarRating implements OnInit, OnChanges {
   @Input() rating: number;
+  @Input() reviewCount: number = 11178;
   @Output() changeNotify: EventEmitter<number> = new EventEmitter();
   starWidth: number;
   totalStars: any[] = Array(5);

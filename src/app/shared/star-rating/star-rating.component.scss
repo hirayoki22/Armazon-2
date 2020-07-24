@@ -1,27 +1,41 @@
-.outer-stars {
-  display: inline-block;
+.rating-wrapper {
   position: relative;
-  white-space: nowrap;
-  user-select: none;
-  cursor: pointer;
+  display: flex;
+  align-items: center;
 
-  .material-icons {
-    font-size: 1.3rem;
-    color: #cccfd8;
-  }
-
-  .inner-stars {
-    position: absolute;
-    left: 0;
-    top: 0;
+  .outer-stars {
+    display: inline-block;
+    position: relative;
     white-space: nowrap;
-    overflow: hidden;
+    user-select: none;
+    cursor: pointer;
   
     .material-icons {
-      color: #F72551;
+      font-size: 1.1rem;
+      color: #cccfd8;
+    }
+  
+    .inner-stars {
+      position: absolute;
+      left: 0;
+      top: 0;
+      white-space: nowrap;
+      overflow: hidden;
+    
+      .material-icons {
+        color: #F72551;
+      }
     }
   }
+
+  .review-count {
+    margin-left: 0.7rem;
+    color: #4c4e5a;
+    font-size: .85rem;
+    letter-spacing: 0.1rem;
+  }
 }
+
 
 
 
