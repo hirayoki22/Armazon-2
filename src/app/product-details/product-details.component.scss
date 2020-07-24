@@ -20,7 +20,8 @@
   }
 
   .reloading {
-    opacity: .4s ease !important;
+    opacity: 0.3 !important;
+    transition: opacity .3s ease;
   }
 
   .details-container {
@@ -86,6 +87,31 @@
           color: #963249;
           font-weight: 500;
         }
+
+        .quantity-selector {
+          display: flex;
+          align-items: center;
+          min-height: 20px;
+
+          button {
+            padding: 0.5rem 0.7rem;
+
+            .material-icons {
+              font-size: 0.95rem;
+            }
+          }
+
+          .quantity {
+            width: 60px;
+            padding: 0.5rem 0.7rem;
+            background-color: #dfe3ec;
+            font-size: .85rem;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            user-select: none;
+          }
+        }
       }
 
       .action-buttons {
@@ -100,9 +126,9 @@
           justify-content: center;
           align-items: center;
           width: 170px;
-          height: 36px;          
+          height: 50px;          
           color: #4c4e5a;
-          border-radius: 4px;
+          border-radius: 60px;
           border: 1px solid #F72551; 
           transition: background-color .4s ease;
           overflow: hidden;        
