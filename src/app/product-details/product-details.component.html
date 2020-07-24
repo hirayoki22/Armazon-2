@@ -42,13 +42,19 @@
             (variantId)="updateProductInfo($event)"></variant-section>
 
           <div class="quantity-selector">
-            <button class="minus-btn">
+            <button 
+              (click)="selectQuantity('minus')"
+              class="minus-btn">
               <i class="material-icons">remove</i>
             </button>
 
-            <div class="quantity">1</div>
+            <input 
+              (input)="quantity = +$event.target.value"
+              type="number" class="quantity" [value]="quantity">
 
-            <button class="plus-btn">
+            <button 
+              (click)="selectQuantity('plus')"
+              class="plus-btn">
               <i class="material-icons">add</i>
             </button>
           </div>
@@ -66,7 +72,6 @@
             [disabled]="!product?.available || !product?.totalStock"
             type="button" 
             class="add-to-cart-btn">
-            <i class="material-icons">add_shopping_cart</i>
             <span>Add To Cart</span>
           </button>
         </div>

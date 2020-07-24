@@ -17,6 +17,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
   @ViewChild(SliderComponent) slider: SliderComponent;
   product: Product;
   variants: ProductVariant[] = [];
+  quantity: number = 1;
   isLoading: boolean = true;
   reolading: boolean = false;
 
@@ -66,13 +67,21 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     console.log('Buying product ', productId);
   }
 
-  onAddToCart(productId: number, quantity = 1): void {
+  onAddToCart(productId: number): void {
     const details = {
       userId: 1,
       productId: productId,
-      quantity: quantity
+      quantity: this.quantity
     }
     this.cs.addToCart(details).subscribe();
   }
 
+  selectQuantity(action: 'minus' | 'plus'): void {
+    if (action === 'minus') {
+      this.quantity = this.quantity > 1 ? this.quantity -= 1 : this.quantity;
+    } else {
+      this.quantity = this.quantity < this.product.totalStock ?
+      this.quantity += 1 : this.quantity;
+    }
+  }
 }

@@ -92,6 +92,7 @@
           display: flex;
           align-items: center;
           min-height: 20px;
+          margin-bottom: 4rem;
 
           button {
             padding: 0.5rem 0.7rem;
@@ -102,12 +103,14 @@
           }
 
           .quantity {
+            display: block;
             width: 60px;
-            padding: 0.5rem 0.7rem;
-            background-color: #dfe3ec;
+            padding: 0.5rem 0.7rem;            
             font-size: .85rem;
             text-align: center;
             white-space: nowrap;
+            border-radius: 4px;
+            background-color: #dfe3ec;
             overflow: hidden;
             user-select: none;
           }
@@ -125,7 +128,7 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          width: 170px;
+          width: 190px;
           height: 50px;          
           color: #4c4e5a;
           border-radius: 60px;
