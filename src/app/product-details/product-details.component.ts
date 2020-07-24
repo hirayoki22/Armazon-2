@@ -37,16 +37,16 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
       const productId = +params.get('id');
 
       this.ps.getProductById(productId).subscribe(product => {
-        this.product = product;
-        this.slider.images = this.product.images;
+        this.product = product;        
 
         if (this.product.hasVariant) {
           this.ps.getProductVariant(this.product.productId)
           .subscribe(variants => this.variants = variants);
         }
 
-        this.isLoading = false;        
+        this.slider.images = this.product.images;
         this.slider.navButtonsDisableState();
+        this.isLoading = false;        
       });
     });
   }
@@ -56,10 +56,10 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
 
     this.ps.getProductById(productId).subscribe(product => {
       this.product = product;
-      this.slider.images = this.product.images;
-      this.reolading = false;
+      this.slider.images = this.product.images;      
       this.slider.activePreview = 0;
       this.slider.navButtonsDisableState();
+      this.reolading = false;
     });
   }
 
@@ -76,12 +76,4 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     this.cs.addToCart(details).subscribe();
   }
 
-  selectQuantity(action: 'minus' | 'plus'): void {
-    if (action === 'minus') {
-      this.quantity = this.quantity > 1 ? this.quantity -= 1 : this.quantity;
-    } else {
-      this.quantity = this.quantity < this.product.totalStock ?
-      this.quantity += 1 : this.quantity;
-    }
-  }
 }

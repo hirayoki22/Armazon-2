@@ -13,6 +13,7 @@ import { SearchBarComponent } from './navbar/search-bar/search-bar.component';
 import { SharedModule } from './shared/shared.module';
 import { VariantSectionComponent } from './product-details/variant-section/variant-section.component';
 import { SliderComponent } from './product-details/slider/slider.component';
+import { QuantitySelectorComponent } from './product-details/quantity-selector/quantity-selector.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SliderComponent } from './product-details/slider/slider.component';
     ProductDetailsComponent,
     SearchBarComponent,
     VariantSectionComponent,
-    SliderComponent
+    SliderComponent,
+    QuantitySelectorComponent
   ],
   imports: [
     BrowserModule,

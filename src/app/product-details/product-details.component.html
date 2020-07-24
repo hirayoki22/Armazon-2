@@ -41,23 +41,7 @@
             [variants]="variants"
             (variantId)="updateProductInfo($event)"></variant-section>
 
-          <div class="quantity-selector">
-            <button 
-              (click)="selectQuantity('minus')"
-              class="minus-btn">
-              <i class="material-icons">remove</i>
-            </button>
-
-            <input 
-              (input)="quantity = +$event.target.value"
-              type="number" class="quantity" [value]="quantity">
-
-            <button 
-              (click)="selectQuantity('plus')"
-              class="plus-btn">
-              <i class="material-icons">add</i>
-            </button>
-          </div>
+          <quantity-selector></quantity-selector>
         </div>
   
         <div class="action-buttons">
