@@ -116,26 +116,29 @@
         }
 
         .buy-now-btn {
-          margin-right: 1rem;
-          color: #fff;
-          background-color: #F72551;
-
-          &:hover {
-            background-color: darken(#F72551, 5); 
-          }
-        }
-
-        .add-to-cart-btn {        
-          background-color: #fff;  
-
-          .material-icons {
-            margin-right: 0.5rem;
-            color: #4c4e5a;
-            font-size: 1.3rem;
-          }
+          margin-right: 1rem;          
+          background-color: #fff;            
 
           &:hover {
             background-color: #f6f8ff; 
+          }
+        }
+
+        .add-to-cart-btn {                
+          background-color: #F72551;
+
+          span {
+            color: #fff;
+          }
+
+          .material-icons {
+            margin-right: 0.5rem;
+            color: #fff;
+            font-size: 1.3rem;
+          }          
+
+          &:hover {
+            background-color: darken(#F72551, 5); 
           }
         }
       }

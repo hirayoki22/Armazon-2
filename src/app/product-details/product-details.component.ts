@@ -53,7 +53,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
   updateProductInfo(productId: number): void {    
     this.reolading = true;
 
-    this.ps.getProductById(productId).subscribe((product: Product) => {
+    this.ps.getProductById(productId).subscribe(product => {
       this.product = product;
       this.slider.images = this.product.images;
       this.reolading = false;
