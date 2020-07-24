@@ -41,7 +41,9 @@
             [variants]="variants"
             (variantId)="updateProductInfo($event)"></variant-section>
 
-          <quantity-selector></quantity-selector>
+          <quantity-selector
+            [limit]="product?.totalStock"
+            (quantity)="quantity = $event"></quantity-selector>
         </div>
   
         <div class="action-buttons">

@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'quantity-selector',
@@ -7,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class QuantitySelectorComponent implements OnInit {
   @Input() limit: number;
+  @Output('quantity') notifyChange: EventEmitter<number> = new EventEmitter();
   quantity: number = 1;  
 
   constructor() { }
@@ -22,5 +24,8 @@ export class QuantitySelectorComponent implements OnInit {
       this.quantity = this.quantity < this.limit ?
       this.quantity += 1 : this.quantity;
     }
+
+    this.notifyChange.emit(this.quantity);
   }
+
 }
