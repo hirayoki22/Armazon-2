@@ -3,22 +3,22 @@
   <div class="preview-l">
     <img 
       image-loader
-      [src]="product?.images[activePreview]" 
-      [alt]="product?.productName"
+      [src]="images[activePreview]" 
+      alt="Product Image"
       draggable="false">
   </div>
 
   <!-- Small Screen -->
   <div class="preview-s-wrapper">
     <ul (scroll)="onPreviewScroll($event.target)" class="preview-s">
-      <li *ngFor="let image of product?.images;" class="slide">
-        <img image-loader [src]="image" [alt]="product?.productName">
+      <li *ngFor="let image of images;" class="slide">
+        <img image-loader [src]="image" alt="Product Image">
       </li>
     </ul>
 
     <div class="indicator-wrapper">
       <span 
-        *ngFor="let i of product?.images; index as index" 
+        *ngFor="let i of images; index as index" 
         class="indicator"
         [class.active]="activePreview == index"></span>
     </div>
@@ -36,14 +36,14 @@
       <li 
         (mouseover)="activePreview = index"
         (click)="activePreview = index"
-        *ngFor="let thumbnail of product?.images; index as index" 
+        *ngFor="let thumbnail of images; index as index" 
         class="thumbnail"
         [class.active]="activePreview == index">
 
         <img 
           image-loader
           [src]="thumbnail" 
-          [alt]="product?.productName"
+          alt="Next product image thumbnail"
           draggable="false">
       </li>
     </ul>

@@ -1,17 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ProductService } from '../product.service';
 import { Product } from '../product.model';
 import { ProductVariant } from '../product-variant.model';
 import { CartService } from '../cart.service';
+import { SliderComponent } from './slider/slider.component';
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss']
 })
-export class ProductDetailsComponent implements OnInit {
+export class ProductDetailsComponent implements OnInit, AfterViewInit {
+  @ViewChild(SliderComponent) slider: SliderComponent;
   product: Product;
   variants: ProductVariant[] = [];
   isLoading: boolean = true;
@@ -26,19 +29,23 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     window.scrollTo({ top: 0 });
+  }
 
+  ngAfterViewInit(): void {
     this.route.paramMap.subscribe(params => {
       const productId = +params.get('id');
 
       this.ps.getProductById(productId).subscribe(product => {
         this.product = product;
+        this.slider.images = this.product.images;
 
         if (this.product.hasVariant) {
           this.ps.getProductVariant(this.product.productId)
           .subscribe(variants => this.variants = variants);
         }
 
-        this.isLoading = false;
+        this.isLoading = false;        
+        this.slider.navButtonsDisableState();
       });
     });
   }
@@ -47,19 +54,11 @@ export class ProductDetailsComponent implements OnInit {
     this.reolading = true;
 
     this.ps.getProductById(productId).subscribe((product: Product) => {
-      this.product.productId = product.productId;
-      this.product.productName = product.productName;
-      this.product.available = product.available;
-      this.product.productDesc = product.productDesc;
-      this.product.price = product.price;
-      this.product.totalStock = product.totalStock;
-      
-      // if (!this.product.images.some(img => img == this.product.images[0])) {
-      //   this.product.images = product.images;
-      // }
-      this.product.images = product.images;   
+      this.product = product;
+      this.slider.images = this.product.images;
       this.reolading = false;
-      // this.navButtonsDisableState();
+      this.slider.activePreview = 0;
+      this.slider.navButtonsDisableState();
     });
   }
 

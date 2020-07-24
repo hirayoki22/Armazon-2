@@ -1,30 +1,23 @@
-import { Component, OnInit, OnChanges, AfterViewInit } from '@angular/core';
-import { Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ViewChild, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { map } from 'rxjs/operators';
-
-import { Product } from 'src/app/product.model';
 
 @Component({
   selector: 'app-slider',
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.scss']
 })
-export class SliderComponent implements OnInit, OnChanges, AfterViewInit {
+export class SliderComponent implements OnInit, AfterViewInit {
   @ViewChildren('navButton') navButtons: QueryList<ElementRef<HTMLButtonElement>>;
   @ViewChild('thumbnailList') thumbnailList: ElementRef<HTMLElement>;
-  @Input() product: Product;
+  images: string[] = [];
   activePreview: number = 0;
 
 
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  ngOnChanges(): void {
-    if (this.product) { this.navButtonsDisableState(); }
   }
 
   ngAfterViewInit(): void {
@@ -54,11 +47,11 @@ export class SliderComponent implements OnInit, OnChanges, AfterViewInit {
     });
   }
 
-  private navButtonsDisableState(): void {
+  navButtonsDisableState(): void {
     const list = this.thumbnailList.nativeElement;
     const navBtns = this.navButtons.map(btn => btn.nativeElement);
 
-    if (list.clientWidth < (130 * this.product.images.length)) {
+    if (list.clientWidth < (130 * this.images.length)) {
       navBtns[1].disabled = false;
     } else {
       navBtns[1].disabled = true;
