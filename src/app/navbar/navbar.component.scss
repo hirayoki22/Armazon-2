@@ -22,14 +22,13 @@
   .logo {
     display: flex;
     align-items: center;
-    letter-spacing: 0.1rem;
     user-select: none;
     overflow: hidden;
 
     span:first-of-type {
       margin-right: 0.5rem;
       color: #F72551;
-      font-size: 2.3rem;
+      font-size: 2rem;
       font-weight: 300;
       border-radius: 100px;
     }
@@ -79,12 +78,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        min-width: 20px;
+        min-width: 18px;
         padding: 0.3rem;
-        height: 20px;
+        height: 18px;
         border-radius: 30px;
         color: #fff;
-        font-size: .8rem;
+        font-size: .75rem;
         white-space: nowrap;
         background-color: #2587f7;
         box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
