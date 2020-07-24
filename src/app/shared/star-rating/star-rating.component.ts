@@ -1,10 +1,13 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
 
+import { ReviewRatingService } from './review-rating.service';
+
 @Component({
   selector: 'star-rating',
   templateUrl: './star-rating.component.html',
-  styleUrls: ['./star-rating.component.scss']
+  styleUrls: ['./star-rating.component.scss'],
+  providers: [ ReviewRatingService ]
 })
 export class StarRating implements OnInit, OnChanges {
   @Input() rating: number;
@@ -13,7 +16,7 @@ export class StarRating implements OnInit, OnChanges {
   totalStars: any[] = Array(5);
   
 
-  constructor() { }
+  constructor(private rs: ReviewRatingService) { }
 
   ngOnInit(): void {
     
