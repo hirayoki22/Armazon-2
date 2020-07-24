@@ -47,7 +47,7 @@
         height: auto;
         margin-bottom: 1.5rem;
 
-        .product-name, 
+        .product-name-price, 
         .brand, 
         .price, 
         .stock-label {
@@ -55,10 +55,18 @@
           color: #4c4e5a;
         }
 
-        .product-name {
+        .product-name-price {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
           color: #4c4e5a;
           font-size: 1.2rem;
           line-height: 1.5rem;
+
+          span {
+            color: #4c4e5a;
+            font-size: 1.3rem;
+          }
         }
   
         .brand {
@@ -66,15 +74,7 @@
             color: #2587f7;
           }
         }
-  
-        .price {
-          font-size: 1rem;
 
-          strong {
-            color: #4c4e5a;
-          }
-        }
-  
         .stock-label {
           color: #4da861;
           
@@ -92,12 +92,14 @@
           display: flex;
           align-items: center;
           min-height: 20px;
-          margin-bottom: 4rem;
-
+          width: fit-content;
+          margin: 0 auto 4rem;        
+        
           button {
             padding: 0.5rem 0.7rem;
 
             .material-icons {
+              color: #4c4e5a;
               font-size: 0.95rem;
             }
           }
@@ -110,7 +112,7 @@
             text-align: center;
             white-space: nowrap;
             border-radius: 4px;
-            background-color: #dfe3ec;
+            background-color: #f0f4ff;
             overflow: hidden;
             user-select: none;
           }
@@ -119,9 +121,10 @@
 
       .action-buttons {
         display: flex;
+        justify-content: center;
         align-items: center;
         width: 100%;
-        margin-bottom: 2rem;
+        margin-bottom: 4rem;
 
         button {
           position: relative;
@@ -131,6 +134,7 @@
           width: 190px;
           height: 50px;          
           color: #4c4e5a;
+          font-size: .85rem;
           border-radius: 60px;
           border: 1px solid #F72551; 
           transition: background-color .4s ease;
