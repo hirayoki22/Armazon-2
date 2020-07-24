@@ -117,7 +117,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
 
   onNavBtnClick(direction: 'before' | 'next'): void {
     const thumbnailList = this.thumbnailList.nativeElement;
-    const steps = direction == 'before' ? -268 : 268;
+    const steps = direction == 'before' ? -280 : 280;
 
     thumbnailList.scrollBy({ left: steps });
     this.thumbnailListScroll();
