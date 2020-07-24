@@ -1,0 +1,25 @@
+.outer-stars {
+  display: inline-block;
+  position: relative;
+  white-space: nowrap;
+  user-select: none;
+  cursor: pointer;
+}
+
+.inner-stars {
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.outer-stars .fa-star {
+  font-size: 1rem;
+  color: #ccc;
+}
+
+.inner-stars .fa-star {
+  font-size: 1rem;
+  color: #545ee7;
+}

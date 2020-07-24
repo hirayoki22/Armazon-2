@@ -1,0 +1,15 @@
+<div title="{{ rating }} out of 5" class="outer-stars">
+  <i (click)="onClick(1)" class="fas fa-star"></i>
+  <i (click)="onClick(2)" class="fas fa-star"></i>
+  <i (click)="onClick(3)" class="fas fa-star"></i>
+  <i (click)="onClick(4)" class="fas fa-star"></i>
+  <i (click)="onClick(5)" class="fas fa-star"></i>
+  
+  <div [style.width.%]="starWidth" class="inner-stars">
+    <i (click)="onClick(1)" class="fas fa-star"></i>
+    <i (click)="onClick(2)" class="fas fa-star"></i>
+    <i (click)="onClick(3)" class="fas fa-star"></i>
+    <i (click)="onClick(4)" class="fas fa-star"></i>
+    <i (click)="onClick(5)" class="fas fa-star"></i>
+  </div>
+</div>

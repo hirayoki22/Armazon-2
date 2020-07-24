@@ -6,6 +6,7 @@ import { SharedComponent } from './shared.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { ImageLoaderDirective } from './image-loader/image-loader.directive';
 import { TextClipPipe } from './text-clip/text-clip.pipe';
+import { StarRating } from './star-rating/star-rating.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { TextClipPipe } from './text-clip/text-clip.pipe';
     SharedComponent,
     SpinnerComponent,
     ImageLoaderDirective,
-    TextClipPipe
+    TextClipPipe,
+    StarRating
   ],
   imports: [],
   exports: [
