@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewChild, ViewChildren, ContentChild, ContentChildren, ElementRef, QueryList } from '@angular/core';
-import { Input, Output } from '@angular/core';
+import { Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'aside-panel',
@@ -9,7 +9,8 @@ import { Input, Output } from '@angular/core';
 })
 export class AsidePanelComponent implements OnInit {
   @Input() heading: string = '';
-  @Input() showPanel: boolean = true;
+  @Input() showPanel: boolean;
+  @Output('showPanel') notifyChange: EventEmitter<boolean> = new EventEmitter();
 
   constructor() { }
 
@@ -34,6 +35,7 @@ export class AsidePanelComponent implements OnInit {
       overlay.classList.remove('hide');
       section.classList.remove('slide-out');
       this.showPanel = false;
+      this.notifyChange.emit(this.showPanel);
     }, 400);
   }
 
