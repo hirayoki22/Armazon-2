@@ -41,7 +41,7 @@
               <label for="quantity">
                 Quantity: 
                 <input 
-                  (change)="quantityChanges(item, +$event.target.value)"
+                  (change)="quantityChanges(item, $event.target.value)"
                   [value]="item.quantity"
                   name="quantity"
                   id="quantity"

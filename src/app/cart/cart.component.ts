@@ -64,11 +64,14 @@ export class CartComponent implements OnInit {
     }, 400);
   }
 
-  quantityChanges(product: Product, quantity: number): void {
+  quantityChanges(product: Product, value: any): void {
+    if (!value) { return; }
+
+    const quantity = +value;
     this.isLoading = true;
 
     switch (true) {
-      case quantity == 0:
+      case quantity === 0:
         this.onRemove(product.productId);
         break;
 
