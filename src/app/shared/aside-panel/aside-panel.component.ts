@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, AfterViewInit } from '@angular/core';
 import { ViewChild, ViewChildren, ContentChild, ContentChildren, ElementRef, QueryList } from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
 
@@ -7,39 +7,48 @@ import { Input, Output, EventEmitter } from '@angular/core';
   templateUrl: './aside-panel.component.html',
   styleUrls: ['./aside-panel.component.scss']
 })
-export class AsidePanelComponent implements OnInit {
+export class AsidePanelComponent implements OnChanges, AfterViewInit {
+  @ViewChild('overlay') overlay: ElementRef<HTMLElement>;
+  @ViewChild('panel') panel: ElementRef<HTMLElement>;
   @Input() heading: string = '';
   @Input() showPanel: boolean;
-  @Output('showPanel') notifyChange: EventEmitter<boolean> = new EventEmitter();
+  @Output('showPanel') notifyChange = new EventEmitter<boolean>();
 
   constructor() { }
 
-  ngOnInit(): void {
-    document.body.classList.add('active-overlay');
+  ngOnChanges(): void {
+    if (this.showPanel) {
+      document.body.classList.add('active-overlay');
 
-    window.onkeyup = (e: KeyboardEvent) => {
-      if (e.key == 'Escape') { this.onClose(); }
+      window.onkeyup = (e: KeyboardEvent) => {
+        if (e.key == 'Escape') { this.onClose(); }
+      }
     }
+  }
+  
+  ngAfterViewInit(): void {
+    
   }
 
   onClose(): void {
-    const overlay = document.querySelector('.overlay');
-    const section = document.querySelector('.panel');
+    const overlay = this.overlay.nativeElement;
+    const panel = this.panel.nativeElement;
 
-    section.classList.add('slide-out');
+    panel.classList.add('slide-out');
     overlay.classList.add('hide');
     window.onkeyup = null;
 
     setTimeout(() => {
       document.body.classList.remove('active-overlay');
       overlay.classList.remove('hide');
-      section.classList.remove('slide-out');
+      panel.classList.remove('slide-out');
+
       this.showPanel = false;
       this.notifyChange.emit(this.showPanel);
-    }, 400);
+    }, 200);
   }
 
-  overlayClick(e: MouseEvent): void {
+  onClickOutside(e: MouseEvent): void {
     if (e.target == e.currentTarget) { this.onClose(); }
   }
 

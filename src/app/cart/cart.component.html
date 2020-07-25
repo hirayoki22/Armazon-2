@@ -1,4 +1,4 @@
-<div (click)="overlayClick($event)" *ngIf="viewCart" class="overlay">
+<!-- <div (click)="overlayClick($event)" *ngIf="viewCart" class="overlay">
   <aside class="cart">
     <div class="top">
       <p>Shopping Cart</p>
@@ -10,6 +10,16 @@
       </button>
     </div>
 
+  </aside>
+</div> -->
+
+<aside-panel
+  [heading]="heading"
+  [showPanel]="viewCart"
+  (showPanel)="viewCart = $event">
+  <app-spinner [loading]="isLoading"></app-spinner>
+
+  <div class="cart">
     <div 
       *ngIf="!cartItems?.length && !isLoading" 
       class="empty-cart-msg">
@@ -78,7 +88,6 @@
         Proceed to Checkout
       </button>
     </div>
+  </div>
 
-    <app-spinner [loading]="isLoading"></app-spinner>
-  </aside>
-</div>
+</aside-panel>

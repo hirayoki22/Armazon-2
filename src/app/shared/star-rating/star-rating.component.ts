@@ -35,4 +35,8 @@ export class StarRating implements OnInit, OnChanges {
   onClick(rating: number): void {
     this.changeNotify.emit(rating);
   }
+
+  sayHello(): void {
+    // console.log('Hello, gorgeous friends on the Internet');
+  }
 }

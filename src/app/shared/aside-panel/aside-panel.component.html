@@ -1,11 +1,12 @@
 <div 
-  (click)="overlayClick($event)" 
+  #overlay
+  (click)="onClickOutside($event)" 
   *ngIf="showPanel" 
   class="overlay">
 
-  <aside class="panel">
+  <aside #panel class="panel">
     <div class="top">
-      <p>{{ heading }}</p>
+      <h3 class="title">{{ heading }}</h3>
 
       <button 
         (click)="onClose()"
@@ -13,6 +14,8 @@
         <i class="material-icons">close</i>
       </button>
     </div>
+
+    <ng-content></ng-content>
   </aside>
 
 </div>

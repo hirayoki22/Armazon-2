@@ -17,6 +17,13 @@
 </div>
 
 <aside-panel
+  [heading]="'Rating & Reviews'"
   [showPanel]="showRating"
-  (showPanel)="showRating = $event"
-  [heading]="'Rating & Reviews'"></aside-panel>
+  (showPanel)="showRating = $event">
+
+  <h1>This is a test</h1>
+
+  <button id="hello-btn" (click)="sayHello()">Click me</button>
+
+  
+</aside-panel>
