@@ -8,6 +8,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { ImageLoaderDirective } from './image-loader/image-loader.directive';
 import { TextClipPipe } from './text-clip/text-clip.pipe';
 import { StarRating } from './star-rating/star-rating.component';
+import { AsidePanelComponent } from './aside-panel/aside-panel.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { StarRating } from './star-rating/star-rating.component';
     SpinnerComponent,
     ImageLoaderDirective,
     TextClipPipe,
-    StarRating
+    StarRating,
+    AsidePanelComponent
   ],
   imports: [ 
     CommonModule
@@ -27,7 +29,8 @@ import { StarRating } from './star-rating/star-rating.component';
     SpinnerComponent,
     ImageLoaderDirective,
     TextClipPipe,
-    StarRating
+    StarRating,
+    AsidePanelComponent
   ]
 })
 export class SharedModule { }
