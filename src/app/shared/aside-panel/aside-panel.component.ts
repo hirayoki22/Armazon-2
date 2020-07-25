@@ -1,5 +1,5 @@
-import { Component, OnChanges, AfterViewInit } from '@angular/core';
-import { ViewChild, ViewChildren, ContentChild, ContentChildren, ElementRef, QueryList } from '@angular/core';
+import { Component, OnChanges } from '@angular/core';
+import { ViewChild, ElementRef } from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -7,7 +7,7 @@ import { Input, Output, EventEmitter } from '@angular/core';
   templateUrl: './aside-panel.component.html',
   styleUrls: ['./aside-panel.component.scss']
 })
-export class AsidePanelComponent implements OnChanges, AfterViewInit {
+export class AsidePanelComponent implements OnChanges {
   @ViewChild('overlay') overlay: ElementRef<HTMLElement>;
   @ViewChild('panel') panel: ElementRef<HTMLElement>;
   @Input() heading: string = '';
@@ -26,10 +26,6 @@ export class AsidePanelComponent implements OnChanges, AfterViewInit {
     } else {
       document.body.classList.remove('active-overlay');
     }
-  }
-  
-  ngAfterViewInit(): void {
-    
   }
 
   onClose(): void {
