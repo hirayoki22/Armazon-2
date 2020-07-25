@@ -28,4 +28,9 @@ export class QuantitySelectorComponent implements OnInit {
     this.notifyChange.emit(this.quantity);
   }
 
+  onChange(value: number): void {
+    this.quantity = value;
+    this.notifyChange.emit(this.quantity);
+  }
+
 }

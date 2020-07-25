@@ -6,7 +6,7 @@
   </button>
 
   <input 
-    (input)="quantity = +$event.target.value"
+    (change)="onChange(+$event.target.value)"
     type="number" class="quantity" [value]="quantity">
 
   <button 
