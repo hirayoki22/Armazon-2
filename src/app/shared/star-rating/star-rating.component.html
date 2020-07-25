@@ -12,18 +12,30 @@
   <button class="review-count">
     ({{ reviewCount | number }})
   </button>
-
-  
 </div>
 
-<aside-panel
-  [heading]="'Rating & Reviews'"
-  [showPanel]="showRating"
-  (showPanel)="showRating = $event">
+<aside-panel [showPanel]="showRating" (showPanel)="showRating = $event">
 
-  <h1>This is a test</h1>
+  <div class="rating-container">
+    <h3 class="title">Rating & Reviews</h3>
+     
 
-  <button id="hello-btn" (click)="sayHello()">Click me</button>
+    <div>
+      <h3 class="rating">{{ rating | number:'1.1-1' }}</h3>
+      <div class="rating-wrapper">
+        <div class="outer-stars">
+          <i *ngFor="let star of totalStars;" class="material-icons">grade</i>
+          
+          <div [style.width.%]="starWidth" class="inner-stars">
+            <i *ngFor="let star of totalStars;" class="material-icons">grade</i>
+          </div>
+        </div>
+        
+        <button class="review-count">
+          ({{ reviewCount | number }})
+        </button>
+      </div>
+    </div>
+  </div>
 
-  
 </aside-panel>
