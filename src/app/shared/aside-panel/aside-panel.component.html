@@ -1,1 +1,18 @@
-<p>aside-panel works!</p>
+<div 
+  (click)="overlayClick($event)" 
+  *ngIf="showPanel" 
+  class="overlay">
+
+  <aside class="panel">
+    <div class="top">
+      <p>{{ heading }}</p>
+
+      <button 
+        (click)="onClose()"
+        type="button" class="close-btn" title="Close">
+        <i class="material-icons">close</i>
+      </button>
+    </div>
+  </aside>
+
+</div>
