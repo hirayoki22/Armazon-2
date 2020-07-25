@@ -15,7 +15,7 @@ export class StarRating implements OnInit, OnChanges {
   @Output() changeNotify: EventEmitter<number> = new EventEmitter();
   totalStars: any[] = Array(5);
   starWidth: number;
-  showRating: boolean = false;
+  showRating: boolean = true;
   
 
   constructor(private rs: ReviewRatingService) { }
