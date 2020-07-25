@@ -106,7 +106,7 @@
           color: #4c4e5a;
           font-size: .85rem;
           border-radius: 60px;
-          border: 1px solid #F72551; 
+          
           transition: background-color .4s ease;
           overflow: hidden;        
           
@@ -118,6 +118,7 @@
 
         .buy-now-btn {
           margin-right: 1rem;          
+          border: 1px solid #4c4e5a; 
           background-color: #fff;            
 
           &:hover {
@@ -125,7 +126,8 @@
           }
         }
 
-        .add-to-cart-btn {                
+        .add-to-cart-btn {          
+          border: 1px solid #F72551;       
           background-color: #F72551;
 
           span {
