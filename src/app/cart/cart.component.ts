@@ -24,7 +24,8 @@ export class CartComponent implements OnInit {
   }
 
   get itemCount(): number {
-    return this.cartItems.map(item => item.quantity).reduce((a, b) => a + b, 0);
+    return this.cartItems.map(item => item.quantity)
+    .reduce((a, b) => a + b, 0);
   }
 
   constructor(
