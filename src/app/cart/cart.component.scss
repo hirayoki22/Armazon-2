@@ -258,3 +258,20 @@
     }
   }
 }
+
+@media (max-width: 400px) {
+  .cart {
+    .item-list {
+      li {
+        .product-info {
+
+          .options {
+            .remove-btn {
+              margin: 0; 
+            }
+          }
+        }
+      }
+    }
+  }
+}
