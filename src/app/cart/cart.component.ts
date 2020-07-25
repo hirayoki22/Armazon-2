@@ -36,33 +36,11 @@ export class CartComponent implements OnInit {
     this.cs.cartViewState$.subscribe(state => {
       this.viewCart = state;
 
-      document.body.classList.add('active-overlay');
-      window.onkeyup = (e: KeyboardEvent) => {
-        if (e.key == 'Escape') { this.onClose(); }
-      }
-
       this.cs.getShoppingCart(1).subscribe(items => {
         this.cartItems = items;
         this.isLoading = false;
       });
     });
-  }
-
-  onClose(): void {
-    const overlay = document.querySelector('.overlay');
-    const section = document.querySelector('.cart');
-
-    section.classList.add('slide-out');
-    overlay.classList.add('hide');
-    window.onkeyup = null;
-
-    setTimeout(() => {
-      this.viewCart = false;
-      this.isLoading = true;
-      document.body.classList.remove('active-overlay');
-      overlay.classList.remove('hide');
-      section.classList.remove('slide-out');
-    }, 400);
   }
 
   quantityChanges(product: Product, value: any): void {
@@ -98,12 +76,8 @@ export class CartComponent implements OnInit {
     this.cs.removeFromCart(1, productId).subscribe();
   }
 
-  overlayClick(e: MouseEvent): void {
-    if (e.target == e.currentTarget) { this.onClose(); }
-  }
-
   proceedToCheckOut(): void {
-    this.onClose();
+    this.viewCart = false;
     this.router.navigate(['./order-checkout'], { state: { data: this.cartItems } });
   }
 }

@@ -7,6 +7,7 @@
   background-color: #fff;
   box-shadow: -2px 0 20px rgba(0, 0, 0, 0.1);
   animation: slideIn 0.3s ease;
+  transition: width .3s ease;
   overflow: hidden;
 
   &.slide-out {

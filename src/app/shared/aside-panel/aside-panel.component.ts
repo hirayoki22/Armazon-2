@@ -23,6 +23,8 @@ export class AsidePanelComponent implements OnChanges, AfterViewInit {
       window.onkeyup = (e: KeyboardEvent) => {
         if (e.key == 'Escape') { this.onClose(); }
       }
+    } else {
+      document.body.classList.remove('active-overlay');
     }
   }
   
