@@ -10,6 +10,7 @@ import { TextClipPipe } from './text-clip/text-clip.pipe';
 import { StarRating } from './star-rating/star-rating.component';
 import { AsidePanelComponent } from './aside-panel/aside-panel.component';
 import { RatingGraphComponent } from './star-rating/rating-graph/rating-graph.component';
+import { RoundNearestPipe } from './rount-nearest/round-nearest.pipe';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { RatingGraphComponent } from './star-rating/rating-graph/rating-graph.co
     TextClipPipe,
     StarRating,
     AsidePanelComponent,
-    RatingGraphComponent
+    RatingGraphComponent,
+    RoundNearestPipe
   ],
   imports: [ 
     CommonModule

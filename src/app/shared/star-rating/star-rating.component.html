@@ -3,7 +3,7 @@
     <i *ngFor="let star of totalStars; index as index" 
       (click)="onClick(index + 1)" class="material-icons">grade</i>
     
-    <div [style.width.%]="starWidth" class="inner-stars">
+    <div [style.width.%]="rating | roundNearest:5:10" class="inner-stars">
       <i *ngFor="let star of totalStars; index as index" 
         (click)="onClick(index + 1)" class="material-icons">grade</i>
     </div>
@@ -26,7 +26,7 @@
         <div class="outer-stars">
           <i *ngFor="let star of totalStars;" class="material-icons">grade</i>
           
-          <div [style.width.%]="starWidth" class="inner-stars">
+          <div [style.width.%]="rating | roundNearest:5:10" class="inner-stars">
             <i *ngFor="let star of totalStars;" class="material-icons">grade</i>
           </div>
         </div>
