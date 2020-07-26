@@ -1,27 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { Input } from '@angular/core';
 
 import { ReviewRatingService } from 'src/app/product-ratings/review-rating.service';
+import { Rating } from 'src/app/product-ratings/rating.model';
 
 @Component({
   selector: 'star-rating',
   templateUrl: './star-rating.component.html',
   styleUrls: ['./star-rating.component.scss']
 })
-export class StarRating implements OnInit {
-  @Input('rating') productRating: number;
+export class StarRating implements OnInit, OnChanges {
+  @Input() productId: number;
+  @Input() overall: number;
   @Input() readonly: boolean = false;
-  ratingCount: number = 27;
+  rating: Rating;
   totalStars: any[] = Array(5);
 
   
   constructor(private rs: ReviewRatingService) { }
 
   ngOnInit(): void {
+    
+  }
+
+  ngOnChanges(): void {
+    if (this.productId) {
+      this.rs.getProductRating(this.productId).subscribe(rating => {
+        this.rating = rating;
+      });
+    } else {
+      this.rating.overall = this.overall || 0;
+    }
   }
 
   onClick(): void {
-    this.rs.openRatingsPanel(true);
+    this.rs.openRatingsPanel(this.productId);
   }
 
 }

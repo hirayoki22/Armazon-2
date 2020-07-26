@@ -2,13 +2,13 @@
   (click)="onClick()" 
   class="rating-wrapper"
   [class.readonly]="readonly">
-  <div title="{{ productRating }} out of 5 stars" class="outer-stars">
+  <div title="{{ rating.overall }} out of 5 stars" class="outer-stars">
     <i *ngFor="let star of totalStars;" class="material-icons">grade</i>
     
-    <div [style.width.%]="productRating | roundNearest:5:10" class="inner-stars">
+    <div [style.width.%]="rating.overall | roundNearest:5:10" class="inner-stars">
       <i *ngFor="let star of totalStars;" class="material-icons">grade</i>
     </div>
   </div>
   
-  <div class="review-count">({{ ratingCount | number }})</div>
+  <div class="review-count">({{ rating.totalReviews | number }})</div>
 </div>
