@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
 
-interface Rating {  }
-
 @Component({
   selector: 'rating-graph',
   templateUrl: './rating-graph.component.html',
@@ -11,15 +9,16 @@ interface Rating {  }
 export class RatingGraphComponent implements OnInit {
   totalStars = [5, 4, 3, 2, 1];
 
-  ratings: number[] = [60, 20, 10, 1, 9];
+  rating: number[] = [ 17, 0, 0, 1, 1 ];
 
-  rating: any[] = [
-
-  ];
+  get totalRatings(): number {
+    return this.rating.reduce((a, b) => a + b, 0);
+  }
 
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.rating['4'])
   }
 
   getnearestTen(value: number): number {

@@ -8,9 +8,9 @@
     </div>
 
     <div class="outer-bar">
-      <div [style.width.%]="ratings[index]" class="inner-bar"></div>
+      <div [style.width.%]="rating[index] | roundNearest:totalRatings:10" class="inner-bar"></div>
     </div>
 
-    <span class="star-total-reviews">{{ star * 20 }}</span>
+    <span class="star-total-reviews">{{ rating[index] }}</span>
   </div>
 </div>
