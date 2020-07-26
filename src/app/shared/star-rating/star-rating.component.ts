@@ -6,8 +6,7 @@ import { ReviewRatingService } from 'src/app/product-ratings/review-rating.servi
 @Component({
   selector: 'star-rating',
   templateUrl: './star-rating.component.html',
-  styleUrls: ['./star-rating.component.scss'],
-  providers: [ ReviewRatingService ]
+  styleUrls: ['./star-rating.component.scss']
 })
 export class StarRating implements OnInit {
   @Input('rating') productRating: number;

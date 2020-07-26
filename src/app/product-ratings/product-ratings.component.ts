@@ -13,7 +13,9 @@ export class ProductRatingsComponent implements OnInit {
   constructor(private rs: ReviewRatingService) { }
 
   ngOnInit(): void {
-    this.rs.ratingViewState$.subscribe(state => this.viewRatings = state);
+    this.rs.ratingViewState$.subscribe(state => {
+      this.viewRatings = state
+    });
   }
 
 }
