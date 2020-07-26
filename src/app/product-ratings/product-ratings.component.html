@@ -10,11 +10,12 @@
         <star-rating 
           [readonly]="true"
           [overall]="rating.overall"></star-rating>
-        <rating-graph></rating-graph>
+          
+        <rating-graph *ngIf="!isLoading"></rating-graph>
     </div>
 
-    <section class="reviews">
-      
+    <section *ngIf="!isLoading" class="reviews">
+
     </section>
   </div>
 

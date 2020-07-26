@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ReviewRatingService } from './review-rating.service';
 import { Rating } from './rating.model';
+import { Review } from './review.model';
 
 @Component({
   selector: 'app-product-ratings',
@@ -9,6 +10,7 @@ import { Rating } from './rating.model';
 })
 export class ProductRatingsComponent implements OnInit {
   rating: Rating = { overall: 0, totalReviews: 0 };
+  reviews: Review[] = [];
   viewRatings: boolean = false;
   isLoading = true;
 
@@ -20,7 +22,10 @@ export class ProductRatingsComponent implements OnInit {
 
       this.rs.getProductRating(productId).subscribe(rating => {
         this.rating = rating;
-        this.isLoading = false;
+
+        this.rs.getProductReviews(productId).subscribe(reviews => {
+          this.isLoading = false;
+        });
       });
     });
   }

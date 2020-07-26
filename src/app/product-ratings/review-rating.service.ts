@@ -4,13 +4,14 @@ import { Observable, throwError, Subject } from 'rxjs';
 import { map, catchError, tap, delay } from 'rxjs/operators';
 
 import { Rating } from './rating.model';
+import { Review } from './review.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReviewRatingService {
   private URL = 'http://127.0.0.1/market-api/product-rating.php';  
-  private URL2 = 'http://127.0.0.1/market-api/product-review.php';  
+  private URL2 = 'http://127.0.0.1/market-api/product-reviews.php';  
 
   private ratingViewStateSource: Subject<number> = new Subject();
   ratingViewState$: Observable<number> = this.ratingViewStateSource.asObservable();
@@ -23,8 +24,17 @@ export class ReviewRatingService {
     );
   }
 
-  getProductReviews(id: number): any { 
-
+  getProductReviews(id: number): Observable<Review[]> { 
+    return this.http.get<Review[]>(`${this.URL2}/${id}`).pipe(
+      delay(400),
+      map(reviews => {
+        reviews.map(review => review.reviewDate = new Date(review.reviewDate));
+        return reviews;
+      }),
+      tap(reviews => console.log(reviews)),
+      catchError(this.errorHandler)
+    );
+    //date:'EEEE - MMMM dd y'
   }
 
   openRatingsPanel(id: number): void {
