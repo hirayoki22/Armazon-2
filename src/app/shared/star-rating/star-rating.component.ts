@@ -21,7 +21,7 @@ export class StarRating implements OnInit {
   }
 
   onClick(): void {
-    
+    this.rs.openRatingsPanel(true);
   }
 
 }
