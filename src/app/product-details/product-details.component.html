@@ -11,7 +11,7 @@
         <app-slider></app-slider>
       </div>
   
-      <div class="product-information">  
+      <div *ngIf="!isLoading" class="product-information">  
         <div class="content">
           <div [class.reloading]="reolading">
             <h3 class="product-name-price">
@@ -34,7 +34,7 @@
             </div>   
             
             <!-- Product rating / review -->
-            <!-- <star-rating [productId]="product.productId"></star-rating> -->
+            <star-rating [productId]="product?.productId"></star-rating>
           </div>
 
           <variant-section 
