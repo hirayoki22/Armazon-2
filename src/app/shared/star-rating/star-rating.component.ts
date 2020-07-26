@@ -20,6 +20,9 @@ export class StarRating implements OnInit, OnChanges {
   constructor(private rs: ReviewRatingService) { }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(): void {
     if (!this.readonly) {
       this.rs.getProductRating(this.productId).subscribe(rating => {
         this.rating = rating;
@@ -27,9 +30,6 @@ export class StarRating implements OnInit, OnChanges {
     } else {
       this.rating.overall = this.overall || 0;
     }
-  }
-
-  ngOnChanges(): void {
   }
 
   onClick(): void {
