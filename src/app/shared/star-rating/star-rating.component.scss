@@ -3,11 +3,11 @@
   display: flex;
   align-items: center;
   width: fit-content;
+  cursor: pointer; 
 
-  &.alt-style {
-    .outer-stars, button {
-      cursor: default;
-    }
+  &.readonly {
+    pointer-events: none;
+    cursor: default;
   }
 
   .outer-stars {
@@ -15,7 +15,7 @@
     position: relative;
     white-space: nowrap;
     user-select: none;
-    cursor: pointer;    
+       
   
     .material-icons {
       font-size: 1rem;
@@ -36,9 +36,7 @@
   }
 
   .review-count {
-    margin-left: 0.7rem;
-    color: #4c4e5a;
+    margin-left: 0.5rem;
     font-size: .80rem;
-    letter-spacing: 0.1rem;
   }
 }

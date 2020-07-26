@@ -1,4 +1,7 @@
-<div (click)="onClick()" class="rating-wrapper">
+<div 
+  (click)="onClick()" 
+  class="rating-wrapper"
+  [class.readonly]="readonly">
   <div title="{{ productRating }} out of 5 stars" class="outer-stars">
     <i *ngFor="let star of totalStars;" class="material-icons">grade</i>
     
@@ -7,7 +10,5 @@
     </div>
   </div>
   
-  <button class="review-count">
-    ({{ ratingCount | number }})
-  </button>
+  <div class="review-count">({{ ratingCount | number }})</div>
 </div>

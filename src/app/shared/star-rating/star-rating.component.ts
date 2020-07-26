@@ -10,6 +10,7 @@ import { ReviewRatingService } from 'src/app/product-ratings/review-rating.servi
 })
 export class StarRating implements OnInit {
   @Input('rating') productRating: number;
+  @Input() readonly: boolean = false;
   ratingCount: number = 27;
   totalStars: any[] = Array(5);
 

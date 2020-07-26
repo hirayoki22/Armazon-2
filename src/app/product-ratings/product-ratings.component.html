@@ -6,7 +6,10 @@
      
     <div>
       <h3 class="rating">{{ productRating | number:'1.1-1' }}</h3>
-      <star-rating [rating]="4.3"></star-rating>
+
+      <star-rating 
+        [readonly]="true"
+        [rating]="4.3"></star-rating>
       <rating-graph></rating-graph>
     </div>
   </div>
