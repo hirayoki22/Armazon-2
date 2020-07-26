@@ -9,6 +9,7 @@ import { ImageLoaderDirective } from './image-loader/image-loader.directive';
 import { TextClipPipe } from './text-clip/text-clip.pipe';
 import { StarRating } from './star-rating/star-rating.component';
 import { AsidePanelComponent } from './aside-panel/aside-panel.component';
+import { RatingGraphComponent } from './star-rating/rating-graph/rating-graph.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { AsidePanelComponent } from './aside-panel/aside-panel.component';
     ImageLoaderDirective,
     TextClipPipe,
     StarRating,
-    AsidePanelComponent
+    AsidePanelComponent,
+    RatingGraphComponent
   ],
   imports: [ 
     CommonModule

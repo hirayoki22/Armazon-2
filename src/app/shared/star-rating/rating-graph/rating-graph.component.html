@@ -1,0 +1,16 @@
+<div class="rating-per-start-graph">
+  <div 
+    *ngFor="let star of totalStars;" 
+    class="bar-wrapper">
+    <div class="star-icon-label">
+      <span class="label">{{ star }}</span>
+      <i class="material-icons">grade</i>
+    </div>
+
+    <div class="outer-bar">
+      <div class="inner-bar"></div>
+    </div>
+
+    <div class="star-total-reviews">{{ star * 20 }}</div>
+  </div>
+</div>
