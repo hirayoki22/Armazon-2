@@ -1,6 +1,6 @@
 <div class="rating-per-start-graph">
   <div 
-    *ngFor="let star of totalStars;" 
+    *ngFor="let star of totalStars; index as index" 
     class="bar-wrapper">
     <div class="star-icon-label">
       <span class="label">{{ star }}</span>
@@ -8,9 +8,9 @@
     </div>
 
     <div class="outer-bar">
-      <div class="inner-bar"></div>
+      <div [style.width.%]="ratings[index]" class="inner-bar"></div>
     </div>
 
-    <div class="star-total-reviews">{{ star * 20 }}</div>
+    <span class="star-total-reviews">{{ star * 20 }}</span>
   </div>
 </div>

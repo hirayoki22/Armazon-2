@@ -1,3 +1,7 @@
+@keyframes fillIn {
+  0% { width: 0; }
+}
+
 .rating-per-start-graph {
   width: 100%;
   margin-top: 3rem;
@@ -22,7 +26,6 @@
       align-items: center;
       width: 20px;
 
-
       .label {
         margin-right: 0.1rem;
         font-size: .75rem;
@@ -32,20 +35,28 @@
     .outer-bar {
       position: relative;
       width: 70%;
-      height: 10px;
+      height: 9px;
       margin: 0 1rem 0 0.5rem;
       border-radius: 1rem;
       background-color: #e9ebf1;
+      overflow: hidden;
 
       .inner-bar {
         position: absolute;
+        left: 0;
+        top: 0;
+        width: 0;
+        height: 100%;
+        border-radius: 1rem;
         transition: width .4s ease;
+        background-color: #4c4e5a;
+        animation: fillIn 0.7s ease;
       }
     }
 
     .star-total-reviews {
       font-size: .75rem;
-      text-align: right;
     }
   }
 }
+

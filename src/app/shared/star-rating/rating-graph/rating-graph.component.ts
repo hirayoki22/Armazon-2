@@ -9,6 +9,8 @@ import { Input, Output, EventEmitter } from '@angular/core';
 export class RatingGraphComponent implements OnInit {
   totalStars = [5, 4, 3, 2, 1];
 
+  ratings: number[] = [60, 20, 10, 1, 9];
+
   constructor() { }
 
   ngOnInit(): void {
