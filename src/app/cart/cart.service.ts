@@ -20,7 +20,7 @@ export class CartService {
 
   constructor(private http: HttpClient) { }
 
-  changeCartViewState(view: boolean): void {
+  openShoppingCart(view: boolean): void {
     this.cartViewStateSource.next(view);
   }
 
