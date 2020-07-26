@@ -9,6 +9,7 @@ import { ReviewRatingService } from './review-rating.service';
 export class ProductRatingsComponent implements OnInit {
   productRating: number = 4.3;
   viewRatings: boolean = false;
+  isLoading = false;
 
   constructor(private rs: ReviewRatingService) { }
 

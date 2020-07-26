@@ -1,4 +1,5 @@
 <aside-panel [showPanel]="viewRatings" (showPanel)="viewRatings = $event">
+  <app-spinner [loading]="isLoading"></app-spinner>
 
   <div class="rating-container">
     <h3 class="title">Rating & Reviews</h3>
