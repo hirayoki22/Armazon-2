@@ -31,10 +31,8 @@ export class ReviewRatingService {
         reviews.map(review => review.reviewDate = new Date(review.reviewDate));
         return reviews;
       }),
-      tap(reviews => console.log(reviews)),
       catchError(this.errorHandler)
-    );
-    //date:'EEEE - MMMM dd y'
+    );    
   }
 
   openRatingsPanel(id: number): void {

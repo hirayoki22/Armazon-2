@@ -10,9 +10,11 @@
         <star-rating 
           [readonly]="true"
           [overall]="rating.overall"></star-rating>
-          
+
         <rating-graph *ngIf="!isLoading"></rating-graph>
     </div>
+
+    <!-- | date:'EEEE - MMMM dd y' -->
 
     <section *ngIf="!isLoading" class="reviews">
 
