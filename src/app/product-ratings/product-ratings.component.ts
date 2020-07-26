@@ -8,7 +8,7 @@ import { Rating } from './rating.model';
   styleUrls: ['./product-ratings.component.scss']
 })
 export class ProductRatingsComponent implements OnInit {
-  rating: Rating;
+  rating: Rating = { overall: 0, totalReviews: 0 };
   viewRatings: boolean = false;
   isLoading = true;
 
