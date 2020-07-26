@@ -10,7 +10,7 @@ import { Rating } from './rating.model';
 export class ProductRatingsComponent implements OnInit {
   rating: Rating;
   viewRatings: boolean = false;
-  isLoading = false;
+  isLoading = true;
 
   constructor(private rs: ReviewRatingService) { }
 
@@ -18,8 +18,12 @@ export class ProductRatingsComponent implements OnInit {
     this.rs.ratingViewState$.subscribe(productId => {
       this.viewRatings = true;
 
-      console.log(productId);
+      this.rs.getProductRating(productId).subscribe(rating => {
+        this.rating = rating;
+        this.isLoading = false;
+      });
     });
   }
 
+  
 }

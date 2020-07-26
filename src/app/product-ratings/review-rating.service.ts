@@ -19,7 +19,6 @@ export class ReviewRatingService {
 
   getProductRating(id: number): Observable<Rating> { 
     return this.http.get<Rating>(`${this.URL}/${id}`).pipe(
-      tap(res => console.log(res)),
       catchError(this.errorHandler)
     );
   }

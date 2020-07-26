@@ -13,24 +13,23 @@ export class StarRating implements OnInit, OnChanges {
   @Input() productId: number;
   @Input() overall: number;
   @Input() readonly: boolean = false;
-  rating: Rating;
+  rating: Rating = { overall: 0, totalReviews: 0 };
   totalStars: any[] = Array(5);
 
   
   constructor(private rs: ReviewRatingService) { }
 
   ngOnInit(): void {
-    
-  }
-
-  ngOnChanges(): void {
-    if (this.productId) {
+    if (!this.readonly) {
       this.rs.getProductRating(this.productId).subscribe(rating => {
         this.rating = rating;
       });
     } else {
       this.rating.overall = this.overall || 0;
     }
+  }
+
+  ngOnChanges(): void {
   }
 
   onClick(): void {
