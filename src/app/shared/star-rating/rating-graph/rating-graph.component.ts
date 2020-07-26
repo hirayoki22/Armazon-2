@@ -9,7 +9,7 @@ import { Input, Output, EventEmitter } from '@angular/core';
 export class RatingGraphComponent implements OnInit {
   totalStars = [5, 4, 3, 2, 1];
 
-  rating: number[] = [ 17, 0, 0, 1, 1 ];
+  rating: number[] = [ 27, 12, 2, 0, 5 ];
 
   get totalRatings(): number {
     return this.rating.reduce((a, b) => a + b, 0);
@@ -18,11 +18,7 @@ export class RatingGraphComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.rating['4'])
-  }
-
-  getnearestTen(value: number): number {
-    return Math.round(((value / this.totalStars.length) * 100) / 10) * 10;
+    
   }
 
 }
