@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../product.service';
 import { Product } from '../product.model';
 import { ProductVariant } from '../product-variant.model';
-import { CartService } from '../cart.service';
+import { CartService } from '../cart/cart.service';
 import { SliderComponent } from './slider/slider.component';
 
 @Component({

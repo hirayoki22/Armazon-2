@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { CartService } from '../cart.service';
-import { CartItem } from '../cart-item.model';
+import { CartService } from './cart.service';
+import { CartItem } from './cart-item.model';
 import { Product } from '../product.model';
 
 @Component({

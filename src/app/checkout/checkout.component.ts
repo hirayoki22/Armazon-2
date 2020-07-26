@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { OrderService } from '../order.service';
-import { CartItem } from '../cart-item.model';
+import { CartItem } from '../cart/cart-item.model';
 import { Order } from '../order.model';
 
 @Component({
