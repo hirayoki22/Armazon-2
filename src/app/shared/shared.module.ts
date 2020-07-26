@@ -9,7 +9,6 @@ import { ImageLoaderDirective } from './image-loader/image-loader.directive';
 import { TextClipPipe } from './text-clip/text-clip.pipe';
 import { StarRating } from './star-rating/star-rating.component';
 import { AsidePanelComponent } from './aside-panel/aside-panel.component';
-import { RatingGraphComponent } from './star-rating/rating-graph/rating-graph.component';
 import { RoundNearestPipe } from './rount-nearest/round-nearest.pipe';
 
 
@@ -21,7 +20,6 @@ import { RoundNearestPipe } from './rount-nearest/round-nearest.pipe';
     TextClipPipe,
     StarRating,
     AsidePanelComponent,
-    RatingGraphComponent,
     RoundNearestPipe
   ],
   imports: [ 
@@ -34,7 +32,8 @@ import { RoundNearestPipe } from './rount-nearest/round-nearest.pipe';
     ImageLoaderDirective,
     TextClipPipe,
     StarRating,
-    AsidePanelComponent
+    AsidePanelComponent,
+    RoundNearestPipe
   ]
 })
 export class SharedModule { }

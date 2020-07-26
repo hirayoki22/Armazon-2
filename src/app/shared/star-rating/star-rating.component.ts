@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Input, Output, EventEmitter } from '@angular/core';
+import { Input } from '@angular/core';
 
-import { ReviewRatingService } from './review-rating.service';
+import { ReviewRatingService } from 'src/app/product-ratings/review-rating.service';
 
 @Component({
   selector: 'star-rating',
@@ -10,20 +10,18 @@ import { ReviewRatingService } from './review-rating.service';
   providers: [ ReviewRatingService ]
 })
 export class StarRating implements OnInit {
-  @Input() rating: number;
-  @Input() reviewCount: number = 11178;
-  @Output() changeNotify: EventEmitter<number> = new EventEmitter();
+  @Input('rating') productRating: number;
+  ratingCount: number = 27;
   totalStars: any[] = Array(5);
-  showRating: boolean = true;
-  
 
+  
   constructor(private rs: ReviewRatingService) { }
 
   ngOnInit(): void {
   }
 
-  onClick(rating: number): void {
-    this.changeNotify.emit(rating);
+  onClick(): void {
+    
   }
 
 }

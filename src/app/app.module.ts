@@ -14,6 +14,8 @@ import { SharedModule } from './shared/shared.module';
 import { VariantSectionComponent } from './product-details/variant-section/variant-section.component';
 import { SliderComponent } from './product-details/slider/slider.component';
 import { QuantitySelectorComponent } from './product-details/quantity-selector/quantity-selector.component';
+import { ProductRatingsComponent } from './product-ratings/product-ratings.component';
+import { RatingGraphComponent } from './product-ratings/rating-graph/rating-graph.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { QuantitySelectorComponent } from './product-details/quantity-selector/q
     SearchBarComponent,
     VariantSectionComponent,
     SliderComponent,
-    QuantitySelectorComponent
+    QuantitySelectorComponent,
+    ProductRatingsComponent,
+    RatingGraphComponent
   ],
   imports: [
     BrowserModule,
