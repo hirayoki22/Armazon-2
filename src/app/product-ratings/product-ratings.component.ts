@@ -11,8 +11,8 @@ import { Review } from './review.model';
 export class ProductRatingsComponent implements OnInit {
   rating: Rating = { overall: 0, totalReviews: 0 };
   reviews: Review[] = [];
-  viewRatings: boolean = false;
-  isLoading = true;
+  viewRatings: boolean = true;
+  isLoading = false;
 
   constructor(private rs: ReviewRatingService) { }
 

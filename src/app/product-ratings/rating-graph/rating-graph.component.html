@@ -1,5 +1,5 @@
 <div class="rating-per-start-graph">
-  <div 
+  <!-- <div 
     *ngFor="let star of totalStars; index as index" 
     class="bar-wrapper">
     <div class="star-icon-label">
@@ -12,5 +12,26 @@
     </div>
 
     <span class="star-total-reviews">{{ rating[index] }}</span>
+  </div> -->
+
+  <div class="star-label-wrapper">
+    <div *ngFor="let star of totalStars;" class="star-icon-label">
+      <span class="label">{{ star }}</span>
+      <i class="material-icons">grade</i>
+    </div>
+  </div>
+
+  <div class="bars-wrapper">
+    <div 
+      *ngFor="let star of totalStars; index as index" 
+      class="outer-bar">
+      <div [style.width.%]="rating[index] | roundNearest:totalRatings:1" class="inner-bar"></div>
+    </div>
+  </div>
+
+  <div class="star-total-wrapper">
+    <span 
+      *ngFor="let star of totalStars; index as index"
+      class="star-total-reviews">{{ rating[index] }}</span>
   </div>
 </div>
