@@ -19,6 +19,7 @@ export class ProductRatingsComponent implements OnInit {
   ngOnInit(): void {
     this.rs.ratingViewState$.subscribe(productId => {
       this.viewRatings = true;
+      this.isLoading = true;
 
       this.rs.getProductRating(productId).subscribe(rating => {
         this.rating = rating;
@@ -31,5 +32,4 @@ export class ProductRatingsComponent implements OnInit {
     });
   }
 
-  
 }

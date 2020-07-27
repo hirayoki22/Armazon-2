@@ -12,7 +12,10 @@
 
     <div class="content">
       <div class="rating-headline">
-        <star-rating [overall]="review.userRating" [readonly]="true"></star-rating>
+        <star-rating 
+          [overall]="review.userRating" 
+          [readonly]="true"></star-rating>
+          
         <h3 class="headline">{{ review.headline }}</h3>
       </div>
       
