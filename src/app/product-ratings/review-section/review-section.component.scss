@@ -62,5 +62,46 @@
         }
       }
     }
+
+    .action-buttons {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin-top: 1.5rem;
+      user-select: none;
+
+      .label {
+        margin-right: 0.5rem;
+        font-size: .85rem;
+      }
+
+      .btn-wrapper {
+        display: flex;
+        align-items: center;
+
+        &:not(:last-of-type) {
+          margin-right: 1.5rem;
+        }
+
+        button {
+          .material-icons {
+            color: #7a8196;
+            font-size: 1.1rem;
+            transition: color .4s ease;
+          }
+      
+          &:hover {
+            .material-icons {
+              color: darken(#7a8196, 15);
+            }
+          }
+        }
+
+        .count {
+          margin-left: 0.5rem;
+          font-size: 0.75rem;
+        }
+      }
+    }
   }
 }
