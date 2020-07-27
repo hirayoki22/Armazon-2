@@ -8,7 +8,7 @@ import { Input } from '@angular/core';
 })
 export class RatingGraphComponent implements OnInit {
   totalStars = [5, 4, 3, 2, 1];
-  rating: number[] = [ 2700, 12, 2, 0, 5 ];
+  rating: number[] = [ 27, 12, 2, 0, 5 ];
 
   get totalRatings(): number {
     return this.rating.reduce((a, b) => a + b, 0);
