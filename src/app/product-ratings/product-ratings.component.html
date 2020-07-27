@@ -7,16 +7,12 @@
      
         <h3 class="rating">{{ rating.overall | number:'1.1-1' }}</h3>
 
-        <star-rating 
-          [readonly]="true"
-          [overall]="rating.overall"></star-rating>
+        <star-rating [readonly]="true" [overall]="rating.overall"></star-rating>
 
         <rating-graph *ngIf="!isLoading"></rating-graph>
     </div>
 
-    <!-- | date:'EEEE - MMMM dd y' -->
-
-    <review-section [reviews]="reviews"></review-section>
+    <review-section *ngIf="!isLoading" [reviews]="reviews"></review-section>
   </div>
 
 </aside-panel>

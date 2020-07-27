@@ -1,0 +1,67 @@
+.reviews-section {
+  width: 100%;
+  margin-top: 2rem;
+  border: 1px ;
+  
+  .review-card {
+    padding: 1.5rem 0;
+
+    &:not(:last-child) {
+      border-bottom: thin solid #e7edff;
+    }
+
+    .top {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+
+      .user-avatar {
+        flex-shrink: 0;
+        width: 35px;
+        height: 35px;
+        margin-right: 0.7rem;
+        border-radius: 60px;        
+        overflow: hidden;
+  
+        img {
+          object-fit: cover;
+          object-position: center center;
+        }
+      }
+
+      .user {       
+        font-size: 0.8rem;
+      }
+    }
+
+    .content {
+
+      .rating-headline {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5rem;
+
+        .headline {
+          margin-left: 0.5rem;          
+          font-size: 0.85rem;
+          font-weight: 500;
+          line-height: 1.6rem;
+        }
+      }
+
+      article {
+
+        .date {
+          margin-bottom: 1rem;
+          color: #2587f7;
+          font-size: 0.75rem;
+        }
+
+        .review-body {
+          font-size: 0.8rem;
+          line-height: 1.6rem;
+        }
+      }
+    }
+  }
+}

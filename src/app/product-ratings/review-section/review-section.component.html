@@ -1,1 +1,26 @@
-<p>review-section works!</p>
+<section class="reviews-section">
+  <div *ngFor="let review of reviews; index as index" 
+    class="review-card">
+    
+    <div class="top">
+      <div class="user-avatar">
+        <img [src]="review.userAvatar" draggable="false">
+      </div>
+
+      <p class="user">{{ review.user }}</p>
+    </div>
+
+    <div class="content">
+      <div class="rating-headline">
+        <star-rating [overall]="review.userRating" [readonly]="true"></star-rating>
+        <h3 class="headline">{{ review.headline }}</h3>
+      </div>
+      
+      <article>
+        <p class="date">{{ review.reviewDate | date:'MMMM dd y' }}</p>
+        <p class="review-body" [innerHTML]="review.review"></p>
+      </article>
+    </div>    
+
+  </div>
+</section>
