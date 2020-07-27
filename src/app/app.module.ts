@@ -17,6 +17,7 @@ import { QuantitySelectorComponent } from './product-details/quantity-selector/q
 import { ProductRatingsComponent } from './product-ratings/product-ratings.component';
 import { RatingGraphComponent } from './product-ratings/rating-graph/rating-graph.component';
 import { ReviewSectionComponent } from './product-ratings/review-section/review-section.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ReviewSectionComponent } from './product-ratings/review-section/review-
     QuantitySelectorComponent,
     ProductRatingsComponent,
     RatingGraphComponent,
-    ReviewSectionComponent
+    ReviewSectionComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
