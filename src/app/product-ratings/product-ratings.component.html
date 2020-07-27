@@ -17,6 +17,10 @@
     </div>
 
     <div *ngIf="!isLoading" class="content">    
+      <button class="submit-new-btn" type="button">
+        Write a Review
+      </button>
+
       <rating-graph></rating-graph>
 
       <review-section [reviews]="reviews"></review-section>
