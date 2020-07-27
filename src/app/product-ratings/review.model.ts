@@ -5,4 +5,6 @@ export interface Review {
   review: string;
   userRating: number;
   reviewDate: Date;
+  likes: number;
+  dislikes: number;
 }

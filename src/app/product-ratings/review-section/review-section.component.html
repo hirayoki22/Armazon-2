@@ -32,16 +32,14 @@
         <button class="like-btn">
           <i class="material-icons">thumb_up_alt</i>
         </button>
-
-        <span class="count">6</span>
+        <span class="count">{{ review.likes | number }}</span>
       </div>
 
       <div class="btn-wrapper">
         <button class="dislike-btn">
           <i class="material-icons">thumb_down_alt</i>
         </button>
-
-        <span class="count">1</span>
+        <span class="count">{{ review.dislikes | number }}</span>
       </div>
       
     </div>
