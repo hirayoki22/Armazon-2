@@ -16,6 +16,7 @@ import { SliderComponent } from './product-details/slider/slider.component';
 import { QuantitySelectorComponent } from './product-details/quantity-selector/quantity-selector.component';
 import { ProductRatingsComponent } from './product-ratings/product-ratings.component';
 import { RatingGraphComponent } from './product-ratings/rating-graph/rating-graph.component';
+import { ReviewSectionComponent } from './product-ratings/review-section/review-section.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { RatingGraphComponent } from './product-ratings/rating-graph/rating-grap
     SliderComponent,
     QuantitySelectorComponent,
     ProductRatingsComponent,
-    RatingGraphComponent
+    RatingGraphComponent,
+    ReviewSectionComponent
   ],
   imports: [
     BrowserModule,
