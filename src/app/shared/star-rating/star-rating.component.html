@@ -11,7 +11,7 @@
     </div>
   </div>
   
-  <div *ngIf="rating?.totalReviews" class="review-count">
+  <div *ngIf="rating?.totalReviews > 0" class="review-count">
     ({{ rating.totalReviews | number }})
   </div>
 </div>

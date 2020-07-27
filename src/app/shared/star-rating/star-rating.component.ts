@@ -12,6 +12,7 @@ import { Rating } from 'src/app/product-ratings/rating.model';
 export class StarRating implements OnInit, OnChanges {
   @Input() productId: number;
   @Input() overall: number;
+  @Input() totalReviews: number;
   @Input() readonly: boolean = false;
   rating: Rating = { overall: 0, totalReviews: 0 };
   totalStars: any[] = Array(5);
@@ -29,6 +30,7 @@ export class StarRating implements OnInit, OnChanges {
       });
     } else {
       this.rating.overall = this.overall || 0;
+      this.rating.totalReviews = this.totalReviews || 0;
     }
   }
 
