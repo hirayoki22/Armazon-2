@@ -35,7 +35,7 @@ html::-webkit-scrollbar-thumb {
 }
 
 html, body {
-  min-height: 100%;
+  min-height: 100vh;
 }
 
 body {
@@ -45,6 +45,12 @@ body {
     overflow: hidden;
   }
 }
+
+// main {
+//   width: 100%;
+//   height: calc(100vh - 200px);
+//   padding-bottom: 5rem;
+// }
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button { 
