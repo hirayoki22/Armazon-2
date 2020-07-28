@@ -9,21 +9,12 @@ import { Review } from '../review.model';
 })
 export class ReviewSectionComponent implements OnChanges {
   @Input() reviews: Review[];
-  altReviews: Review[];
   reviewLengthLimit = 800;
 
   constructor() { }
 
   ngOnChanges(): void {
-    // this.initUserReviews();
   }
-
-  // initUserReviews(): void {
-  //   const start = this.currentPage * this.reviewsPerPage;
-  //   const end = this.currentPage * this.reviewsPerPage + this.reviewsPerPage;
-
-  //   this.altReviews = this.reviews.slice(start, end);
-  // }
 
   getReviewBody(review: Review): string {
     if (this.isLong(review.review) && !review.expandReview) {
