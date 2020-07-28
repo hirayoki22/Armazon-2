@@ -1,11 +1,13 @@
 <div class="product-images" >
   <!-- Large screen -->
   <div class="preview-l">
-    <img 
-      image-loader
-      [src]="images[activePreview]" 
-      alt="Product Image"
-      draggable="false">
+    <div *ngFor="let preview of images.slice(0, 4)" class="item">
+      <img 
+        image-loader
+        [src]="preview" 
+        alt="Product Image"
+        draggable="false">
+    </div>
   </div>
 
   <!-- Small Screen -->
@@ -24,7 +26,7 @@
     </div>
   </div>
 
-  <div class="thumbnail-wrapper">
+  <div style="display: none;" class="thumbnail-wrapper">
     <button 
       (click)="onNavBtnClick('before')"
       #navButton class="nav-btns nav-left" 

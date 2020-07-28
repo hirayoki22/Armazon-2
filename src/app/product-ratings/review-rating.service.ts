@@ -10,7 +10,7 @@ import { Review } from './review.model';
   providedIn: 'root'
 })
 export class ReviewRatingService {
-  private URL = 'http://127.0.0.1/market-api/product-rating.php';  
+  private URL  = 'http://127.0.0.1/market-api/product-rating.php';  
   private URL2 = 'http://127.0.0.1/market-api/product-reviews.php';  
 
   private ratingViewStateSource: Subject<number> = new Subject();

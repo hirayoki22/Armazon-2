@@ -1,7 +1,9 @@
 .product-detail-section {
+  position: sticky;
+  top: 0;
   width: 100%;
-  margin: 2rem 0;
-  padding: 70px 1rem 0;
+  margin: 5rem 0;
+  padding: 0 1rem;
   
   .wrapper {
     width: 100%;
@@ -33,11 +35,11 @@
     overflow: hidden;
 
     .slider-wrapper {
-      width: 50%;
+      width: 70%;
     }
 
     .product-information {
-      width: 50%;
+      width: 30%;
       height: inherit;
       padding: 1.5rem;
       background-color: inherit;
