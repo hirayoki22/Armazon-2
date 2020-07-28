@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Input, Output } from '@angular/core';
+import { Component, OnChanges } from '@angular/core';
+import { Input } from '@angular/core';
 import { Review } from '../review.model';
 
 @Component({
@@ -7,20 +7,21 @@ import { Review } from '../review.model';
   templateUrl: './review-section.component.html',
   styleUrls: ['./review-section.component.scss']
 })
-export class ReviewSectionComponent implements OnInit {
+export class ReviewSectionComponent implements OnChanges {
   @Input() reviews: Review[];
+  reviewLengthLimit = 800;
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
   }
 
   getReviewBody(body: string): string {
-    return this.isLong(body) ? `${body.slice(0, 800)}` : body;
+    return this.isLong(body) ? `${body.slice(0, this.reviewLengthLimit)}` : body;
   }
 
   isLong(body: string): boolean {
-    return body.length >= 800;
+    return body.length >= this.reviewLengthLimit;
   }
 
 }

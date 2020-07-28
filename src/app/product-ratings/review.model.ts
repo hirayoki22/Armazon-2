@@ -7,4 +7,5 @@ export interface Review {
   reviewDate: Date;
   likes: number;
   dislikes: number;
+  expandReview?: boolean;
 }
