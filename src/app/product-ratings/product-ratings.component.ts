@@ -12,8 +12,8 @@ export class ProductRatingsComponent implements OnInit {
   rating: Rating = { overall: 0, totalReviews: 0 };
   userRating: number[] = [];
   reviews: Review[] = [];
-  viewRatings: boolean = true;
-  isLoading = false;
+  viewRatings: boolean = false;
+  isLoading = true;
 
   constructor(private rs: ReviewRatingService) { }
 

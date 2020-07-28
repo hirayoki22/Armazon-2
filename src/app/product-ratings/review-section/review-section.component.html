@@ -1,5 +1,5 @@
-<section class="reviews-section">
-  <div *ngFor="let review of reviews; index as index" 
+<section #reviewSection class="reviews-section">
+  <div *ngFor="let review of altReviews; index as index" 
     class="review-card">
     
     <div class="top">
@@ -58,11 +58,15 @@
 
   <div class="pagination-cntrls">
     <div class="nav-buttons-wrapper">
-      <button class="previous">
+      <button 
+        (click)="onPageChange('previous')"
+        class="previous">
         <i class="material-icons">arrow_left</i>
       </button>
 
-      <button class="next">
+      <button 
+        (click)="onPageChange('next')"
+        class="next">
         <i class="material-icons">arrow_right</i>
       </button>
     </div>

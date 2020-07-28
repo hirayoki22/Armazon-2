@@ -1,4 +1,5 @@
 import { Component, OnChanges } from '@angular/core';
+import { ViewChild, ElementRef } from '@angular/core';
 import { Input } from '@angular/core';
 import { Review } from '../review.model';
 
@@ -8,9 +9,10 @@ import { Review } from '../review.model';
   styleUrls: ['./review-section.component.scss']
 })
 export class ReviewSectionComponent implements OnChanges {
+  @ViewChild('reviewSection') reviewSection: ElementRef<HTMLElement>;
   @Input() reviews: Review[];
   altReviews: Review[];
-  reviewsPerPage: number = 6;
+  reviewsPerPage: number = 3;
   currentPage: number = 0;
 
   get totalPages(): number {
@@ -22,7 +24,7 @@ export class ReviewSectionComponent implements OnChanges {
   constructor() { }
 
   ngOnChanges(): void {
-    // this.initUserReviews();
+    this.initUserReviews();
   }
 
   initUserReviews(): void {
@@ -32,10 +34,27 @@ export class ReviewSectionComponent implements OnChanges {
     this.altReviews = this.reviews.slice(start, end);
   }
 
-  onPageChange(page: number): void {
-    if (page !== this.currentPage && page < this.totalPages) {
+  onPageChange(direction: 'previous' | 'next'): void {
+    const section = this.reviewSection.nativeElement;
 
+    switch (direction) {
+      case 'previous':
+        if (this.currentPage == 0) { return; }        
+        this.currentPage--;
+        break;
+
+      case 'next':
+        if (this.currentPage == this.totalPages - 1) { return; }        
+        this.currentPage++;
+        break;
+    
+      default:
+        console.log('Invalid direction: ', direction);
+        break;
     }
+
+    section.scrollBy({ left: 0, behavior: 'smooth' });
+    this.initUserReviews();
   }
 
   getReviewBody(review: Review): string {
