@@ -1,6 +1,13 @@
 .pagination-cntrls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   margin-top: 6rem;
+
+  .page-indicator {
+    font-size: 0.75rem;
+  }
 
   .nav-buttons-wrapper {
     display: flex;
@@ -8,10 +15,22 @@
     width: fit-content;
 
     button {
-      margin-right: 0.1rem;
-      padding: 0.2rem 0.5rem;
-      border: thin solid #c7cad8;
+      margin-right: 0.2rem;
+      padding: 0.1rem 0.4rem;
+      border-radius: 2px;
+      background-color: #e9ebf1;
+      transition: background-color .4s ease, 
+      opacity .4s ease;
+      overflow: hidden;        
       
+      &:disabled {
+        opacity: 0.6 !important;
+        cursor: default;
+      }       
+
+      &:not(:disabled):hover {
+        background-color: darken(#e9ebf1, 5); 
+      }
     }
   }
 }

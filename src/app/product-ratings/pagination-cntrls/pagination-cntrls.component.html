@@ -1,12 +1,16 @@
 <div class="pagination-cntrls">
+  <div class="page-indicator">{{ pageIndicator }}</div>
+
   <div class="nav-buttons-wrapper">
     <button 
+      [disabled]="currentPage == 0"
       (click)="onPageChange('previous')"
       class="previous">
       <i class="material-icons">arrow_left</i>
     </button>
 
     <button 
+      [disabled]="currentPage == totalPages - 1"
       (click)="onPageChange('next')"
       class="next">
       <i class="material-icons">arrow_right</i>

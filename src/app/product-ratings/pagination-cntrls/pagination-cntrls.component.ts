@@ -1,6 +1,5 @@
 import { Component, OnChanges } from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
-import { ViewChildren, ElementRef, QueryList } from '@angular/core';
 
 @Component({
   selector: 'pagination-cntrls',
@@ -15,6 +14,10 @@ export class PaginationCntrlsComponent implements OnChanges {
 
   get totalPages(): number {
     return Math.ceil(this.totalReviews / this.itemPerPage);
+  }
+
+  get pageIndicator(): string {
+    return `${this.currentPage * this.itemPerPage + 1} - ${this.itemPerPage * this.currentPage + 1} of ${this.totalPages}`;
   }
   
   constructor() { }
