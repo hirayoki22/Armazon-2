@@ -25,10 +25,12 @@
         <div class="review-body">
           <p [innerHTML]="getReviewBody(review.review)"></p>
 
-          <button *ngIf="isLong(review.review)" class="read-more-btn">
-            <span>Read more</span>
-            <i class="material-icons">unfold_more</i>
-          </button>
+          <div *ngIf="isLong(review.review)" class="read-more-btn">
+            <button>
+              <span>Read more</span>
+              <i class="material-icons">unfold_more</i>
+            </button>
+          </div>
         </div>        
       </article>
     </div>    

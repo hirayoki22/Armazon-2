@@ -34,7 +34,6 @@
     }
 
     .content {
-
       .rating-headline {
         display: flex;
         align-items: center;
@@ -49,10 +48,8 @@
       }
 
       article {
-
         .date {
           margin-bottom: 1rem;
-          // color: #2587f7;
           color: #7a8196;
           font-size: 0.75rem;
           user-select: none;
@@ -76,16 +73,38 @@
             background: linear-gradient(transparent, #fff);
             z-index: 1;
 
-            span {
-              margin-right: 0.5rem;
-              color: #2587f7;
-              font-size: 0.85rem;
-            }
+            button {
+              position: relative;
+              width: fit-content;
+              white-space: nowrap;
 
-            .material-icons {
-              color: #2587f7;
-              font-size: 0.9rem;
-              transition: color .4s ease;
+              &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: -2px;
+                transform: scaleX(0);
+                width: 100%;
+                height: 1px;
+                background-color: #2587f7;
+                transition: transform .2s ease;
+              }
+          
+              &:hover::before {
+                transform: scaleX(1);
+              }
+  
+              span {
+                margin-right: 0.5rem;
+                color: #2587f7;
+                font-size: 0.85rem;
+              }
+  
+              .material-icons {
+                color: #2587f7;
+                font-size: 0.9rem;
+                transition: color .4s ease;
+              }
             }
           }
         }
