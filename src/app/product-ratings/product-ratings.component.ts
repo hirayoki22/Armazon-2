@@ -34,14 +34,13 @@ export class ProductRatingsComponent implements OnInit {
 
       this.rs.getAllProductReviews(productId).subscribe(reviews => {
         this.userRating = reviews.map(review => review.userRating);
-        
-        this.rs.getOffsetProductReviews(this.productId, 0, this.rowcount)
-        .subscribe(reviews => {
-          this.reviews = reviews;
-          this.isLoading = false;
-        });
       });
       
+      this.rs.getOffsetProductReviews(this.productId, 0, this.rowcount)
+      .subscribe(reviews => {
+        this.reviews = reviews;
+        this.isLoading = false;
+      });
     });
   }
 
