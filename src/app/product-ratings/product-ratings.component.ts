@@ -10,6 +10,7 @@ import { Review } from './review.model';
 })
 export class ProductRatingsComponent implements OnInit {
   rating: Rating = { overall: 0, totalReviews: 0 };
+  userRating: number[] = [];
   reviews: Review[] = [];
   viewRatings: boolean = false;
   isLoading = true;
@@ -22,12 +23,13 @@ export class ProductRatingsComponent implements OnInit {
       this.isLoading = true;
 
       this.rs.getProductRating(productId).subscribe(rating => {
-        this.rating = rating;
+        this.rating = rating;        
+      });
 
-        this.rs.getProductReviews(productId).subscribe(reviews => {
-          this.reviews = reviews;
-          this.isLoading = false;
-        });
+      this.rs.getProductReviews(productId).subscribe(reviews => {
+        this.reviews = reviews;
+        this.userRating = this.reviews.map(review => review.userRating);
+        this.isLoading = false;
       });
     });
   }

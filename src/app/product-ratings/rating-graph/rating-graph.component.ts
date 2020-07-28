@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges } from '@angular/core';
 import { Input } from '@angular/core';
 
 @Component({
@@ -6,18 +6,21 @@ import { Input } from '@angular/core';
   templateUrl: './rating-graph.component.html',
   styleUrls: ['./rating-graph.component.scss']
 })
-export class RatingGraphComponent implements OnInit {
+export class RatingGraphComponent implements OnChanges {
+  @Input() userRating: number[] = [];
+  stars: any = {};
   totalStars = [5, 4, 3, 2, 1];
-  rating: number[] = [ 27, 12, 2, 0, 5 ];
 
   get totalRatings(): number {
-    return this.rating.reduce((a, b) => a + b, 0);
+    return this.userRating.length;
   }
 
   constructor() { }
 
-  ngOnInit(): void {
-    
+  ngOnChanges(): void {
+    for (let i = this.totalStars.length; i > 0; i--) {
+      this.stars[i] = this.userRating.filter(val => val == i).length;
+    }
   }
 
 }
