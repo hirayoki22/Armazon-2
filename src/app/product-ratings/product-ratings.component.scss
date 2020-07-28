@@ -54,23 +54,4 @@
       }
     }
   }
-
-  .bottom {
-    width: 100%;
-    margin-top: 6rem;
-
-    .pagination-cntrls {
-
-      .nav-buttons-wrapper {
-        display: flex;
-        align-items: center;
-        width: fit-content;
-
-        button {
-          padding: 0.2rem 0.5rem;
-          border: thin solid #c7cad8;
-        }
-      }
-    }
-  }
 }

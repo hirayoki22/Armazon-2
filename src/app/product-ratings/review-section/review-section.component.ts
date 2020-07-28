@@ -8,12 +8,34 @@ import { Review } from '../review.model';
   styleUrls: ['./review-section.component.scss']
 })
 export class ReviewSectionComponent implements OnChanges {
-  @Input() reviews: Review[];  
+  @Input() reviews: Review[];
+  altReviews: Review[];
+  reviewsPerPage: number = 6;
+  currentPage: number = 0;
+
+  get totalPages(): number {
+    return Math.ceil(this.reviews.length / this.reviewsPerPage);
+  }
+  
   reviewLengthLimit = 800;
 
   constructor() { }
 
   ngOnChanges(): void {
+    // this.initUserReviews();
+  }
+
+  initUserReviews(): void {
+    const start = this.currentPage * this.reviewsPerPage;
+    const end = this.currentPage * this.reviewsPerPage + this.reviewsPerPage;
+
+    this.altReviews = this.reviews.slice(start, end);
+  }
+
+  onPageChange(page: number): void {
+    if (page !== this.currentPage && page < this.totalPages) {
+
+    }
   }
 
   getReviewBody(review: Review): string {
