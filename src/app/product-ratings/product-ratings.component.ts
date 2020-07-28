@@ -12,9 +12,16 @@ export class ProductRatingsComponent implements OnInit {
   rating: Rating = { overall: 0, totalReviews: 0 };
   userRating: number[] = [];
   reviews: Review[] = [];
-  viewRatings: boolean = false;
-  isLoading = true;
+  viewRatings: boolean = true;
+  altReviews: Review[];
+  reviewsPerPage: number = 6;
+  currentPage: number = 0;
+  isLoading = false;
 
+  get totalPages(): number {
+    return Math.ceil(this.reviews.length / this.reviewsPerPage);
+  }
+  
   constructor(private rs: ReviewRatingService) { }
 
   ngOnInit(): void {
@@ -32,6 +39,19 @@ export class ProductRatingsComponent implements OnInit {
         this.isLoading = false;
       });
     });
+  }
+
+  initUserReviews(): void {
+    const start = this.currentPage * this.reviewsPerPage;
+    const end = this.currentPage * this.reviewsPerPage + this.reviewsPerPage;
+
+    this.altReviews = this.reviews.slice(start, end);
+  }
+
+  onPageChange(page: number): void {
+    if (page !== this.currentPage && page < this.totalPages) {
+
+    }
   }
 
 }
