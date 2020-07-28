@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ViewChild, ElementRef } from '@angular/core';
 import { ReviewRatingService } from './review-rating.service';
 import { Rating } from './rating.model';
 import { Review } from './review.model';
@@ -9,6 +10,7 @@ import { Review } from './review.model';
   styleUrls: ['./product-ratings.component.scss']
 })
 export class ProductRatingsComponent implements OnInit {
+  @ViewChild('container') container: ElementRef<HTMLElement>;
   private productId: number = 0;
   rating: Rating = { overall: 0, totalReviews: 0 };
   userRating: number[] = [];
@@ -47,6 +49,8 @@ export class ProductRatingsComponent implements OnInit {
     const offset = currentPage * this.rowcount;
 
     this.reloading = true;
+    this.container.nativeElement.scrollTo({ top: 0 });
+
     this.rs.getOffsetProductReviews(this.productId, offset, this.rowcount)
     .subscribe(reviews => {
       this.reviews = reviews;
