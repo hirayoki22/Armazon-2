@@ -28,10 +28,7 @@
           <div 
             *ngIf="isLong(review.review) && !review.expandReview" 
             class="read-more-btn">
-            <button (click)="review.expandReview = true">
-              <span>Read more</span>
-              <i class="material-icons">unfold_more</i>
-            </button>
+            <button (click)="review.expandReview = true">Read more</button>
           </div>
         </div>        
       </article>

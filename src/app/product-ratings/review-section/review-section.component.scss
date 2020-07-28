@@ -76,19 +76,14 @@
             button {
               position: relative;
               width: fit-content;
+              color: #2587f7;
+              font-size: 0.9rem;
               white-space: nowrap;
-
+              text-shadow: 0 0 6px #ddd;
+              transition: color .4s ease;
+            
               &:hover {
-                span, .material-icons {
-                  color: lighten(#2587f7, 10);
-                }
-              }
-  
-              span, .material-icons {
-                color: #2587f7;
-                font-size: 0.9rem;
-                text-shadow: 0 0 6px #ddd;
-                transition: color .4s ease;
+                color: lighten(#2587f7, 10);
               }
             }
           }

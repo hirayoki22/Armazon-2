@@ -44,14 +44,15 @@ export class ProductRatingsComponent implements OnInit {
     });
   }
 
-  onReviewsPageChange(currentPage: number = 0): void {
-    const offset = currentPage * this.rowcount;
-
+  onReviewPageChange(currentPage: number = 0): void {
     this.reloading = true;
     this.container.nativeElement.scrollTo({ top: 0 });
 
-    this.rs.getOffsetProductReviews(this.productId, offset, this.rowcount)
-    .subscribe(reviews => {
+    this.rs.getOffsetProductReviews(
+      this.productId, 
+      currentPage * this.rowcount, 
+      this.rowcount
+    ).subscribe(reviews => {
       this.reviews = reviews;
       this.reloading = false;
     });
