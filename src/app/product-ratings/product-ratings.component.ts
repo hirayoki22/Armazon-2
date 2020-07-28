@@ -15,7 +15,7 @@ export class ProductRatingsComponent implements OnInit {
   rating: Rating = { overall: 0, totalReviews: 0 };
   userRating: number[] = [];
   reviews: Review[] = [];
-  rowcount: number = 3;
+  rowcount: number = 5;
   viewRatings: boolean = false;
   isLoading: boolean = true;
   reloading: boolean = false;

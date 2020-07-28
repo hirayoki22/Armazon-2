@@ -55,7 +55,16 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     this.reloading = true;
 
     this.ps.getProductById(productId).subscribe(product => {
-      this.product = product;
+      // this.product = product;
+
+      this.product.productName = product.productName;
+      this.product.productDesc = product.productDesc;
+      this.product.images = product.images;
+      this.product.brand = product.brand;
+      this.product.price = product.price;
+      this.product.available = product.available;
+      this.product.totalStock = product.totalStock;
+
       this.slider.images = this.product.images;      
       this.slider.activePreview = 0;
       this.slider.navButtonsDisableState();
