@@ -16,8 +16,12 @@ export class ReviewSectionComponent implements OnChanges {
   ngOnChanges(): void {
   }
 
-  getReviewBody(body: string): string {
-    return this.isLong(body) ? `${body.slice(0, this.reviewLengthLimit)}` : body;
+  getReviewBody(review: Review): string {
+    if (this.isLong(review.review) && !review.expandReview) {
+      return `${review.review.slice(0, this.reviewLengthLimit)}`;
+    } else {
+      return review.review;
+    }
   }
 
   isLong(body: string): boolean {

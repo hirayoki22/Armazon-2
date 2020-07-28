@@ -23,7 +23,7 @@
         <p class="date">{{ review.reviewDate | date:'MMMM dd y' }}</p>
 
         <div class="review-body">
-          <p [innerHTML]="getReviewBody(review.review)"></p>
+          <p [innerHTML]="getReviewBody(review)"></p>
 
           <div 
             *ngIf="isLong(review.review) && !review.expandReview" 
