@@ -52,13 +52,42 @@
 
         .date {
           margin-bottom: 1rem;
-          color: #2587f7;
+          // color: #2587f7;
+          color: #7a8196;
           font-size: 0.75rem;
+          user-select: none;
         }
 
         .review-body {
+          position: relative;
           font-size: 0.8rem;
           line-height: 1.6rem;
+
+          .read-more-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2rem;
+            padding-top: 3rem;
+            background: linear-gradient(transparent, #fff);
+            z-index: 1;
+
+            span {
+              margin-right: 0.5rem;
+              color: #2587f7;
+              font-size: 0.85rem;
+            }
+
+            .material-icons {
+              color: #2587f7;
+              font-size: 0.9rem;
+              transition: color .4s ease;
+            }
+          }
         }
       }
     }

@@ -15,4 +15,12 @@ export class ReviewSectionComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getReviewBody(body: string): string {
+    return this.isLong(body) ? `${body.slice(0, 800)}` : body;
+  }
+
+  isLong(body: string): boolean {
+    return body.length >= 800;
+  }
+
 }

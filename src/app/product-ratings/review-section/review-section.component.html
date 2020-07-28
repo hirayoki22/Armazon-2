@@ -21,7 +21,15 @@
       
       <article>
         <p class="date">{{ review.reviewDate | date:'MMMM dd y' }}</p>
-        <p class="review-body" [innerHTML]="review.review"></p>
+
+        <div class="review-body">
+          <p [innerHTML]="getReviewBody(review.review)"></p>
+
+          <button *ngIf="isLong(review.review)" class="read-more-btn">
+            <span>Read more</span>
+            <i class="material-icons">unfold_more</i>
+          </button>
+        </div>        
       </article>
     </div>    
 
