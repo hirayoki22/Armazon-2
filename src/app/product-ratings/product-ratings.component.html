@@ -25,12 +25,19 @@
         </div>
       </div>
   
-      <div class="bottom">
+      <!-- <div class="bottom">
         <pagination-cntrls
           [totalReviews]="rating.totalReviews"
           [itemPerPage]="rowcount"
           (currentPage)="onReviewPageChange($event)"></pagination-cntrls>
-      </div>
+      </div> -->
+    </div>
+
+    <div class="bottom">
+      <pagination-cntrls
+        [totalReviews]="rating.totalReviews"
+        [itemPerPage]="rowcount"
+        (currentPage)="onReviewPageChange($event)"></pagination-cntrls>
     </div>
   </div>
 </aside-panel>

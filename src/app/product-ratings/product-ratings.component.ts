@@ -15,10 +15,10 @@ export class ProductRatingsComponent implements OnInit {
   rating: Rating = { overall: 0, totalReviews: 0 };
   userRating: number[] = [];
   reviews: Review[] = [];
-  viewRatings: boolean = false;
   rowcount: number = 3;
-  isLoading = true;
-  reloading = false;
+  viewRatings: boolean = true;
+  isLoading: boolean = false;
+  reloading: boolean = false;
 
   constructor(private rs: ReviewRatingService) { }
 
