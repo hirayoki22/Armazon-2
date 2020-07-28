@@ -7,13 +7,13 @@
     <div 
       [style.visibility]="isLoading ? 'hidden' : 'visible'" 
       class="details-container">
-      <div class="slider-wrapper" [class.reloading]="reolading">
+      <div class="slider-wrapper" [class.reloading]="reloading">
         <app-slider></app-slider>
       </div>
   
       <div *ngIf="!isLoading" class="product-information">  
         <div class="content">
-          <div [class.reloading]="reolading">
+          <div [class.reloading]="reloading">
             <h3 class="product-name-price">
               {{ product?.productName }}
               <span>{{ product?.price | currency }}</span>
@@ -62,7 +62,7 @@
           </button>
         </div>
   
-        <div class="about-product" [class.reloading]="reolading">
+        <div class="about-product" [class.reloading]="reloading">
           <h3>About this item</h3>          
           <p [innerHTML]="product?.productDesc"></p>
         </div>

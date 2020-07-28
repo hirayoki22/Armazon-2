@@ -39,7 +39,7 @@ export class PaginationCntrlsComponent implements OnChanges {
         break;
     }
     this.notifyChange.emit(this.currentPage);
-    console.log(this.currentPage);
+    // console.log(this.currentPage);
   }
 
 }

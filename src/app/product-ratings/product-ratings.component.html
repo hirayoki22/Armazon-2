@@ -21,13 +21,16 @@
 
       <rating-graph [userRating]="userRating"></rating-graph>
 
-      <review-section [reviews]="reviews"></review-section>
+      <div [class.reloading]="reloading">
+        <review-section [reviews]="reviews"></review-section>
+      </div>
     </div>
 
-    <div class="bottom">
+    <div *ngIf="!isLoading || reloading" class="bottom">
       <pagination-cntrls
         [totalReviews]="rating.totalReviews"
-        [itemPerPage]="rowcount"></pagination-cntrls>
+        [itemPerPage]="rowcount"
+        (currentPage)="onReviewsPageChange($event)"></pagination-cntrls>
     </div>
   </div>
 

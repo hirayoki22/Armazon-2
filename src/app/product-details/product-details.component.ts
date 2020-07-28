@@ -19,7 +19,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
   variants: ProductVariant[] = [];
   quantity: number = 1;
   isLoading: boolean = true;
-  reolading: boolean = false;
+  reloading: boolean = false;
 
 
   constructor(
@@ -52,14 +52,14 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
   }
 
   updateProductInfo(productId: number): void {    
-    this.reolading = true;
+    this.reloading = true;
 
     this.ps.getProductById(productId).subscribe(product => {
       this.product = product;
       this.slider.images = this.product.images;      
       this.slider.activePreview = 0;
       this.slider.navButtonsDisableState();
-      this.reolading = false;
+      this.reloading = false;
     });
   }
 

@@ -11,6 +11,11 @@
     display: none;
   }
 
+  .reloading {
+    opacity: 0.3 !important;
+    transition: opacity .3s ease;
+  }
+
   .title {
     margin-bottom: 2rem;
     text-align: center;

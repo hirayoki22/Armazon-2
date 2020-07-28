@@ -26,7 +26,6 @@ export class ReviewRatingService {
 
   getAllProductReviews(id: number): Observable<Review[]> { 
     return this.http.get<Review[]>(`${this.URL2}?id=${id}`).pipe(
-      delay(400),
       map(reviews => {
         reviews.map(review => review.reviewDate = new Date(review.reviewDate));
         return reviews;
