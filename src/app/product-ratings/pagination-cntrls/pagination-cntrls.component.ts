@@ -17,7 +17,10 @@ export class PaginationCntrlsComponent implements OnChanges {
   }
 
   get pageIndicator(): string {
-    return `${this.currentPage * this.itemPerPage + 1} - ${this.currentPage + 1 * this.itemPerPage} of ${this.totalReviews} Reviews`;
+    const from = this.currentPage * this.itemPerPage + 1;
+    const to = this.currentPage * this.itemPerPage + this.itemPerPage;
+
+    return `${from} - ${to < this.totalReviews ? to : this.totalReviews} of ${this.totalReviews} Reviews`;
   }
   
   constructor() { }
