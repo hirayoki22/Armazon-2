@@ -1,5 +1,4 @@
 import { Component, OnChanges } from '@angular/core';
-import { ViewChild, ElementRef } from '@angular/core';
 import { Input } from '@angular/core';
 import { Review } from '../review.model';
 
@@ -11,7 +10,6 @@ import { ReviewRatingService } from '../review-rating.service';
   styleUrls: ['./review-section.component.scss']
 })
 export class ReviewSectionComponent implements OnChanges {
-  @ViewChild('reviewSection') reviewSection: ElementRef<HTMLElement>;
   @Input() productId: number;
   @Input() reviews: Review[];
   altReviews: Review[];
@@ -38,8 +36,6 @@ export class ReviewSectionComponent implements OnChanges {
   }
 
   onPageChange(direction: 'previous' | 'next'): void {
-    const section = this.reviewSection.nativeElement.offsetParent;
-
     switch (direction) {
       case 'previous':
         if (this.currentPage == 0) { return; }        
@@ -55,8 +51,6 @@ export class ReviewSectionComponent implements OnChanges {
         console.log('Invalid direction: ', direction);
         break;
     }
-
-    section.scrollTo({ top: 0, behavior: 'smooth' });
     this.initUserReviews();
   }
 
