@@ -13,6 +13,7 @@ export class ProductRatingsComponent implements OnInit {
   userRating: number[] = [];
   reviews: Review[] = [];
   viewRatings: boolean = false;
+  rowcount: number = 3;
   isLoading = true;
 
   constructor(private rs: ReviewRatingService) { }

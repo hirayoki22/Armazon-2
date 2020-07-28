@@ -18,6 +18,7 @@ import { ProductRatingsComponent } from './product-ratings/product-ratings.compo
 import { RatingGraphComponent } from './product-ratings/rating-graph/rating-graph.component';
 import { ReviewSectionComponent } from './product-ratings/review-section/review-section.component';
 import { FooterComponent } from './footer/footer.component';
+import { PaginationCntrlsComponent } from './product-ratings/pagination-cntrls/pagination-cntrls.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { FooterComponent } from './footer/footer.component';
     ProductRatingsComponent,
     RatingGraphComponent,
     ReviewSectionComponent,
-    FooterComponent
+    FooterComponent,
+    PaginationCntrlsComponent
   ],
   imports: [
     BrowserModule,
