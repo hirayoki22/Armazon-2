@@ -24,8 +24,24 @@ export class ReviewRatingService {
     );
   }
 
-  getProductReviews(id: number): Observable<Review[]> { 
-    return this.http.get<Review[]>(`${this.URL2}/${id}`).pipe(
+  getAllProductReviews(id: number): Observable<Review[]> { 
+    return this.http.get<Review[]>(`${this.URL2}?id=${id}`).pipe(
+      delay(400),
+      map(reviews => {
+        reviews.map(review => review.reviewDate = new Date(review.reviewDate));
+        return reviews;
+      }),
+      catchError(this.errorHandler)
+    );    
+  }
+
+  getOffsetProductReviews(
+    id: number, 
+    offset: number, 
+    rowcount: number
+  ): Observable<Review[]> { 
+    return this.http.get<Review[]>(`${this.URL2}?id=${id}&offset=${offset}&count=${rowcount}`)
+    .pipe(
       delay(400),
       map(reviews => {
         reviews.map(review => review.reviewDate = new Date(review.reviewDate));

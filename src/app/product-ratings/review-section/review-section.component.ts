@@ -3,6 +3,8 @@ import { ViewChild, ElementRef } from '@angular/core';
 import { Input } from '@angular/core';
 import { Review } from '../review.model';
 
+import { ReviewRatingService } from '../review-rating.service';
+
 @Component({
   selector: 'review-section',
   templateUrl: './review-section.component.html',
@@ -10,6 +12,7 @@ import { Review } from '../review.model';
 })
 export class ReviewSectionComponent implements OnChanges {
   @ViewChild('reviewSection') reviewSection: ElementRef<HTMLElement>;
+  @Input() productId: number;
   @Input() reviews: Review[];
   altReviews: Review[];
   reviewsPerPage: number = 3;
@@ -21,7 +24,7 @@ export class ReviewSectionComponent implements OnChanges {
   
   reviewLengthLimit = 800;
 
-  constructor() { }
+  constructor(private rs: ReviewRatingService) { }
 
   ngOnChanges(): void {
     this.initUserReviews();
@@ -35,7 +38,7 @@ export class ReviewSectionComponent implements OnChanges {
   }
 
   onPageChange(direction: 'previous' | 'next'): void {
-    const section = this.reviewSection.nativeElement;
+    const section = this.reviewSection.nativeElement.offsetParent;
 
     switch (direction) {
       case 'previous':
@@ -53,7 +56,7 @@ export class ReviewSectionComponent implements OnChanges {
         break;
     }
 
-    section.scrollBy({ left: 0, behavior: 'smooth' });
+    section.scrollTo({ top: 0, behavior: 'smooth' });
     this.initUserReviews();
   }
 

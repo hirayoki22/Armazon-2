@@ -26,7 +26,7 @@ export class ProductRatingsComponent implements OnInit {
         this.rating = rating;        
       });
 
-      this.rs.getProductReviews(productId).subscribe(reviews => {
+      this.rs.getAllProductReviews(productId).subscribe(reviews => {
         this.reviews = reviews;
         this.userRating = this.reviews.map(review => review.userRating);
         this.isLoading = false;
