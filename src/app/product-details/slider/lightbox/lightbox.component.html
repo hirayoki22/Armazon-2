@@ -1,6 +1,6 @@
 <app-modal [showModal]="openLightbox" (showModal)="onClose()">
 
-  <div class="lightbox">
+  <div *ngIf="images && images.length" class="lightbox">
     <div class="image-container">
 
     </div>

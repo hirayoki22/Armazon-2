@@ -11,11 +11,6 @@
           alt="Product Image"
           draggable="false">
       </div>
-
-      <lightbox 
-        [images]="images"
-        [openLightbox]="openLightbox"
-        (openLightbox)="openLightbox = $event"></lightbox>
     </div>
   
     <button 
@@ -42,3 +37,8 @@
     </div>
   </div>
 </div>
+
+<lightbox 
+  [images]="images"
+  [openLightbox]="openLightbox"
+  (openLightbox)="openLightbox = $event"></lightbox>
