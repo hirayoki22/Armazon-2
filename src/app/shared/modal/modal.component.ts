@@ -9,14 +9,14 @@ import { Input, Output, EventEmitter } from '@angular/core';
 })
 export class ModalComponent implements OnChanges {
   @ViewChild('overlay') overlay: ElementRef<HTMLElement>;
-  @ViewChild('panel') panel: ElementRef<HTMLElement>;
-  @Input() showPanel: boolean = true;
-  @Output('showPanel') notifyChange = new EventEmitter<boolean>();
+  @ViewChild('modal') modal: ElementRef<HTMLElement>;
+  @Input() showModal: boolean;
+  @Output('showModal') notifyChange = new EventEmitter<boolean>();
 
   constructor() { }
 
   ngOnChanges(): void {
-    if (this.showPanel) {
+    if (this.showModal) {
       document.body.classList.add('active-overlay');
 
       window.onkeyup = (e: KeyboardEvent) => {
@@ -29,19 +29,19 @@ export class ModalComponent implements OnChanges {
 
   onClose(): void {
     const overlay = this.overlay.nativeElement;
-    const panel = this.panel.nativeElement;
+    const modal = this.modal.nativeElement;
 
-    panel.classList.add('slide-out');
+    modal.classList.add('slide-out');
     overlay.classList.add('hide');
     window.onkeyup = null;
 
     setTimeout(() => {
       document.body.classList.remove('active-overlay');
       overlay.classList.remove('hide');
-      panel.classList.remove('slide-out');
+      modal.classList.remove('slide-out');
 
-      this.showPanel = false;
-      this.notifyChange.emit(this.showPanel);
+      this.showModal = false;
+      this.notifyChange.emit(this.showModal);
     }, 200);
   }
 

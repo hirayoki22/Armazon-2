@@ -1,9 +1,9 @@
 <div 
   #overlay
   (click)="onClickOutside($event)" 
-  *ngIf="showPanel" 
+  *ngIf="showModal" 
   class="overlay">
-  <div class="modal">
+  <div #modal class="modal">
     <div class="top">
       <button 
         (click)="onClose()"
