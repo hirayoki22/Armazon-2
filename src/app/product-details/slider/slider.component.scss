@@ -33,16 +33,18 @@
 
   .preview-l {
     display: grid;
-    // grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
     gap: 1.5rem;
     width: 100%;
     overflow: hidden;
 
-    img {
-      display: block;
-      min-height: 100%;
+    .preview {
+      height: 484px;
+
+      img {
+        display: block;
+        min-height: 100%;
+      }
     }
   }
 

@@ -13,7 +13,7 @@ export class SliderComponent implements OnInit, AfterViewInit {
   @ViewChild('thumbnailList') thumbnailList: ElementRef<HTMLElement>;
   images: string[] = [];
   activePreview: number = 0;
-
+  showAllImages: boolean = false;
 
   constructor() { }
 
