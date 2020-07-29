@@ -1,8 +1,7 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
-import { ProductService } from 'src/app/product.service';
 import { ProductVariant } from '../../product-variant.model';
 
 @Component({
@@ -21,14 +20,17 @@ export class VariantSectionComponent implements OnInit, OnChanges {
   capacityVariants: ProductVariant[] = [];
 
   activeVariant: number = 0;
+  hoveredVariant: number = 0;
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute
-  ) { }
+  get variantValue(): string {
+    return this.variants.find(val => val.variantId == this.hoveredVariant).optionValue;
+  }
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activeVariant = +this.route.snapshot.paramMap.get('id');
+    this.hoveredVariant = this.activeVariant;
   }
 
   ngOnChanges(): void {

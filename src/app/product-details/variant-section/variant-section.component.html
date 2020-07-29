@@ -1,15 +1,18 @@
 <div class="variant-wrapper">
   <section *ngIf="colorVariants?.length" class="variant-option color">
     <h3>Color</h3>
+    <p>{{ variantValue }}</p>
 
     <div class="option-flex">
       <button         
         (click)="onChange(variant.variantId)"
         *ngFor="let variant of colorVariants;"
+        (mouseover)="hoveredVariant = variant.variantId"
+        (mouseout)="hoveredVariant = activeVariant"
         class="option-icon-l"
         [class.active]="activeVariant == variant.variantId">
         <img [src]="variant.iconUrl" draggable="false">
-        <span>{{ variant.optionValue }}</span>
+        
       </button>
     </div>
   </section>
