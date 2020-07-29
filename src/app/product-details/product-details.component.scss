@@ -31,11 +31,9 @@
     padding: 1rem 0;
     background-color: #fff;
     overflow: hidden;
-    // transition: width .2s ease;
 
     .slider-wrapper {
       width: 65%;
-      // transition: width .2s ease;
     }
 
     .product-information {
@@ -43,7 +41,6 @@
       height: inherit;
       padding: 1.5rem;
       background-color: inherit;
-      // transition: width .2s ease;
 
       .content {
         width: 100%;
@@ -77,6 +74,7 @@
 
         .stock-label {
           color: #4da861;
+          font-size: .8rem;
           
           &.not-in-stock {
             color: #ce8220;
