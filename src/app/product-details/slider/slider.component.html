@@ -1,14 +1,21 @@
 <div class="product-images" >
   <!-- Large screen -->
-  <div class="preview-l">
-    <div #preview *ngFor="let image of images.slice(0, 4)" class="preview">
-      <img 
-        (load)="resizeImagePreviews()"
-        image-loader
-        [src]="image" 
-        alt="Product Image"
-        draggable="false">
+  <div>
+    <div class="preview-l">
+      <div #preview *ngFor="let image of images.slice(0, 4)" class="preview">
+        <img 
+          (load)="resizeImagePreviews()"
+          image-loader
+          [src]="image" 
+          alt="Product Image"
+          draggable="false">
+      </div>
     </div>
+  
+    <button class="show-more-btn">
+      <i class="material-icons">photo_camera</i>
+      <span>Show More Images</span>
+    </button>
   </div>
 
   <!-- Small Screen -->

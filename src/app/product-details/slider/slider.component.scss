@@ -1,19 +1,19 @@
 @mixin ease-gradient($deg) {
   background: linear-gradient(
     $deg,
-    hsl(229, 8%, 61%) 0%,
-    hsla(229, 8%, 61%, 0.738) 19%,
-    hsla(229, 8%, 61%, 0.541) 34%,
-    hsla(229, 8%, 61%, 0.382) 47%,
-    hsla(229, 8%, 61%, 0.278) 56.5%,
-    hsla(229, 8%, 61%, 0.194) 65%,
-    hsla(229, 8%, 61%, 0.126) 73%,
-    hsla(229, 8%, 61%, 0.075) 80.2%,
-    hsla(229, 8%, 61%, 0.042) 86.1%,
-    hsla(229, 8%, 61%, 0.021) 91%,
-    hsla(229, 8%, 61%, 0.008) 95.2%,
-    hsla(229, 8%, 61%, 0.002) 98.2%,
-    hsla(229, 8%, 61%, 0) 100%
+    hsl(0, 0%, 100%) 0%,
+    hsla(0, 0%, 100%, 0.738) 19%,
+    hsla(0, 0%, 100%, 0.541) 34%,
+    hsla(0, 0%, 100%, 0.382) 47%,
+    hsla(0, 0%, 100%, 0.278) 56.5%,
+    hsla(0, 0%, 100%, 0.194) 65%,
+    hsla(0, 0%, 100%, 0.126) 73%,
+    hsla(0, 0%, 100%, 0.075) 80.2%,
+    hsla(0, 0%, 100%, 0.042) 86.1%,
+    hsla(0, 0%, 100%, 0.021) 91%,
+    hsla(0, 0%, 100%, 0.008) 95.2%,
+    hsla(0, 0%, 100%, 0.002) 98.2%,
+    hsla(0, 0%, 100%, 0) 100%
   );
 }
 
@@ -32,6 +32,7 @@
   }
 
   .preview-l {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
@@ -46,6 +47,29 @@
         display: block;
         min-height: 100%;
       }
+    }
+  }
+
+  .show-more-btn {
+    justify-content: center;
+    position: relative;
+    min-width: 190px;
+    margin: 2rem auto 0;
+    height: 40px;         
+    font-size: .85rem;
+    border-radius: 60px;
+    border: 1px solid #c7cad8;   
+    transition: background-color .4s ease;
+    overflow: hidden;             
+    background-color: #fff;          
+
+    &:hover {
+      background-color: #e6e9f0; 
+    }
+
+    .material-icons {
+      margin-right: 0.6rem;
+      font-size: 1.3rem;
     }
   }
 
