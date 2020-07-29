@@ -14,7 +14,7 @@ export class LightboxComponent implements OnChanges {
   constructor() { }
 
   ngOnChanges(): void {
-
+    console.log(this.images);
   }
 
   onClose(): void {
