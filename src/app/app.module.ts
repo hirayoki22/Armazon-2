@@ -19,6 +19,7 @@ import { RatingGraphComponent } from './product-ratings/rating-graph/rating-grap
 import { ReviewSectionComponent } from './product-ratings/review-section/review-section.component';
 import { FooterComponent } from './footer/footer.component';
 import { PaginationCntrlsComponent } from './product-ratings/pagination-cntrls/pagination-cntrls.component';
+import { LightboxComponent } from './product-details/slider/lightbox/lightbox.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { PaginationCntrlsComponent } from './product-ratings/pagination-cntrls/p
     RatingGraphComponent,
     ReviewSectionComponent,
     FooterComponent,
-    PaginationCntrlsComponent
+    PaginationCntrlsComponent,
+    LightboxComponent
   ],
   imports: [
     BrowserModule,

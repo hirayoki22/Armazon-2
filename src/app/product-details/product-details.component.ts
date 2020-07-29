@@ -18,7 +18,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
   quantity: number = 1;
   isLoading: boolean = true;
   reloading: boolean = false;
-
+  
 
   constructor(
     private route: ActivatedRoute,
