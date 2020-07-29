@@ -3,6 +3,8 @@ import { ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { Input } from '@angular/core';
 import { fromEvent } from 'rxjs';
 
+import { LightboxService } from './lightbox/lightbox.service';
+
 @Component({
   selector: 'image-slider',
   templateUrl: './slider.component.html',
@@ -14,9 +16,8 @@ export class SliderComponent implements OnChanges, AfterViewInit {
   altImages: string[];
   activePreview: number = 0;
   showAllImages: boolean = false;
-  openLightbox: boolean = false;
 
-  constructor() { }
+  constructor(private ls: LightboxService) { }
 
   ngOnChanges(): void {
     this.altImages = this.images.slice(0, 4);
@@ -35,6 +36,10 @@ export class SliderComponent implements OnChanges, AfterViewInit {
       const width = preview.getBoundingClientRect().width;
       preview.style.height = `${width}px`;
     });
+  }
+
+  openLightbox(index: number): void {
+    this.ls.openLightbox(index);
   }
 
   onPreviewScroll(list: HTMLElement): void {

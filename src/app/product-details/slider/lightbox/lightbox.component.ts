@@ -1,26 +1,40 @@
-import { Component, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
+import { ViewChild, ViewChildren, ElementRef, QueryList } from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
+
+import { LightboxService } from './lightbox.service';
 
 @Component({
   selector: 'lightbox',
   templateUrl: './lightbox.component.html',
   styleUrls: ['./lightbox.component.scss']
 })
-export class LightboxComponent implements OnChanges {
+export class LightboxComponent implements OnInit, OnChanges {
+  @ViewChild('imageContainer') imageContainer: ElementRef<HTMLElement>; 
   @Input() images: string[];
-  @Input() currentImage: number;
-  @Input() openLightbox: boolean = false;
-  @Output('openLightbox') notifyChange = new EventEmitter<boolean>();
+  @Input() currentImage: number = 0;
+  openLightbox: boolean = false;
 
-  constructor() { }
+  constructor(private ls: LightboxService) { }
+
+  ngOnInit(): void {
+    this.ls.$currentImage.subscribe(val => {
+      console.log(val);
+    });
+  }
 
   ngOnChanges(): void {
-    console.log(this.images);
+    // console.log(this.currentImage);
   }
 
   onClose(): void {
     this.openLightbox = false;
-    this.notifyChange.emit(this.openLightbox);
+  }
+
+  scrollIntoView(index: number): void {
+    const list = this.imageContainer.nativeElement;
+
+    console.log(Array.from(list.children));
   }
 
   onPreviewScroll(list: HTMLElement): void {

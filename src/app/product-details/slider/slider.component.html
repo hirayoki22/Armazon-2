@@ -2,10 +2,12 @@
   <!-- Large screen -->
   <div>
     <div class="preview-l">
-      <div #preview *ngFor="let image of altImages" class="preview">
+      <div #preview 
+        *ngFor="let image of altImages; index as index"
+        class="preview">
         <img 
           (load)="resizeImagePreviews()"
-          (click)="openLightbox = true"
+          (click)="openLightbox(index)"
           image-loader
           [src]="image" 
           alt="Product Image"
@@ -24,8 +26,13 @@
   <!-- Small Screen -->
   <div class="preview-s-wrapper">
     <ul (scroll)="onPreviewScroll($event.target)" class="preview-s">
-      <li *ngFor="let image of images;" class="slide">
-        <img image-loader [src]="image" alt="Product Image">
+      <li *ngFor="let image of images; index as index" class="slide">
+        <img 
+          (click)="openLightbox(index)"
+          image-loader
+          [src]="image" 
+          alt="Product Image"
+          draggable="false">
       </li>
     </ul>
 
@@ -38,7 +45,4 @@
   </div>
 </div>
 
-<lightbox 
-  [images]="images"
-  [openLightbox]="openLightbox"
-  (openLightbox)="openLightbox = $event"></lightbox>
+<lightbox [images]="images"></lightbox>
