@@ -77,120 +77,14 @@
   .preview-s {
     display: none;
   }
-
-  .thumbnail-wrapper {        
-    position: relative;
-    width: 100%;
-    height: auto;
-    margin-top: 1.5rem;
-    border-radius: 4px;
-    overflow: hidden;
-
-    .nav-btns {
-      position: absolute;
-      top: 0;
-      padding: 0 0.5rem;
-      height: 100%;
-      transition: opacity .4s ease;
-      z-index: 1;                  
-
-      .material-icons {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 40px;
-        height: 40px;
-        color: #4c4e5a;
-        border-radius: 40px;
-        background-color: #fff;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        transition: background-color 0.3s ease,
-        transform 0.3s ease;
-      }
-
-      &.nav-left {
-        left: 0;
-        @include ease-gradient(90deg);
-
-        &:hover {
-          .material-icons {
-            transform: translateX(2px);
-            background-color: #f6f8ff; 
-          }
-        }
-      }
-
-      &.nav-right {
-        right: 0;
-        @include ease-gradient(-90deg);
-
-        &:hover {
-          .material-icons {
-            transform: translateX(-2px);
-            background-color: #f6f8ff; 
-          }
-        }
-      }     
-      
-      &:disabled {
-        pointer-events: none;
-        opacity: 0;
-      }
-    }
-  }
-
-  .thumbnail-list {
-    display: flex;
-    width: 100%;
-    height: auto;
-    border-radius: 4px;
-    overflow: hidden;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-
-    .thumbnail {          
-      flex-shrink: 0;
-      width: 130px;
-      height: 100px;        
-      padding: 0.1rem;
-      margin-right: 0.5rem;
-      border: 1px solid #e7edff;
-      border-radius: 4px;
-      scroll-snap-align: center;
-      transition: border-color 0.4s ease,
-      background-color 0.4s ease;
-      overflow: hidden;
-      
-      &.active {
-        position: relative;
-        border-color: #4c4e5a;
-      
-        &::after {              
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(255, 255, 255, 0.4);
-        }
-      }
-    }        
-  }
 }
 
 @media (max-width: 768px) {
   .product-images {
     width: 100%;
 
-    .preview-l {
+    .preview-l,
+    .show-more-btn {
       display: none;
     }
 
