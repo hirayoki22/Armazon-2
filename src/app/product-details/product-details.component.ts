@@ -1,5 +1,4 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ProductService } from '../product.service';
