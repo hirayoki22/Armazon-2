@@ -1,10 +1,11 @@
 <div class="product-images" >
   <!-- Large screen -->
   <div class="preview-l">
-    <div *ngFor="let preview of images.slice(0, 4)" class="preview">
+    <div #preview *ngFor="let image of images.slice(0, 4)" class="preview">
       <img 
+        (load)="resizeImagePreviews()"
         image-loader
-        [src]="preview" 
+        [src]="image" 
         alt="Product Image"
         draggable="false">
     </div>

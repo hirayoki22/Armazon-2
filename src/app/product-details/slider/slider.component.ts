@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
 })
 export class SliderComponent implements OnInit, AfterViewInit {
   @ViewChildren('navButton') navButtons: QueryList<ElementRef<HTMLButtonElement>>;
+  @ViewChildren('preview') previews: QueryList<ElementRef<HTMLElement>>;
   @ViewChild('thumbnailList') thumbnailList: ElementRef<HTMLElement>;
   images: string[] = [];
   activePreview: number = 0;
@@ -23,6 +24,16 @@ export class SliderComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     fromEvent(window, 'resize').subscribe(() => {
       this.navButtonsDisableState();
+      this.resizeImagePreviews();
+    });   
+  }
+
+  resizeImagePreviews(): void {
+    const previews = this.previews.map(pre => pre.nativeElement);
+    
+    previews.map(preview => {
+      const width = preview.getBoundingClientRect().width;
+      preview.style.height = `${width}px`;
     });
   }
 
