@@ -10,7 +10,6 @@ import { Input, Output, EventEmitter } from '@angular/core';
 export class AsidePanelComponent implements OnChanges {
   @ViewChild('overlay') overlay: ElementRef<HTMLElement>;
   @ViewChild('panel') panel: ElementRef<HTMLElement>;
-  @Input() heading: string = '';
   @Input() showPanel: boolean;
   @Output('showPanel') notifyChange = new EventEmitter<boolean>();
 

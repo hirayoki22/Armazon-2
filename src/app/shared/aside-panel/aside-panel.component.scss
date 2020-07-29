@@ -15,19 +15,30 @@
   }
 
   .top {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 1.5rem;
+    height: 68px;
+    padding: 0 1.5rem;
 
-    .title {
-      color: #7a8196;
-      font-weight: 400;
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -1rem;
+      width: 100%;
+      height: 1rem;
+      background: linear-gradient(#fff, transparent);
+      z-index: 1;
     }
 
     .close-btn {
       margin-left: auto;
+      padding: 0.7rem;
+      border-radius: 40px;
+      transition: background-color .4s ease;
 
       .material-icons {
         color: #7a8196;
@@ -39,6 +50,7 @@
         .material-icons {
           color: darken(#7a8196, 15);
         }
+        background-color: #e6e9f0;
       }
     }
   }

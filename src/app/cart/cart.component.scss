@@ -16,23 +16,11 @@
   }
 
   .content {
-    position: relative;
     width: 100%;
     height: 100%;
     padding: 0 3rem;
     padding-bottom: 70px;
     animation: reveal 0.4s ease;
-
-    &::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 1rem;
-      background: linear-gradient(#fff, transparent);
-      z-index: 1;
-    }
   }
 
   .item-list {
@@ -47,6 +35,13 @@
 
     &::-webkit-scrollbar {
       display: none;
+    }
+
+    .title {
+      margin-bottom: 2rem;
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 400;
     }
 
     li {
@@ -81,7 +76,7 @@
           width: fit-content;
           margin-bottom: 0.5rem;
           color: #2587f7;
-          font-size: .95rem;
+          font-size: .9rem;
           font-weight: 400;
           line-height: 1.5rem;
           overflow: hidden;
@@ -90,12 +85,11 @@
 
         .price {
           margin-bottom: 0.5rem;
-          font-size: 0.95rem;
+          font-size: 0.9rem;
           font-weight: 600;
         }
 
         .stock-label {
-          margin-bottom: 0.5rem;
           color: #4da861;
         }
 
@@ -104,16 +98,18 @@
           flex-wrap: wrap;
           align-items: center;
           width: 100%;
+          margin-top: 1rem;
+          font-size: 0.85rem;
 
-          input[name="quantity"] {
+          #quantity {
             flex-shrink: 0;
             display: inline-block;
             width: 60px;
-            padding: 0.3rem 0.7rem;      
+            padding: 0.2rem 0.6rem;      
             margin-left: 0.2rem;
             text-align: center;
-            border-radius: 4px;
-            background-color: #f0f4ff;
+            border-radius: 100px;
+            background-color: #e6e9f0;
           }
           
           .remove-btn {
@@ -180,7 +176,7 @@
 
       &-items, &-amount {
         strong {
-          font-size: 0.95rem;
+          font-size: 0.9rem;
         }
       }
     }

@@ -13,7 +13,6 @@ import { Product } from '../product.model';
 })
 export class CartComponent implements OnInit {
   @ViewChild('itemList') itemList: ElementRef<HTMLElement>;
-  heading: string = 'Shopping Cart';
   cartItems: CartItem[] = [];
   viewCart: boolean;
   isLoading: boolean = true;

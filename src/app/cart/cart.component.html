@@ -1,5 +1,4 @@
 <aside-panel
-  [heading]="heading"
   [showPanel]="viewCart"
   (showPanel)="viewCart = $event">
   <app-spinner [loading]="isLoading"></app-spinner>
@@ -11,10 +10,10 @@
       <h3>Your cart is empty</h3>
     </div>
 
-    <div 
-      *ngIf="cartItems?.length" 
-      class="content">
+    <div *ngIf="cartItems?.length" class="content">
       <ul #itemList class="item-list">
+        <h3 class="title">Shopping Cart</h3>
+
         <li *ngFor="let item of cartItems">
           <div *ngIf="item.productImage" class="product-image">
             <img image-loader [src]="item.productImage" [alt]="item.productName">
