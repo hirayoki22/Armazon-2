@@ -35,11 +35,11 @@
     overflow: hidden;
 
     .slider-wrapper {
-      width: 60%;
+      width: 65%;
     }
 
     .product-information {
-      width: 40%;
+      width: 35%;
       height: inherit;
       padding: 1.5rem;
       background-color: inherit;
@@ -60,9 +60,12 @@
           display: flex;
           justify-content: space-between;
           width: 100%;
-
           font-size: 1.2rem;
           line-height: 1.5rem;
+
+          h3 {
+            margin-right: 3rem;
+          }
         }
   
         .brand {

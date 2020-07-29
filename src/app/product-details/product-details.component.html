@@ -14,10 +14,10 @@
       <div *ngIf="!isLoading" class="product-information">  
         <div class="content">
           <div [class.reloading]="reloading">
-            <h3 class="product-name-price">
-              {{ product?.productName }}
-              <span>{{ product?.price | currency }}</span>
-            </h3>
+            <div class="product-name-price">
+              <h3>{{ product?.productName }}</h3>
+              <strong>{{ product?.price | currency }}</strong>
+            </div>
             <p class="brand">By <span>{{ product?.brand }}</span></p> 
   
             <div [ngSwitch]="product?.available" >
