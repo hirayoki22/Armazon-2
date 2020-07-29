@@ -1,9 +1,12 @@
 <app-modal [showModal]="openLightbox" (showModal)="onClose()">
 
-  <div *ngIf="images && images.length" class="lightbox">
-    <div class="image-container">
-
-    </div>
+  <div *ngIf="images?.length" class="lightbox">
+    <ul (scroll)="onPreviewScroll($event.target)" 
+      class="image-container">
+      <li *ngFor="let image of images;" class="slide">
+        <img image-loader [src]="image" alt="Product Image">
+      </li>
+    </ul>
     
     <div class="active-image-indicator">
 

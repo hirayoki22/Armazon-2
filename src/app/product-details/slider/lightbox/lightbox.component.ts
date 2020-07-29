@@ -8,6 +8,7 @@ import { Input, Output, EventEmitter } from '@angular/core';
 })
 export class LightboxComponent implements OnChanges {
   @Input() images: string[];
+  @Input() currentImage: number;
   @Input() openLightbox: boolean = false;
   @Output('openLightbox') notifyChange = new EventEmitter<boolean>();
 
@@ -21,4 +22,18 @@ export class LightboxComponent implements OnChanges {
     this.openLightbox = false;
     this.notifyChange.emit(this.openLightbox);
   }
+
+  onPreviewScroll(list: HTMLElement): void {
+    const slides = Array.from(list.children);
+
+    slides.forEach((slide, index) => {
+      const rects = slide.getBoundingClientRect();
+      const left = rects.left;
+
+      if ((index != this.currentImage) && left <= list.clientWidth) {
+        this.currentImage = index;
+      }
+    });
+  }
 }
+    

@@ -1,5 +1,45 @@
 .lightbox {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  min-height: 100%;
-  background-color: #555;
+  min-height: calc(100% - 87.19px);
+  
+  .image-container {
+    display: flex;
+    width: 100%;   
+    overflow: hidden;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .slide {          
+      flex-shrink: 0;
+      width: 100%;
+      height: 600px;    
+      scroll-snap-align: center;      
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center center;
+      }
+    }        
+  }
+
+  .active-image-indicator {
+    flex-shrink: 0;
+    width: 100%;
+    height: 110px;
+    margin-top: auto;
+    padding: 2rem;
+    background-color: #222;
+  }
 }
