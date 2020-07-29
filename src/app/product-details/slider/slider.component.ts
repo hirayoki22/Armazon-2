@@ -31,10 +31,12 @@ export class SliderComponent implements OnInit, AfterViewInit {
   resizeImagePreviews(): void {
     const previews = this.previews.map(pre => pre.nativeElement);
     
-    previews.map(preview => {
-      const width = preview.getBoundingClientRect().width;
-      preview.style.height = `${width}px`;
-    });
+    setTimeout(() => {
+      previews.map(preview => {
+        const width = preview.getBoundingClientRect().width;
+        preview.style.height = `${width}px`;
+      });
+    }, 200);
   }
 
   onNavBtnClick(direction: 'before' | 'next'): void {

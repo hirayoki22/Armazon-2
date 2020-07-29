@@ -31,11 +31,11 @@
     padding: 1rem 0;
     background-color: #fff;
     overflow: hidden;
-    transition: width .4s ease;
+    transition: width .2s ease;
 
     .slider-wrapper {
       width: 65%;
-      transition: width .4s ease;
+      transition: width .2s ease;
     }
 
     .product-information {
@@ -43,7 +43,7 @@
       height: inherit;
       padding: 1.5rem;
       background-color: inherit;
-      transition: width .4s ease;
+      transition: width .2s ease;
 
       .content {
         width: 100%;

@@ -39,7 +39,8 @@
     overflow: hidden;
 
     .preview {
-      height: auto;
+      height: 484px;
+      // transition: width .2s ease, height .2s ease;
 
       img {
         display: block;
