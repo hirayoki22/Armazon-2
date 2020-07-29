@@ -21,7 +21,6 @@
     overflow: hidden;
 
     .add-btn {
-      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -32,29 +31,15 @@
       border: 1px solid #F72551;
       border-radius: 40px;
       background-color: #F72551;
-      transition: opacity .4s ease, 
-      background-color .4s ease;
+      transition: background-color .4s ease;
 
       &:disabled {
         opacity: 0.6 !important;
         cursor: default;
       }
 
-      &::after {
-        content: '';
-        opacity: 0;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        box-shadow: 0 6px 25px rgba(248, 96, 129, 0.815);
-        transition: opacity .4s ease;
-        z-index: 0;
-      }
-
-      &:not(:disabled):hover::after {
-        opacity: 1;
+      &:not(:disabled):hover {
+        background-color: darken(#F72551, 5); 
       }
     }
 
