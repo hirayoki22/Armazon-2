@@ -1,10 +1,32 @@
 main {
   margin: 2rem 0;
   padding: 70px 1rem 0;
+  animation: reveal .4s ease;
 
   .navbar {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    &-link {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 173px;
+      padding: 1rem;
+      white-space: nowrap;
+      border-radius: 40px;
+      background-color: #fff;
+      transition: background-color .4s ease;
+      user-select: none;
+
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
+
+      &:hover {
+        background-color: #e6e9f0;
+      }
+    }
   }
 }
