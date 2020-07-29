@@ -14,7 +14,7 @@ export class SliderComponent implements OnChanges, AfterViewInit {
   altImages: string[];
   activePreview: number = 0;
   showAllImages: boolean = false;
-
+  openLightbox: boolean = false;
 
   constructor() { }
 

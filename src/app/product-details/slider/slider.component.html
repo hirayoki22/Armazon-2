@@ -5,11 +5,17 @@
       <div #preview *ngFor="let image of altImages" class="preview">
         <img 
           (load)="resizeImagePreviews()"
+          (click)="openLightbox = true"
           image-loader
           [src]="image" 
           alt="Product Image"
           draggable="false">
       </div>
+
+      <lightbox 
+        [images]="images"
+        [openLightbox]="openLightbox"
+        (openLightbox)="openLightbox = $event"></lightbox>
     </div>
   
     <button 
