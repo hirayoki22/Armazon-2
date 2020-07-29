@@ -1,4 +1,12 @@
 .modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 95vw;
+  height: 90vh;
+  background-color: #fff;
+
   .top {
     position: relative;
     display: flex;
@@ -9,7 +17,7 @@
   
     .close-btn {
       margin-left: auto;
-      padding: 0.7rem;
+      padding: 0.6rem;
       border-radius: 40px;
       transition: background-color .4s ease;
   
