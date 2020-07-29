@@ -13,12 +13,14 @@ export class SliderComponent implements OnInit, AfterViewInit {
   @ViewChildren('preview') previews: QueryList<ElementRef<HTMLElement>>;
   @ViewChild('thumbnailList') thumbnailList: ElementRef<HTMLElement>;
   images: string[] = [];
+  altImages: string[] = [];
   activePreview: number = 0;
   showAllImages: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
   ngAfterViewInit(): void {

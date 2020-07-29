@@ -2,7 +2,7 @@
   <!-- Large screen -->
   <div>
     <div class="preview-l">
-      <div #preview *ngFor="let image of images.slice(0, 4)" class="preview">
+      <div #preview *ngFor="let image of altImages" class="preview">
         <img 
           (load)="resizeImagePreviews()"
           image-loader
@@ -12,7 +12,9 @@
       </div>
     </div>
   
-    <button class="show-more-btn">
+    <button 
+      *ngIf="altImages.length <= 4 && images.length > altImages.length"
+      (click)="altImages = images" class="show-more-btn">
       <i class="material-icons">photo_camera</i>
       <span>Show More Images</span>
     </button>

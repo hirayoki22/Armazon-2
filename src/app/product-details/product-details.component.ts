@@ -45,6 +45,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
         }
 
         this.slider.images = this.product.images;
+        this.slider.altImages = this.product.images.slice(0, 4);
         this.slider.navButtonsDisableState();
         this.isLoading = false;        
       });
