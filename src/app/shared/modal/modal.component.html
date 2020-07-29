@@ -1,0 +1,17 @@
+<div 
+  #overlay
+  (click)="onClickOutside($event)" 
+  *ngIf="showPanel" 
+  class="overlay">
+  <div class="modal">
+    <div class="top">
+      <button 
+        (click)="onClose()"
+        type="button" class="close-btn" title="Close">
+        <i class="material-icons">close</i>
+      </button>
+    </div>
+
+    <ng-content></ng-content>
+  </div>
+</div>
