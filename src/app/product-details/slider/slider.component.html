@@ -1,4 +1,4 @@
-<div class="product-images" >
+<div *ngIf="images && images?.length" class="product-images" >
   <!-- Large screen -->
   <div>
     <div class="preview-l">
@@ -13,7 +13,7 @@
     </div>
   
     <button 
-      *ngIf="altImages.length <= 4 && images.length > altImages.length"
+      *ngIf="altImages?.length <= 4 && images.length > altImages?.length"
       (click)="altImages = images" class="show-more-btn">
       <i class="material-icons">photo_camera</i>
       <span>Show More Images</span>
@@ -35,35 +35,4 @@
         [class.active]="activePreview == index"></span>
     </div>
   </div>
-
-  <div style="display: none;" class="thumbnail-wrapper">
-    <button 
-      (click)="onNavBtnClick('before')"
-      #navButton class="nav-btns nav-left" 
-      disabled>
-      <i class="material-icons">arrow_left</i>
-    </button>
-
-    <ul #thumbnailList class="thumbnail-list">        
-      <li 
-        (mouseover)="activePreview = index"
-        (click)="activePreview = index"
-        *ngFor="let thumbnail of images; index as index" 
-        class="thumbnail"
-        [class.active]="activePreview == index">
-
-        <img 
-          image-loader
-          [src]="thumbnail" 
-          alt="Next product image thumbnail"
-          draggable="false">
-      </li>
-    </ul>
-
-    <button 
-      (click)="onNavBtnClick('next')"
-      #navButton class="nav-btns nav-right">
-      <i class="material-icons">arrow_right</i>
-    </button>          
-  </div>   
 </div>

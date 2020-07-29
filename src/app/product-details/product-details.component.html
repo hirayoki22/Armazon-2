@@ -4,11 +4,9 @@
   <div class="wrapper-l">
     <div class="banner"></div>
 
-    <div 
-      [style.visibility]="isLoading ? 'hidden' : 'visible'" 
-      class="details-container">
+    <div *ngIf="!isLoading" class="details-container">
       <div class="slider-wrapper" [class.reloading]="reloading">
-        <app-slider></app-slider>
+        <image-slider [images]="product.images" ></image-slider>
       </div>
   
       <div *ngIf="!isLoading" class="product-information">  
@@ -34,7 +32,7 @@
             </div>   
             
             <!-- Product rating / review -->
-            <star-rating [productId]="product?.productId"></star-rating>
+            <star-rating [productId]="originalProduct"></star-rating>
           </div>
 
           <variant-section 

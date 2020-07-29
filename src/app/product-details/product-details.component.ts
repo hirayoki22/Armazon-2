@@ -6,7 +6,6 @@ import { ProductService } from '../product.service';
 import { Product } from '../product.model';
 import { ProductVariant } from '../product-variant.model';
 import { CartService } from '../cart/cart.service';
-import { SliderComponent } from './slider/slider.component';
 
 @Component({
   selector: 'app-product-details',
@@ -14,8 +13,8 @@ import { SliderComponent } from './slider/slider.component';
   styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit, AfterViewInit {
-  @ViewChild(SliderComponent) slider: SliderComponent;
   product: Product;
+  originalProduct: number = 0;
   variants: ProductVariant[] = [];
   quantity: number = 1;
   isLoading: boolean = true;
@@ -34,19 +33,15 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.route.paramMap.subscribe(params => {
-      const productId = +params.get('id');
+      this.originalProduct = +params.get('id');
 
-      this.ps.getProductById(productId).subscribe(product => {
+      this.ps.getProductById(this.originalProduct).subscribe(product => {
         this.product = product;        
 
         if (this.product.hasVariant) {
           this.ps.getProductVariant(this.product.productId)
           .subscribe(variants => this.variants = variants);
         }
-
-        this.slider.images = this.product.images;
-        this.slider.altImages = this.product.images.slice(0, 4);
-        this.slider.navButtonsDisableState();
         this.isLoading = false;        
       });
     });
@@ -56,19 +51,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     this.reloading = true;
 
     this.ps.getProductById(productId).subscribe(product => {
-      // this.product = product;
-
-      this.product.productName = product.productName;
-      this.product.productDesc = product.productDesc;
-      this.product.images = product.images;
-      this.product.brand = product.brand;
-      this.product.price = product.price;
-      this.product.available = product.available;
-      this.product.totalStock = product.totalStock;
-
-      this.slider.images = this.product.images;      
-      this.slider.activePreview = 0;
-      this.slider.navButtonsDisableState();
+      this.product = product;
       this.reloading = false;
     });
   }
