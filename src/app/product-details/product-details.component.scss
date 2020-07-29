@@ -1,6 +1,4 @@
 .product-detail-section {
-  position: sticky;
-  top: 0;
   width: 100%;
   margin: 5rem 0;
   padding: 0 1rem;
@@ -33,9 +31,11 @@
     padding: 1rem 0;
     background-color: #fff;
     overflow: hidden;
+    transition: width .4s ease;
 
     .slider-wrapper {
       width: 65%;
+      transition: width .4s ease;
     }
 
     .product-information {
@@ -43,6 +43,7 @@
       height: inherit;
       padding: 1.5rem;
       background-color: inherit;
+      transition: width .4s ease;
 
       .content {
         width: 100%;
@@ -153,6 +154,32 @@
         p {
           color: #6a6c77;
           line-height: 1.7rem;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .product-detail-section {
+
+    .details-container {
+      padding: 0;
+      flex-direction: column;
+
+      .slider-wrapper {
+        width: 100%;
+      }
+
+      .product-information {
+        width: 100%;
+        height: auto;
+ 
+        .about-product {           
+          p {
+            font-size: .85rem;
+            line-height: 1.4rem;
+          }
         }
       }
     }
