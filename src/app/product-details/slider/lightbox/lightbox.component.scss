@@ -6,17 +6,19 @@
   
   .image-container {
     display: flex;
-    width: 100%;   
+    width: 100%;
+    height: auto;
+    margin: auto; 
     overflow: hidden;
     overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    // scrollbar-width: none;
+    // -ms-overflow-style: none;
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
 
-    &::-webkit-scrollbar {
-      display: none;
-    }
+    // &::-webkit-scrollbar {
+    //   display: none;
+    // }
 
     .slide {          
       flex-shrink: 0;
@@ -26,8 +28,10 @@
       overflow: hidden;
 
       img {
-        width: 100%;
+        display: block;
+        max-width: 1000px;
         height: 100%;
+        margin: auto;
         object-fit: contain;
         object-position: center center;
       }

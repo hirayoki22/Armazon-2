@@ -12,14 +12,15 @@ import { LightboxService } from './lightbox.service';
 export class LightboxComponent implements OnInit, OnChanges {
   @ViewChild('imageContainer') imageContainer: ElementRef<HTMLElement>; 
   @Input() images: string[];
-  @Input() currentImage: number = 0;
+  currentImage: number = 0;
   openLightbox: boolean = false;
 
   constructor(private ls: LightboxService) { }
 
   ngOnInit(): void {
-    this.ls.$currentImage.subscribe(val => {
-      console.log(val);
+    this.ls.$currentImage.subscribe(index => {
+      this.openLightbox = true;
+      this.scrollIntoView(index);
     });
   }
 
@@ -34,7 +35,8 @@ export class LightboxComponent implements OnInit, OnChanges {
   scrollIntoView(index: number): void {
     const list = this.imageContainer.nativeElement;
 
-    console.log(Array.from(list.children));
+    list.children.item(index).scrollIntoView({ block: 'center', inline: 'center'});
+    console.log(list.children.item(index));
   }
 
   onPreviewScroll(list: HTMLElement): void {
