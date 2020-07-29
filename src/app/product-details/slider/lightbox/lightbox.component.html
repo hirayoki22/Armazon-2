@@ -1,20 +1,33 @@
-<app-modal [showModal]="openLightbox" (showModal)="onClose()">
+<app-modal [showModal]="true" (showModal)="onClose()">
 
   <div *ngIf="images?.length" class="lightbox">
-    <ul 
-      #imageContainer
-      (scroll)="onPreviewScroll($event.target)" class="image-container">
-      <li #slide *ngFor="let image of images;" class="slide">
-        <img image-loader [src]="image" alt="Product Image">
-      </li>
+    <div class="top-content">
+      <button 
+        [disabled]="currentImage == 0"
+        class="nav-button before">
+        <i class="material-icons">navigate_before</i>
+      </button>
 
-      <!-- <li class="slide">
-        <img image-loader [src]="images[currentImage]" alt="Product Image">
-      </li> -->
-    </ul>
+      <button 
+        [disabled]="currentImage == images.length - 1"
+        class="nav-button after">
+        <i class="material-icons">navigate_next</i>
+      </button>
+
+      <ul #imageContainer
+        (scroll)="onPreviewScroll($event.target)"
+        class="image-container">
+        
+        <li #slide *ngFor="let image of images;" class="slide">
+          <img image-loader [src]="image" alt="Product Image">
+        </li>
+      </ul>
+    </div>
     
-    <div class="active-image-indicator">
+    <div class="bottom-content">
+      <div class="active-image-indicator">
 
+      </div>
     </div>
   </div>
 

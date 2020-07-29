@@ -41,10 +41,10 @@
     font-size: .85rem;
     border-radius: 60px;
     border: 1px solid #c7cad8;   
+    background-color: #fff;     
     transition: background-color .4s ease;
-    overflow: hidden;             
-    background-color: #fff;          
-
+    overflow: hidden;            
+         
     &:hover {
       background-color: #e6e9f0; 
     }
