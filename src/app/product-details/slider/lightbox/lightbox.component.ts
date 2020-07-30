@@ -30,7 +30,7 @@ export class LightboxComponent implements AfterViewInit, OnChanges {
   ngOnChanges(): void {
   }
 
-  scrollIntoView(behavior: 'auto' | 'smooth' = 'smooth'): void {
+  private scrollIntoView(behavior: 'auto' | 'smooth' = 'smooth'): void {
     const slides = Array.from(this.imageContainer.nativeElement.children);
 
     slides[this.currentImage].scrollIntoView({ behavior: behavior });
@@ -58,14 +58,14 @@ export class LightboxComponent implements AfterViewInit, OnChanges {
         break;
     }
     this.scrollIntoView();
-    this.moveIndicator(direction);
+    this.moveIndicator();
   }
 
-  moveIndicator(direction: 'previous' | 'next'): void {
+  private moveIndicator(): void {
     const indicator = this.imageIndicator.nativeElement;
-    const steps = (indicator.parentElement.clientWidth / this.images.length) * this.currentImage;
+    const steps = 100 * this.currentImage;
 
-    indicator.style.transform = `translateX(${steps}px)`;
+    indicator.style.transform = `translateX(${steps}%)`;
   }
 
   onClose(): void {
