@@ -60,7 +60,26 @@ export class LightboxComponent implements AfterViewInit {
     this.ls.openLightbox({index: this.currentImage, scrollBehavior: 'smooth'});
   }
 
+  onRangeClick(e: MouseEvent): void {
+    const indicator = this.rangeIndicator.nativeElement;
+    const rects     = indicator.getBoundingClientRect();
+    const width     = indicator.clientWidth;
+    const left      = Math.floor(rects.left);
+    const right     = Math.floor(rects.right);
+    
+    if (e.clientX < left || e.clientX > right) {
+      const pos = Math.floor(e.clientX / width);
+      // this.currentImage = Math.floor(e.clientX / width) - 1;
+      // this.ls.openLightbox({index: this.currentImage, scrollBehavior: 'smooth'});
 
+      console.log({ 
+        click: e.clientX, 
+        width: width, 
+        test: e.clientX - right,
+        test2: Math.ceil((e.clientX - right) / width)
+      });
+    }
+  }
 
   onClose(): void {
     this.openLightbox = false;

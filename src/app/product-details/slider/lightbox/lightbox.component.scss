@@ -96,9 +96,9 @@
   .bottom-content {
     flex-shrink: 0;
     width: 100%;
-    height: 100px;
+    height: 80px;
     margin-top: auto;
-    padding: 0 6rem;
+    padding: 0 5rem;
     background-color: #fff;
 
     .range-clickable-area {
@@ -161,7 +161,6 @@
     }
 
     .bottom-content {
-      height: 80px;
       padding: 0 4rem;
 
       .range {
