@@ -57,6 +57,7 @@
     display: flex;
     width: 100%;
     height: inherit;
+    padding-bottom: 2rem;
     margin: auto; 
     overflow: hidden;
     overflow-x: auto;
@@ -94,16 +95,29 @@
   .bottom-content {
     flex-shrink: 0;
     width: 100%;
-    height: 110px;
+    height: 100px;
     margin-top: auto;
-    padding: 0 8rem;
+    padding: 0 7rem;
     background-color: #fff;
 
     .active-image-indicator {
       position: relative;
       width: 100%;
       height: 2px;
+      border-radius: 4px;
       background-color: #c7cad8;
+      overflow: hidden;
+      cursor: pointer;
+
+      .scroller {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        border-radius: 4px;
+        background-color: #F72551;
+      }
     }
   } 
 }
