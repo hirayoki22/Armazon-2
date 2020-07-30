@@ -63,16 +63,21 @@ export class LightboxComponent implements AfterViewInit {
   onRangeClick(e: MouseEvent): void {
     const range      = <HTMLElement>(e.currentTarget);
     const indicator  = this.rangeIndicator.nativeElement;
-    const rects      = indicator.getBoundingClientRect();
-    const width      = rects.width;
-    const left       = rects.left;
-    const right      = rects.right;
+    const width      = indicator.getBoundingClientRect().width;
+    const left       = indicator.getBoundingClientRect().left;
+    const right      = indicator.getBoundingClientRect().right;
     const pageOffset = range.getBoundingClientRect().left;
     
     if (e.clientX < left || e.clientX > right) {
-      this.currentImage = Math.floor((e.clientX - pageOffset) / width);
+      const position = Math.floor((e.clientX - pageOffset) / width);
+
+      this.currentImage = position > 0 ? position : 0;
       this.ls.openLightbox({index: this.currentImage, scrollBehavior: 'smooth'});
     }
+  }
+
+  onImageClick(image: HTMLImageElement): void {
+    console.log(image.naturalWidth, image.naturalHeight);
   }
 
   onClose(): void {
