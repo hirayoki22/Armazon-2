@@ -1,15 +1,16 @@
-import { Component, AfterViewInit, OnChanges } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { ViewChild, ElementRef } from '@angular/core';
 import { Input } from '@angular/core';
 
 import { LightboxService } from './lightbox.service';
+import { LightboxData } from './lightbox.model';
 
 @Component({
   selector: 'lightbox',
   templateUrl: './lightbox.component.html',
   styleUrls: ['./lightbox.component.scss']
 })
-export class LightboxComponent implements AfterViewInit, OnChanges {
+export class LightboxComponent implements AfterViewInit {
   @ViewChild('imageContainer') imageContainer: ElementRef<HTMLElement>; 
   @ViewChild('rangeIndicator') rangeIndicator: ElementRef<HTMLElement>; 
   @Input() images: string[];
@@ -19,21 +20,17 @@ export class LightboxComponent implements AfterViewInit, OnChanges {
   constructor(private ls: LightboxService) { }
 
   ngAfterViewInit(): void {
-    this.ls.$currentImage.subscribe(index => {
-      this.currentImage = index;
+    this.ls.$currentImage.subscribe(data => {
       this.openLightbox = true;
-
+      this.currentImage = data.index;
       this.moveIndicator();
-      setTimeout(() => this.scrollIntoView('auto'));
+      setTimeout(() => this.scrollIntoView(data.scrollBehavior));
     });
 
     // this.onPreviewScroll();
   }
 
-  ngOnChanges(): void {
-  }
-
-  private scrollIntoView(behavior: 'auto' | 'smooth' = 'smooth'): void {
+  private scrollIntoView(behavior: 'auto' | 'smooth'): void {
     const slides = Array.from(this.imageContainer.nativeElement.children);
 
     slides[this.currentImage].scrollIntoView({ behavior: behavior });    
@@ -62,8 +59,7 @@ export class LightboxComponent implements AfterViewInit, OnChanges {
         console.log('Invalid direction: ', direction);
         break;
     }
-    this.scrollIntoView();
-    this.moveIndicator();
+    this.ls.openLightbox({index: this.currentImage, scrollBehavior: 'smooth'});
   }
 
 

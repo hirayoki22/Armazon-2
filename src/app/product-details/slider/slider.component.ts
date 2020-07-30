@@ -39,7 +39,7 @@ export class SliderComponent implements OnChanges, AfterViewInit {
   }
 
   openLightbox(index: number): void {
-    this.ls.openLightbox(index);
+    this.ls.openLightbox({index: index, scrollBehavior: 'auto'});
   }
 
   onPreviewScroll(list: HTMLElement): void {
