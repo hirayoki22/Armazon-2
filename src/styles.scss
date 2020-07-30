@@ -42,6 +42,7 @@ html, body {
 
 body {
   background: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%) no-repeat;
+  // background-color: #fff;
 
   &.active-overlay {
     overflow: hidden;
@@ -90,8 +91,6 @@ img {
     animation: hide 0.4s ease forwards;
   }
 }
-
-
 
 .banner {
   position: relative;

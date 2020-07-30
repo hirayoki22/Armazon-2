@@ -26,8 +26,6 @@ export class LightboxComponent implements AfterViewInit {
       this.moveIndicator();
       setTimeout(() => this.scrollIntoView(data.scrollBehavior));
     });
-
-    // this.onPreviewScroll();
   }
 
   private scrollIntoView(behavior: 'auto' | 'smooth'): void {
@@ -63,45 +61,6 @@ export class LightboxComponent implements AfterViewInit {
   }
 
 
-  onPreviewScroll(): void {
-    const list = this.imageContainer.nativeElement;
-    const slides = Array.from(list.children);
-
-    // if (list.clientWidth > 768) { return; }
-
-    // slides.forEach((slide, index) => {
-    //   const rects = slide.getBoundingClientRect();
-    //   const left = rects.left;
-
-    //   if ((index != this.currentImage) && left <= list.clientWidth) {
-    //     this.currentImage = index;
-    //     this.moveIndicator();
-    //   }
-    // });
-    let initial = list.scrollLeft;
-    
-    list.onscroll = () => {
-      let last = list.scrollLeft;
-      
-      switch (true) {
-        case initial > last:
-          if (this.currentImage == 0) { return; }        
-          this.currentImage--;
-          break;
-  
-        case initial < last:
-          if (this.currentImage == this.images.length - 1) { return; }        
-          this.currentImage++;
-          break;
-      
-        default:
-          break;
-      }
-      console.log(this.currentImage);
-
-      initial = last;
-    }
-  }
 
   onClose(): void {
     this.openLightbox = false;
