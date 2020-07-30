@@ -22,9 +22,12 @@ export class LightboxComponent implements AfterViewInit, OnChanges {
     this.ls.$currentImage.subscribe(index => {
       this.currentImage = index;
       this.openLightbox = true;
-      
+
+      this.moveIndicator();
       setTimeout(() => this.scrollIntoView('auto'));
     });
+
+    // this.onPreviewScroll();
   }
 
   ngOnChanges(): void {
@@ -34,6 +37,13 @@ export class LightboxComponent implements AfterViewInit, OnChanges {
     const slides = Array.from(this.imageContainer.nativeElement.children);
 
     slides[this.currentImage].scrollIntoView({ behavior: behavior });    
+  }
+
+  private moveIndicator(): void {
+    const indicator = this.rangeIndicator.nativeElement;
+    const steps = 100 * this.currentImage;
+
+    indicator.style.transform = `translateX(${steps}%)`;
   }
 
   onNavButtonClick(direction: 'previous' | 'next'): void {
@@ -56,11 +66,45 @@ export class LightboxComponent implements AfterViewInit, OnChanges {
     this.moveIndicator();
   }
 
-  private moveIndicator(): void {
-    const indicator = this.rangeIndicator.nativeElement;
-    const steps = 100 * this.currentImage;
 
-    indicator.style.transform = `translateX(${steps}%)`;
+  onPreviewScroll(): void {
+    const list = this.imageContainer.nativeElement;
+    const slides = Array.from(list.children);
+
+    // if (list.clientWidth > 768) { return; }
+
+    // slides.forEach((slide, index) => {
+    //   const rects = slide.getBoundingClientRect();
+    //   const left = rects.left;
+
+    //   if ((index != this.currentImage) && left <= list.clientWidth) {
+    //     this.currentImage = index;
+    //     this.moveIndicator();
+    //   }
+    // });
+    let initial = list.scrollLeft;
+    
+    list.onscroll = () => {
+      let last = list.scrollLeft;
+      
+      switch (true) {
+        case initial > last:
+          if (this.currentImage == 0) { return; }        
+          this.currentImage--;
+          break;
+  
+        case initial < last:
+          if (this.currentImage == this.images.length - 1) { return; }        
+          this.currentImage++;
+          break;
+      
+        default:
+          break;
+      }
+      console.log(this.currentImage);
+
+      initial = last;
+    }
   }
 
   onClose(): void {

@@ -149,9 +149,13 @@
 
         .slide {
 
-          img {
-            width: 100%;
-          }
+          .slide-image-frame {
+            cursor: default;
+
+            img {
+              width: 100%;
+            }
+          }          
         }
       }
     }
