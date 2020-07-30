@@ -11,7 +11,7 @@ import { LightboxService } from './lightbox.service';
 })
 export class LightboxComponent implements AfterViewInit, OnChanges {
   @ViewChild('imageContainer') imageContainer: ElementRef<HTMLElement>; 
-  @ViewChild('imageIndicator') imageIndicator: ElementRef<HTMLElement>; 
+  @ViewChild('rangeIndicator') rangeIndicator: ElementRef<HTMLElement>; 
   @Input() images: string[];
   currentImage: number = 0;
   openLightbox: boolean = false;
@@ -33,12 +33,7 @@ export class LightboxComponent implements AfterViewInit, OnChanges {
   private scrollIntoView(behavior: 'auto' | 'smooth' = 'smooth'): void {
     const slides = Array.from(this.imageContainer.nativeElement.children);
 
-    slides[this.currentImage].scrollIntoView({ behavior: behavior });
-    
-    const rects = slides[this.currentImage].getBoundingClientRect();
-    const left = rects.left;
-    const right = rects.right;
-    
+    slides[this.currentImage].scrollIntoView({ behavior: behavior });    
   }
 
   onNavButtonClick(direction: 'previous' | 'next'): void {
@@ -62,7 +57,7 @@ export class LightboxComponent implements AfterViewInit, OnChanges {
   }
 
   private moveIndicator(): void {
-    const indicator = this.imageIndicator.nativeElement;
+    const indicator = this.rangeIndicator.nativeElement;
     const steps = 100 * this.currentImage;
 
     indicator.style.transform = `translateX(${steps}%)`;
