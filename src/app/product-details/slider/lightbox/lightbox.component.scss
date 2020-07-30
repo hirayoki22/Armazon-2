@@ -46,18 +46,10 @@
 
     .before {
       left: 2rem;
-
-      &:hover {
-        // transform: translateX(-2px);
-      }
     }
 
     .after {
       right: 2rem;
-
-      &:hover {
-        // transform: translateX(2px);
-      }
     }
   }
   
@@ -68,7 +60,6 @@
     margin: auto; 
     overflow: hidden;
     overflow-x: auto;
-    scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -106,7 +97,24 @@
 
       
     }
-  }
+  } 
+}
 
-  
+@media (max-width: 768px) {
+  .lightbox {
+
+    .top-content {
+
+      .image-container {
+        scroll-behavior: smooth;
+
+        .slide {
+          img {
+            
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
 }

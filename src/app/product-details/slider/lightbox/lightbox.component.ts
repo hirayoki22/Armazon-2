@@ -1,6 +1,6 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
-import { ViewChild, ViewChildren, ElementRef, QueryList } from '@angular/core';
-import { Input, Output, EventEmitter } from '@angular/core';
+import { Component, AfterViewInit, OnChanges } from '@angular/core';
+import { ViewChild, ElementRef } from '@angular/core';
+import { Input } from '@angular/core';
 
 import { LightboxService } from './lightbox.service';
 
@@ -9,7 +9,7 @@ import { LightboxService } from './lightbox.service';
   templateUrl: './lightbox.component.html',
   styleUrls: ['./lightbox.component.scss']
 })
-export class LightboxComponent implements OnInit, OnChanges {
+export class LightboxComponent implements AfterViewInit, OnChanges {
   @ViewChild('imageContainer') imageContainer: ElementRef<HTMLElement>; 
   @Input() images: string[];
   currentImage: number = 0;
@@ -17,23 +17,23 @@ export class LightboxComponent implements OnInit, OnChanges {
 
   constructor(private ls: LightboxService) { }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.ls.$currentImage.subscribe(index => {
       this.currentImage = index;
       this.openLightbox = true;
       
-      setTimeout(this.scrollIntoView, 400);
+      setTimeout(() => this.scrollIntoView('auto'));
     });
   }
 
   ngOnChanges(): void {
-    // console.log(this.currentImage);
+    
   }
 
-  scrollIntoView(): void {
+  scrollIntoView(behavior: 'auto' | 'smooth' = 'smooth'): void {
     const list = Array.from(this.imageContainer.nativeElement.children);
 
-    list[this.currentImage].scrollIntoView();
+    list[this.currentImage].scrollIntoView({ behavior: behavior });
   }
 
   onNavButtonClick(direction: 'previous' | 'next'): void {
@@ -70,6 +70,7 @@ export class LightboxComponent implements OnInit, OnChanges {
 
   onClose(): void {
     this.openLightbox = false;
+    this.currentImage = 0;
   }
 
 }
