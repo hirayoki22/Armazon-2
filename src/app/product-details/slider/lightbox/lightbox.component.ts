@@ -11,6 +11,7 @@ import { LightboxService } from './lightbox.service';
 })
 export class LightboxComponent implements AfterViewInit, OnChanges {
   @ViewChild('imageContainer') imageContainer: ElementRef<HTMLElement>; 
+  @ViewChild('imageIndicator') imageIndicator: ElementRef<HTMLElement>; 
   @Input() images: string[];
   currentImage: number = 0;
   openLightbox: boolean = false;
@@ -27,13 +28,17 @@ export class LightboxComponent implements AfterViewInit, OnChanges {
   }
 
   ngOnChanges(): void {
-    
   }
 
   scrollIntoView(behavior: 'auto' | 'smooth' = 'smooth'): void {
-    const list = Array.from(this.imageContainer.nativeElement.children);
+    const slides = Array.from(this.imageContainer.nativeElement.children);
 
-    list[this.currentImage].scrollIntoView({ behavior: behavior });
+    slides[this.currentImage].scrollIntoView({ behavior: behavior });
+    
+    const rects = slides[this.currentImage].getBoundingClientRect();
+    const left = rects.left;
+    const right = rects.right;
+    
   }
 
   onNavButtonClick(direction: 'previous' | 'next'): void {
@@ -53,6 +58,14 @@ export class LightboxComponent implements AfterViewInit, OnChanges {
         break;
     }
     this.scrollIntoView();
+    this.moveIndicator(direction);
+  }
+
+  moveIndicator(direction: 'previous' | 'next'): void {
+    const indicator = this.imageIndicator.nativeElement;
+    const steps = (indicator.parentElement.clientWidth / this.images.length) * this.currentImage;
+
+    indicator.style.transform = `translateX(${steps}px)`;
   }
 
   onClose(): void {
