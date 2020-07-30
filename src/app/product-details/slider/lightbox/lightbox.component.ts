@@ -11,7 +11,6 @@ import { LightboxData } from './lightbox.model';
   styleUrls: ['./lightbox.component.scss']
 })
 export class LightboxComponent implements AfterViewInit {
-  @ViewChild('lightbox') lightbox: ElementRef<HTMLElement>;
   @ViewChild('imageContainer') imageContainer: ElementRef<HTMLElement>; 
   @ViewChild('rangeIndicator') rangeIndicator: ElementRef<HTMLElement>; 
   @Input() images: string[];
@@ -62,12 +61,13 @@ export class LightboxComponent implements AfterViewInit {
   }
 
   onRangeClick(e: MouseEvent): void {
-    const lightbox   = this.lightbox.nativeElement;
+    const range      = <HTMLElement>(e.currentTarget);
     const indicator  = this.rangeIndicator.nativeElement;
-    const pageOffset = lightbox.getBoundingClientRect().left + 80;
-    const width      = indicator.getBoundingClientRect().width;
-    const left       = indicator.getBoundingClientRect().left;
-    const right      = indicator.getBoundingClientRect().right;
+    const rects      = indicator.getBoundingClientRect();
+    const width      = rects.width;
+    const left       = rects.left;
+    const right      = rects.right;
+    const pageOffset = range.getBoundingClientRect().left;
     
     if (e.clientX < left || e.clientX > right) {
       this.currentImage = Math.floor((e.clientX - pageOffset) / width);
