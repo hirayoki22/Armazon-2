@@ -1,6 +1,6 @@
 <aside-panel
   [showPanel]="viewCart"
-  (showPanel)="viewCart = $event">
+  (showPanel)="onClose()">
   <app-spinner [loading]="isLoading"></app-spinner>
 
   <div class="cart">

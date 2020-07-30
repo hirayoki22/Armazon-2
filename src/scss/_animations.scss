@@ -3,17 +3,9 @@
     visibility: hidden;
     opacity: 0;
   }
-  to {
-    visibility: visible;
-    opacity: 1;
-  }
 }
 
 @keyframes hide {
-  from {
-    visibility: visible;
-    opacity: 1;
-  }
   to {
     visibility: hidden;
     opacity: 0;
@@ -24,16 +16,9 @@
   from {
     transform: translateX(100%);
   }
-  to {
-    transform: translateX(0);
-  }
 }
 
 @keyframes slideOut {
-  from {
-    opacity: 1;
-    transform: translateX(0);
-  }
   to {
     opacity: 0;
     transform: translateX(100%);

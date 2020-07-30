@@ -35,6 +35,7 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.cs.cartViewState$.subscribe(state => {
       this.viewCart = state;
+      this.isLoading = true;
 
       this.cs.getShoppingCart(1).subscribe(items => {
         this.cartItems = items;
@@ -47,7 +48,6 @@ export class CartComponent implements OnInit {
     if (!value) { return; }
 
     const quantity = +value;
-    this.isLoading = true;
 
     switch (true) {
       case quantity === 0:
@@ -72,12 +72,16 @@ export class CartComponent implements OnInit {
   }
 
   onRemove(productId: number): void {
-    this.isLoading = true;
     this.cs.removeFromCart(1, productId).subscribe();
   }
 
   proceedToCheckOut(): void {
     this.viewCart = false;
     this.router.navigate(['./order-checkout'], { state: { data: this.cartItems } });
+  }
+
+  onClose(): void {
+    // this.cartItems = [];
+    this.viewCart = false;
   }
 }
