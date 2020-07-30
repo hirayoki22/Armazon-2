@@ -19,8 +19,10 @@ export class LightboxComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.ls.$currentImage.subscribe(index => {
+      this.currentImage = index;
       this.openLightbox = true;
-      this.scrollIntoView(index);
+      
+      setTimeout(this.scrollIntoView, 400);
     });
   }
 
@@ -28,15 +30,29 @@ export class LightboxComponent implements OnInit, OnChanges {
     // console.log(this.currentImage);
   }
 
-  onClose(): void {
-    this.openLightbox = false;
+  scrollIntoView(): void {
+    const list = Array.from(this.imageContainer.nativeElement.children);
+
+    list[this.currentImage].scrollIntoView();
   }
 
-  scrollIntoView(index: number): void {
-    const list = this.imageContainer.nativeElement;
+  onNavButtonClick(direction: 'previous' | 'next'): void {
+    switch (direction) {
+      case 'previous':
+        if (this.currentImage == 0) { return; }        
+        this.currentImage--;
+        break;
 
-    list.children.item(index).scrollIntoView({ block: 'center', inline: 'center'});
-    console.log(list.children.item(index));
+      case 'next':
+        if (this.currentImage == this.images.length - 1) { return; }        
+        this.currentImage++;
+        break;
+    
+      default:
+        console.log('Invalid direction: ', direction);
+        break;
+    }
+    this.scrollIntoView();
   }
 
   onPreviewScroll(list: HTMLElement): void {
@@ -51,5 +67,10 @@ export class LightboxComponent implements OnInit, OnChanges {
       }
     });
   }
+
+  onClose(): void {
+    this.openLightbox = false;
+  }
+
 }
     
