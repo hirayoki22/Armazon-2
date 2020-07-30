@@ -11,6 +11,7 @@ import { LightboxData } from './lightbox.model';
   styleUrls: ['./lightbox.component.scss']
 })
 export class LightboxComponent implements AfterViewInit {
+  @ViewChild('lightbox') lightbox: ElementRef<HTMLElement>;
   @ViewChild('imageContainer') imageContainer: ElementRef<HTMLElement>; 
   @ViewChild('rangeIndicator') rangeIndicator: ElementRef<HTMLElement>; 
   @Input() images: string[];
@@ -61,23 +62,16 @@ export class LightboxComponent implements AfterViewInit {
   }
 
   onRangeClick(e: MouseEvent): void {
-    const indicator = this.rangeIndicator.nativeElement;
-    const rects     = indicator.getBoundingClientRect();
-    const width     = indicator.clientWidth;
-    const left      = Math.floor(rects.left);
-    const right     = Math.floor(rects.right);
+    const lightbox   = this.lightbox.nativeElement;
+    const indicator  = this.rangeIndicator.nativeElement;
+    const pageOffset = lightbox.getBoundingClientRect().left + 80;
+    const width      = indicator.getBoundingClientRect().width;
+    const left       = indicator.getBoundingClientRect().left;
+    const right      = indicator.getBoundingClientRect().right;
     
     if (e.clientX < left || e.clientX > right) {
-      const pos = Math.floor(e.clientX / width);
-      // this.currentImage = Math.floor(e.clientX / width) - 1;
-      // this.ls.openLightbox({index: this.currentImage, scrollBehavior: 'smooth'});
-
-      console.log({ 
-        click: e.clientX, 
-        width: width, 
-        test: e.clientX - right,
-        test2: Math.ceil((e.clientX - right) / width)
-      });
+      this.currentImage = Math.floor((e.clientX - pageOffset) / width);
+      this.ls.openLightbox({index: this.currentImage, scrollBehavior: 'smooth'});
     }
   }
 

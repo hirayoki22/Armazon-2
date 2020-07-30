@@ -1,6 +1,6 @@
 <app-modal [showModal]="true" (showModal)="onClose()">
 
-  <div *ngIf="images?.length" class="lightbox">
+  <div #lightbox *ngIf="images?.length" class="lightbox">
     <div class="top-content">
       <button 
         (click)="onNavButtonClick('previous')"
