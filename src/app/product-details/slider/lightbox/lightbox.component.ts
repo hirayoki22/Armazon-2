@@ -76,8 +76,39 @@ export class LightboxComponent implements AfterViewInit {
     }
   }
 
+  viewFullImage: boolean = false;
+
   onImageClick(image: HTMLImageElement): void {
-    console.log(image.naturalWidth, image.naturalHeight);
+    this.viewFullImage = true;
+
+    image.style.width  = `${image.naturalWidth / 2}px`;
+    image.style.height = `${image.naturalHeight / 2}px`;
+  }
+
+  onMouseMove(e: MouseEvent): void {
+    if (!this.viewFullImage) { return; }
+
+    const frame = <HTMLElement>e.currentTarget;
+    const image = <HTMLImageElement>frame.firstElementChild;
+    const frameLeft  = frame.getBoundingClientRect().left;
+    const frameTop   = frame.getBoundingClientRect().top;
+
+    const posX = (e.clientX - frameLeft) * -1;
+    const posY = (e.clientY - frameTop) * -1;
+
+    // image.style.transform = `translateX(${-300}px)`;
+    // image.style.transform = `translateY(${posY}px)`;
+    
+    // frame.scrollTo({ top: e.clientX, left: e.clientY, behavior: 'smooth' });
+    
+    const left = ele.getBoundingClientRect().left - 1;
+    const top = ele.getBoundingClientRect().top - 1;
+    const right = ele.getBoundingClientRect().right + 1;
+    const bottom = ele.getBoundingClientRect().bottom + 1;
+
+    if (image.getBoundingClientRect().left > 0) {
+      image.style.left = `${(e.clientX - left) - image.getBoundingClientRect().left}px`;
+    }
   }
 
   onClose(): void {

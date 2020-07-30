@@ -28,8 +28,9 @@
       border-radius: 40px;
       background-color: rgba(230, 233, 240, 0.623);     
       transition: background-color .4s ease, 
-      transform .3s ease, opacity .3s ease;
+      opacity .3s ease;
       overflow: hidden;
+      z-index: 3;
 
       &:disabled {
         opacity: 0;
@@ -77,17 +78,24 @@
       scroll-snap-align: center;      
 
       .slide-image-frame {
+        position: relative;
+        // display: flex;
+        // justify-content: center;
+        // align-items: center;
         max-width: 850px;
         height: inherit;
         margin: auto;
         overflow: hidden;
         cursor: zoom-in;
+        border: 2px solid #7a8196;
 
         img {
+          position: relative;
+          display: block;
           width: 100%;
           height: 100%;
+          // transform: translate(-300px, 300px);
           object-fit: contain;
-          object-position: center center;
         }
       }
     }        
