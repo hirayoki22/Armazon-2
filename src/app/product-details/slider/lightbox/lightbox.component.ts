@@ -55,19 +55,6 @@ export class LightboxComponent implements AfterViewInit, OnChanges {
     this.scrollIntoView();
   }
 
-  onPreviewScroll(list: HTMLElement): void {
-    const slides = Array.from(list.children);
-
-    slides.forEach((slide, index) => {
-      const rects = slide.getBoundingClientRect();
-      const left = rects.left;
-
-      if ((index != this.currentImage) && left <= list.clientWidth) {
-        this.currentImage = index;
-      }
-    });
-  }
-
   onClose(): void {
     this.openLightbox = false;
     this.currentImage = 0;

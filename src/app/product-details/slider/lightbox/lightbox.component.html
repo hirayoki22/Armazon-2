@@ -16,9 +16,7 @@
         <i class="material-icons">navigate_next</i>
       </button>
 
-      <ul #imageContainer
-        (scroll)="onPreviewScroll($event.target)"
-        class="image-container">
+      <ul #imageContainer class="image-container">
         
         <li #slide *ngFor="let image of images;" class="slide">
           <div class="slide-image-frame">
