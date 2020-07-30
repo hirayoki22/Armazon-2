@@ -29,8 +29,10 @@
     </div>
     
     <div class="bottom-content">
-      <div class="active-image-indicator">
-        <div class="scroller"></div>
+      <div class="clickable-area">
+        <div class="active-image-indicator">
+          <div [style.width.%]="100 / images.length" class="scroller"></div>
+        </div>
       </div>
     </div>
   </div>
