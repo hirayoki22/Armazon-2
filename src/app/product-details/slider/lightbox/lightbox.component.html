@@ -18,11 +18,12 @@
 
       <ul #imageContainer class="image-container">        
         <li #slide *ngFor="let image of images" class="slide">
-          <div (mousemove)="onMouseMove($event)" class="slide-image-frame" [class.zoomed-in]="viewFullImage">
+          <div 
+            (mousemove)="onMouseMove($event)" 
+            class="slide-image-frame" 
+            [class.zoomed-in]="viewFullImage">
             <img 
-              (click)="viewFullImage = !viewFullImage" 
-              
-              
+              (click)="viewFullImage = !viewFullImage"
               [src]="image" 
               alt="Product Image">
           </div>
