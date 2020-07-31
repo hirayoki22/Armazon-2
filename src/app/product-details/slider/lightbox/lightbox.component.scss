@@ -59,7 +59,7 @@
     display: flex;
     width: 100%;
     height: inherit;
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
     margin: auto; 
     overflow: hidden;
     overflow-x: auto;
@@ -88,20 +88,14 @@
 
         img {
           position: relative;
-          display: block;
           width: 100%;
-          height: 100%;
-          transition: transform 0.3s ease;
+          height: 100%;          
           object-fit: contain;
-
-          // &:hover {
-          //   transform: scale(1.5, 1.5);
-          // }
+          transition: transform 0.3s ease;
 
           &.zoomed-in {
             transform: scale(2);
             cursor: zoom-out;
-            transition: transform .3s ease;
           }
         }
       }
