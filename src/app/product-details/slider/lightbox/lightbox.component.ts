@@ -72,7 +72,9 @@ export class LightboxComponent implements AfterViewInit {
     if (e.clientX < left || e.clientX > right) {
       const position = Math.floor((e.clientX - offset) / width);
 
-      this.currentImage = position > 0 ? position : 0;
+      this.currentImage = (position > this.images.length - 1) ? 
+      this.images.length - 1 : (position > 0) ? position : 0;
+      
       this.ls.openLightbox({index: this.currentImage, scrollBehavior: 'smooth'});
     }
   }
