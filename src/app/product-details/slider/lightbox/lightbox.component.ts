@@ -78,21 +78,14 @@ export class LightboxComponent implements AfterViewInit {
 
   onImageClick(image: HTMLImageElement): void {
     this.viewFullImage = !this.viewFullImage;
+    const frame = image.parentElement;
 
     if (this.viewFullImage) {
-      image.style.width  = `${image.naturalWidth / 2}px`;
-      image.style.height = `${image.naturalHeight / 2}px`;
-
-      image.style.left = '50%';
-      image.style.top = '50%';
-      image.style.transform = 'translate(-50%, -50%)';
+      frame.classList.add('.image-zoomed-in');
+      frame.style.backgroundImage = `url(${this.images[this.currentImage]})`;
     } else {
-      image.style.width  = '100%';
-      image.style.height = '100%';
-
-      image.style.left = 'unset';
-      image.style.top = 'unset';
-      image.style.transform = 'none';
+      frame.classList.remove('.image-zoomed-in');
+      frame.style.backgroundImage = 'none';
     }
   }
 
@@ -107,29 +100,7 @@ export class LightboxComponent implements AfterViewInit {
     const right  = image.getBoundingClientRect().right;
     const bottom = image.getBoundingClientRect().bottom;
 
-    // let pathLeft = 
 
-    // let pathTop = 
-
-    // image.style.left = `${pathLeft}px`;
-    // image.style.top = `${pathTop}px`;  
-    // console.log({left: left, top: top});
-    
-    // if (e.clientX >= frameLeft && e.clientX <= frame.clientWidth) {
-      
-    //   console.log((e.clientX - frameLeft) - left);
-    // }
-  
-    // console.log({left: left, right: right, top: top, bottom: bottom});
-    
-    // image.style.left = `${e.clientX - 308}px`;
-    const frameRects = frame.getBoundingClientRect();
-    
-    image.style.left = `${e.offsetX + 80}px`;
-    image.style.top = `${e.offsetY + 80}px`;
-    
-  
-    console.log(e.offsetX);
   }
 
   onClose(): void {

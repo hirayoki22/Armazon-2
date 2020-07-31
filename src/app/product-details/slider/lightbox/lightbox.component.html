@@ -1,4 +1,4 @@
-<app-modal [showModal]="openLightbox" (showModal)="onClose()">
+<app-modal [showModal]="true" (showModal)="onClose()">
 
   <div *ngIf="images?.length" class="lightbox">
     <div class="top-content">
@@ -29,7 +29,9 @@
     </div>
     
     <div class="bottom-content">
-      <button (click)="onRangeClick($event)" class="range-clickable-area">
+      <button 
+      
+        (click)="onRangeClick($event)" class="range-clickable-area">
         <div class="range">
           <span 
             #rangeIndicator
