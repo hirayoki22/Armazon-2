@@ -94,6 +94,7 @@
         }
 
         &.zoomed-in {
+          max-width: 1200px;
           padding: 5rem;
           cursor: zoom-out;
 
