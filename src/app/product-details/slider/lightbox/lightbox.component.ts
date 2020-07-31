@@ -23,6 +23,7 @@ export class LightboxComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.ls.$currentImage.subscribe(data => {
       this.openLightbox = true;
+      this.viewFullImage = false;
       this.currentImage = data.index;
       this.moveIndicator();
       setTimeout(() => this.scrollIntoView(data.scrollBehavior));
@@ -81,11 +82,10 @@ export class LightboxComponent implements AfterViewInit {
 
     const image = <HTMLImageElement>e.currentTarget;
     const rects = image.getBoundingClientRect();
-
-    let mouseX = e.clientX - rects.left;
-    let mouseY = e.clientY - rects.top;
-    let posX   = (mouseX / rects.width) * 100;
-    let posY   = (mouseY / rects.height) * 100;
+    const mouseX = e.clientX - rects.left;
+    const mouseY = e.clientY - rects.top;
+    const posX   = (mouseX / rects.width) * 100;
+    const posY   = (mouseY / rects.height) * 100;
 
     image.style.transformOrigin = `${posX}% ${posY}%`;
   }
