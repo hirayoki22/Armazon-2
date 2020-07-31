@@ -1,4 +1,4 @@
-<app-modal [showModal]="true" (showModal)="onClose()">
+<app-modal [showModal]="openLightbox" (showModal)="onClose()">
 
   <div *ngIf="images?.length" class="lightbox">
     <div class="top-content">
@@ -18,9 +18,10 @@
 
       <ul #imageContainer class="image-container">        
         <li #slide *ngFor="let image of images;" class="slide">
-          <div (mousemove)="onMouseMove($event)" class="slide-image-frame">
+          <div class="slide-image-frame">
             <img 
               (click)="onImageClick($event.target)" 
+              (mousemove)="onMouseMove($event)"
               image-loader [src]="image" alt="Product Image">
           </div>
         </li>
@@ -33,7 +34,7 @@
           <span 
             #rangeIndicator
             [style.width.%]="100 / images.length" 
-            class="indicator"></span>
+            class="current-image-indicator"></span>
         </div>
       </button>
     </div>
