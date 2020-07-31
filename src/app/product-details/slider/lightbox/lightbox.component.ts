@@ -76,31 +76,18 @@ export class LightboxComponent implements AfterViewInit {
     }
   }
 
-  onImageClick(image: HTMLImageElement): void {
-    this.viewFullImage = !this.viewFullImage;
-    const frame = image.parentElement;
-
-    if (this.viewFullImage) {
-      frame.classList.add('.image-zoomed-in');
-      frame.style.backgroundImage = `url(${this.images[this.currentImage]})`;
-    } else {
-      frame.classList.remove('.image-zoomed-in');
-      frame.style.backgroundImage = 'none';
-    }
-  }
-
   onMouseMove(e: MouseEvent): void {
     if (!this.viewFullImage) { return; }
 
     const image = <HTMLImageElement>e.currentTarget;
-    const frame = image.parentElement;
+    const rects = image.getBoundingClientRect();
 
-    const left   = image.getBoundingClientRect().left;
-    const top    = image.getBoundingClientRect().top;
-    const right  = image.getBoundingClientRect().right;
-    const bottom = image.getBoundingClientRect().bottom;
+    let mouseX = e.clientX - rects.left;
+    let mouseY = e.clientY - rects.top;
+    let posX   = (mouseX / rects.width) * 100;
+    let posY   = (mouseY / rects.height) * 100;
 
-
+    image.style.transformOrigin = `${posX}% ${posY}%`;
   }
 
   onClose(): void {
