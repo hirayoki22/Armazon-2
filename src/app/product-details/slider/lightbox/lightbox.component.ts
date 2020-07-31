@@ -80,7 +80,8 @@ export class LightboxComponent implements AfterViewInit {
   onMouseMove(e: MouseEvent): void {
     if (!this.viewFullImage) { return; }
 
-    const image = <HTMLImageElement>e.currentTarget;
+    const frame = <HTMLElement>e.currentTarget;
+    const image = <HTMLImageElement>frame.firstChild;
     const rects = image.getBoundingClientRect();
     const mouseX = e.clientX - rects.left;
     const mouseY = e.clientY - rects.top;

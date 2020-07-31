@@ -91,10 +91,14 @@
           height: 100%;          
           object-fit: contain;
           transition: transform 0.3s ease;
+        }
 
-          &.zoomed-in {
+        &.zoomed-in {
+          padding: 5rem;
+          cursor: zoom-out;
+
+          img {
             transform: scale(2);
-            cursor: zoom-out;
           }
         }
       }
