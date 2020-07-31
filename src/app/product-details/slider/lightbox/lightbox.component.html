@@ -20,7 +20,6 @@
         <li #slide *ngFor="let image of images" class="slide">
           <div class="slide-image-frame">
             <img 
-              image-loader 
               (click)="viewFullImage = !viewFullImage" 
               (mousemove)="onMouseMove($event)"
               [class.zoomed-in]="viewFullImage"

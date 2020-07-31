@@ -1,9 +1,10 @@
-import { Directive, ElementRef, HostListener } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 
 @Directive({
   selector: '[image-loader]'
 })
 export class ImageLoaderDirective {
+  @Input() initialTransition = ''; 
 
   constructor(private image: ElementRef<HTMLImageElement>) { 
     this.defaultStyling();
@@ -28,6 +29,5 @@ export class ImageLoaderDirective {
   private afterRenderStyle() {
     this.image.nativeElement.style.visibility = 'visible';
     this.image.nativeElement.style.opacity = '1';
-    this.image.nativeElement.style.transition = '';
   }
 }
