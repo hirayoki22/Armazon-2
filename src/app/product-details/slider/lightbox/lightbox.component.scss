@@ -94,9 +94,9 @@
           transition: transform 0.3s ease;
           object-fit: contain;
 
-          &:hover {
-            transform: scale(1.5, 1.5);
-          }
+          // &:hover {
+          //   transform: scale(1.5, 1.5);
+          // }
 
           &.zoomed-in {
             transform: scale(2);
