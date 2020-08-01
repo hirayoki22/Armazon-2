@@ -62,4 +62,8 @@ export class ProductRatingsComponent implements OnInit {
       this.reloading = false;
     });
   }
+
+  submitReview(): void {
+    this.rf.openReviewForm();
+  }
 }

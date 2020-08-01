@@ -15,7 +15,9 @@
     </div>
 
     <div *ngIf="!isLoading && rating.totalReviews" class="content">    
-      <button class="submit-new-btn">Write a Review</button>
+      <button 
+        (click)="submitReview()"
+        class="submit-new-btn">Write a Review</button>
 
       <rating-graph [userRating]="userRating"></rating-graph>
 
@@ -32,3 +34,5 @@
     </div>
   </div>
 </aside-panel>
+
+<review-form></review-form>
