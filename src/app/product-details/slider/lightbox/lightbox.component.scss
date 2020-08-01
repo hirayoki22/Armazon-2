@@ -95,7 +95,7 @@
 
         &.zoomed-in {
           max-width: 1200px;
-          padding: 5rem;
+          padding: 2rem;
           cursor: zoom-out;
 
           img {
@@ -161,7 +161,6 @@
         scroll-behavior: smooth;
 
         .slide {
-          padding: 0 0.5rem;
 
           .slide-image-frame {
             cursor: default;
