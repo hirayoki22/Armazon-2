@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewChild, ElementRef } from '@angular/core';
+
 import { ReviewRatingService } from './review-rating.service';
+import { ReviewFormService } from './review-form/review-form.service';
 import { Rating } from './rating.model';
 import { Review } from './review.model';
 
@@ -20,7 +22,10 @@ export class ProductRatingsComponent implements OnInit {
   isLoading: boolean = true;
   reloading: boolean = false;
 
-  constructor(private rs: ReviewRatingService) { }
+  constructor(
+    private rs: ReviewRatingService,
+    private rf: ReviewFormService
+  ) { }
 
   ngOnInit(): void {
     this.rs.ratingViewState$.subscribe(productId => {

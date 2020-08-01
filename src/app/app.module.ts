@@ -20,6 +20,7 @@ import { ReviewSectionComponent } from './product-ratings/review-section/review-
 import { FooterComponent } from './footer/footer.component';
 import { PaginationCntrlsComponent } from './product-ratings/pagination-cntrls/pagination-cntrls.component';
 import { LightboxComponent } from './product-details/slider/lightbox/lightbox.component';
+import { ReviewFormComponent } from './product-ratings/review-form/review-form.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { LightboxComponent } from './product-details/slider/lightbox/lightbox.co
     ReviewSectionComponent,
     FooterComponent,
     PaginationCntrlsComponent,
-    LightboxComponent
+    LightboxComponent,
+    ReviewFormComponent
   ],
   imports: [
     BrowserModule,
