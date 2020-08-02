@@ -4,6 +4,56 @@
   #review-form {
     width: 100%;
     min-height: 400px;
-    background-color: royalblue;
+    
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      &:not(:last-of-type) {
+        margin-bottom: 1rem;
+      }
+
+      label {
+        margin-bottom: 0.3rem;
+      } 
+
+      input, textarea, select {
+        width: 100%;
+        padding: 0.4rem 0.7rem;
+        font-size: 0.8rem;
+        border: thin solid #f7f9fd;
+        border-radius: 4px;
+        background-color: #f7f9fd;
+        transition: border-color 0.3s ease;
+        
+        &:focus {
+          border-color: #F72551;
+        }
+      }
+
+      .submit-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 36px;
+        color: #fff;
+        font-size: .85rem;
+        border: 1px solid #F72551;
+        border-radius: 40px;
+        background-color: #F72551;
+        transition: background-color .4s ease;
+
+        &:disabled {
+          opacity: 0.6 !important;
+          cursor: default;
+        }
+
+        &:not(:disabled):hover {
+          background-color: darken(#F72551, 5); 
+        }
+      }
+    }
   }
 }

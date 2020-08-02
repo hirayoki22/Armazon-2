@@ -1,7 +1,33 @@
 <app-modal [showModal]="showForm" (showModal)="onClose()">
   <div *ngIf="showForm" class="wrapper">
-    <form [formGroup]="reviewForm" id="review-form">
+    <div class="product-details">
+      
+    </div>
+    
+    <form 
+      [formGroup]="reviewForm" 
+      (ngSubmit)="onSubmit()"
+      id="review-form">
+      <div class="form-group">
+        <label>Overall rating</label>
+        <star-rating></star-rating>
+      </div>
+      
+      <div class="form-group">
+        <label>Add a headline</label>
+        <input formControlName="headline" type="text">
+      </div>
 
+      <div class="form-group">
+        <label>Wire your review</label>
+        <textarea formControlName="review" cols="30" rows="10"></textarea>
+      </div>
+
+      <div class="form-group">
+        <button 
+          [disabled]="reviewForm.invalid"
+          class="submit-btn">Submit</button>
+      </div>
     </form>
   </div>
 </app-modal>
