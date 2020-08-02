@@ -5,7 +5,7 @@ import { ReviewFormService } from './review-form.service';
 import { ProductService } from 'src/app/product.service';
 import { Product } from 'src/app/product.model';
 import { ReviewRatingService } from '../review-rating.service';
-import { NewReview } from '../new-review.model';
+import { NewReview } from './new-review.model';
 
 @Component({
   selector: 'review-form',

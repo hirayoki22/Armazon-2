@@ -5,7 +5,7 @@ import { map, catchError, tap, delay } from 'rxjs/operators';
 
 import { Rating } from './rating.model';
 import { Review } from './review.model';
-import { NewReview } from './new-review.model';
+import { NewReview } from './review-form/new-review.model';
 
 @Injectable({
   providedIn: 'root'
