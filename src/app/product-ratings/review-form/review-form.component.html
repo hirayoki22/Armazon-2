@@ -1,7 +1,14 @@
 <app-modal [showModal]="showForm" (showModal)="onClose()">
   <div *ngIf="showForm" class="wrapper">
-    <div class="product-details">
+    <div *ngIf="product" class="product-details">
+      <div class="product-image">
+        <img 
+          image-loader 
+          [src]="product?.images[0]" 
+          [alt]="product.productName">
+      </div>
 
+      <h3 class="product-name">{{ product.productName }}</h3>
     </div>
     
     <form 
