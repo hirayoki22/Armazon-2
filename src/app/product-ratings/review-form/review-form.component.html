@@ -7,48 +7,48 @@
     class="container" 
     [class.review-submitted]="reviewSubmitted">
 
-    <app-spinner [loading]="isLoading"></app-spinner>
-
-    <div *ngIf="product" class="product-details">
-      <div class="product-image">
-        <img image-loader [src]="product?.images[0]" [alt]="product.productName">    
-      </div>
-
-      <h3 class="product-name">{{ product.productName }}</h3>
-    </div>
-    
-    <form 
-      [formGroup]="reviewForm" 
-      (ngSubmit)="onSubmit()"
-      id="review-form">
-      <div class="form-group">
-        <label>Overall rating</label>
-        <star-rating 
-          [newRating]="true"
-          [overall]="rating"
-          (selectedRating)="onRatingSelection($event)"></star-rating>
+    <div class="scrollable-area">
+      <div *ngIf="product" class="product-details">
+        <div class="product-image">
+          <img image-loader [src]="product?.images[0]" [alt]="product.productName">    
+        </div>
+  
+        <h3 class="product-name">{{ product.productName }}</h3>
       </div>
       
-      <div class="form-group">
-        <label>Add a headline</label>
-        <input formControlName="headline" type="text">
-      </div>
-
-      <div class="form-group">
-        <label>Wire your review</label>
-        <textarea formControlName="review" rows="7"></textarea>
-      </div>
-
-      <div class="form-group">
-        <button 
-          [disabled]="reviewForm.invalid || userReviewExists"
-          class="submit-btn">Submit</button>
-      </div>
-
-      <div *ngIf="userReviewExists" class="error-feedback">
-        <p>You have already reviewed this item before</p>
-      </div>
-    </form>
+      <form 
+        [formGroup]="reviewForm" 
+        (ngSubmit)="onSubmit()"
+        id="review-form">
+        <div class="form-group">
+          <label>Overall rating</label>
+          <star-rating 
+            [newRating]="true"
+            [overall]="rating"
+            (selectedRating)="onRatingSelection($event)"></star-rating>
+        </div>
+        
+        <div class="form-group">
+          <label>Add a headline</label>
+          <input formControlName="headline" type="text">
+        </div>
+  
+        <div class="form-group">
+          <label>Wire your review</label>
+          <textarea formControlName="review" rows="7"></textarea>
+        </div>
+  
+        <div class="form-group">
+          <button 
+            [disabled]="reviewForm.invalid || userReviewExists"
+            class="submit-btn">Submit</button>
+        </div>
+  
+        <div *ngIf="userReviewExists" class="error-feedback">
+          <p>You already reviewed this item</p>
+        </div>
+      </form>
+    </div>
 
     <div *ngIf="reviewSubmitted" class="success-msg">
       <h3>Thank you for your review!</h3>
@@ -57,5 +57,7 @@
         <i class="material-icons">done</i>
       </div>
     </div>
+
+    <app-spinner [loading]="isLoading"></app-spinner>
   </div>
 </app-modal>
