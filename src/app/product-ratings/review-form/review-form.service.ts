@@ -5,12 +5,12 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class ReviewFormService {
-  private formStateSource = new Subject<boolean>();
+  private formStateSource = new Subject<number>();
   $formState = this.formStateSource.asObservable();
 
   constructor() { }
 
-  openReviewForm(): void {
-    this.formStateSource.next(true);
+  openReviewForm(productId: number): void {
+    this.formStateSource.next(productId);
   }
 }

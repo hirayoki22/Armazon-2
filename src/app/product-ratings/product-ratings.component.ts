@@ -13,7 +13,7 @@ import { Review } from './review.model';
 })
 export class ProductRatingsComponent implements OnInit {
   @ViewChild('container') container: ElementRef<HTMLElement>;
-  private productId: number = 0;
+  private productId: number;
   rating: Rating = { overall: 0, totalReviews: 0 };
   userRating: number[] = [];
   reviews: Review[] = [];
@@ -63,7 +63,7 @@ export class ProductRatingsComponent implements OnInit {
     });
   }
 
-  submitReview(): void {
-    this.rf.openReviewForm();
+  writeReview(): void {
+    this.rf.openReviewForm(this.productId);
   }
 }

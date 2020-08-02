@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { ReviewFormService } from './review-form.service';
-import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/product.service';
-
-interface QuickInfo { productName: string; image: string; }
+import { Product } from 'src/app/product.model';
 
 @Component({
   selector: 'review-form',
@@ -13,33 +11,29 @@ interface QuickInfo { productName: string; image: string; }
   styleUrls: ['./review-form.component.scss']
 })
 export class ReviewFormComponent implements OnInit {
-  product: QuickInfo;
+  product: Product;
   reviewForm: FormGroup;
   showForm: boolean = false;
   isLoading: boolean = false;
 
   constructor(
-    private route: ActivatedRoute,
     private ps: ProductService,
     private rf: ReviewFormService,
     private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
-    this.rf.$formState.subscribe(() => {
+    this.rf.$formState.subscribe(productId => {
       this.reviewForm = this.initiReviewForm();
       this.showForm = true;
 
-      this.getProduct();
+      this.getProduct(productId);
     });
   }
 
-  getProduct(): void {
-    const productId = +this.route.snapshot.paramMap.get('id');
-    
-    console.log(productId);
-    this.route.paramMap.subscribe(params => {
-      console.log(params);
+  getProduct(productId: number): void {
+    this.ps.getProductById(productId).subscribe(product => {
+      this.product = product;
     });
   }
 
