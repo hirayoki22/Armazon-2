@@ -14,11 +14,11 @@
         [totalReviews]="rating.totalReviews"></star-rating>
     </div>
 
-    <div *ngIf="!isLoading && rating.totalReviews" class="content">    
-      <button 
-        (click)="writeReview()"
-        class="submit-new-btn">Write a Review</button>
+    <button 
+      (click)="writeReview()"
+      class="submit-new-btn">Write a Review</button>
 
+    <div *ngIf="!isLoading && rating.totalReviews" class="content">    
       <rating-graph [userRating]="userRating"></rating-graph>
 
       <div [class.reloading]="reloading">
