@@ -8,7 +8,7 @@
     [class.review-submitted]="reviewSubmitted">
 
     <app-spinner [loading]="isLoading"></app-spinner>
-    
+
     <div *ngIf="product" class="product-details">
       <div class="product-image">
         <img image-loader [src]="product?.images[0]" [alt]="product.productName">    
@@ -40,8 +40,12 @@
 
       <div class="form-group">
         <button 
-          [disabled]="reviewForm.invalid"
+          [disabled]="reviewForm.invalid || userReviewExists"
           class="submit-btn">Submit</button>
+      </div>
+
+      <div *ngIf="userReviewExists" class="error-feedback">
+        <p>You have already reviewed this item before</p>
       </div>
     </form>
 
