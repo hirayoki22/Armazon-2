@@ -63,7 +63,7 @@ export class ReviewFormComponent implements OnInit {
   onSubmit(): void {
     const review: NewReview = {
       productId: this.product.productId,
-      userId: 10,
+      userId: 7,
       headline: this.reviewForm.get('headline').value.trim(),
       review: this.reviewForm.get('review').value.trim(),
       rating: this.reviewForm.get('rating').value      
@@ -76,7 +76,6 @@ export class ReviewFormComponent implements OnInit {
         this.userReviewExists = true;
         this.reviewForm.reset();
       } else {
-        window.onkeyup = null;
         this.reviewSubmitted = true;
         setTimeout(() => location.reload(), 2000);
       }
