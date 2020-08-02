@@ -1,6 +1,7 @@
 import { Component, OnChanges } from '@angular/core';
 import { ViewChild, ElementRef } from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
+import { fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-modal',
@@ -21,25 +22,22 @@ export class ModalComponent implements OnChanges {
     if (this.showModal) {
       document.body.classList.add('active-overlay');
 
-      // window.onkeyup = (e: KeyboardEvent) => {
-      //   if (e.key == 'Escape') { this.onClose(); }
-      // }
+      fromEvent(window, 'keyup').subscribe((e: KeyboardEvent) => {
+        if (e.key == 'Escape') { this.onClose(); }
+      });
     } else {
       document.body.classList.remove('active-overlay');
     }
   }
 
-  onEscapeKey(e: KeyboardEvent): void {
-    console.log(e.key);
-  };
-
   onClose(): void {
+    if (!this.overlay) { return; }
+
     const overlay = this.overlay.nativeElement;
     const modal = this.modal.nativeElement;
 
     modal.classList.add('zoom-out');
     overlay.classList.add('hide');
-    // window.onkeyup = null;
 
     setTimeout(() => {
       document.body.classList.remove('active-overlay');

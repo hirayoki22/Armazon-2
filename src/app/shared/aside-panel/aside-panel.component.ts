@@ -1,6 +1,7 @@
 import { Component, OnChanges } from '@angular/core';
 import { ViewChild, ElementRef } from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
+import { fromEvent } from 'rxjs';
 
 @Component({
   selector: 'aside-panel',
@@ -19,15 +20,17 @@ export class AsidePanelComponent implements OnChanges {
     if (this.showPanel) {
       document.body.classList.add('active-overlay');
 
-      window.onkeyup = (e: KeyboardEvent) => {
+      fromEvent(window, 'keyup').subscribe((e: KeyboardEvent) => {
         if (e.key == 'Escape') { this.onClose(); }
-      }
+      });
     } else {
       document.body.classList.remove('active-overlay');
     }
   }
 
   onClose(): void {
+    if (!this.overlay) { return; }
+    
     const overlay = this.overlay.nativeElement;
     const panel = this.panel.nativeElement;
 
