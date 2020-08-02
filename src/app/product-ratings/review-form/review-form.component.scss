@@ -1,4 +1,5 @@
 .container {
+  position: relative;
   width: 100%;
   height: calc(100% - 87.19px);
   padding: 0 5rem 5rem;
@@ -96,5 +97,15 @@
         }
       }
     }
+  }
+
+  .success-msg {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.1rem;
+    font-weight: 400;
+    text-align: center;
   }
 }
