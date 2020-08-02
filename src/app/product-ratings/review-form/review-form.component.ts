@@ -17,7 +17,7 @@ export class ReviewFormComponent implements OnInit {
   reviewForm: FormGroup;
   showForm: boolean = false;
   isLoading: boolean = true;
-  reviewSubmitted: boolean = true;
+  reviewSubmitted: boolean = false;
   userReviewExists: boolean = false;
 
   constructor(
