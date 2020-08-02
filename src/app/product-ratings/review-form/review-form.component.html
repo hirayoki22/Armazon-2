@@ -1,3 +1,7 @@
 <app-modal [showModal]="showForm" (showModal)="onClose()">
+  <div *ngIf="showForm" class="wrapper">
+    <form [formGroup]="reviewForm" id="review-form">
 
+    </form>
+  </div>
 </app-modal>
