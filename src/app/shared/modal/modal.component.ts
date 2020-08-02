@@ -10,6 +10,8 @@ import { Input, Output, EventEmitter } from '@angular/core';
 export class ModalComponent implements OnChanges {
   @ViewChild('overlay') overlay: ElementRef<HTMLElement>;
   @ViewChild('modal') modal: ElementRef<HTMLElement>;
+  @Input() width: string = '98vw';
+  @Input() height: string = '96vh';
   @Input() showModal: boolean;
   @Output('showModal') notifyChange = new EventEmitter<boolean>();
 
