@@ -51,6 +51,10 @@ export class ReviewFormComponent implements OnInit {
     });
   }
 
+  get rating(): number {
+    return this.reviewForm.get('rating').value;
+  }
+
   onRatingSelection(rating: number): void {
     this.reviewForm.get('rating').setValue(rating);
   }

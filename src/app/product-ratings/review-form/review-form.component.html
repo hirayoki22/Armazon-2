@@ -25,6 +25,7 @@
         <label>Overall rating</label>
         <star-rating 
           [newRating]="true"
+          [overall]="rating"
           (selectedRating)="onRatingSelection($event)"></star-rating>
       </div>
       
