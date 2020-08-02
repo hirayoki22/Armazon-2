@@ -1,17 +1,43 @@
-<div 
-  *ngIf="rating"
-  (click)="onClick()" 
-  class="rating-wrapper"
-  [class.readonly]="readonly">
-  <div title="{{ rating?.overall }} out of 5 stars" class="outer-stars">
-    <i *ngFor="let star of totalStars;" class="material-icons">grade</i>
-    
-    <div [style.width.%]="rating?.overall | roundNearest:5:10" class="inner-stars">
-      <i *ngFor="let star of totalStars;" class="material-icons">grade</i>
+<div [ngSwitch]="newRating">
+  <div *ngSwitchCase="true">
+    <div 
+      *ngIf="rating"
+      class="rating-wrapper new-rating">
+      <div class="outer-stars">
+        <i (click)="onClick2(index + 1)"
+          *ngFor="let star of totalStars; index as index" 
+          class="material-icons">grade</i>
+        
+        <div [style.width.%]="rating?.overall | roundNearest:5:10" class="inner-stars">
+          <i (click)="onClick2(index + 1)"
+          *ngFor="let star of totalStars; index as index" 
+          class="material-icons">grade</i>
+        </div>
+      </div>
+      
+      <div *ngIf="rating?.totalReviews > 0" class="review-count">
+        ({{ rating.totalReviews | number }})
+      </div>
     </div>
   </div>
-  
-  <div *ngIf="rating?.totalReviews > 0" class="review-count">
-    ({{ rating.totalReviews | number }})
+
+  <div *ngSwitchDefault>
+    <div 
+      *ngIf="rating"
+      (click)="onClick()" 
+      class="rating-wrapper"
+      [class.readonly]="readonly">
+      <div title="{{ rating?.overall }} out of 5 stars" class="outer-stars">
+        <i *ngFor="let star of totalStars;" class="material-icons">grade</i>
+        
+        <div [style.width.%]="rating?.overall | roundNearest:5:10" class="inner-stars">
+          <i *ngFor="let star of totalStars;" class="material-icons">grade</i>
+        </div>
+      </div>
+      
+      <div *ngIf="rating?.totalReviews > 0" class="review-count">
+        ({{ rating.totalReviews | number }})
+      </div>
+    </div>
   </div>
 </div>

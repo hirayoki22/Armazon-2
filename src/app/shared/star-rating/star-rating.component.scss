@@ -10,13 +10,25 @@
     cursor: default;
   }
 
+  &.new-rating {
+    cursor: default;
+
+    .outer-stars, 
+    .inner-stars {
+      cursor: pointer; 
+
+      .material-icons {
+        font-size: 1.6rem;
+      }
+    }
+  }
+
   .outer-stars {
     display: inline-block;
     position: relative;
     white-space: nowrap;
     user-select: none;
        
-  
     .material-icons {
       font-size: 1rem;
       color: #cccfd8;

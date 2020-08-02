@@ -42,6 +42,7 @@ export class StarRating implements OnInit, OnChanges {
   }
 
   onClick2(rating: number): void {
+    this.rating.overall = rating;
     this.notifyRating.emit(rating);
   }
 }
