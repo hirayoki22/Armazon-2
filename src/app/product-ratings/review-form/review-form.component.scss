@@ -43,6 +43,7 @@
   #review-form {
     width: 100%;
     min-height: 400px;
+    animation: reveal .4s ease;
     
     .form-group {
       display: flex;
@@ -107,5 +108,6 @@
     font-size: 1.1rem;
     font-weight: 400;
     text-align: center;
+    animation: reveal .4s ease;
   }
 }
