@@ -27,12 +27,14 @@
 
 @keyframes zoomIn {
   from {
-    transform: scale(1.5);
+    transform: scale(3.5);
+    opacity: 0;
   }
 }
 
 @keyframes zoomOut {
   to {
-    transform: scale(1.5);
+    transform: scale(3.5);
+    opacity: 0;
   }
 }
