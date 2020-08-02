@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ReviewFormService } from './review-form.service';
 import { ProductService } from 'src/app/product.service';
 import { Product } from 'src/app/product.model';
+import { ReviewRatingService } from '../review-rating.service';
+import { NewReview } from '../new-review.model';
 
 @Component({
   selector: 'review-form',
@@ -14,10 +16,12 @@ export class ReviewFormComponent implements OnInit {
   product: Product;
   reviewForm: FormGroup;
   showForm: boolean = false;
-  isLoading: boolean = false;
+  isLoading: boolean = true;
+  reviewSubmitted: boolean = false;
 
   constructor(
     private ps: ProductService,
+    private rs: ReviewRatingService,
     private rf: ReviewFormService,
     private fb: FormBuilder
   ) { }
@@ -34,6 +38,7 @@ export class ReviewFormComponent implements OnInit {
   getProduct(productId: number): void {
     this.ps.getProductById(productId).subscribe(product => {
       this.product = product;
+      this.isLoading = false;
     });
   }
 
@@ -50,7 +55,19 @@ export class ReviewFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.reviewForm.value);
+    const review: NewReview = {
+      productId: this.product.productId,
+      userId: 1,
+      headline: this.reviewForm.get('headline').value.trim(),
+      review: this.reviewForm.get('review').value.trim(),
+      rating: this.reviewForm.get('headline').value      
+    }
+
+    this.isLoading = true;
+    this.rs.submitNewReview(review).subscribe(() => {
+      this.isLoading = false;
+      this.reviewSubmitted = true;
+    });
   }
 
   onClose(): void {

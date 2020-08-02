@@ -5,6 +5,7 @@ import { map, catchError, tap, delay } from 'rxjs/operators';
 
 import { Rating } from './rating.model';
 import { Review } from './review.model';
+import { NewReview } from './new-review.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,10 @@ export class ReviewRatingService {
   ratingViewState$: Observable<number> = this.ratingViewStateSource.asObservable();
 
   constructor(private http: HttpClient) { }
+
+  openRatingsPanel(id: number): void {
+    this.ratingViewStateSource.next(id);
+  }
 
   getProductRating(id: number): Observable<Rating> { 
     return this.http.get<Rating>(`${this.URL}/${id}`).pipe(
@@ -50,8 +55,8 @@ export class ReviewRatingService {
     );    
   }
 
-  openRatingsPanel(id: number): void {
-    this.ratingViewStateSource.next(id);
+  submitNewReview(review: NewReview): Observable<any> {
+    return this.http.post<NewReview>(this.URL2, review);
   }
 
   private errorHandler(err: HttpErrorResponse) {
