@@ -36,13 +36,13 @@ export class ModalComponent implements OnChanges {
     const overlay = this.overlay.nativeElement;
     const modal = this.modal.nativeElement;
 
-    modal.classList.add('zoom-out');
+    modal.classList.add('hide');
     overlay.classList.add('hide');
 
     setTimeout(() => {
       document.body.classList.remove('active-overlay');
       overlay.classList.remove('hide');
-      modal.classList.remove('zoom-out');
+      modal.classList.remove('hide');
 
       this.showModal = false;
       this.notifyChange.emit(this.showModal);
