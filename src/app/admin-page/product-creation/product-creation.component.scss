@@ -48,7 +48,7 @@
     }
 
     .column-s {
-      width: 400px;
+      width: 500px;
       padding: 4rem;
       background-color: #fff;
 
@@ -69,13 +69,15 @@
           width: 100%;
           padding: 0.4rem 0.7rem;
           font-size: 0.8rem;
-          border: thin solid #f7f9fd;
+          border: thin solid #e9ebf1;
           border-radius: 4px;
-          background-color: #f7f9fd;
-          transition: border-color 0.3s ease;
+          background-color: #e9ebf1;
+          transition: background-color .4s ease,
+          border-color .4s ease;
           
           &:focus {
             border-color: #F72551;
+            background-color: #f7f9fd;
           }
         }
       }

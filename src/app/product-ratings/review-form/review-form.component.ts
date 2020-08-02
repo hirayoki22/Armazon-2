@@ -18,7 +18,7 @@ export class ReviewFormComponent implements OnInit {
   showForm: boolean = false;
   isLoading: boolean = true;
   reviewSubmitted: boolean = false;
-  userReviewExists: boolean = true;
+  userReviewExists: boolean = false;
 
   constructor(
     private ps: ProductService,
