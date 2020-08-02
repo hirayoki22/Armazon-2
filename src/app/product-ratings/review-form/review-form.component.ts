@@ -60,7 +60,7 @@ export class ReviewFormComponent implements OnInit {
       userId: 1,
       headline: this.reviewForm.get('headline').value.trim(),
       review: this.reviewForm.get('review').value.trim(),
-      rating: this.reviewForm.get('headline').value      
+      rating: this.reviewForm.get('rating').value      
     }
 
     this.isLoading = true;
