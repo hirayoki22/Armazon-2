@@ -22,9 +22,9 @@ export class LightboxComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.ls.$currentImage.subscribe(data => {
-      this.openLightbox = true;
+      this.openLightbox  = true;
       this.viewFullImage = false;
-      this.currentImage = data.index;
+      this.currentImage  = data.index;
       this.moveIndicator();
       setTimeout(() => this.scrollIntoView(data.scrollBehavior));
     });
