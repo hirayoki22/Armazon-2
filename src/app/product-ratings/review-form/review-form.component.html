@@ -1,11 +1,12 @@
-<app-modal [showModal]="showForm" (showModal)="onClose()">
-  <div *ngIf="showForm" class="wrapper">
-    <div *ngIf="product" class="product-details">
+<app-modal 
+  [width]="'60vw'"
+  [height]="'90vh'"
+  [showModal]="showForm" 
+  (showModal)="onClose()">
+  <div *ngIf="showForm && product" class="container">
+    <div class="product-details">
       <div class="product-image">
-        <img 
-          image-loader 
-          [src]="product?.images[0]" 
-          [alt]="product.productName">
+        <img image-loader [src]="product?.images[1]" [alt]="product.productName">    
       </div>
 
       <h3 class="product-name">{{ product.productName }}</h3>
@@ -29,7 +30,7 @@
 
       <div class="form-group">
         <label>Wire your review</label>
-        <textarea formControlName="review" rows="10"></textarea>
+        <textarea formControlName="review" rows="7"></textarea>
       </div>
 
       <div class="form-group">

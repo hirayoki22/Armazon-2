@@ -3,7 +3,7 @@
   (click)="onClickOutside($event)" 
   *ngIf="showModal" 
   class="overlay">
-  <div #modal class="modal">
+  <div #modal class="modal" [style.width]="width" [style.height]="height">
     <div class="top">
       <button 
         (click)="onClose()"

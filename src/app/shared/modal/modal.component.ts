@@ -21,13 +21,17 @@ export class ModalComponent implements OnChanges {
     if (this.showModal) {
       document.body.classList.add('active-overlay');
 
-      window.onkeyup = (e: KeyboardEvent) => {
-        if (e.key == 'Escape') { this.onClose(); }
-      }
+      // window.onkeyup = (e: KeyboardEvent) => {
+      //   if (e.key == 'Escape') { this.onClose(); }
+      // }
     } else {
       document.body.classList.remove('active-overlay');
     }
   }
+
+  onEscapeKey(e: KeyboardEvent): void {
+    console.log(e.key);
+  };
 
   onClose(): void {
     const overlay = this.overlay.nativeElement;
@@ -35,7 +39,7 @@ export class ModalComponent implements OnChanges {
 
     modal.classList.add('zoom-out');
     overlay.classList.add('hide');
-    window.onkeyup = null;
+    // window.onkeyup = null;
 
     setTimeout(() => {
       document.body.classList.remove('active-overlay');
