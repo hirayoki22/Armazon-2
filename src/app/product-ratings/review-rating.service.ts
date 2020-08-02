@@ -57,7 +57,8 @@ export class ReviewRatingService {
 
   submitNewReview(review: NewReview): Observable<any> {
     return this.http.post<NewReview>(this.URL2, review).pipe(
-      tap(res => console.log(res)),
+      delay(500),
+      // tap(res => console.log(res)),
       catchError(this.errorHandler)
     );
   }

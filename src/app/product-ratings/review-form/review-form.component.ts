@@ -17,7 +17,8 @@ export class ReviewFormComponent implements OnInit {
   reviewForm: FormGroup;
   showForm: boolean = false;
   isLoading: boolean = true;
-  reviewSubmitted: boolean = false;
+  reviewSubmitted: boolean = true;
+  userReviewExists: boolean = false;
 
   constructor(
     private ps: ProductService,
@@ -57,16 +58,22 @@ export class ReviewFormComponent implements OnInit {
   onSubmit(): void {
     const review: NewReview = {
       productId: this.product.productId,
-      userId: 1,
+      userId: 2,
       headline: this.reviewForm.get('headline').value.trim(),
       review: this.reviewForm.get('review').value.trim(),
       rating: this.reviewForm.get('rating').value      
     }
 
     this.isLoading = true;
-    this.rs.submitNewReview(review).subscribe(() => {
+    this.rs.submitNewReview(review).subscribe(res => {
+      if (res.existingRecord) {
+        console.log('You have already submitted a review for the ', this.product.productName);
+        this.userReviewExists = true;
+        this.reviewForm.reset();
+      } else {
+        this.reviewSubmitted = true;
+      }
       this.isLoading = false;
-      this.reviewSubmitted = true;
     });
   }
 

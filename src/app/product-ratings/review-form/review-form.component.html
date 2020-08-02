@@ -6,7 +6,7 @@
 
   <app-spinner [loading]="isLoading"></app-spinner>
 
-  <div *ngIf="showForm" class="container">
+  <div *ngIf="showForm" class="container" [class.review-submitted]="reviewSubmitted">
     <div *ngIf="product" class="product-details">
       <div class="product-image">
         <img image-loader [src]="product?.images[0]" [alt]="product.productName">    
