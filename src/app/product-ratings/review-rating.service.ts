@@ -56,7 +56,10 @@ export class ReviewRatingService {
   }
 
   submitNewReview(review: NewReview): Observable<any> {
-    return this.http.post<NewReview>(this.URL2, review);
+    return this.http.post<NewReview>(this.URL2, review).pipe(
+      tap(res => console.log(res)),
+      catchError(this.errorHandler)
+    );
   }
 
   private errorHandler(err: HttpErrorResponse) {
