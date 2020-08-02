@@ -101,13 +101,22 @@
   }
 
   .success-msg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1.1rem;
-    font-weight: 400;
-    text-align: center;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: inherit;
+    background-color: #fff;
     animation: reveal .4s ease;
+
+    h3 {
+      color: #2587f7;
+      font-size: 1.1rem;
+      font-weight: 400;
+      text-align: center;
+    }
   }
 }
