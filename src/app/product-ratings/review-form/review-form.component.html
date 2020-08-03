@@ -7,7 +7,7 @@
     class="container" 
     [class.review-submitted]="reviewSubmitted">
 
-    <div *ngIf="!isLoading" class="scrollable-area">
+    <div *ngIf="!isLoading && !reviewSubmitted" class="scrollable-area">
       <div class="product-details">
         <div class="product-image">
           <img image-loader [src]="product?.images[0]" [alt]="product.productName">    
@@ -19,31 +19,27 @@
       <div *ngIf="userReviewExists" class="error-feedback">
         <p>You already reviewed this item</p>
       </div>
-      
-      <form 
-        [formGroup]="reviewForm" 
-        (ngSubmit)="onSubmit()"
-        id="review-form">
+
+      <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()" id="review-form">
         <div class="form-group">
           <label>Overall rating</label>
-          <star-rating 
+          <star-rating             
             [newRating]="true"
-            [readonly]="userReviewExists"
             [overall]="rating"
-            (selectedRating)="onRatingSelection($event)"></star-rating>
+            (selectedRating)="onRatingSelection($event)"
+            [class.read-only]="userReviewExists"></star-rating>
         </div>
         
         <div class="form-group">
           <label>Add a headline</label>
           <input formControlName="headline" 
-           >
+            [readonly]="userReviewExists">
         </div>
   
         <div class="form-group">
           <label>Wire your review</label>
           <textarea formControlName="review" 
-           
-            rows="7"></textarea>
+            [readonly]="userReviewExists" rows="7"></textarea>
         </div>
   
         <div class="form-group">

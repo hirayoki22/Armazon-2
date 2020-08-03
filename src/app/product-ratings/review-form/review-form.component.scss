@@ -83,6 +83,17 @@
           border-color: #F72551;
           background-color: #f7f9fd;
         }
+
+        &:read-only {
+          pointer-events: none;
+          cursor: default;
+        }
+      }
+
+      star-rating {
+        &.read-only {
+          pointer-events: none;
+        }
       }
 
       .submit-btn {
