@@ -5,6 +5,7 @@ import { tap, map, catchError, delay } from 'rxjs/operators';
 
 import { Product } from './product.model';
 import { ProductVariant } from './product-variant.model';
+import { nextTick } from 'process';
 
 @Injectable({
   providedIn: 'root'
@@ -20,14 +21,12 @@ export class ProductService {
   addProducts(form: FormData): Observable<any> {
     return this.http.post<any>(this.URL, form).pipe(
       delay(1000),
-      // tap(res => console.log(res)),
       catchError(this.errorHandler)
     );
   }
 
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.URL).pipe(
-      // tap(res => console.log(res)),
       catchError(this.errorHandler)
     );
   }
@@ -49,14 +48,25 @@ export class ProductService {
     );
   }
 
+  verifyProductExists(id: number): Observable<boolean> {
+    return new Observable(subscriber => {
+      this.getProductById(id).subscribe(product => {
+        subscriber.next(product !== null);
+      });
+
+      return {
+        unsubscribe() { subscriber.unsubscribe(); }
+      }
+    });
+  }
+
   getCategories(): Observable<any> {
     return this.http.get<any>(this.URL2).pipe(
       catchError(this.errorHandler)
     );
   }
 
-  /** Product Variant Requests */
-  
+  /** Product Variant Requests */  
   addProductVariant(form: FormData): Observable<any> {
     return this.http.post<any>(this.URL3, form).pipe(
       delay(1000),

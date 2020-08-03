@@ -8,12 +8,15 @@ import { ProductService } from '../product.service';
   providedIn: 'root'
 })
 export class ProductExistsGuard implements CanActivate {
+
   constructor(private ps: ProductService) { }
 
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
+    state: RouterStateSnapshot): Observable<boolean> | boolean {
+    const productId = +next.paramMap.get('id');
+
+    return this.ps.verifyProductExists(productId);
   }
   
 }
