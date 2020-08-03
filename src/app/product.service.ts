@@ -5,7 +5,7 @@ import { tap, map, catchError, delay } from 'rxjs/operators';
 
 import { Product } from './product.model';
 import { ProductVariant } from './product-variant.model';
-import { nextTick } from 'process';
+import { Location } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class ProductService {
   private URL3 = 'http://127.0.0.1/market-api/product-variant.php';
   private URL4 = 'http://127.0.0.1/market-api/product-variant-options.php';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private location: Location) { }
 
   addProducts(form: FormData): Observable<any> {
     return this.http.post<any>(this.URL, form).pipe(
@@ -51,7 +51,12 @@ export class ProductService {
   verifyProductExists(id: number): Observable<boolean> {
     return new Observable(subscriber => {
       this.getProductById(id).subscribe(product => {
-        subscriber.next(product !== null);
+        if (!product) {          
+          this.location.back();
+          subscriber.next(false);
+        } else {
+          subscriber.next(true);
+        }
       });
 
       return {
