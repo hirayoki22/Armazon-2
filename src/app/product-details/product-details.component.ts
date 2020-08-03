@@ -5,6 +5,7 @@ import { ProductService } from '../product.service';
 import { Product } from '../product.model';
 import { ProductVariant } from '../product-variant.model';
 import { CartService } from '../cart/cart.service';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-details',
@@ -34,7 +35,8 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     this.route.paramMap.subscribe(params => {
       this.originalProduct = +params.get('id');
 
-      this.ps.getProductById(this.originalProduct).subscribe(product => {
+      this.ps.getProductById(this.originalProduct).pipe(delay(300))
+      .subscribe(product => {
         this.product = product;        
 
         if (this.product.hasVariant) {
@@ -49,7 +51,8 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
   updateProductInfo(productId: number): void {    
     this.reloading = true;
 
-    this.ps.getProductById(productId).subscribe(product => {
+    this.ps.getProductById(productId).pipe(delay(300))
+    .subscribe(product => {
       this.product = product;
       this.reloading = false;
     });
