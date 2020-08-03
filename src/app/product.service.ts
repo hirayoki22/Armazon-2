@@ -10,17 +10,17 @@ import { ProductVariant } from './product-variant.model';
   providedIn: 'root'
 })
 export class ProductService {
-  private URL  = 'market-api/products.php';
-  private URL2 = 'market-api/product-category.php';
-  private URL3 = 'market-api/product-variant.php';
-  private URL4 = 'market-api/product-variant-options.php';
+  private URL  = 'http://127.0.0.1/market-api/products.php';
+  private URL2 = 'http://127.0.0.1/market-api/product-category.php';
+  private URL3 = 'http://127.0.0.1/market-api/product-variant.php';
+  private URL4 = 'http://127.0.0.1/market-api/product-variant-options.php';
 
   constructor(private http: HttpClient) { }
 
   addProducts(form: FormData): Observable<any> {
     return this.http.post<any>(this.URL, form).pipe(
       delay(1000),
-      tap(res => console.log(res)),
+      // tap(res => console.log(res)),
       catchError(this.errorHandler)
     );
   }
