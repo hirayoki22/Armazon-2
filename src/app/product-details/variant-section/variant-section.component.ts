@@ -18,7 +18,6 @@ export class VariantSectionComponent implements OnInit, OnChanges {
   modelVariants: ProductVariant[] = [];
   configurationVariants: ProductVariant[] = [];
   capacityVariants: ProductVariant[] = [];
-
   activeVariant: number = 0;
   hoveredVariant: number = 0;
 
