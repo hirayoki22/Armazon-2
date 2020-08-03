@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  height: calc(100% - 87.19px);
+  height: 100%;
 
   .empty-cart-msg {
     margin: 15rem auto;
@@ -27,7 +27,8 @@
     position: relative;
     width: 100%;
     height: inherit;
-    padding: 1rem 0;
+    // padding: 1rem 0;
+    padding: calc(87.19px + 1rem) 0 1rem;
     overflow: hidden;
     overflow-y: auto;
     scrollbar-width: none;
