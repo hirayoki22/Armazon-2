@@ -21,6 +21,7 @@ import { FooterComponent } from './footer/footer.component';
 import { PaginationCntrlsComponent } from './product-ratings/pagination-cntrls/pagination-cntrls.component';
 import { LightboxComponent } from './product-details/slider/lightbox/lightbox.component';
 import { ReviewFormComponent } from './product-ratings/review-form/review-form.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ReviewFormComponent } from './product-ratings/review-form/review-form.c
     FooterComponent,
     PaginationCntrlsComponent,
     LightboxComponent,
-    ReviewFormComponent
+    ReviewFormComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
