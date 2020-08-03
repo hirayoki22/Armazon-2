@@ -110,17 +110,17 @@
         }
       }
     }
+  }
 
-    .error-feedback {
-      margin-top: 2rem;
-      animation: reveal .4s ease;
-      
-      p {
-        color: #963249;
-        font-weight: 400;
-        text-align: center;
-        line-height: 1.7rem;
-      }
+  .error-feedback {
+    margin-bottom: 2rem;
+    animation: reveal .4s ease;
+    
+    p {
+      color: #963249;
+      font-weight: 400;
+      text-align: center;
+      line-height: 1.7rem;
     }
   }
 
@@ -177,7 +177,7 @@
         height: 250px;
       }
     }
-    
+
     #review-form {
       .form-group {
         .submit-btn {

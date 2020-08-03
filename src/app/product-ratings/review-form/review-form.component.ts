@@ -32,6 +32,7 @@ export class ReviewFormComponent implements OnInit {
     this.rf.$formState.subscribe(productId => {
       this.reviewForm = this.initiReviewForm();
       this.showForm = true;
+      this.isLoading = true;
 
       this.getProduct(productId);
     });
@@ -46,7 +47,7 @@ export class ReviewFormComponent implements OnInit {
 
   private initiReviewForm(): FormGroup {
     return this.fb.group({
-      rating:   [ null, Validators.required ],
+      rating:   [ {value: '', disabled: true}, Validators.required ],
       headline: [ null ],
       review:   [ null, Validators.required ]
     });
