@@ -44,7 +44,8 @@ body {
   background: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%) no-repeat;
   // background-color: #fff;
 
-  &.active-overlay {
+  &.active-sidepanel,
+  &.active-modal {
     overflow: hidden;
   }
 }

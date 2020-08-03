@@ -18,13 +18,13 @@ export class AsidePanelComponent implements OnChanges {
 
   ngOnChanges(): void {
     if (this.showPanel) {
-      document.body.classList.add('active-overlay');
+      document.body.classList.add('active-sidepanel');
 
       fromEvent(window, 'keyup').subscribe((e: KeyboardEvent) => {
         if (e.key == 'Escape') { this.onClose(); }
       });
     } else {
-      document.body.classList.remove('active-overlay');
+      document.body.classList.remove('active-sidepanel');
     }
   }
 
@@ -39,7 +39,7 @@ export class AsidePanelComponent implements OnChanges {
     window.onkeyup = null;
 
     setTimeout(() => {
-      document.body.classList.remove('active-overlay');
+      document.body.classList.remove('active-sidepanel');
       overlay.classList.remove('hide');
       panel.classList.remove('slide-out');
 

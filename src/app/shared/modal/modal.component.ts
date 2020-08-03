@@ -20,13 +20,13 @@ export class ModalComponent implements OnChanges {
 
   ngOnChanges(): void {
     if (this.showModal) {
-      document.body.classList.add('active-overlay');
+      document.body.classList.add('active-modal');
 
       fromEvent(window, 'keyup').subscribe((e: KeyboardEvent) => {
         if (e.key == 'Escape') { this.onClose(); }
       });
     } else {
-      document.body.classList.remove('active-overlay');
+      document.body.classList.remove('active-modal');
     }
   }
 
@@ -40,7 +40,7 @@ export class ModalComponent implements OnChanges {
     overlay.classList.add('hide');
 
     setTimeout(() => {
-      document.body.classList.remove('active-overlay');
+      document.body.classList.remove('active-modal');
       overlay.classList.remove('hide');
       modal.classList.remove('hide');
 
