@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { CartService } from '../cart/cart.service';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-navbar',
@@ -9,13 +11,28 @@ import { CartService } from '../cart/cart.service';
 })
 export class NavbarComponent implements OnInit {
   itemCount: number | string;
+  hideNavbar: boolean = false;
 
-  constructor(private cs: CartService) { }
+  constructor(
+    private cs: CartService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+    this.hideUrlOnRoute();
     this.initItemCount();
 
     this.cs.cartChange$.subscribe(() => this.initItemCount());
+  }
+
+  private hideUrlOnRoute(): void {
+    this.router.events.pipe(
+      filter(events => events instanceof NavigationEnd)
+    ).subscribe((navigation: NavigationEnd) => {
+      const url = navigation.urlAfterRedirects;
+
+      this.hideNavbar = url.includes('login') || url.includes('signup');
+    });
   }
 
   private initItemCount(): void {
