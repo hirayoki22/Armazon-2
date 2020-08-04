@@ -9,6 +9,7 @@ import { UserService } from '../user.service';
 })
 export class LoginPageComponent implements OnInit {
   loginForm: FormGroup;
+  showPassword: boolean = false;
   isLoading: boolean = false;
 
   constructor(

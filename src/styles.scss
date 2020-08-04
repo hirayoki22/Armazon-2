@@ -161,9 +161,10 @@ img {
   height: 50px;         
   font-size: .85rem;
   border-radius: 60px;
-  border: 1px solid #c7cad8; 
-  background-color: #fff;  
-  transition: background-color .4s ease;
+  border: 1px solid lighten(#e6e9f0, 5); 
+  background-color: lighten(#e6e9f0, 5);  
+  transition: background-color .4s ease,
+  border-color .4s ease;
   overflow: hidden;        
   
   &:disabled {
@@ -172,6 +173,7 @@ img {
   }
 
   &:not(:disabled):hover {
+    border-color: #e6e9f0; 
     background-color: #e6e9f0; 
   }
 }

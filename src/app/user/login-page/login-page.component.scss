@@ -23,20 +23,25 @@
     height: 100%;
     
     #loginForm {
-      width: 350px;
+      width: 400px;
     
       .form-group {
+        position: relative;
         display: flex;
-        align-items: center;
         flex-direction: column;
         justify-content: space-between;
+        // background-color: #aaa;
   
         &:not(:last-of-type) {
           margin-bottom: 1.5rem;
         }
   
         label {
-          margin-bottom: 0.5rem;
+          position: absolute;
+          left: 0;
+          // font-size: 1rem;
+          user-select: none;
+          transition: all;
         } 
   
         input {
@@ -44,7 +49,7 @@
           padding: 0.4rem 0.7rem;
           font-size: 0.8rem;
           text-align: center;
-          border-bottom: thin solid #e9ebf1;
+          border-bottom: thin solid #c7cad8;
           transition: background-color .4s ease,
           border-color .4s ease;
           
@@ -52,14 +57,37 @@
             
           }
         }
+
+        .toggle_password_visibility {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 50px;
+          height: calc(100% - 2px);
+          background: linear-gradient(90deg, transparent, #fff 40%);
+          z-index: 5;
+
+          .material-icons {
+            margin-left: auto;
+            font-size: 1.3rem;
+          }
+        }
   
+        
+      }
+
+      .action-buttons {
+        width: 100%;
+        margin-top: 2rem;
+
+
         .login-btn,
         .signup-btn {
           width: 100%;
         }
 
         .login-btn {
-          margin-bottom: 1rem;
+          margin-bottom: 1.5rem;
         }
       }
     }
@@ -71,7 +99,8 @@
     flex-direction: column;
 
     .quick-store-info-column,
-    .login-form-column {
+    .login-form-column,
+    .login-form-column #loginForm {
       width: 100%;
     }
 

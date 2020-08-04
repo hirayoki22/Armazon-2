@@ -6,16 +6,24 @@
   <div class="login-form-column">
     <form [formGroup]="loginForm" id="loginForm">
       <div class="form-group">
-        <label>Username</label>
         <input formControlName="username" type="text">
+        <label>Username or email address</label>
       </div>
   
       <div class="form-group">
+        <input formControlName="password" 
+          [type]="!showPassword ? 'password' : 'text'">
         <label>Password</label>
-        <input formControlName="password" type="password">
+        <button 
+          (click)="showPassword = !showPassword"
+          class="toggle_password_visibility"
+          type="button">
+          <i *ngIf="!showPassword" class="material-icons">visibility</i>
+          <i *ngIf="showPassword" class="material-icons">visibility_off</i>
+        </button>
       </div>
   
-      <div class="form-group">
+      <div class="action-buttons">
         <button class="btn-xl-filled login-btn">Log In</button>
         <button class="btn-xl signup-btn">Create Account</button>
       </div>
