@@ -20,7 +20,7 @@
     position: relative;
     width: 40%;
     height: 100%;
-    padding: 2rem;
+    padding: 2.5rem;
     transition: width .3s ease;
 
     .cover-image {
@@ -47,7 +47,7 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.3);
+      background-color: rgba(0, 0, 0, 0.4);
       z-index: 1;
     }
 
@@ -57,8 +57,26 @@
       left: 0;
       bottom: 0;
       width: 100%;
-      height: 30%;
-      background: linear-gradient(transparent, rgba(247, 37, 83, 0.4));
+      height: 20%;
+      background: linear-gradient(
+        360deg,
+        hsl(0, 0%, 0%) 0%,
+        hsla(0, 0%, 0%, 0.917) 5.3%,
+        hsla(0, 0%, 0%, 0.834) 10.6%,
+        hsla(0, 0%, 0%, 0.753) 15.9%,
+        hsla(0, 0%, 0%, 0.672) 21.3%,
+        hsla(0, 0%, 0%, 0.591) 26.8%,
+        hsla(0, 0%, 0%, 0.511) 32.5%,
+        hsla(0, 0%, 0%, 0.433) 38.4%,
+        hsla(0, 0%, 0%, 0.357) 44.5%,
+        hsla(0, 0%, 0%, 0.283) 50.9%,
+        hsla(0, 0%, 0%, 0.213) 57.7%,
+        hsla(0, 0%, 0%, 0.147) 65%,
+        hsla(0, 0%, 0%, 0.089) 72.9%,
+        hsla(0, 0%, 0%, 0.042) 81.4%,
+        hsla(0, 0%, 0%, 0.011) 90.6%,
+        hsla(0, 0%, 0%, 0) 100%
+      );
       z-index: 1;
     }
 
@@ -70,12 +88,17 @@
       z-index: 2;
      
       .return-btn {
-        border-radius: 45px;
-        transition: background-color .4s ease;
 
         .material-icons {
-          color: #fff;
+          color: #e6e9f0;
           font-size: 2rem;
+          transition: color .4s ease;
+        }
+
+        &:hover {
+          .material-icons {
+            color: #fff;
+          }
         }
       }
       
@@ -106,7 +129,19 @@
 
     .middle-content {
       position: relative;
+      max-width: 400px;
+      margin: auto 0;
+      margin-left: auto;;
       z-index: 2;
+
+      h3 {
+        color: #e6e9f0;
+        font-size: 3.5rem;
+        font-weight: 300;
+        text-align: right;
+        line-height: 5rem;
+        text-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      }
     }
 
     .bottom-content {
@@ -115,6 +150,7 @@
       margin-top: auto;
       margin-left: auto;
       z-index: 2;
+      text-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
 
       a {
         color: #fff;
@@ -123,7 +159,8 @@
 
       p {
         color: #fff;
-        font-size: 0.73rem;
+        font-size: 0.7rem;
+        font-weight: 300;
         line-height: 1.2rem;
       }
     }
@@ -229,21 +266,30 @@
     }
 
     .quick-store-info-column {
-      // height: 50%;
       height: 400px;
       padding: 1.5rem;
+
+      &::before {
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .middle-content {
+        margin: auto;
+  
+        h3 {
+          font-size: 2.5rem;
+          text-align: center;
+          line-height: normal;
+        }
+      }
+
+      .bottom-content {
+        display: none;
+      }
     }
 
     .login-form-column {
       padding: 2.5rem;
-    }
-
-    .middle-content {
-      margin: auto;
-    }
-
-    .bottom-content {
-      margin: auto auto 0;
     }
   }
 }
