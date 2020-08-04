@@ -19,9 +19,10 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.initLoginForm();
+    this.changeBodyProperties();
   }
 
-  initLoginForm(): FormGroup {
+  private initLoginForm(): FormGroup {
     return this.fb.group({
       username: [ null, Validators.required ],
       password: [ null, Validators.required ],
@@ -40,6 +41,11 @@ export class LoginPageComponent implements OnInit {
     const formData = new FormData();
 
     console.log(this.loginForm.value);
+  }
+
+  private changeBodyProperties(): void {
+    document.body.style.overflow = 'hidden';
+    document.body.style.background = '#fff';
   }
 
 }

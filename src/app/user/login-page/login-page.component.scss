@@ -5,6 +5,7 @@
   background-color: #fff;
   animation: reveal .4s ease;
   transition: height .3s ease;
+  overflow: hidden;
 
   .quick-store-info-column {
     display: flex;
