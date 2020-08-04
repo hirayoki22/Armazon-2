@@ -4,7 +4,7 @@ import { Input } from '@angular/core';
 import { ProductService } from 'src/app/product.service';
 
 @Component({
-  selector: 'app-search-bar',
+  selector: 'search-bar',
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss']
 })
