@@ -23,7 +23,6 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.initLoginForm();
-    this.changeBodyProperties();
   }
 
   private initLoginForm(): FormGroup {
@@ -49,11 +48,6 @@ export class LoginPageComponent implements OnInit {
     formData.append('password', this.password.value.trim());
 
     this.us.loginRequest(formData).subscribe();
-  }
-
-  private changeBodyProperties(): void {
-    document.body.style.overflow = 'hidden';
-    document.body.style.background = '#fff';
   }
 
 }
