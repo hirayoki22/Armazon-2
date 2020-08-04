@@ -33,28 +33,8 @@
 
   .submit-new-btn {
     flex-shrink: 0;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 70%;
-    height: 50px;     
+    width: 70%;  
     margin: 3rem auto 3rem;     
-    font-size: .85rem;
-    border: 1px solid #c7cad8; 
-    border-radius: 60px;
-    background-color: #fff;          
-    transition: background-color .4s ease;
-    overflow: hidden;        
-    
-    &:disabled {
-      opacity: 0.6 !important;
-      cursor: default;
-    }       
-
-    &:hover {
-      background-color: #e6e9f0; 
-    }
   }
 
   .content {

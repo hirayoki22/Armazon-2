@@ -75,7 +75,7 @@
         margin-bottom: 0.5rem;
       } 
 
-      input, textarea, select {
+      input, textarea {
         width: 100%;
         padding: 0.4rem 0.7rem;
         font-size: 0.8rem;
@@ -99,31 +99,6 @@
       star-rating {
         &.read-only {
           pointer-events: none;
-        }
-      }
-
-      .submit-btn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 190px;
-        height: 50px;
-        margin: auto;
-        color: #fff;
-        font-size: .85rem;
-        border: 1px solid #F72551;
-        border-radius: 40px;
-        background-color: #F72551;
-        transition: opacity .4s ease,
-        background-color .4s ease;
-
-        &:disabled {
-          opacity: 0.6 !important;
-          cursor: default;
-        }
-
-        &:not(:disabled):hover {
-          background-color: darken(#F72551, 5); 
         }
       }
     }
@@ -185,7 +160,7 @@
 @media (max-width: 768px) {
   .container {
     .scrollable-area {
-      padding: 0 3rem 3rem;
+      padding: 87.19px 3rem 3rem;
     }
 
     .product-details {  

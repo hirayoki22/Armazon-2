@@ -16,7 +16,7 @@
 
     <button 
       (click)="writeReview()"
-      class="submit-new-btn">Write a Review</button>
+      class="btn-xl submit-new-btn">Write a Review</button>
 
     <div *ngIf="!isLoading && rating.totalReviews" class="content">    
       <rating-graph [userRating]="userRating"></rating-graph>

@@ -20,7 +20,6 @@ export class AppComponent implements OnInit {
 
   private hideUrlOnRoute(): void {
     this.router.events.pipe(
-      tap(res => console.log(res)),
       filter(events => events instanceof NavigationEnd)
     ).subscribe((navigation: NavigationEnd) => {
       const url = navigation.urlAfterRedirects;

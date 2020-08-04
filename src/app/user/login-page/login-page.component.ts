@@ -35,4 +35,8 @@ export class LoginPageComponent implements OnInit {
     return this.loginForm.get('password').value.trim();
   }
 
+  onSubmit(): void {
+    const formData = new FormData();
+  }
+
 }
