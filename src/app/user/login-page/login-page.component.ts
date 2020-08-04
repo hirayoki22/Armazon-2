@@ -49,7 +49,6 @@ export class LoginPageComponent implements OnInit {
     formData.append('password', this.password.value.trim());
 
     this.us.loginRequest(formData).subscribe();
-    console.log(this.loginForm.value);
   }
 
   private changeBodyProperties(): void {
