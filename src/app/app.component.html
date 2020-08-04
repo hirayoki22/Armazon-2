@@ -1,7 +1,7 @@
-<app-navbar></app-navbar>
+<app-navbar *ngIf="!hideNavbar"></app-navbar>
 <main>
   <router-outlet></router-outlet>
-  <app-footer></app-footer>
+  <app-footer *ngIf="!hideFooter"></app-footer>
 </main>
 <app-cart></app-cart>
 <app-product-ratings></app-product-ratings>

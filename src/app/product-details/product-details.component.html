@@ -49,15 +49,13 @@
             (click)="onBuyNow(product?.productId)"            
             [disabled]="!product?.available"
             type="button" 
-            class="buy-now-btn">Buy Now</button>
+            class="btn-xl buy-now-btn">Buy Now</button>
   
           <button 
             (click)="onAddToCart(product?.productId)"
             [disabled]="!product?.available || !product?.totalStock"
             type="button" 
-            class="add-to-cart-btn">
-            <span>Add To Cart</span>
-          </button>
+            class="btn-xl-filled add-to-cart-btn">Add To Cart</button>
         </div>
   
         <div class="about-product" [class.reloading]="reloading">

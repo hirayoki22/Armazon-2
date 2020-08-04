@@ -153,3 +153,36 @@ img {
     object-position: center center;
   }
 }
+
+.btn-xl {
+  justify-content: center;
+  position: relative;
+  width: 190px;
+  height: 50px;         
+  font-size: .85rem;
+  border-radius: 60px;
+  border: 1px solid #c7cad8; 
+  background-color: #fff;  
+  transition: background-color .4s ease;
+  overflow: hidden;        
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+
+  &:not(:disabled):hover {
+    background-color: #e6e9f0; 
+  }
+}
+
+.btn-xl-filled {
+  @extend .btn-xl;
+  color: #fff;     
+  border: 1px solid #F72551;       
+  background-color: #F72551;
+
+  &:not(:disabled):hover {
+    background-color: darken(#F72551, 5) !important; 
+  }
+}
