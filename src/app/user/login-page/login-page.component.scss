@@ -5,7 +5,14 @@
   background-color: #fff;
   animation: reveal .4s ease;
   transition: height .3s ease;
+  overflow: hidden;
   overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   .quick-store-info-column {
     display: flex;
