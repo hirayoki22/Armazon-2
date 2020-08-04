@@ -38,9 +38,10 @@ export class PageNotFoundComponent implements OnInit {
     formData.append('password', this.password);
     formData.append('username', this.username);
     
-    fetch(URL, { method: 'POST', body: formData })
-    .then(res => res.json())
-    .then(res => this.loginMessage = res)
+    fetch(URL, { method: 'POST', body: formData, credentials: 'omit'})
+    .then(res => res.text())
+    .then(res => console.log(res))
+    // .then(res => this.loginMessage = res)
     .catch(err => err.getMessage);
   }
 }
