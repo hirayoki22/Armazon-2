@@ -12,6 +12,10 @@ export class LoginPageComponent implements OnInit {
   showPassword: boolean = false;
   isLoading: boolean = false;
 
+  get currentYear(): number {
+    return new Date().getFullYear();
+  }
+
   constructor(
     private us: UserService,
     private fb: FormBuilder

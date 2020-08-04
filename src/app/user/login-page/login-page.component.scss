@@ -5,7 +5,6 @@
   background-color: #fff;
   animation: reveal .4s ease;
   transition: height .3s ease;
-  overflow: hidden;
 
   .quick-store-info-column {
     display: flex;
@@ -13,7 +12,8 @@
     position: relative;
     width: 40%;
     height: 100%;
-    padding: 2.5rem;
+    padding: 2rem;
+    transition: width .3s ease;
 
     .cover-image {
       position: absolute;
@@ -51,7 +51,7 @@
       width: 100%;
       height: 30%;
       background: linear-gradient(transparent, rgba(247, 37, 83, 0.4));
-      z-index: 2;
+      z-index: 1;
     }
 
     .top-content {
@@ -59,20 +59,15 @@
       display: flex;
       align-items: center;
       width: 100%;
-      z-index: 1;
+      z-index: 2;
      
       .return-btn {
-        padding: 0.6rem;
         border-radius: 45px;
         transition: background-color .4s ease;
 
         .material-icons {
           color: #fff;
           font-size: 2rem;
-        }
-
-        &:hover {
-          background-color: rgba(255, 255, 255, 0.2);
         }
       }
       
@@ -100,6 +95,30 @@
         }
       }
     }
+
+    .middle-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .bottom-content {
+      position: relative;
+      max-width: 300px;
+      margin-top: auto;
+      margin-left: auto;
+      z-index: 2;
+
+      a {
+        color: #fff;
+        text-decoration: underline;
+      }
+
+      p {
+        color: #fff;
+        font-size: 0.73rem;
+        line-height: 1.2rem;
+      }
+    }
   }
 
   .login-form-column {
@@ -108,6 +127,7 @@
     align-items: center;
     height: 100%;
     padding: 5rem;
+    transition: width .3s ease;
     
     #loginForm {
       width: 400px;
@@ -190,7 +210,7 @@
   } 
 }
 
-@media (max-width: 768px) {
+@media (max-width: 850px) {
   .login-section {
     flex-direction: column;
     
@@ -201,12 +221,20 @@
     }
 
     .quick-store-info-column {
-      height: 400px;
+      height: 50%;
       padding: 1.5rem;
     }
 
     .login-form-column {
       padding: 2.5rem;
+    }
+
+    .middle-content {
+      margin: auto;
+    }
+
+    .bottom-content {
+      margin: auto auto 0;
     }
   }
 }
