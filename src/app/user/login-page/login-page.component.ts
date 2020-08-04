@@ -39,6 +39,10 @@ export class LoginPageComponent implements OnInit {
 
   onSubmit(): void {
     const formData = new FormData();
+    formData.append('username', this.username.value.trim());
+    formData.append('password', this.password.value.trim());
+
+    this.us.loginRequest(formData).subscribe();
 
     console.log(this.loginForm.value);
   }

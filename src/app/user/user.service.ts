@@ -14,8 +14,12 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  
-
+  loginRequest(form: FormData): Observable<any> {
+    return this.http.post<any>(this.URL1, form).pipe(
+      tap(res => console.log(res)),
+      catchError(this.errorHandler)
+    );
+  }
 
   private errorHandler(err: HttpErrorResponse) {
     let error = '';
