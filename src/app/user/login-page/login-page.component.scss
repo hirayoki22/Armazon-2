@@ -5,6 +5,7 @@
   background-color: #fff;
   animation: reveal .4s ease;
   transition: height .3s ease;
+  overflow-y: auto;
 
   .quick-store-info-column {
     display: flex;
@@ -221,7 +222,8 @@
     }
 
     .quick-store-info-column {
-      height: 50%;
+      // height: 50%;
+      height: 400px;
       padding: 1.5rem;
     }
 
