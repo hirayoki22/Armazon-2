@@ -1,5 +1,26 @@
 <section class="container">
   <div class="wrapper-l">
-    <h1>NOT FOUND - 404</h1>
+    <!-- <h1>NOT FOUND - 404</h1> -->
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Username</label>
+        <input formControlName="username" type="text">
+      </div>
+
+      <div class="form-group">
+        <label>password</label>
+        <input formControlName="password" type="password">
+      </div>
+
+      <div class="form-group">
+        <button [disabled]="loginForm.invalid">Login</button>
+      </div>
+    </form>
+
+    <div style="margin: 6rem auto 0;" *ngIf="loginMessage">
+      <p>Login Status: {{ loginMessage.loginSuccess }}</p>
+      <p>Login Message: {{ loginMessage.message }}</p>
+    </div>
   </div>
 </section>
