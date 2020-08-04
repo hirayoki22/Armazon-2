@@ -28,16 +28,18 @@ export class LoginPageComponent implements OnInit {
     });
   }
 
-  get username(): string {
-    return this.loginForm.get('username').value.trim();
+  get username() {
+    return this.loginForm.get('username');
   }
 
-  get password(): string {
-    return this.loginForm.get('password').value.trim();
+  get password() {
+    return this.loginForm.get('password');
   }
 
   onSubmit(): void {
     const formData = new FormData();
+
+    console.log(this.loginForm.value);
   }
 
 }
