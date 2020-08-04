@@ -6,10 +6,33 @@
   animation: reveal .4s ease;
 
   .quick-store-info-column {
+    position: relative;
     width: 40%;
     height: 100%;
     padding: 5rem;
-    background-color: #F72551;
+    background: #F72551 url('../../../assets/img/login-form.webp') 
+    center center/cover no-repeat;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 400px;
+      background: linear-gradient(transparent, #F72551);
+      z-index: 1;
+    }
   }
 
   .login-form-column {
@@ -17,7 +40,7 @@
     display: flex;
     align-items: center;
     height: 100%;
-    padding: 4rem;
+    padding: 5rem;
     
     #loginForm {
       width: 400px;
@@ -44,7 +67,7 @@
           z-index: 1;
           
           &:focus {
-            border-color: #2587f7;
+            border-color: #F72551;
 
             & + label {
               top: 0;
