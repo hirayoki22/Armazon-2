@@ -179,63 +179,82 @@
       height: auto;
     
       .form-group {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 1rem 0 0;
+        width: 100%;
+        height: auto;
   
         &:not(:last-of-type) {
           margin-bottom: 1.5rem;
         }
 
-        input {
+        &-wrapper {
           position: relative;
-          width: 100%;
-          padding: 0.25rem 0;
-          border-bottom: thin solid #c7cad8;
-          transition: background-color .4s ease,
-          border-color .4s ease;
-          z-index: 1;
-          
-          &:focus {
-            border-color: #F72551;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          padding: 1rem 0 0;
 
-            & + label {
+          input {
+            position: relative;
+            width: 100%;
+            padding: 0.25rem 0;
+            border-bottom: thin solid #c7cad8;
+            transition: background-color .4s ease,
+            border-color .4s ease;
+            z-index: 1;
+            
+            &:focus {
+              border-color: #F72551;
+  
+              & + label {
+                top: 0;
+                font-size: 0.75rem;
+              }
+            }
+          }
+  
+          label {
+            position: absolute;
+            left: 0;
+            top: calc(100% - 0.9rem - 1px - 0.5rem);
+            font-size: 0.95rem;
+            transition: 0.2s ease;
+            user-select: none;
+  
+            &.shrink {
               top: 0;
               font-size: 0.75rem;
             }
+          } 
+  
+          .toggle_password_visibility {
+            position: absolute;
+            top: 1rem;
+            right: 0;
+            width: 50px;
+            height: calc(100% - 17px);
+            background: linear-gradient(90deg, transparent, #fff 40%);
+            z-index: 5;
+  
+            .material-icons {
+              margin-left: auto;
+              font-size: 1.3rem;
+            }
+          }   
+        }   
+        
+        .invalid-feedback {
+          position: relative;
+          display: block;
+          width: 100%;
+
+          p {
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            color: #963249;
+            font-size: 0.8rem;
           }
         }
-
-        label {
-          position: absolute;
-          left: 0;
-          top: calc(100% - 0.9rem - 1px - 0.5rem);
-          font-size: 0.9rem;
-          transition: 0.2s ease;
-          user-select: none;
-
-          &.shrink {
-            top: 0;
-            font-size: 0.75rem;
-          }
-        } 
-
-        .toggle_password_visibility {
-          position: absolute;
-          top: 1rem;
-          right: 0;
-          width: 50px;
-          height: calc(100% - 17px);
-          background: linear-gradient(90deg, transparent, #fff 40%);
-          z-index: 5;
-
-          .material-icons {
-            margin-left: auto;
-            font-size: 1.3rem;
-          }
-        }        
       }
 
       .action-buttons {
