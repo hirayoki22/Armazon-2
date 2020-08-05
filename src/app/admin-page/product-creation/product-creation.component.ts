@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { OwnValidators } from 'src/app/shared/validators/sync-validators';
+import { MyAsyncValidators } from '../../shared/validators/async-validators.service';
 
 import { ProductService } from 'src/app/product.service';
-import { CustomValidators } from './validators';
-import { MyAsyncValidators } from './async-validators.service';
 
 interface Category { categoryId: number; category: string };
 interface VariantOption { optionId: number; option: string };
@@ -49,7 +49,7 @@ export class ProductCreationComponent implements OnInit {
       categoryId:  [ null, Validators.required ],
       productDesc: [ '', Validators.required ],
       totalStock:  [ 1, [Validators.required, Validators.min(1)]],      
-      images:      [ [], CustomValidators.imageValidator ],
+      images:      [ [], OwnValidators.imageValidator ],
       variantInfo: null
     });
   }

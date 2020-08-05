@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { OwnValidators } from '../own-validators';
+import { OwnValidators } from 'src/app/shared/validators/sync-validators';
 
 import { UserService } from '../user.service';
 
