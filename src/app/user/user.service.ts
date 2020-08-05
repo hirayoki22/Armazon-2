@@ -1,7 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { tap, map, catchError, delay } from 'rxjs/operators';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    Authorization: 'my-auth-token'
+  }),
+  withCredentials: true,
+  observe: 'response' as 'response'
+};
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +23,12 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  loginRequest(form: FormData): Observable<any> {
-    return this.http.post<any>(this.URL1, form).pipe(
+  loginRequest(form: FormData) {
+    return this.http.post<any>(
+      this.URL1, 
+      form,
+      httpOptions
+    ).pipe(
       tap(res => console.log(res)),
       catchError(this.errorHandler)
     );

@@ -105,7 +105,7 @@
       .logo {
         display: flex;
         align-items: center;
-        margin: auto;
+        margin-left: auto;
         text-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
         user-select: none;
         overflow: hidden;
@@ -136,10 +136,10 @@
 
       h3 {
         color: #e6e9f0;
-        font-size: 3.5rem;
+        font-size: 3rem;
         font-weight: 300;
         text-align: right;
-        line-height: 5rem;
+        line-height: 4rem;
         text-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
       }
     }
