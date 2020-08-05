@@ -1,7 +1,7 @@
 import { AbstractControl, ValidationErrors, FormGroup } from '@angular/forms';
 
 const EMAIL_REGX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
+const PHONE_REGX = /^[1]?[-.\s]?(\(\d{3}\)|\d{3})[-.\s]?\d{3}[-.\s]?\d{4}$/;
 const INVALID_PASSWORDS = [
   'hello',
   'abcdef',
@@ -12,9 +12,14 @@ const INVALID_PASSWORDS = [
 ];
 
 export class OwnValidators {
+  static phone(control: AbstractControl) {
+    return PHONE_REGX.test(control.value.trim()) ? 
+      { password: { invalid: true } } : null;
+  }
+
   static email(control: AbstractControl): ValidationErrors | null {
-    return !control.value || EMAIL_REGX.test(control.value.trim()) ? 
-      null : { email: { invalid: true }};
+    return EMAIL_REGX.test(control.value.trim()) ? 
+      { email: { invalid: true }} : null;
   }
 
   static password(control: AbstractControl): ValidationErrors | null {
@@ -23,10 +28,7 @@ export class OwnValidators {
   }
 
   static passwordMatch(form: FormGroup): ValidationErrors | null {
-    const password = form.get('password').value;
-    const repassword = form.get('rePassword').value;
-
-    return repassword !== password ? 
+    return form.get('rePassword').value !== form.get('password').value ? 
       { rePassword: { noMatch: true } } : null;
   }
   
