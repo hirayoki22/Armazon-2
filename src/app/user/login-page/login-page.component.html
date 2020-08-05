@@ -38,8 +38,12 @@
           </label>
         </div>
 
-        <div class="invalid-feedback">
-          <p>Enter your username or email</p>
+        <div 
+          *ngIf="username.touched && username.invalid"
+          class="invalid-feedback">
+          <p *ngIf="username?.errors.required">
+            Enter your username or email
+          </p>
         </div>
       </div>
   
@@ -58,8 +62,12 @@
           </button>
         </div>
 
-        <div class="invalid-feedback">
-          <p>Enter your password</p>
+        <div 
+          *ngIf="password.touched && password.invalid"
+          class="invalid-feedback">
+          <p *ngIf="password?.errors.required">
+            Enter your password
+          </p>
         </div>
       </div>
   
