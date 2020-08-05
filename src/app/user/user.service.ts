@@ -5,7 +5,7 @@ import { tap, map, catchError, delay } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    Authorization: 'my-auth-token'
+    Authorization: '2454789645'
   }),
   withCredentials: true,
   // observe: 'response' as 'response'

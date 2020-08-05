@@ -47,7 +47,7 @@ export class ReviewFormComponent implements OnInit {
 
   private initiReviewForm(): FormGroup {
     return this.fb.group({
-      rating:   [ {value: '', disabled: true}, Validators.required ],
+      rating:   [ null, Validators.required ],
       headline: [ null ],
       review:   [ null, Validators.required ]
     });
