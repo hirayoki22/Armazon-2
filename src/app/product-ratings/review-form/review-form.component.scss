@@ -76,13 +76,13 @@
       } 
 
       input, textarea {
-        position: relative;
         width: 100%;
-        padding: 0.25rem 0;
-        border-bottom: thin solid #c7cad8;
+        padding: 0.4rem 0.7rem;
+        font-size: 0.8rem;
+        border: thin solid #e9ebf1;
+        background-color: #e9ebf1;
         transition: background-color .4s ease,
         border-color .4s ease;
-        z-index: 1;
         
         &:focus {
           border-color: #F72551;
