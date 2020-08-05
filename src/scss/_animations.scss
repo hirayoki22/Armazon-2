@@ -1,3 +1,9 @@
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes reveal {
   from {
     visibility: hidden;

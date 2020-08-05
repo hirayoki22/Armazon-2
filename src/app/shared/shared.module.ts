@@ -9,7 +9,7 @@ import { ImageLoaderDirective } from './image-loader/image-loader.directive';
 import { TextClipPipe } from './text-clip/text-clip.pipe';
 import { StarRating } from './star-rating/star-rating.component';
 import { AsidePanelComponent } from './aside-panel/aside-panel.component';
-import { RoundNearestPipe } from './rount-nearest/round-nearest.pipe';
+import { RoundNearestPipe } from './round-nearest/round-nearest.pipe';
 import { ModalComponent } from './modal/modal.component';
 
 
