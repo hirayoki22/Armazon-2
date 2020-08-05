@@ -31,26 +31,18 @@ export class UserService {
       httpOptions
     ).pipe(
       delay(400),
-      tap(res => console.log(res)),
+      // tap(res => console.log(res)),
       catchError(this.errorHandler)
     );
   }
 
-  verifyLoginState(): Observable<boolean> {
-    return new Observable<boolean>(subscriber => {
-      this.http.get<{ active: boolean }>(this.URL4, httpOptions).pipe(
-        // tap(res => console.log(res)),
-        catchError(this.errorHandler)
-      ).subscribe(res => {
-        if (!res.active) { 
-          subscriber.next(true); 
-        }
-        else { 
-          subscriber.next(false);
-          location.href = '/'; 
-        }
-      })
-    });
+  get isLoggedin():  Observable<boolean> {
+    return this.http.get<{ active: boolean }>(this.URL4, httpOptions)
+    .pipe(
+      // tap(res => console.log(res)),
+      map(state => state.active),
+      catchError(this.errorHandler)
+    )
   }
 
   private errorHandler(err: HttpErrorResponse) {

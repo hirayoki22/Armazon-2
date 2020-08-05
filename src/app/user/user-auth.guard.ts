@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserService } from './user.service';
 import { map } from 'rxjs/operators';
@@ -15,9 +15,23 @@ export class UserAuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean> | boolean {
     const url = state.url;
 
-    return this.us.verifyLoginState().pipe(
-      map(loginState => {
-        return url.includes('panel') ? !loginState : loginState;
+    return this.us.isLoggedin.pipe(
+      map(state => {
+        if (url.includes('user/panel')) {
+          if (state) {
+            return true;
+          } else {
+            location.href = '/';
+            return false;
+          }
+        } else {
+          if (state) {
+            location.href = '/';
+            return false;
+          } else {
+            return true;
+          }
+        }
       })
     );
   }
