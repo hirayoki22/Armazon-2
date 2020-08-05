@@ -1,1 +1,130 @@
-<p>signup-page works!</p>
+<section class="signup-section">
+  <div class="quick-store-info-column">
+    <div class="cover-image">
+      <img image-loader src="assets/img/signup-form.webp" draggable="false">
+    </div>
+
+    <div class="top-content">
+      <button routerLink="/" class="return-btn" type="button">
+        <i class="material-icons">navigate_before</i>
+      </button>
+
+      <a class="logo">
+        <span>A</span>
+        <span>rmazon</span>
+      </a>
+    </div>
+
+    <div class="middle-content">
+      <h3>Create an Armazon account, and enjoy great benefits!</h3>
+    </div>
+
+    <div class="bottom-content">
+      <p>
+        Armazon.do - <a href="#">Cookie Policy</a> and 
+        <a href="#">Privacy Policy</a>
+      </p>
+      <p>&copy; Armazon by Adison P. Martínez 2019-{{ currentYear }}</p>
+    </div>
+  </div>
+
+  <div class="signup-form-column">
+    <form 
+      [formGroup]="signupForm" 
+      (ngSubmit)="onSubmit()" 
+      id="signupForm">
+      <div class="form-group">
+        <div class="form-group-wrapper">
+          <input formControlName="firstName" type="text">
+          <label [class.shrink]="firstName.valid">
+            First name
+          </label>
+        </div>
+
+        <div class="invalid-feedback"></div>
+      </div>
+
+      <div class="form-group">
+        <div class="form-group-wrapper">
+          <input formControlName="lastName" type="text">
+          <label [class.shrink]="lastName.valid">
+            Last name
+          </label>
+        </div>
+
+        <div class="invalid-feedback"></div>
+      </div>
+
+      <div class="form-group">
+        <div class="form-group-wrapper">
+          <input formControlName="mobile" type="text">
+          <label [class.shrink]="mobile.valid">
+            Mobile (DO)
+          </label>
+        </div>
+
+        <div class="invalid-feedback"></div>
+      </div>
+
+      <div class="form-group">
+        <div class="form-group-wrapper">
+          <input formControlName="email" type="email">
+          <label [class.shrink]="email.valid">
+            Email address (username)
+          </label>
+        </div>
+
+        <div class="invalid-feedback"></div>
+      </div>
+
+      <div class="form-group">
+        <div class="form-group-wrapper">
+          <input formControlName="password" 
+            [type]="!showPassword ? 'password' : 'text'">
+          <label [class.shrink]="password.valid">Password</label>
+
+          <button 
+            (click)="showPassword = !showPassword"
+            class="toggle_password_visibility"
+            type="button">
+            <i *ngIf="!showPassword" class="material-icons">visibility</i>
+            <i *ngIf="showPassword" class="material-icons">visibility_off</i>
+          </button>
+        </div>
+
+        <div class="invalid-feedback"></div>
+      </div>
+
+      <div class="form-group">
+        <div class="form-group-wrapper">
+          <input formControlName="rePassword" 
+            [type]="!showRePassword ? 'password' : 'text'">
+          <label [class.shrink]="rePassword.valid">Retype your password</label>
+
+          <button 
+            (click)="showRePassword = !showRePassword"
+            class="toggle_password_visibility"
+            type="button">
+            <i *ngIf="!showRePassword" class="material-icons">visibility</i>
+            <i *ngIf="showRePassword" class="material-icons">visibility_off</i>
+          </button>
+        </div>
+
+        <div class="invalid-feedback"></div>
+      </div>
+  
+      <div class="action-buttons">
+        <button 
+          [disabled]="signupForm.invalid"
+          class="btn-xl-filled signup-btn">Create account</button>
+      </div>
+
+    
+      <a routerLink="../login" class="existing-user">
+        Already a member? Log in now
+      </a>
+    </form>
+  </div>
+
+  <app-spinner [loading]="isLoading"></app-spinner>
+</section>
