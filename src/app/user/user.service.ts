@@ -17,7 +17,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserService {
-  private URL1  = 'http://127.0.0.1/market-api/user-login.php';
+  private URL1 = 'http://127.0.0.1/market-api/user-login.php';
   private URL2 = 'http://127.0.0.1/market-api/user-signup.php';
   private URL3 = 'http://127.0.0.1/market-api/user-logout.php';
   private URL4 = 'http://127.0.0.1/market-api/user-auth.php';
@@ -30,9 +30,22 @@ export class UserService {
       form,
       httpOptions
     ).pipe(
+      delay(400),
       tap(res => console.log(res)),
       catchError(this.errorHandler)
     );
+  }
+
+  verifyLoginState(): Observable<boolean> {
+    return new Observable<boolean>(subscriber => {
+      this.http.get<{ active: boolean }>(this.URL4).pipe(
+        delay(300),
+        catchError(this.errorHandler)
+      ).subscribe(res => {
+        if (res.active) { subscriber.next(false); }
+        else { subscriber.next(true); }
+      })
+    });
   }
 
   private errorHandler(err: HttpErrorResponse) {

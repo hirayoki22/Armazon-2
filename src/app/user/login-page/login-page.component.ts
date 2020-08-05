@@ -10,7 +10,7 @@ import { UserService } from '../user.service';
 export class LoginPageComponent implements OnInit {
   loginForm: FormGroup;
   showPassword: boolean = false;
-  invalidLogin: boolean = true;
+  invalidLogin: boolean = false;
   isLoading: boolean = false;
 
   get currentYear(): number {
@@ -48,7 +48,16 @@ export class LoginPageComponent implements OnInit {
     formData.append('username', this.username.value.trim());
     formData.append('password', this.password.value.trim());
 
-    this.us.loginRequest(formData).subscribe();
+    this.isLoading = true;
+    this.us.loginRequest(formData).subscribe(res => {
+      if (!res.success) {
+        this.invalidLogin = true;
+        this.password.setValue(null);
+      } else {
+        location.href = '/admin-page';
+      }
+      this.isLoading = false;
+    });
   }
 
 }
