@@ -17,7 +17,7 @@ export class UserAuthGuard implements CanActivate {
 
     return this.us.isLoggedin.pipe(
       map(state => {
-        if (url.includes('user/panel')) {
+        if (url === '/user/panel') {
           if (state) {
             return true;
           } else {
