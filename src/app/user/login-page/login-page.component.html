@@ -35,12 +35,20 @@
         <label [class.shrink]="username.valid">
           Username or email address
         </label>
+
+        <div class="invalid-feedback">
+          <p>Enter your username or email</p>
+        </div>
       </div>
   
       <div class="form-group">
         <input formControlName="password" 
           [type]="!showPassword ? 'password' : 'text'">
         <label [class.shrink]="password.valid">Password</label>
+
+        <div class="invalid-feedback">
+          <p>Enter your password</p>
+        </div>
 
         <button 
           (click)="showPassword = !showPassword"
