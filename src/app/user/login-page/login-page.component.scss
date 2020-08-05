@@ -4,7 +4,7 @@
   height: 100vh;
   background-color: #fff;
   animation: reveal .4s ease;
-  transition: height .3s ease;
+  transition: width .3s ease, height .3s ease;
   overflow: hidden;
   overflow-y: auto;
   scrollbar-width: none;
@@ -177,6 +177,7 @@
     #loginForm {
       width: 400px;
       height: auto;
+      transition: inherit;
     
       .form-group {
         position: relative;
@@ -280,7 +281,46 @@
     flex-direction: column;
     
     .quick-store-info-column,
-    .login-form-column,
+    .login-form-column {
+      width: 100%;
+    }
+
+    .login-form-column #loginForm {
+      margin: auto;
+    }
+
+    .quick-store-info-column {
+      height: 400px;
+      padding: 1.5rem;
+
+      &::before {
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .middle-content {
+        margin: auto;
+  
+        h3 {
+          font-size: 2.5rem;
+          text-align: center;
+          line-height: normal;
+        }
+      }
+
+      .bottom-content {
+        display: none;
+      }
+    }
+
+    .login-form-column {
+      padding: 2.5rem;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .login-section {
+    
     .login-form-column #loginForm {
       width: 100%;
     }
