@@ -19,7 +19,8 @@ const routes: Routes = [
       },
       {
         path: 'signup', 
-        component: SignupPageComponent 
+        component: SignupPageComponent,
+        canActivate: [ UserAuthGuard ]
       },
       { 
         path: 'panel', 
