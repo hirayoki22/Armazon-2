@@ -5,11 +5,10 @@ import { tap, map, catchError, delay } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json',
     Authorization: 'my-auth-token'
   }),
   withCredentials: true,
-  observe: 'response' as 'response'
+  // observe: 'response' as 'response'
 };
 
 @Injectable({
