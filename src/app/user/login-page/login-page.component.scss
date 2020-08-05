@@ -179,6 +179,7 @@
       height: auto;
     
       .form-group {
+        position: relative;
         width: 100%;
         height: auto;
   
@@ -243,16 +244,17 @@
         }   
         
         .invalid-feedback {
-          position: relative;
+          position: absolute;
+          left: 0;
+          bottom: -1.2rem;
           display: block;
           width: 100%;
+          animation: slideUp 0.2s ease;
 
           p {
-            position: absolute;
-            left: 0;
-            top: 0.5rem;
             color: #963249;
             font-size: 0.8rem;
+            font-weight: 300;
           }
         }
       }

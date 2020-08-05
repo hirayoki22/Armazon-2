@@ -12,6 +12,13 @@
   }
 }
 
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+
 @keyframes slideIn {
   from {
     opacity: 0;
