@@ -4,8 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { UserComponent } from './user.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
+import { UserAccountComponent } from './user-account/user-account.component';
 import { UserAuthGuard } from './user-auth.guard';
-import { UserPanelComponent } from './user-panel/user-panel.component';
 
 const routes: Routes = [
   { 
@@ -23,8 +23,8 @@ const routes: Routes = [
         canActivate: [ UserAuthGuard ]
       },
       { 
-        path: 'panel', 
-        component: UserPanelComponent ,
+        path: 'account', 
+        component: UserAccountComponent ,
         canActivate: [ UserAuthGuard ]  
       },
       { path: '', redirectTo: 'login' }

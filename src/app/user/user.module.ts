@@ -6,11 +6,16 @@ import { UserComponent } from './user.component';
 import { SharedModule } from '../shared/shared.module';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
-import { UserPanelComponent } from './user-panel/user-panel.component';
+import { UserAccountComponent } from './user-account/user-account.component';
 
 
 @NgModule({
-  declarations: [UserComponent, LoginPageComponent, SignupPageComponent, UserPanelComponent],
+  declarations: [
+    UserComponent, 
+    LoginPageComponent, 
+    SignupPageComponent, 
+    UserAccountComponent
+  ],
   imports: [
     CommonModule,
     UserRoutingModule,
