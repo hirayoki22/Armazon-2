@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UserService } from '../user.service';
+import { UserService, LoginInfo } from '../user.service';
 
 @Component({
   selector: 'app-login-page',
@@ -41,16 +41,19 @@ export class LoginPageComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
+  private get login(): LoginInfo {
+    return {
+      username: this.username.value.toLowerCase().trim(),
+      password: this.password.value.trim()
+    }
+  }
+
   onSubmit(): void {
     if (this.loginForm.invalid) { return; }
 
-    const formData = new FormData();
-    formData.append('username', this.username.value.trim());
-    formData.append('password', this.password.value.trim());
-
     this.isLoading = true;
-    this.us.loginRequest(formData).subscribe(res => {
-      if (!res.success) {
+    this.us.loginRequest(this.login).subscribe(state => {
+      if (!state.success) {
         this.invalidLogin = true;
         this.password.setValue(null);
       } else {

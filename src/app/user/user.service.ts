@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { tap, map, catchError, delay } from 'rxjs/operators';
 
+export interface LoginInfo { username: string; password: string }
 export interface LoginState { success: boolean; message?: string }
 
 const httpOptions = {
@@ -24,14 +25,14 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  loginRequest(form: FormData): Observable<LoginState> {
+  loginRequest(login: LoginInfo): Observable<LoginState> {
     return this.http.post<LoginState>(
       this.URL1, 
-      form,
+      login,
       httpOptions
     ).pipe(
       delay(400),
-      // tap(res => console.log(res)),
+      tap(res => console.log(res)),
       catchError(this.errorHandler)
     );
   }
