@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-// import { OwnValidators } from '../own-validators';
+import { OwnValidators } from '../own-validators';
 
 import { UserService } from '../user.service';
 
@@ -32,13 +32,13 @@ export class SignupPageComponent implements OnInit {
     return this.fb.group({
       firstName:  [ null, [ Validators.required, Validators.pattern(/^[A-zÀ-ú\s]+$/) ] ],
       lastName:   [ null, [ Validators.required, Validators.pattern(/^[A-zÀ-ú\s]+$/) ] ],
-      mobile:     [ null, [ Validators.required,  ] ],
-      email:      [ null, [ Validators.required,  ] ],
-      password:   [ null, [ Validators.required,  ] ],
-      rePassword: [ null, [ Validators.required,  ] ],
+      mobile:     [ null, [ Validators.required, OwnValidators.mobile] ],
+      email:      [ null, [ Validators.required, OwnValidators.email ] ],
+      password:   [ null, [ Validators.required, OwnValidators.password ] ],
+      rePassword: [ null, [ Validators.required ] ],
     },
     {
-      // validators: OwnValidators.passwordMatch
+      validators: OwnValidators.passwordMatch
     });
   }
 
