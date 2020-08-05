@@ -36,7 +36,7 @@
       <div class="form-group">
         <div class="form-group-wrapper">
           <input formControlName="firstName" type="text">
-          <label [class.shrink]="firstName.valid">
+          <label [class.shrink]="firstName.value">
             First name
           </label>
         </div>
@@ -47,7 +47,7 @@
       <div class="form-group">
         <div class="form-group-wrapper">
           <input formControlName="lastName" type="text">
-          <label [class.shrink]="lastName.valid">
+          <label [class.shrink]="lastName.value">
             Last name
           </label>
         </div>
@@ -58,7 +58,7 @@
       <div class="form-group">
         <div class="form-group-wrapper">
           <input formControlName="mobile" type="text">
-          <label [class.shrink]="mobile.valid">
+          <label [class.shrink]="mobile.value">
             Mobile (DO)
           </label>
         </div>
@@ -69,7 +69,7 @@
       <div class="form-group">
         <div class="form-group-wrapper">
           <input formControlName="email" type="email">
-          <label [class.shrink]="email.valid">
+          <label [class.shrink]="email.value">
             Email address (username)
           </label>
         </div>
@@ -81,12 +81,13 @@
         <div class="form-group-wrapper">
           <input formControlName="password" 
             [type]="!showPassword ? 'password' : 'text'">
-          <label [class.shrink]="password.valid">Password</label>
+          <label [class.shrink]="password.value">Password</label>
 
           <button 
             (click)="showPassword = !showPassword"
             class="toggle_password_visibility"
-            type="button">
+            type="button"
+            tabindex="-10">
             <i *ngIf="!showPassword" class="material-icons">visibility</i>
             <i *ngIf="showPassword" class="material-icons">visibility_off</i>
           </button>
@@ -99,12 +100,13 @@
         <div class="form-group-wrapper">
           <input formControlName="rePassword" 
             [type]="!showRePassword ? 'password' : 'text'">
-          <label [class.shrink]="rePassword.valid">Retype your password</label>
+          <label [class.shrink]="rePassword.value">Retype your password</label>
 
           <button 
             (click)="showRePassword = !showRePassword"
             class="toggle_password_visibility"
-            type="button">
+            type="button"
+            tabindex="-10">
             <i *ngIf="!showRePassword" class="material-icons">visibility</i>
             <i *ngIf="showRePassword" class="material-icons">visibility_off</i>
           </button>
@@ -115,7 +117,7 @@
   
       <div class="action-buttons">
         <button 
-          [disabled]="signupForm.invalid"
+         
           class="btn-xl-filled signup-btn">Create account</button>
       </div>
 

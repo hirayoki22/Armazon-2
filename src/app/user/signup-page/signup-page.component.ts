@@ -26,6 +26,7 @@ export class SignupPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.signupForm = this.initLoginForm();
+
   }
 
   private initLoginForm(): FormGroup {
@@ -34,7 +35,14 @@ export class SignupPageComponent implements OnInit {
       lastName:   [ null, [ Validators.required, Validators.pattern(/^[A-zÀ-ú\s]+$/) ] ],
       mobile:     [ null, [ Validators.required, OwnValidators.mobile] ],
       email:      [ null, [ Validators.required, OwnValidators.email ] ],
-      password:   [ null, [ Validators.required, OwnValidators.password ] ],
+      password:   [ 
+        null, 
+        [ 
+          Validators.required, 
+          Validators.minLength(5),
+          OwnValidators.password 
+        ] 
+      ],
       rePassword: [ null, [ Validators.required ] ],
     },
     {
@@ -50,9 +58,8 @@ export class SignupPageComponent implements OnInit {
   get rePassword() { return this.signupForm.get('rePassword'); }
 
   onSubmit(): void {
-    if (this.signupForm.invalid) { return; }
-
-    console.log(this.signupForm.value);
+    console.log(this.password.errors);
+    console.log(this.signupForm.errors);
   }
 
 }

@@ -7,31 +7,30 @@ const PHONE_REGX = /^[1]?[-.\s]?(\(\d{3}\)|\d{3})[-.\s]?\d{3}[-.\s]?\d{4}$/;
 const INVALID_PASSWORDS = [
   'hello',
   'abcdef',
-  'abcdefg',
   '00000',
-  '12345',
-  '01234'
+  '012345'
 ];
 
 export class OwnValidators {
   static mobile(control: AbstractControl): ValidationErrors | null {
-    return PHONE_REGX.test(control.value) ? 
-      { password: { invalid: true } } : null;
+    return !PHONE_REGX.test(control.value) ? 
+      { mobile: { invalid: true } } : null;
   }
 
   static email(control: AbstractControl): ValidationErrors | null {
-    return EMAIL_REGX.test(control.value) ? 
+    return !EMAIL_REGX.test(control.value) ? 
       { email: { invalid: true }} : null;
   }
 
   static password(control: AbstractControl): ValidationErrors | null {
-    return INVALID_PASSWORDS.includes(control.value) ?
-      { password: { invalid: true } } : null;
+    return control.value && INVALID_PASSWORDS.some(pass => {
+      return control.value.match(pass);
+    }) ? { password: { invalid: true } } : null;
   }
 
   static passwordMatch(form: FormGroup): ValidationErrors | null {
     return form.get('rePassword').value !== form.get('password').value ? 
-      { rePassword: { noMatch: true } } : null;
+      { rePassword: { doesnotMatch: true } } : null;
   }
   
 }
