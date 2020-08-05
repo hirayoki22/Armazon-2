@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { tap, map, catchError, delay } from 'rxjs/operators';
+
+export interface LoginState { success: boolean; message?: string }
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -22,8 +24,8 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  loginRequest(form: FormData) {
-    return this.http.post<any>(
+  loginRequest(form: FormData): Observable<LoginState> {
+    return this.http.post<LoginState>(
       this.URL1, 
       form,
       httpOptions

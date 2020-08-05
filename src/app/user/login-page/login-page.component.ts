@@ -10,6 +10,7 @@ import { UserService } from '../user.service';
 export class LoginPageComponent implements OnInit {
   loginForm: FormGroup;
   showPassword: boolean = false;
+  invalidLogin: boolean = true;
   isLoading: boolean = false;
 
   get currentYear(): number {
