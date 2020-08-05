@@ -38,8 +38,8 @@ export class UserService {
 
   verifyLoginState(): Observable<boolean> {
     return new Observable<boolean>(subscriber => {
-      this.http.get<{ active: boolean }>(this.URL4).pipe(
-        delay(300),
+      this.http.get<{ active: boolean }>(this.URL4, httpOptions).pipe(
+        tap(res => console.log(res)),
         catchError(this.errorHandler)
       ).subscribe(res => {
         if (res.active) { subscriber.next(false); }
