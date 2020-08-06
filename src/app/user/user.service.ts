@@ -4,7 +4,11 @@ import { Observable, throwError } from 'rxjs';
 import { tap, map, catchError, delay } from 'rxjs/operators';
 
 export interface LoginInfo { username: string; password: string }
-export interface LoginState { success: boolean; message?: string }
+export interface LoginState { 
+  success: boolean; 
+  error?: { username: boolean, password: boolean },
+  message?: string 
+}
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -32,7 +36,7 @@ export class UserService {
       httpOptions
     ).pipe(
       delay(400),
-      tap(res => console.log(res)),
+      // tap(res => console.log(res)),
       catchError(this.errorHandler)
     );
   }
@@ -41,7 +45,7 @@ export class UserService {
     return this.http.get<LoginState>(this.URL3, httpOptions)
     .pipe(
       delay(300),
-      tap(res => console.log(res)),
+      // tap(res => console.log(res)),
       catchError(this.errorHandler)
     );
   }
