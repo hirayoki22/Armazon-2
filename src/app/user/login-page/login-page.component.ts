@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService, LoginInfo, LoginState } from '../user.service';
 
@@ -18,6 +19,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   constructor(
+    private router: Router,
     private us: UserService,
     private fb: FormBuilder
   ) { }
@@ -57,7 +59,7 @@ export class LoginPageComponent implements OnInit {
         this.loginState = state;
         this.password.setValue(null);
       } else {
-        location.href = '../account';
+        this.router.navigate(['/user/account']);
       }
       this.isLoading = false;
     });
