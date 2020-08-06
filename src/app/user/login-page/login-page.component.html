@@ -47,9 +47,6 @@
           <p *ngIf="username?.errors.required">
             Enter your username or email
           </p>
-          <p *ngIf="invalidLogin">
-            Invalid username/email or password
-          </p>
         </div>
       </div>
   
@@ -69,7 +66,8 @@
         </div>
 
         <div 
-          *ngIf="password.touched && password.invalid && !invalidLogin"
+          *ngIf="password.touched && password.invalid && 
+          !loginState.success"
           class="invalid-feedback">
           <p *ngIf="password?.errors.required">
             Enter your password
