@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UserService, LoginInfo } from '../user.service';
+import { UserService, LoginInfo, LoginState } from '../user.service';
 
 @Component({
   selector: 'app-login-page',
@@ -9,8 +9,8 @@ import { UserService, LoginInfo } from '../user.service';
 })
 export class LoginPageComponent implements OnInit {
   loginForm: FormGroup;
+  loginState: LoginState;
   showPassword: boolean = false;
-  invalidLogin: boolean = false;
   isLoading: boolean = false;
 
   get currentYear(): number {
@@ -54,7 +54,7 @@ export class LoginPageComponent implements OnInit {
     this.isLoading = true;
     this.us.loginRequest(this.login).subscribe(state => {
       if (!state.success) {
-        this.invalidLogin = true;
+        this.loginState = state;
         this.password.setValue(null);
       } else {
         location.href = '/admin-page';

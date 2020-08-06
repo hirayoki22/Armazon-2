@@ -77,9 +77,9 @@
         </div>
 
         <div 
-          *ngIf="username.dirty && invalidLogin" 
+          *ngIf="username.dirty && !loginState.success" 
           class="invalid-feedback">
-          <p>Invalid username/email or password</p>
+          <p>{{ loginState.message }}</p>
         </div>
       </div>
   
