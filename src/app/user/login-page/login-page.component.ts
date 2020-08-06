@@ -57,7 +57,7 @@ export class LoginPageComponent implements OnInit {
         this.loginState = state;
         this.password.setValue(null);
       } else {
-        location.href = '/admin-page';
+        location.href = '../account';
       }
       this.isLoading = false;
     });

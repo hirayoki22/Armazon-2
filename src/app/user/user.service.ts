@@ -37,6 +37,15 @@ export class UserService {
     );
   }
 
+  logoutRequest(): Observable<any> {
+    return this.http.get<LoginState>(this.URL3, httpOptions)
+    .pipe(
+      delay(300),
+      tap(res => console.log(res)),
+      catchError(this.errorHandler)
+    );
+  }
+
   get isLoggedin():  Observable<boolean> {
     return this.http.get<{ active: boolean }>(this.URL4, httpOptions)
     .pipe(
