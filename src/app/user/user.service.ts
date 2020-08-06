@@ -29,7 +29,7 @@ export class UserService {
     return this.http.post<LoginState>(
       this.URL1, 
       login,
-      httpOptions
+      // httpOptions
     ).pipe(
       delay(400),
       tap(res => console.log(res)),
