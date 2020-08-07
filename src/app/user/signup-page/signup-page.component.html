@@ -212,7 +212,7 @@
   
       <div class="action-buttons">
         <button 
-          [disabled]="signupForm.invalid"
+          [disabled]="signupForm.invalid || email.pending"
           class="btn-xl-filled signup-btn">Create account</button>
       </div>
 

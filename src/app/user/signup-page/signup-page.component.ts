@@ -68,41 +68,32 @@ export class SignupPageComponent implements OnInit {
   get password()   { return this.signupForm.get('password'); }
   get rePassword() { return this.signupForm.get('rePassword'); }
 
-  onSubmit(): void {
-    // this.isLoading = true;
-    // this.us.signupRequest(this.signupForm.value).subscribe(state => {
-    //   console.log(state.success);
-    //   this.isLoading = false;
-    // });
-    console.log(this.formSantize());
-  }
-
-  formSantize(): SignupDetails {
+  private get formSantize(): SignupDetails {
     const toCapitalize = (value: string) => {
       return value.toLowerCase().trim().split(' ')
       .map(word => word[0].toUpperCase() + word.slice(1)).join(' ');
     }
     
     const phoneFormatter = (phone: string) => {
-      const PHONE_REGX = /(^[1]?)[-.\s]?((\(\d{3}\)|\d{3}))[-.\s]?\d{3}[-.\s]?\d{4}$/;
-      return '';
+      const PHONE_REGX = /^[1]?[-.\s]?(\(\d{3}\)|(\d{3}))[-.\s]?(\d{3})[-.\s]?(\d{4})$/;
+      return phone.replace(/[()]/g, '').replace(PHONE_REGX, '($1) $3-$4');
     }
     
     const details: SignupDetails = {
       firstName: toCapitalize(this.firstName.value),
-      lastName: toCapitalize(this.lastName.value),
-      mobile: this.mobile.value,
-      email: this.email.value,
-      password: this.password.value
+      lastName:  toCapitalize(this.lastName.value),
+      mobile:    phoneFormatter(this.mobile.value),
+      email:     this.email.value,
+      password:  this.password.value
     }
-
     return details;
   }
-}
 
-const phoneFormatter = (phone: string) => {
-  const PHONE_REGX = /(^[1]?)[-.\s]?((\(\d{3}\)|\d{3}))[-.\s]?(\d{3})[-.\s]?(\d{4}$)/;
-  return phone.replace(PHONE_REGX, '$1 ($2) $3-$4');
+  onSubmit(): void {
+    this.isLoading = true;
+    this.us.signupRequest(this.formSantize).subscribe(state => {
+      console.log(state.success);
+      this.isLoading = false;
+    });
+  }
 }
-
-console.log(phoneFormatter('(829) 352-6198'));
