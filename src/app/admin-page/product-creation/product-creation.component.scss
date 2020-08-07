@@ -38,37 +38,58 @@
     }
 
     .column-s {
-      width: 500px;
+      width: calc(400px + 8rem);
       padding: 4rem;
       background-color: #fff;
 
       .form-group {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        position: relative;
+        width: 100%;
+        height: auto;
   
         &:not(:last-of-type) {
-          margin-bottom: 1rem;
+          margin-bottom: 1.5rem;
         }
-  
-        label {
-          margin-bottom: 0.3rem;
-        } 
 
-        input, textarea, select {
-          width: 100%;
-          padding: 0.4rem 0.7rem;
-          font-size: 0.8rem;
-          border: thin solid #e9ebf1;
-          border-radius: 4px;
-          background-color: #e9ebf1;
-          transition: background-color .4s ease,
-          border-color .4s ease;
+        &-wrapper {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          padding: 1rem 0 0;
           
-          &:focus {
-            border-color: #F72551;
-            background-color: #f7f9fd;
+          input, textarea, select {
+            position: relative;
+            width: 100%;
+            padding: 0.25rem 0;
+            border-bottom: thin solid #c7cad8;
+            transition: background-color .4s ease,
+            border-color .4s ease;
+            z-index: 1;
+            
+            &:focus {
+              border-color: #F72551;
+  
+              & + label {
+                top: 0;
+                font-size: 0.75rem;
+              }
+            }
           }
+  
+          label {
+            position: absolute;
+            left: 0;
+            top: calc(100% - 0.9rem - 1px - 0.5rem);
+            font-size: 0.95rem;
+            transition: 0.2s ease;
+            user-select: none;
+  
+            &.shrink {
+              top: 0;
+              font-size: 0.75rem;
+            }
+          } 
         }
       }
 
@@ -87,28 +108,27 @@
         margin-bottom: 1rem;
         animation: reveal .5s ease;
 
-        .input-wrapper {
-          position: relative;
-          width: 100%;
-        }
-
         .loader {
           position: absolute;
-          right: 0.5rem;
-          top: 50%;
-          transform: translateY(-50%);
-          display: flex;          
-          animation: reveal .5s ease;
+          top: 1rem;
+          right: 0;
+          height: calc(100% - 17px);
+          display: flex;         
+          align-items: center; 
+          animation: reveal .3s ease;
           z-index: 100;
 
           span {
             display: block;
             width: 6px;
             height: 6px;
-            margin-right: 0.2rem;
             border-radius: 20px;
             background-color: #F72551;
             animation: bounce 1.3s linear infinite;
+
+            &:not(:last-of-type) {
+              margin-right: 0.2rem;
+            }
 
             &:nth-child(2) {
               animation-delay: -1s;
@@ -121,12 +141,17 @@
         }
 
         .invalid-feedback {
-          margin-top: 0.2rem;
-          color: red;
-          font-family: Arial, Helvetica, sans-serif;
-          font-size: .75rem;
-          line-height: 1rem;
-          animation: reveal .5s ease;
+          position: absolute;
+          left: 0;
+          bottom: -1.2rem;
+          display: block;
+          width: 100%;
+          animation: slideUp 0.2s ease;
+
+          p {
+            color: #963249;
+            font-size: 0.8rem;
+          }
         }
       }
     }
