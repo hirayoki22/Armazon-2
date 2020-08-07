@@ -58,7 +58,9 @@
 
       <div class="form-group">
         <div class="form-group-wrapper">
-          <input formControlName="lastName">
+          <input formControlName="lastName"
+          [class.invalid]="lastName.touched && lastName.invalid"
+          [class.valid]="lastName.touched && lastName.valid">
           <label [class.shrink]="lastName.value">
             Last name
           </label>
@@ -79,7 +81,9 @@
 
       <div class="form-group">
         <div class="form-group-wrapper">
-          <input formControlName="mobile">
+          <input formControlName="mobile"
+          [class.invalid]="mobile.value && mobile.invalid"
+          [class.valid]="mobile.value && mobile.valid">
           <label [class.shrink]="mobile.value">
             Mobile (DO)
           </label>
@@ -102,7 +106,9 @@
 
       <div class="form-group">
         <div class="form-group-wrapper">
-          <input formControlName="email" type="email">
+          <input formControlName="email" type="email"
+          [class.invalid]="email.touched && email.invalid"
+          [class.valid]="email.touched && email.valid">
           <label [class.shrink]="email.value">
             Email address (username)
           </label>
@@ -138,8 +144,12 @@
       <div class="form-group">
         <div class="form-group-wrapper">
           <input formControlName="password" 
-            [type]="!showPassword ? 'password' : 'text'">
+          [class.invalid]="password.touched && password.invalid"
+          [class.valid]="password.touched && password.valid"
+          [type]="!showPassword ? 'password' : 'text'">
           <label [class.shrink]="password.value">Password</label>
+
+          <!-- Create password strength indicator that updates on valueChanges -->
 
           <button 
             (click)="showPassword = !showPassword"
@@ -171,7 +181,9 @@
       <div class="form-group">
         <div class="form-group-wrapper">
           <input formControlName="rePassword" 
-            [type]="!showRePassword ? 'password' : 'text'">
+          [class.invalid]="rePassword.touched && rePassword.invalid"
+          [class.valid]="rePassword.touched && rePassword.valid"
+          [type]="!showRePassword ? 'password' : 'text'">
           <label [class.shrink]="rePassword.value">Retype your password</label>
 
           <button 
