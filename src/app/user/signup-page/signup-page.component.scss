@@ -212,11 +212,11 @@
               }
             }
 
-            .valid {
+            &.valid {
               border-color: #26c45b;
             }
 
-            .invalid {
+            &.invalid {
               border-color: #ff2d2d;
             }
           }

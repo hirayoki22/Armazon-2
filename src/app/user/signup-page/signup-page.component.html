@@ -35,7 +35,9 @@
       id="signupForm">
       <div class="form-group">
         <div class="form-group-wrapper">
-          <input formControlName="firstName" type="text">
+          <input formControlName="firstName" 
+          [class.invalid]="firstName.touched && firstName.invalid"
+          [class.valid]="firstName.touched && firstName.valid">
           <label [class.shrink]="firstName.value">
             First name
           </label>
@@ -56,7 +58,7 @@
 
       <div class="form-group">
         <div class="form-group-wrapper">
-          <input formControlName="lastName" type="text">
+          <input formControlName="lastName">
           <label [class.shrink]="lastName.value">
             Last name
           </label>
@@ -77,7 +79,7 @@
 
       <div class="form-group">
         <div class="form-group-wrapper">
-          <input formControlName="mobile" type="text">
+          <input formControlName="mobile">
           <label [class.shrink]="mobile.value">
             Mobile (DO)
           </label>
@@ -129,7 +131,7 @@
         </div>
 
         <div *ngIf="email.valid" class="valid-feedback">
-          <p>Good! <i class="material-icons">done</i></p>
+          <p>Available! <i class="material-icons">done</i></p>
         </div>
       </div>
 
