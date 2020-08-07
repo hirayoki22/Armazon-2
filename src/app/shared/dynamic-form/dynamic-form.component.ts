@@ -55,6 +55,11 @@ export class DynamicFormComponent implements OnInit {
     })
   ];
 
+  get sortedFields(): FormField[] {
+    return this.fields.map(field => field)
+    .sort((a, b) => a.fieldOrder - b.fieldOrder);
+  }
+
   constructor(private asyncValidators: MyAsyncValidators) { }
 
   ngOnInit(): void {

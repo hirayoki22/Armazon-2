@@ -3,20 +3,31 @@
   (ngSubmit)="onSubmit()" 
   id="dynamicForm">
 
-  <div *ngFor="let field of fields" class="form-group">
-    <div class="form-group-wrapper">
-      <input [formControlName]="field.fieldKey" 
-      [class.invalid]="getControl(field.fieldKey).touched && getControl(field.fieldKey).invalid"
-      [class.valid]="getControl(field.fieldKey).touched && getControl(field.fieldKey).valid"
-      [type]="field.inpuType">
-      <label [class.shrink]="getControl(field.fieldKey).value">
-        {{ field.fieldLabel }}
-      </label>
+  <div *ngFor="let field of sortedFields" class="form-group">
+    <div [ngSwitch]="field.fieldType">
+      <div *ngSwitchCase="'select'" class="form-group-wrapper">
+        <select formControlName="categoryId">
+          <option [ngValue]="null">Choose a Category</option>
+          <option *ngFor="let option of field.selectOptions" 
+            [ngValue]="option.key">{{ option.value }}</option>
+        </select>
 
-      <div *ngIf="getControl(field.fieldKey).pending" class="loader">
-        <span></span>
-        <span></span>
-        <span></span>
+      </div>
+      
+      <div *ngSwitchDefault class="form-group-wrapper">
+        <input [formControlName]="field.fieldKey" 
+        [class.invalid]="getControl(field.fieldKey).touched && getControl(field.fieldKey).invalid"
+        [class.valid]="getControl(field.fieldKey).touched && getControl(field.fieldKey).valid"
+        [type]="field.inpuType">
+        <label [class.shrink]="getControl(field.fieldKey).value">
+          {{ field.fieldLabel }}
+        </label>
+
+        <div *ngIf="getControl(field.fieldKey).pending" class="loader">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
     </div>
 
@@ -31,6 +42,7 @@
         Invalid {{ field.fieldLabel }} format
       </p>
     </div>
+
   </div>
 
   <div class="action-buttons">
