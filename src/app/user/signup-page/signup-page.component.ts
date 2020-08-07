@@ -29,10 +29,10 @@ export class SignupPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.signupForm = this.initLoginForm();
+    this.signupForm = this.initSignupForm();
   }
 
-  private initLoginForm(): FormGroup {
+  private initSignupForm(): FormGroup {
     return this.fb.group({
       firstName:  [ null, [ Validators.required, Validators.pattern(/^[A-zÀ-ú\s]+$/) ] ],
       lastName:   [ null, [ Validators.required, Validators.pattern(/^[A-zÀ-ú\s]+$/) ] ],
