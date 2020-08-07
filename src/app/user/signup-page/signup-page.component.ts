@@ -79,14 +79,13 @@ export class SignupPageComponent implements OnInit {
       return phone.replace(/[()]/g, '').replace(PHONE_REGX, '($1) $3-$4');
     }
     
-    const details: SignupDetails = {
+    return {
       firstName: toCapitalize(this.firstName.value),
       lastName:  toCapitalize(this.lastName.value),
       mobile:    phoneFormatter(this.mobile.value),
       email:     this.email.value,
       password:  this.password.value
     }
-    return details;
   }
 
   onSubmit(): void {
