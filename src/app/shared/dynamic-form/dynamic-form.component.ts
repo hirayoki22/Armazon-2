@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { FormField } from './form-field.class';
 import { OwnValidators } from '../validators/sync-validators';
 import { MyAsyncValidators } from '../validators/async-validators.service';
+import { FormField } from './form-field.class';
+
+import { ProductService } from 'src/app/product.service';
+import { Category } from 'src/app/category.model';
 
 @Component({
   selector: 'dynamic-form',
@@ -12,7 +15,11 @@ import { MyAsyncValidators } from '../validators/async-validators.service';
 })
 export class DynamicFormComponent implements OnInit {
   form: FormGroup;
+  @Input() selectOptions: any[];
   @Output('onSubmit') notifySubmit = new EventEmitter<FormGroup>();
+
+  categories: Category[];
+
   @Input() fields: FormField[] = [
     new FormField({
       fieldType: 'input',
@@ -52,6 +59,15 @@ export class DynamicFormComponent implements OnInit {
       // validators: {
       //   sync: [ Validators.required ]
       // }
+    }),
+    new FormField({
+      fieldType: 'select',
+      fieldKey: 'categoryId',
+      fieldLabel: 'Category',
+      fieldOrder: 5,
+      validators: {
+        sync: [ Validators.required ]
+      },
     })
   ];
 
@@ -60,10 +76,16 @@ export class DynamicFormComponent implements OnInit {
     .sort((a, b) => a.fieldOrder - b.fieldOrder);
   }
 
-  constructor(private asyncValidators: MyAsyncValidators) { }
+  constructor(private asyncValidators: MyAsyncValidators,
+    private ps: ProductService) { }
 
   ngOnInit(): void {
     this.form = this.initFormGroup();
+
+    this.ps.getCategories().subscribe((categories: Category[]) => {
+      this.categories = categories;
+    });
+    
   }
 
   getControl(key: string) { return this.form.get(key); }

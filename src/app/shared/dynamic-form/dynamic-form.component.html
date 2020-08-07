@@ -1,17 +1,19 @@
 <form 
   [formGroup]="form" 
   (ngSubmit)="onSubmit()" 
-  id="dynamicForm">
+  id="dynamicForm"
+  *ngIf="categories?.length">
 
   <div *ngFor="let field of sortedFields" class="form-group">
     <div [ngSwitch]="field.fieldType">
       <div *ngSwitchCase="'select'" class="form-group-wrapper">
-        <select formControlName="categoryId">
-          <option [ngValue]="null">Choose a Category</option>
-          <option *ngFor="let option of field.selectOptions" 
-            [ngValue]="option.key">{{ option.value }}</option>
+        <select formControlName="categoryId"
+        [class.invalid]="getControl(field.fieldKey).touched && getControl(field.fieldKey).invalid"
+        [class.valid]="getControl(field.fieldKey).touched && getControl(field.fieldKey).valid">
+          <option [ngValue]="null">Choose a {{ field.fieldLabel }}</option>
+          <option *ngFor="let category of categories" 
+            [ngValue]="category.categoryId">{{ category.category }}</option>
         </select>
-
       </div>
       
       <div *ngSwitchDefault class="form-group-wrapper">
