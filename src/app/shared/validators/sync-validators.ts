@@ -29,8 +29,14 @@ export class OwnValidators {
   }
 
   static passwordMatch(form: FormGroup): ValidationErrors | null {
-    return form.get('rePassword').value !== form.get('password').value ? 
-      { rePassword: { doesnotMatch: true } } : null;
+    const pass = form.get('password').value;
+    const repass = form.get('rePassword').value;
+
+    if (!pass || !repass || pass === repass) {
+      return null;
+    } else {
+      return { rePassword: { doesnotMatch: true } };
+    }
   }
   
   static imageValidator(control: AbstractControl): ValidationErrors | null {

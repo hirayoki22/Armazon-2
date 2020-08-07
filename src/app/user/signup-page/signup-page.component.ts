@@ -27,6 +27,9 @@ export class SignupPageComponent implements OnInit {
   ngOnInit(): void {
     this.signupForm = this.initLoginForm();
 
+    this.signupForm.valueChanges.subscribe(() => {
+      console.log(this.signupForm.errors);
+    });
   }
 
   private initLoginForm(): FormGroup {
@@ -58,8 +61,7 @@ export class SignupPageComponent implements OnInit {
   get rePassword() { return this.signupForm.get('rePassword'); }
 
   onSubmit(): void {
-    console.log(this.password.errors);
-    console.log(this.signupForm.errors);
+    console.log(this.signupForm.value);
   }
 
 }
