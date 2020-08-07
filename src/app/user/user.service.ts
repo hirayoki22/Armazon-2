@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { tap, map, catchError, delay } from 'rxjs/operators';
+import { UserAccount } from './user-account.model';
 
 export interface LoginInfo { username: string; password: string }
 export interface LoginState { 
@@ -22,16 +23,26 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserService {
-  private URL1 = 'http://127.0.0.1/market-api/user-login.php';
-  private URL2 = 'http://127.0.0.1/market-api/user-signup.php';
-  private URL3 = 'http://127.0.0.1/market-api/user-logout.php';
-  private URL4 = 'http://127.0.0.1/market-api/user-auth.php';
+  private URL1  = 'http://127.0.0.1/market-api/user.php';
+  private URL2 = 'http://127.0.0.1/market-api/user-login.php';
+  private URL3 = 'http://127.0.0.1/market-api/user-signup.php';
+  private URL4 = 'http://127.0.0.1/market-api/user-logout.php';
+  private URL5 = 'http://127.0.0.1/market-api/user-auth.php';
 
   constructor(private http: HttpClient) { }
 
+  get isLoggedin():  Observable<boolean> {
+    return this.http.get<{ active: boolean }>(this.URL5, httpOptions)
+    .pipe(
+      // tap(res => console.log(res)),
+      map(state => state.active),
+      catchError(this.errorHandler)
+    )
+  }
+
   loginRequest(login: LoginInfo): Observable<LoginState> {
     return this.http.post<LoginState>(
-      this.URL1, 
+      this.URL2, 
       login,
       httpOptions
     ).pipe(
@@ -42,7 +53,7 @@ export class UserService {
   }
 
   logoutRequest(): Observable<any> {
-    return this.http.get<LoginState>(this.URL3, httpOptions)
+    return this.http.get<LoginState>(this.URL4, httpOptions)
     .pipe(
       delay(300),
       // tap(res => console.log(res)),
@@ -50,13 +61,17 @@ export class UserService {
     );
   }
 
-  get isLoggedin():  Observable<boolean> {
-    return this.http.get<{ active: boolean }>(this.URL4, httpOptions)
+  getUserAccount(): Observable<UserAccount> {
+    return this.http.get<UserAccount>(this.URL1, httpOptions)
     .pipe(
-      // tap(res => console.log(res)),
-      map(state => state.active),
+      delay(300),
+      map(user => {
+        user.signupDate = new Date(user.signupDate);
+        return user;
+      }),
+      tap(res => console.log(res)),
       catchError(this.errorHandler)
-    )
+    );
   }
 
   private errorHandler(err: HttpErrorResponse) {
