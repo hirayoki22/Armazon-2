@@ -33,7 +33,7 @@ export class SignupPageComponent implements OnInit {
     return this.fb.group({
       firstName:  [ null, [ Validators.required, Validators.pattern(/^[A-zÀ-ú\s]+$/) ] ],
       lastName:   [ null, [ Validators.required, Validators.pattern(/^[A-zÀ-ú\s]+$/) ] ],
-      mobile:     [ null, [ Validators.required, OwnValidators.mobile] ],
+      mobile:     [ null, [ OwnValidators.mobile] ],
       email:      [ null, [ Validators.required, OwnValidators.email ] ],
       password:   [ 
         null, 

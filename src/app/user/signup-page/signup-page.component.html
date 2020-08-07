@@ -47,7 +47,7 @@
           <p *ngIf="firstName.errors.required">
             Enter your first name
           </p>
-          
+
           <p *ngIf="firstName.errors.pattern">
             Enter a valid first name
           </p>
@@ -66,11 +66,11 @@
           *ngIf="lastName.dirty && lastName?.errors"
           class="invalid-feedback">
           <p *ngIf="lastName.errors.required">
-            Enter your first name
+            Enter your last name
           </p>
 
           <p *ngIf="lastName.errors.pattern">
-            Enter a valid first name
+            Enter a valid last name
           </p>
         </div>
       </div>
@@ -82,14 +82,20 @@
             Mobile (DO)
           </label>
 
-          <div class="loader">
+          <div *ngIf="mobile.pending" class="loader">
             <span></span>
             <span></span>
             <span></span>
           </div>
         </div>
 
-        <div class="invalid-feedback"></div>
+        <div 
+          *ngIf="mobile.dirty && mobile?.errors"
+          class="invalid-feedback">
+          <p *ngIf="mobile.value && mobile.errors.mobile">
+            Invalid mobile format
+          </p>
+        </div>
       </div>
 
       <div class="form-group">
@@ -99,14 +105,24 @@
             Email address (username)
           </label>
 
-          <div class="loader">
+          <div *ngIf="email.pending" class="loader">
             <span></span>
             <span></span>
             <span></span>
           </div>
         </div>
 
-        <div class="invalid-feedback"></div>
+        <div 
+          *ngIf="email.dirty && email?.errors"
+          class="invalid-feedback">
+          <p *ngIf="email.errors.required">
+            Enter your email address
+          </p>
+
+          <p *ngIf="!email.errors.required && email.errors.email">
+            Invalid email format
+          </p>
+        </div>
       </div>
 
       <div class="form-group">
