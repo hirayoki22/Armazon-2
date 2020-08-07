@@ -72,12 +72,13 @@ export class UserService {
   }
 
   signupRequest(details: SignupDetails): Observable<any> {
-    return this.http.post<SignupDetails>(
+    return this.http.post<any>(
       this.URL3,
       details, 
       httpOptions
     ).pipe(
-      delay(400),
+      // delay(400),
+      tap(res => console.log(res)),
       catchError(this.errorHandler)
     );
   }

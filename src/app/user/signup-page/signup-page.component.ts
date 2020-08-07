@@ -69,7 +69,9 @@ export class SignupPageComponent implements OnInit {
 
   onSubmit(): void {
     this.isLoading = true;
-    this.us.signupRequest(this.signupForm.value).subscribe(() => {
+    this.us.signupRequest(this.signupForm.value).subscribe(state => {
+      // console.log(state.success);
+
       this.isLoading = false;
     });
   }
