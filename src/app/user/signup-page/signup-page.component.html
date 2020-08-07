@@ -41,7 +41,17 @@
           </label>
         </div>
 
-        <div class="invalid-feedback"></div>
+        <div 
+          *ngIf="firstName.dirty && firstName?.errors"
+          class="invalid-feedback">
+          <p *ngIf="firstName.errors.required">
+            Enter your first name
+          </p>
+          
+          <p *ngIf="firstName.errors.pattern">
+            Enter a valid first name
+          </p>
+        </div>
       </div>
 
       <div class="form-group">
@@ -52,7 +62,17 @@
           </label>
         </div>
 
-        <div class="invalid-feedback"></div>
+        <div 
+          *ngIf="lastName.dirty && lastName?.errors"
+          class="invalid-feedback">
+          <p *ngIf="lastName.errors.required">
+            Enter your first name
+          </p>
+
+          <p *ngIf="lastName.errors.pattern">
+            Enter a valid first name
+          </p>
+        </div>
       </div>
 
       <div class="form-group">

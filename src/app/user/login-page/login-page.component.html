@@ -42,7 +42,7 @@
         </div>
 
         <div 
-          *ngIf="username.touched && username.invalid &&
+          *ngIf="username.dirty && username.invalid &&
           !loginState?.error.username"
           class="invalid-feedback">
           <p *ngIf="username?.errors.required">
@@ -73,7 +73,7 @@
         </div>
 
         <div 
-          *ngIf="password.touched && password?.errors &&
+          *ngIf="password.dirty && password?.errors &&
           !loginState?.error.password"
           class="invalid-feedback">
           <p *ngIf="password?.errors.required">
