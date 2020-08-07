@@ -97,3 +97,7 @@ export class SignupPageComponent implements OnInit {
     });
   }
 }
+
+const txt = '$2y$10$bAIz4TUWpC2J/p0w1KXGe.oXDjKrtcSTcygr268zRddIGU0CR/LtC';
+
+console.log(txt.length);
