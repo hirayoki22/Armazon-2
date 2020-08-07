@@ -50,7 +50,7 @@ export class ProductService {
     return new Observable(subscriber => {
       this.getProductById(id).subscribe(product => {
         if (!product) {          
-          location.href = '**';
+          location.href = '/404';
           subscriber.next(false);
         } else {
           subscriber.next(true);
