@@ -42,7 +42,7 @@
         </div>
 
         <div 
-          *ngIf="username.dirty && username.invalid &&
+          *ngIf="username.touched && username.invalid &&
           !loginState?.error.username"
           class="invalid-feedback">
           <p *ngIf="username?.errors.required">
@@ -51,7 +51,7 @@
         </div>
 
         <div 
-          *ngIf="username.dirty && loginState?.error.username" 
+          *ngIf="username.touched && loginState?.error.username" 
           class="invalid-feedback">
           <p>{{ loginState?.message }}</p>
         </div>
@@ -73,7 +73,7 @@
         </div>
 
         <div 
-          *ngIf="password.dirty && password?.errors &&
+          *ngIf="password.touched && password?.errors &&
           !loginState?.error.password"
           class="invalid-feedback">
           <p *ngIf="password?.errors.required">
@@ -82,7 +82,7 @@
         </div>
 
         <div 
-          *ngIf="password.dirty && loginState?.error.password" 
+          *ngIf="password.touched && loginState?.error.password" 
           class="invalid-feedback">
           <p>{{ loginState?.message }}</p>
         </div>

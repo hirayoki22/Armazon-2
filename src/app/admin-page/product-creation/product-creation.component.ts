@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { OwnValidators } from 'src/app/shared/validators/sync-validators';
+import { OwnValidators } from '../../shared/validators/sync-validators';
 import { MyAsyncValidators } from '../../shared/validators/async-validators.service';
 
 import { ProductService } from 'src/app/product.service';
@@ -11,8 +11,7 @@ interface VariantOption { optionId: number; option: string };
 @Component({
   selector: 'app-product-creation',
   templateUrl: './product-creation.component.html',
-  styleUrls: ['./product-creation.component.scss'],
-  providers: [MyAsyncValidators]
+  styleUrls: ['./product-creation.component.scss']
 })
 export class ProductCreationComponent implements OnInit {
   productForm: FormGroup;

@@ -5,7 +5,9 @@ import { map, delay, distinctUntilChanged } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { UserService } from 'src/app/user/user.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class MyAsyncValidators {
   constructor(
     private ps: ProductService,
@@ -32,7 +34,7 @@ export class MyAsyncValidators {
         delay(300),
         distinctUntilChanged(),        
         map(state => {
-          return state.exists ? { notFound: true } : null;
+          return state.exists ? { exists: true } : null;
         })
       );
     }

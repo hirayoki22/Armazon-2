@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { OwnValidators } from 'src/app/shared/validators/sync-validators';
+import { OwnValidators } from '../../shared/validators/sync-validators';
+import { MyAsyncValidators } from '../../shared/validators/async-validators.service';
 
 import { UserService } from '../user.service';
 
@@ -21,7 +22,8 @@ export class SignupPageComponent implements OnInit {
 
   constructor(
     private us: UserService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private emailValidator: MyAsyncValidators
   ) { }
 
   ngOnInit(): void {
@@ -33,7 +35,14 @@ export class SignupPageComponent implements OnInit {
       firstName:  [ null, [ Validators.required, Validators.pattern(/^[A-zÀ-ú\s]+$/) ] ],
       lastName:   [ null, [ Validators.required, Validators.pattern(/^[A-zÀ-ú\s]+$/) ] ],
       mobile:     [ null, [ OwnValidators.mobile] ],
-      email:      [ null, [ Validators.required, OwnValidators.email ] ],
+      email:      [ 
+        null,
+        {
+          validators: [ Validators.required, OwnValidators.email ],
+          asyncValidators: [this.emailValidator.emailValidator()],
+          updateOn: 'blur'
+        }
+      ],
       password:   [ 
         null, 
         [ 

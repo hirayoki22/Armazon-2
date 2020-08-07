@@ -122,6 +122,14 @@
           <p *ngIf="email.value && email.errors.email">
             Invalid email format
           </p>
+
+          <p *ngIf="email.errors.exists">
+            This email is already in use
+          </p>
+        </div>
+
+        <div *ngIf="email.valid" class="valid-feedback">
+          <p>Good! <i class="material-icons">done</i></p>
         </div>
       </div>
 
