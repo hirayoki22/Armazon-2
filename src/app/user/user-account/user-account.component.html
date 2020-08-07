@@ -3,7 +3,7 @@
     <button (click)="onLogout()" class="btn-xl">Log out</button>
 
     <div *ngIf="!isLoading">
-      <p>{{ userAccount | json }}</p>
+      <h3>{{ userAccount.fullName }}</h3>
     </div>
   </div>
 
