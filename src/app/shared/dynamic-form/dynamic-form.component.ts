@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators } from '@angular/forms';
+import { Input, Output, EventEmitter } from '@angular/core';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { FormField } from './form-field.class';
 import { OwnValidators } from '../validators/sync-validators';
+import { MyAsyncValidators } from '../validators/async-validators.service';
 
 @Component({
   selector: 'dynamic-form',
@@ -10,12 +12,13 @@ import { OwnValidators } from '../validators/sync-validators';
 })
 export class DynamicFormComponent implements OnInit {
   form: FormGroup;
-  fields: FormField[] = [
+
+  @Input() fields: FormField[] = [
     new FormField({
       fieldType: 'input',
       fieldKey: 'password',
       fieldLabel: 'Password',
-      fieldOrder: 3,
+      fieldOrder: 4,
       inpuType: 'password',
       validators: {
         sync: [ Validators.required, OwnValidators.password ]
@@ -34,17 +37,47 @@ export class DynamicFormComponent implements OnInit {
       fieldType: 'input',
       fieldKey: 'email',
       fieldLabel: 'Email address/username',
-      fieldOrder: 2,
+      fieldOrder: 3,
       inpuType: 'email',
       validators: {
-        sync: [ Validators.required, OwnValidators.email ]
+        sync: [ Validators.required, OwnValidators.email ],
+        async: [ this.asyncValidators.emailValidator() ]
       }
+    }),
+    new FormField({
+      fieldType: 'input',
+      fieldKey: 'lastName',
+      fieldLabel: 'Last name',
+      fieldOrder: 2,
+      // validators: {
+      //   sync: [ Validators.required ]
+      // }
     })
   ];
 
-  constructor() { }
+  constructor(private asyncValidators: MyAsyncValidators) { }
 
   ngOnInit(): void {
+    this.form = this.initFormGroup();
+
+    console.log(this.form);
   }
 
+  initFormGroup(): FormGroup {
+    let form: {} = {};
+    const fields = this.fields.map(field => field)
+      .sort((a, b) => a.fieldOrder - b.fieldOrder);
+
+    fields.forEach(field => {
+      form[field.fieldKey] = new FormControl(
+        field.value, 
+        {          
+          validators: field?.validators?.sync,
+          asyncValidators: field?.validators?.async,
+          updateOn: 'blur'
+        }
+      );
+    });
+    return new FormGroup(form);
+  }
 }

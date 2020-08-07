@@ -27,7 +27,8 @@ import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
     DynamicFormComponent
   ],
   imports: [ 
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   exports: [
     ReactiveFormsModule,
