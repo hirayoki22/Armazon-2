@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { tap, map, catchError, delay } from 'rxjs/operators';
 import { UserAccount } from './user-account.model';
+import { SignupDetails } from './user-signup.model';
 
 export interface LoginInfo { username: string; password: string }
 export interface LoginState { 
@@ -61,6 +62,26 @@ export class UserService {
     );
   }
 
+  verifyEmailExists(email: string): Observable<{exists: boolean}> {
+    return this.http.get<{exists: boolean}>(
+      `${this.URL3}?email=${email}`, 
+      httpOptions
+    ).pipe(
+      catchError(this.errorHandler)
+    );
+  }
+
+  signupRequest(details: SignupDetails): Observable<any> {
+    return this.http.post<SignupDetails>(
+      this.URL3,
+      details, 
+      httpOptions
+    ).pipe(
+      delay(400),
+      catchError(this.errorHandler)
+    );
+  }
+
   getUserAccount(): Observable<UserAccount> {
     return this.http.get<UserAccount>(this.URL1, httpOptions)
     .pipe(
@@ -69,15 +90,6 @@ export class UserService {
         user.signupDate = new Date(user.signupDate);
         return user;
       }),
-      catchError(this.errorHandler)
-    );
-  }
-
-  verifyEmailExists(email: string): Observable<{exists: boolean}> {
-    return this.http.get<{exists: boolean}>(
-      `${this.URL3}?email=${email}`, 
-      httpOptions
-    ).pipe(
       catchError(this.errorHandler)
     );
   }

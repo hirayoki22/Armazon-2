@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { OwnValidators } from '../../shared/validators/sync-validators';
 import { MyAsyncValidators } from '../../shared/validators/async-validators.service';
 
@@ -21,6 +22,7 @@ export class SignupPageComponent implements OnInit {
   }
 
   constructor(
+    private router: Router,
     private us: UserService,
     private fb: FormBuilder,
     private emailValidator: MyAsyncValidators
@@ -66,11 +68,21 @@ export class SignupPageComponent implements OnInit {
   get rePassword() { return this.signupForm.get('rePassword'); }
 
   onSubmit(): void {
-    console.log(this.signupForm.value);
+    this.isLoading = true;
+    this.us.signupRequest(this.signupForm.value).subscribe(() => {
+      this.isLoading = false;
+    });
   }
 
   formSantize(): FormGroup {
-    
+    const toCapitalize = (value: string) => {
+      return value.toLowerCase().trim().split(' ')
+      .map(word => word[0].toUpperCase() + word.slice(1));
+    }
+
+    const phoneFormatter = (phone: string) => {
+      return '';
+    }
 
     return;
   }
