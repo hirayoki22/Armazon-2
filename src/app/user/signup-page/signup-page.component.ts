@@ -5,6 +5,7 @@ import { OwnValidators } from '../../shared/validators/sync-validators';
 import { MyAsyncValidators } from '../../shared/validators/async-validators.service';
 
 import { UserService } from '../user.service';
+import { SignupDetails } from '../user-signup.model';
 
 @Component({
   selector: 'app-signup-page',
@@ -68,24 +69,40 @@ export class SignupPageComponent implements OnInit {
   get rePassword() { return this.signupForm.get('rePassword'); }
 
   onSubmit(): void {
-    this.isLoading = true;
-    this.us.signupRequest(this.signupForm.value).subscribe(state => {
-      // console.log(state.success);
-
-      this.isLoading = false;
-    });
+    // this.isLoading = true;
+    // this.us.signupRequest(this.signupForm.value).subscribe(state => {
+    //   console.log(state.success);
+    //   this.isLoading = false;
+    // });
+    console.log(this.formSantize());
   }
 
-  formSantize(): FormGroup {
+  formSantize(): SignupDetails {
     const toCapitalize = (value: string) => {
       return value.toLowerCase().trim().split(' ')
-      .map(word => word[0].toUpperCase() + word.slice(1));
+      .map(word => word[0].toUpperCase() + word.slice(1)).join(' ');
     }
-
+    
     const phoneFormatter = (phone: string) => {
+      const PHONE_REGX = /(^[1]?)[-.\s]?((\(\d{3}\)|\d{3}))[-.\s]?\d{3}[-.\s]?\d{4}$/;
       return '';
     }
+    
+    const details: SignupDetails = {
+      firstName: toCapitalize(this.firstName.value),
+      lastName: toCapitalize(this.lastName.value),
+      mobile: this.mobile.value,
+      email: this.email.value,
+      password: this.password.value
+    }
 
-    return;
+    return details;
   }
 }
+
+const phoneFormatter = (phone: string) => {
+  const PHONE_REGX = /(^[1]?)[-.\s]?((\(\d{3}\)|\d{3}))[-.\s]?(\d{3})[-.\s]?(\d{4}$)/;
+  return phone.replace(PHONE_REGX, '$1 ($2) $3-$4');
+}
+
+console.log(phoneFormatter('(829) 352-6198'));
