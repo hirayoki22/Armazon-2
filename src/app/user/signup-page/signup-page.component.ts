@@ -92,12 +92,10 @@ export class SignupPageComponent implements OnInit {
   onSubmit(): void {
     this.isLoading = true;
     this.us.signupRequest(this.formSantize).subscribe(state => {
-      console.log(state.success);
+      if (state.success) {
+        this.router.navigate(['/user/login']);
+      }
       this.isLoading = false;
     });
   }
 }
-
-const txt = '$2y$10$bAIz4TUWpC2J/p0w1KXGe.oXDjKrtcSTcygr268zRddIGU0CR/LtC';
-
-console.log(txt.length);

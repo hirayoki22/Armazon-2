@@ -71,14 +71,13 @@ export class UserService {
     );
   }
 
-  signupRequest(details: SignupDetails): Observable<any> {
-    return this.http.post<any>(
+  signupRequest(details: SignupDetails): Observable<LoginState> {
+    return this.http.post<LoginState>(
       this.URL3,
       details, 
       httpOptions
     ).pipe(
-      // delay(400),
-      tap(res => console.log(res)),
+      delay(400),
       catchError(this.errorHandler)
     );
   }
