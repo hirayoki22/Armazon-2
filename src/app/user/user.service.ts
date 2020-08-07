@@ -78,7 +78,6 @@ export class UserService {
       `${this.URL3}?email=${email}`, 
       httpOptions
     ).pipe(
-      delay(300),
       tap(res => console.log(res)),
       catchError(this.errorHandler)
     );
