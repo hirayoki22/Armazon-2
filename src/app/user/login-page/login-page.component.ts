@@ -59,7 +59,7 @@ export class LoginPageComponent implements OnInit {
         this.loginState = state;
         this.password.setValue(null);
       } else {
-        this.router.navigate(['/user/account']);
+        this.router.navigate(['/']);
       }
       this.isLoading = false;
     });
