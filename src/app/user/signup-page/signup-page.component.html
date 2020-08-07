@@ -42,7 +42,7 @@
         </div>
 
         <div 
-          *ngIf="firstName.dirty && firstName?.errors"
+          *ngIf="firstName.touched && firstName?.errors"
           class="invalid-feedback">
           <p *ngIf="firstName.errors.required">
             Enter your first name
@@ -63,7 +63,7 @@
         </div>
 
         <div 
-          *ngIf="lastName.dirty && lastName?.errors"
+          *ngIf="lastName.touched && lastName?.errors"
           class="invalid-feedback">
           <p *ngIf="lastName.errors.required">
             Enter your last name

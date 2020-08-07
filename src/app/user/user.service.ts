@@ -73,6 +73,17 @@ export class UserService {
     );
   }
 
+  verifyEmailExists(email: string): Observable<{exists: boolean}> {
+    return this.http.get<{exists: boolean}>(
+      `${this.URL3}?email=${email}`, 
+      httpOptions
+    ).pipe(
+      delay(300),
+      tap(res => console.log(res)),
+      catchError(this.errorHandler)
+    );
+  }
+
   private errorHandler(err: HttpErrorResponse) {
     let error = '';
 

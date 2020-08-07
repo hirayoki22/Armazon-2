@@ -26,10 +26,6 @@ export class SignupPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.signupForm = this.initLoginForm();
-
-    this.signupForm.valueChanges.subscribe(() => {
-      console.log(this.signupForm.errors);
-    });
   }
 
   private initLoginForm(): FormGroup {
