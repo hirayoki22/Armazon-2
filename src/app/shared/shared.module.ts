@@ -11,6 +11,7 @@ import { StarRating } from './star-rating/star-rating.component';
 import { AsidePanelComponent } from './aside-panel/aside-panel.component';
 import { RoundNearestPipe } from './round-nearest/round-nearest.pipe';
 import { ModalComponent } from './modal/modal.component';
+import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { ModalComponent } from './modal/modal.component';
     StarRating,
     AsidePanelComponent,
     RoundNearestPipe,
-    ModalComponent
+    ModalComponent,
+    DynamicFormComponent
   ],
   imports: [ 
     CommonModule
@@ -36,7 +38,8 @@ import { ModalComponent } from './modal/modal.component';
     StarRating,
     AsidePanelComponent,
     RoundNearestPipe,
-    ModalComponent
+    ModalComponent,
+    DynamicFormComponent
   ]
 })
 export class SharedModule { }
