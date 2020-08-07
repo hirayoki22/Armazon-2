@@ -23,16 +23,15 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserService {
-  private URL1  = 'http://127.0.0.1/market-api/user.php';
+  private URL1 = 'http://127.0.0.1/market-api/user.php';
   private URL2 = 'http://127.0.0.1/market-api/user-login.php';
-  private URL3 = 'http://127.0.0.1/market-api/user-signup.php';
-  private URL4 = 'http://127.0.0.1/market-api/user-logout.php';
-  private URL5 = 'http://127.0.0.1/market-api/user-auth.php';
+  private URL3 = 'http://127.0.0.1/market-api/user-logout.php';
+  private URL4 = 'http://127.0.0.1/market-api/user-auth.php';
 
   constructor(private http: HttpClient) { }
 
   get isLoggedin():  Observable<boolean> {
-    return this.http.get<{ active: boolean }>(this.URL5, httpOptions)
+    return this.http.get<{ active: boolean }>(this.URL4, httpOptions)
     .pipe(
       // tap(res => console.log(res)),
       map(state => state.active),
@@ -53,7 +52,7 @@ export class UserService {
   }
 
   logoutRequest(): Observable<any> {
-    return this.http.get<LoginState>(this.URL4, httpOptions)
+    return this.http.get<LoginState>(this.URL3, httpOptions)
     .pipe(
       delay(300),
       // tap(res => console.log(res)),
@@ -69,7 +68,6 @@ export class UserService {
         user.signupDate = new Date(user.signupDate);
         return user;
       }),
-      tap(res => console.log(res)),
       catchError(this.errorHandler)
     );
   }

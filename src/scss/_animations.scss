@@ -1,3 +1,13 @@
+@keyframes bounce {
+  0%, 60%, 100% {
+		transform: initial;
+	}
+
+	30% {
+		transform: translateY(-4px);
+	}
+}
+
 @keyframes rotate {
   to {
     transform: rotate(360deg);
