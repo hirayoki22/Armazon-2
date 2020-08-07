@@ -1,6 +1,42 @@
-<form [formGroup]="form">
-  <div class="form-group">
-    <label for="afaf">afaf</label>
-    <input formControlName="firstName" type="text">
+<form 
+  [formGroup]="form" 
+  (ngSubmit)="onSubmit()" 
+  id="dynamicForm">
+
+  <div *ngFor="let field of fields" class="form-group">
+    <div class="form-group-wrapper">
+      <input [formControlName]="field.fieldKey" 
+      [class.invalid]="getControl(field.fieldKey).touched && getControl(field.fieldKey).invalid"
+      [class.valid]="getControl(field.fieldKey).touched && getControl(field.fieldKey).valid"
+      [type]="field.inpuType">
+      <label [class.shrink]="getControl(field.fieldKey).value">
+        {{ field.fieldLabel }}
+      </label>
+
+      <div *ngIf="getControl(field.fieldKey).pending" class="loader">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <div 
+      *ngIf="getControl(field.fieldKey).touched && getControl(field.fieldKey)?.errors"
+      class="invalid-feedback">
+      <p *ngIf="getControl(field.fieldKey).errors.required">
+        Enter your {{ field.fieldLabel }}
+      </p>
+
+      <p *ngIf="getControl(field.fieldKey).errors.pattern">
+        Invalid {{ field.fieldLabel }} format
+      </p>
+    </div>
+  </div>
+
+  <div class="action-buttons">
+    <button [disabled]="form.invalid"
+      class="btn-xl-filled submit-btn">
+      Submit
+    </button>
   </div>
 </form>

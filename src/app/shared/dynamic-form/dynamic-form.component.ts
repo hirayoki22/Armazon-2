@@ -12,7 +12,7 @@ import { MyAsyncValidators } from '../validators/async-validators.service';
 })
 export class DynamicFormComponent implements OnInit {
   form: FormGroup;
-
+  @Output('onSubmit') notifySubmit = new EventEmitter<FormGroup>();
   @Input() fields: FormField[] = [
     new FormField({
       fieldType: 'input',
@@ -59,16 +59,14 @@ export class DynamicFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.initFormGroup();
-
-    console.log(this.form);
   }
+
+  getControl(key: string) { return this.form.get(key); }
 
   initFormGroup(): FormGroup {
     let form: {} = {};
-    const fields = this.fields.map(field => field)
-      .sort((a, b) => a.fieldOrder - b.fieldOrder);
 
-    fields.forEach(field => {
+    this.fields.forEach(field => {
       form[field.fieldKey] = new FormControl(
         field.value, 
         {          
@@ -79,5 +77,10 @@ export class DynamicFormComponent implements OnInit {
       );
     });
     return new FormGroup(form);
+  }
+
+  onSubmit(): void {
+    console.log(this.form);
+    this.notifySubmit.emit(this.form);
   }
 }
