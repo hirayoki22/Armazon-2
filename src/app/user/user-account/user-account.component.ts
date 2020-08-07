@@ -9,11 +9,15 @@ import { UserAccount } from '../user-account.model';
 })
 export class UserAccountComponent implements OnInit {
   userAccount: UserAccount;
+  isLoading: boolean = true;
 
   constructor(private us: UserService) { }
 
   ngOnInit(): void {
-    this.us.getUserAccount().subscribe();
+    this.us.getUserAccount().subscribe(userAccount => {
+      this.userAccount = userAccount;
+      this.isLoading = false;
+    });
   }
 
   onLogout(): void {
