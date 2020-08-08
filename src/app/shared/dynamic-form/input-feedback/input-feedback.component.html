@@ -13,4 +13,16 @@
     The {{ fieldLabel }} can't be less than 
     {{ control.errors.minlength.requiredLength }} characters
   </p>
+
+  <p *ngIf="control.errors.exists">
+    This {{ fieldLabel }} is already in use
+  </p>
+
+  <p *ngIf="control.value && control.errors.password">
+    Invalid {{ fieldLabel }}
+  </p>
 </div>
+
+<!-- <div *ngIf="control.valid" class="valid-feedback">
+  <p>Available! <i class="material-icons">done</i></p>
+</div> -->

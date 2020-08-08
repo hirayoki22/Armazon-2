@@ -16,6 +16,7 @@ export class InputFeedbackComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.control);
   }
 
 }

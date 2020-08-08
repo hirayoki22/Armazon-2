@@ -51,7 +51,10 @@ export class PageNotFoundComponent implements OnInit {
         fieldLabel: 'First name',
         fieldOrder: 1,
         validators: {
-          sync: [ Validators.required ]
+          sync: [ 
+            Validators.required,
+            Validators.pattern(/^[A-zÀ-ú\s]+$/)
+          ]
         }
       }),
       new FormField({
@@ -71,7 +74,10 @@ export class PageNotFoundComponent implements OnInit {
         fieldLabel: 'Last name',
         fieldOrder: 2,
         validators: {
-          sync: [ Validators.required ]
+          sync: [ 
+            Validators.required,
+            Validators.pattern(/^[A-zÀ-ú\s]+$/)
+          ]
         }
       }),
       new FormField({
