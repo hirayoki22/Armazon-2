@@ -35,19 +35,22 @@ export class FormField {
     this.inpuType   = params.inpuType   || 'text';
     this.value      = params.value      || null;
     this.validators = params.validators || null;
-    this.selectOptions = params.selectOptions ? this.formatedOptions(params.selectOptions) : [];
+    this.selectOptions = this.formatedOptions(params.selectOptions);
   }
 
   private formatedOptions(options: any[]): SelectOption[] {
     let formated = [];
 
-    options.forEach(option => {
-      formated.push({
-        key:   option[Object.keys(option)[0]],
-        value: option[Object.keys(option)[1]]
+    if (!options) {
+      return [];
+    } else {
+      options.forEach(option => {
+        formated.push({
+          key:   option[Object.keys(option)[1]],
+          value: option[Object.keys(option)[0]]
+        });
       });
-    });
-    
+    }
     return formated;
   }
 }

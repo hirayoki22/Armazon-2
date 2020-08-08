@@ -4,8 +4,7 @@
 
     <div *ngIf="categories">
       <dynamic-form
-      [selectOptions]="categories"
-      (ngSubmit)="onSubmit($event)"></dynamic-form>
+      (onSubmit)="onSubmit($event)"></dynamic-form>
     </div>
 
   </div>

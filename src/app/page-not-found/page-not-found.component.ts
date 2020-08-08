@@ -27,7 +27,7 @@ export class PageNotFoundComponent implements OnInit, AfterViewInit {
   
   ngAfterViewInit(): void {
     this.ps.getCategories().subscribe(val => {
-      this.categories = val
+      this.categories = val;
       this.ds.updateFields(this.getfields());
     });
   }
@@ -81,6 +81,7 @@ export class PageNotFoundComponent implements OnInit, AfterViewInit {
         validators: {
           sync: [ Validators.required ]
         },
+        selectOptions: this.categories
       })
     ];  
   }
