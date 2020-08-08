@@ -2,19 +2,11 @@
   [formGroup]="form" 
   (ngSubmit)="onSubmit()" 
   id="dynamicForm"
-  *ngIf="categories?.length">
+  *ngIf="fields?.length">
 
   <div *ngFor="let field of sortedFields" class="form-group">
     <div [ngSwitch]="field.fieldType">
-      <div *ngSwitchCase="'select'" class="form-group-wrapper">
-        <select formControlName="categoryId"
-        [class.invalid]="getControl(field.fieldKey).touched && getControl(field.fieldKey).invalid"
-        [class.valid]="getControl(field.fieldKey).touched && getControl(field.fieldKey).valid">
-          <option [ngValue]="null">Choose a {{ field.fieldLabel }}</option>
-          <option *ngFor="let category of categories" 
-            [ngValue]="category.categoryId">{{ category.category }}</option>
-        </select>
-      </div>
+      
       
       <div *ngSwitchDefault class="form-group-wrapper">
         <input [formControlName]="field.fieldKey" 
@@ -30,6 +22,17 @@
           <span></span>
           <span></span>
         </div>
+
+        <span *ngIf="field.inpuType == 'password'">
+          <button 
+          
+            class="toggle_password_visibility"
+            type="button"
+            tabindex="-10">
+            <i  class="material-icons">visibility</i>
+            <!-- <i *ngIf="showPassword" class="material-icons">visibility_off</i> -->
+          </button>
+        </span>
       </div>
     </div>
 
