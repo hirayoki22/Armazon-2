@@ -23,7 +23,7 @@
   </p>
 </div>
 
-<div *ngIf="control.touched && customs" class="invalid-feedbac">
+<div *ngIf="control.touched && !control.errors && customs" class="invalid-feedback">
   <div *ngFor="let custom of customs">
     <p *ngIf="custom.condition">{{ custom.feedback }}</p>
   </div>

@@ -1,9 +1,9 @@
-<div [formGroup]="form" class="form-group">
+<div [formGroup]="form">
   <div class="form-group-wrapper">
     <select 
     [formControlName]="field.fieldKey"
     [class.invalid]="control.touched && control.invalid"
-    [class.valid]="control.touched && control.valid">
+    [class.valid]="control.dirty && control.valid">
       <option [ngValue]="null">
         Choose a {{ field.fieldLabel | lowercase }}
       </option>
@@ -11,8 +11,4 @@
         [ngValue]="option.value">{{ option.key }}</option>
     </select>
   </div>
-
-  <input-feedback
-  [control]="control"
-  [fieldLabel]="field.fieldLabel | lowercase"></input-feedback>
 </div>

@@ -15,7 +15,7 @@ import { Category } from '../category.model';
 })
 export class PageNotFoundComponent implements OnInit {
   categories: Category[] = [];
-  baGenderChoice: boolean = false;
+  baGenderChoice: boolean = true;
 
   constructor(
     private ps: ProductService,

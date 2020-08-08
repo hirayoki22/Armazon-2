@@ -1,4 +1,4 @@
-<div [formGroup]="form" class="form-group">
+<div [formGroup]="form">
   <div class="form-group-wrapper">
     <input
     [formControlName]="field.fieldKey"
@@ -24,9 +24,4 @@
       </button>
     </span>
   </div>
-
-  <input-feedback
-  [control]="control"
-  [fieldLabel]="field.fieldLabel | lowercase"
-  [customs]="field.inputFeedback"></input-feedback>
 </div>

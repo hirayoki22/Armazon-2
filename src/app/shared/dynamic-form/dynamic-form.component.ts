@@ -27,4 +27,6 @@ export class DynamicFormComponent implements OnInit {
   onSubmit(): void {
     this.notifySubmit.emit(this.form);
   }
+
+  control(fieldKey: string) { return this.form.get(fieldKey); }
 }
