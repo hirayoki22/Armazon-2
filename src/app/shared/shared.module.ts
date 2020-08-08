@@ -12,6 +12,7 @@ import { AsidePanelComponent } from './aside-panel/aside-panel.component';
 import { RoundNearestPipe } from './round-nearest/round-nearest.pipe';
 import { ModalComponent } from './modal/modal.component';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
+import { FormControlsComponent } from './dynamic-form/form-controls/form-controls.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
     AsidePanelComponent,
     RoundNearestPipe,
     ModalComponent,
-    DynamicFormComponent
+    DynamicFormComponent,
+    FormControlsComponent
   ],
   imports: [ 
     CommonModule,

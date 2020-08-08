@@ -1,15 +1,52 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
 import { FormField } from './form-field.class';
+import { FormGroup, FormControl } from '@angular/forms';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DynamicFormService {
-  private fieldsSource = new Subject<FormField[]>();
-  fields$ = this.fieldsSource.asObservable();
+  private formSource = new Subject<{form: FormGroup, fields: FormField[]}>();
+  formInit$ = this.formSource.asObservable();
+
+  private submitSource = new Subject<FormGroup>();
+  submit$ = this.submitSource.asObservable();
 
   updateFields(fields: FormField[]): void {
-    this.fieldsSource.next(fields);
+    fields.sort((a, b) => a.fieldOrder - b.fieldOrder);
+
+    this.formSource.next({
+      form: this.initFormGroup(fields),
+      fields: fields
+    });
   }
+
+  notifySubmit(form: FormGroup): void {
+    this.submitSource.next(form);
+  }
+
+  private initFormGroup(fields: FormField[]): FormGroup {
+    let form: {} = {};
+
+    fields.forEach(field => {
+      if (!field.validators.async) {
+        form[field.fieldKey] = new FormControl(
+          field.value, 
+          field?.validators?.sync
+        );
+      } else {
+        form[field.fieldKey] = new FormControl(
+          field.value, 
+          {          
+            validators: field?.validators?.sync,
+            asyncValidators: field?.validators?.async,
+            updateOn: 'blur'
+          }
+        );
+      }
+    });
+    return new FormGroup(form);
+  }
+
 }
