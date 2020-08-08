@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup } from '@angular/forms';
 import { FormField } from '../shared/dynamic-form/form-field.class';
 import { MyAsyncValidators } from '../shared/validators/async-validators.service';
@@ -89,6 +89,17 @@ export class PageNotFoundComponent implements OnInit {
           sync: [ Validators.required ]
         },
         selectOptions: this.categories
+      }),
+      new FormField({
+        fieldType: 'input',
+        fieldKey: 'gender',
+        fieldLabel: 'Gender',
+        fieldOrder: 6,
+        validators: {
+          sync: [ 
+            Validators.required
+          ]
+        }
       })
     ];  
   }
