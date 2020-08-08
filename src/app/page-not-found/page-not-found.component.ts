@@ -25,7 +25,6 @@ export class PageNotFoundComponent implements OnInit {
   ngOnInit(): void {
     this.ps.getCategories().subscribe(val => {
       this.categories = val;
-      this.categories.unshift({ categoryId: null, category: 'Choose a category' })
       this.ds.updateFields(this.getfields());
     });
   }
@@ -39,7 +38,11 @@ export class PageNotFoundComponent implements OnInit {
         fieldOrder: 4,
         inpuType: 'password',
         validators: {
-          sync: [ Validators.required, OwnValidators.password ]
+          sync: [ 
+            Validators.required, 
+            OwnValidators.password, 
+            Validators.minLength(5) 
+          ]
         }
       }),
       new FormField({

@@ -1,7 +1,6 @@
-import { Component, ElementRef, HostListener, Input } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl } from '@angular/forms';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { FormField } from '../form-field.class';
-
 
 @Component({
   selector: 'text-field',
@@ -11,32 +10,14 @@ import { FormField } from '../form-field.class';
     '../dynamic-form.component.scss'
   ]
 })
-export class TextFieldComponent implements ControlValueAccessor {
-  @Input() inputClass: 'valid' | 'invalid';
-  @Input() inputType: string;
+export class TextFieldComponent implements OnInit {
+  @Input() form: FormGroup;
   @Input() field: FormField;
-  @Input() control: FormControl;
-  onChange: Function;
-  value: any = null;
   showPassword: boolean = false;
+ 
+  get control() { return this.form.get(this.field.fieldKey); }
 
-  constructor(private host: ElementRef<HTMLInputElement>) { }
-
-  @HostListener('change', ['$event.target.value']) emitValue(value: any) {
-    this.value = value;
-    if (this.value) { this.onChange(this.value); }
-  }
-
-  writeValue(value: null) {
-    this.host.nativeElement.value = '';
-    this.value = null;
-  }
-
-  registerOnChange(callback: Function) {
-    this.onChange = callback;
-  }
-
-  registerOnTouched(callback: Function) { }
+  constructor() { }
 
   ngOnInit(): void {
   }

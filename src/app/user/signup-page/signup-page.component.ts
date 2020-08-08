@@ -89,12 +89,13 @@ export class SignupPageComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.isLoading = true;
-    this.us.signupRequest(this.formSantize).subscribe(state => {
-      if (state.success) {
-        this.router.navigate(['/user/login']);
-      }
-      this.isLoading = false;
-    });
+    // this.isLoading = true;
+    // this.us.signupRequest(this.formSantize).subscribe(state => {
+    //   if (state.success) {
+    //     this.router.navigate(['/user/login']);
+    //   }
+    //   this.isLoading = false;
+    // });
+    console.log(this.password.errors.minlength.requiredLength);
   }
 }

@@ -1,8 +1,13 @@
-<div class="form-group">
+<div [formGroup]="form" class="form-group">
   <div class="form-group-wrapper">
-    <select [class]="inputClass">
-      <option *ngFor="let option of options" 
-      [value]="option.value">{{ option.key }}</option>
-    </select>    
+    <select [formControlName]="field.fieldKey">
+      <option [ngValue]="null">
+        Choose a {{ field.fieldLabel | lowercase }}
+      </option>
+      <option *ngFor="let option of field.selectOptions" 
+        [ngValue]="option.value">{{ option.key }}</option>
+    </select>
   </div>
+
+
 </div>

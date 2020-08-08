@@ -1,5 +1,6 @@
-import { Component, ElementRef, HostListener, Input } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { FormField } from '../form-field.class';
 
 @Component({
   selector: 'dropdown',
@@ -7,34 +8,17 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
   styleUrls: [
     './dropdown.component.scss',
     '../dynamic-form.component.scss'
-  ],
-  providers:[{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: DropdownComponent,
-    multi: true
-  }]
+  ]
 })
-export class DropdownComponent implements ControlValueAccessor {
-  @Input() inputClass: 'valid' | 'invalid';
-  @Input() options: { key: string | number, value: any }[];
-  onChange: Function;
-  value: any = null;
+export class DropdownComponent implements OnInit {
+  @Input() form: FormGroup;
+  @Input() field: FormField;
+ 
+  get control() { return this.form.get(this.field.fieldKey); }
 
-  constructor(private host: ElementRef<HTMLInputElement>) { }
+  constructor() { }
 
-  @HostListener('change', ['$event.target.value']) emitValue(value: any) {
-    this.value = +value;
-    if (this.value) { this.onChange(this.value); }
+  ngOnInit(): void {
   }
-
-  writeValue(value: null) {
-    this.host.nativeElement.value = '';
-    this.value = null;
-  }
-
-  registerOnChange(callback: Function) {
-    this.onChange = callback;
-  }
-
-  registerOnTouched(callback: Function) { }
+  
 }

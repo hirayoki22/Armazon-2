@@ -4,14 +4,16 @@
     (ngSubmit)="onSubmit()" 
     id="dynamicForm">
 
-    <div *ngFor="let field of fields" [ngSwitch]="field.fieldType">
-      <div *ngSwitchCase="'select'">
-        <dropdown
-         [formControlName]="field.fieldKey"
-         [options]="field.selectOptions"></dropdown>
-      </div>
+    <!-- <form-control [form]="form" [fields]="fields"></form-control> -->
 
-      <div *ngSwitchDefault></div>
+    <div *ngFor="let field of fields">
+      <div [ngSwitch]="field.fieldType">
+        <dropdown *ngSwitchCase="'select'" 
+        [form]="form" [field]="field"></dropdown>
+
+        <text-field *ngSwitchDefault 
+        [form]="form" [field]="field"></text-field>
+      </div>
     </div>
 
     <div class="action-buttons">
