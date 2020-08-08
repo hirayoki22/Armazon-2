@@ -12,7 +12,6 @@ import { AsidePanelComponent } from './aside-panel/aside-panel.component';
 import { RoundNearestPipe } from './round-nearest/round-nearest.pipe';
 import { ModalComponent } from './modal/modal.component';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
-import { FormControlsComponent } from './dynamic-form/form-controls/form-controls.component';
 import { DropdownComponent } from './dynamic-form/dropdown/dropdown.component';
 import { TextFieldComponent } from './dynamic-form/text-field/text-field.component';
 import { InputFeedbackComponent } from './dynamic-form/input-feedback/input-feedback.component';
@@ -29,7 +28,6 @@ import { InputFeedbackComponent } from './dynamic-form/input-feedback/input-feed
     RoundNearestPipe,
     ModalComponent,
     DynamicFormComponent,
-    FormControlsComponent,
     DropdownComponent,
     TextFieldComponent,
     InputFeedbackComponent
