@@ -15,6 +15,7 @@ import { Category } from '../category.model';
 })
 export class PageNotFoundComponent implements OnInit {
   categories: Category[] = [];
+  baGenderChoice: boolean = false;
 
   constructor(
     private ps: ProductService,
@@ -99,7 +100,13 @@ export class PageNotFoundComponent implements OnInit {
           sync: [ 
             Validators.required
           ]
-        }
+        },
+        inputFeedback: [
+          { 
+            condition: this.baGenderChoice, 
+            feedback: 'Invalid gender choice!'
+          }
+        ]
       })
     ];  
   }
