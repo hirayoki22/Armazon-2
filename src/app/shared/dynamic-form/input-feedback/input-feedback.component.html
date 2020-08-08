@@ -23,6 +23,10 @@
   </p>
 </div>
 
+<div *ngIf="custom?.condition" class="invalid-feedbac">
+  <p>{{ custom.feedback }}</p>
+</div>
+
 <!-- <div *ngIf="control.valid" class="valid-feedback">
   <p>Available! <i class="material-icons">done</i></p>
 </div> -->

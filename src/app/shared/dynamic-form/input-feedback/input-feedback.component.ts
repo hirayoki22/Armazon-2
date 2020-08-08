@@ -12,11 +12,11 @@ import { FormControl } from '@angular/forms';
 export class InputFeedbackComponent implements OnInit {
   @Input() control: FormControl;
   @Input() fieldLabel: string;
+  @Input() custom: { condition: boolean, feedback: string };
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.control);
   }
 
 }

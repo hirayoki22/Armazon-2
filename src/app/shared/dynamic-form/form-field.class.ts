@@ -14,6 +14,7 @@ export class FormField {
     async?: AsyncValidatorFn[]
   };
   selectOptions: SelectOption[];
+  inputFeedback: { condition: boolean, feedback: string }[];
 
   constructor(params: {
     fieldType: 'input' | 'select' | 'textarea',
@@ -26,7 +27,8 @@ export class FormField {
       sync?: ValidatorFn[],
       async?: AsyncValidatorFn[]
     },
-    selectOptions?: any[]
+    selectOptions?: { [key: string]: any }[],
+    inputFeedback?: { condition: boolean, feedback: string }[]
   }) {
     this.fieldType  = params.fieldType;
     this.fieldKey   = params.fieldKey   || '';
@@ -36,6 +38,7 @@ export class FormField {
     this.value      = params.value      || null;
     this.validators = params.validators || null;
     this.selectOptions = this.formatedOptions(params.selectOptions);
+    this.inputFeedback = params.inputFeedback || null
   }
 
   private formatedOptions(options: any[]): SelectOption[] {
