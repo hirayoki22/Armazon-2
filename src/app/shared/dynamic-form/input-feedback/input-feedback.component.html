@@ -2,31 +2,30 @@
   *ngIf="control.touched && control?.errors"
   class="invalid-feedback">
   <p *ngIf="control.errors.required">
-    Enter your {{ fieldLabel }}
+    Enter your {{ field.fieldLabel }}
   </p>
 
   <p *ngIf="control.errors.pattern">
-    Invalid {{ fieldLabel }} format
+    Invalid {{ field.fieldLabel }} format
   </p>
 
   <p *ngIf="control.errors.minlength">
-    The {{ fieldLabel }} can't be less than 
+    The {{ field.fieldLabel }} can't be less than 
     {{ control.errors.minlength.requiredLength }} characters
   </p>
 
   <p *ngIf="control.errors.exists">
-    This {{ fieldLabel }} is already in use
+    This {{ field.fieldLabel}} is already in use
   </p>
 
   <p *ngIf="control.value && control.errors.password">
-    Invalid {{ fieldLabel }}
+    Invalid {{ field.fieldLabel }}
   </p>
 </div>
 
-<div *ngIf="control.touched && !control.errors && customs" class="invalid-feedback">
-  <div *ngFor="let custom of customs">
-    <p *ngIf="custom.condition">{{ custom.feedback }}</p>
-  </div>
+<div 
+*ngIf="specialCondition" class="invalid-feedback">
+  <p>{{ field.customFeedback }}</p>
 </div>
 
 <!-- <div *ngIf="control.valid" class="valid-feedback">

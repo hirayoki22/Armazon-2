@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { FormField } from './form-field.class';
 import { DynamicFormService } from './dynamic-form.service';
+
+export interface SpecialFeedback { fieldOrder: number; condition: boolean }
 
 @Component({
   selector: 'dynamic-form',
@@ -12,6 +14,7 @@ import { DynamicFormService } from './dynamic-form.service';
 })
 export class DynamicFormComponent implements OnInit {
   @Output('onSubmit') notifySubmit = new EventEmitter<FormGroup>();
+  @Input() specialFeedback: SpecialFeedback;
   form: FormGroup;
   fields: FormField[] = [];
 

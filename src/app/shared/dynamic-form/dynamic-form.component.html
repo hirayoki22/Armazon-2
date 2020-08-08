@@ -6,36 +6,18 @@
 
     <div *ngFor="let field of fields">
       <div [ngSwitch]="field.fieldType" class="form-group">
-        <dropdown *ngSwitchCase="'select'" 
-        [form]="form" [field]="field"></dropdown>
+        <dropdown 
+        *ngSwitchCase="'select'" 
+        [form]="form" 
+        [field]="field"
+        [specialFeedback]="specialFeedback"></dropdown>
 
-        <text-field *ngSwitchDefault 
-        [form]="form" [field]="field"></text-field>
+        <text-field 
+        *ngSwitchDefault 
+        [form]="form" 
+        [field]="field"
+        [specialFeedback]="specialFeedback"></text-field>
 
-        <div 
-        *ngIf="control(field.fieldKey).touched && control(field.fieldKey)?.errors"
-        class="invalid-feedback">
-        <p *ngIf="control(field.fieldKey).errors.required">
-          Enter your {{ field.fieldLabel | lowercase }}
-        </p>
-
-        <p *ngIf="control(field.fieldKey).errors.pattern">
-          Invalid {{ field.fieldLabel | lowercase }} format
-        </p>
-
-        <p *ngIf="control(field.fieldKey).errors.minlength">
-          The {{ field.fieldLabel | lowercase }} can't be less than 
-          {{ control(field.fieldKey).errors.minlength.requiredLength }} characters
-        </p>
-
-        <p *ngIf="control(field.fieldKey).errors.exists">
-          This {{ field.fieldLabel | lowercase }} is already in use
-        </p>
-
-        <p *ngIf="control(field.fieldKey).value && control(field.fieldKey).errors.password">
-          Invalid {{ field.fieldLabel | lowercase }}
-        </p>
-      </div>
       </div>
     </div>
 

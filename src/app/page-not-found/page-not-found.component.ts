@@ -15,7 +15,7 @@ import { Category } from '../category.model';
 })
 export class PageNotFoundComponent implements OnInit {
   categories: Category[] = [];
-  baGenderChoice: boolean = true;
+  badGenderChoice: boolean = false;
 
   constructor(
     private ps: ProductService,
@@ -28,6 +28,10 @@ export class PageNotFoundComponent implements OnInit {
       this.categories = val;
       this.ds.updateFields(this.getfields());
     });
+  }
+
+  onClick(): void {
+    this.badGenderChoice = !this.badGenderChoice;
   }
 
   getfields(): FormField[] {
@@ -101,12 +105,7 @@ export class PageNotFoundComponent implements OnInit {
             Validators.required
           ]
         },
-        inputFeedback: [
-          { 
-            condition: this.baGenderChoice, 
-            feedback: 'Invalid gender choice!'
-          }
-        ]
+        customFeedback: 'Invalid gender choice. Stop trying to be progre!'     
       })
     ];  
   }
