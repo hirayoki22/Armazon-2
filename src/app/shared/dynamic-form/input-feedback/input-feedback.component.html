@@ -1,0 +1,16 @@
+<div 
+  *ngIf="control.touched && control?.errors"
+  class="invalid-feedback">
+  <p *ngIf="control.errors.required">
+    Enter your {{ fieldLabel }}
+  </p>
+
+  <p *ngIf="control.errors.pattern">
+    Invalid {{ fieldLabel }} format
+  </p>
+
+  <p *ngIf="control.errors.minlength">
+    The {{ fieldLabel }} can't be less than 
+    {{ control.errors.minlength.requiredLength }} characters
+  </p>
+</div>

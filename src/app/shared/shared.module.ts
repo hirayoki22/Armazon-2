@@ -15,6 +15,7 @@ import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { FormControlsComponent } from './dynamic-form/form-controls/form-controls.component';
 import { DropdownComponent } from './dynamic-form/dropdown/dropdown.component';
 import { TextFieldComponent } from './dynamic-form/text-field/text-field.component';
+import { InputFeedbackComponent } from './dynamic-form/input-feedback/input-feedback.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { TextFieldComponent } from './dynamic-form/text-field/text-field.compone
     DynamicFormComponent,
     FormControlsComponent,
     DropdownComponent,
-    TextFieldComponent
+    TextFieldComponent,
+    InputFeedbackComponent
   ],
   imports: [ 
     CommonModule,
