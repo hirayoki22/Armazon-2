@@ -1,0 +1,8 @@
+<div class="form-group">
+  <div class="form-group-wrapper">
+    <select [class]="inputClass">
+      <option *ngFor="let option of options" 
+      [value]="option.value">{{ option.key }}</option>
+    </select>    
+  </div>
+</div>

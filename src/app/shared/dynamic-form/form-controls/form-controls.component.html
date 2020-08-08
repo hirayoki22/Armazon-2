@@ -2,13 +2,13 @@
   <div *ngFor="let field of fields" class="form-group">
     <div [ngSwitch]="field.fieldType">
       <div *ngSwitchCase="'select'" class="form-group-wrapper">
-        <select formControlName="categoryId"
+        <!-- <select formControlName="categoryId"
         [class.invalid]="getControl(field.fieldKey).touched && getControl(field.fieldKey).invalid"
         [class.valid]="getControl(field.fieldKey).touched && getControl(field.fieldKey).valid">
-          <option [ngValue]="null">Choose a {{ field.fieldLabel | lowercase }}</option>
           <option *ngFor="let option of field.selectOptions" 
             [ngValue]="option.value">{{ option.key }}</option>
-        </select>
+        </select> -->
+        
       </div>
       
       <div *ngSwitchDefault class="form-group-wrapper">
@@ -16,6 +16,7 @@
         [class.invalid]="getControl(field.fieldKey).touched && getControl(field.fieldKey).invalid"
         [class.valid]="getControl(field.fieldKey).touched && getControl(field.fieldKey).valid"
         [type]="field.inpuType">
+        
         <label [class.shrink]="getControl(field.fieldKey).value">
           {{ field.fieldLabel }}
         </label>

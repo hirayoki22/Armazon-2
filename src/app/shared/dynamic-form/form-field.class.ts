@@ -1,6 +1,6 @@
 import { ValidatorFn, AsyncValidatorFn } from '@angular/forms';
 
-interface SelectOption { key: string| number, value: any };
+interface SelectOption { key: string | number, value: any };
 
 export class FormField {
   fieldType: 'input' | 'select' | 'textarea';

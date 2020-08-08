@@ -4,10 +4,18 @@
     (ngSubmit)="onSubmit()" 
     id="dynamicForm">
 
-    <form-control [form]="form" [fields]="fields"></form-control>
+    <div *ngFor="let field of fields" [ngSwitch]="field.fieldType">
+      <div *ngSwitchCase="'select'">
+        <dropdown
+         [formControlName]="field.fieldKey"
+         [options]="field.selectOptions"></dropdown>
+      </div>
+
+      <div *ngSwitchDefault></div>
+    </div>
 
     <div class="action-buttons">
-      <button [disabled]="form.invalid"
+      <button 
         class="btn-xl-filled submit-btn">
         Submit
       </button>
