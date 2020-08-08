@@ -10,6 +10,8 @@ import { FormField } from '../form-field.class';
 export class FormControlsComponent implements OnInit {
   @Input() form: FormGroup;
   @Input() fields: FormField[];
+  showPassword: boolean = false;
+  showRePassword: boolean = false;
 
   constructor() { }
 

@@ -30,8 +30,6 @@ export class PageNotFoundComponent implements OnInit, AfterViewInit {
       this.categories = val;
       this.ds.updateFields(this.getfields());
     });
-
-    this.ds.submit$.subscribe(form => console.log(form.value));
   }
 
   getfields(): FormField[] {
@@ -86,5 +84,9 @@ export class PageNotFoundComponent implements OnInit, AfterViewInit {
         selectOptions: this.categories
       })
     ];  
+  }
+
+  onSubmit(form: FormGroup): void {
+    console.log(form.value);
   }
 }

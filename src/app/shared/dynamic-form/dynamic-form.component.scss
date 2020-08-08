@@ -3,4 +3,14 @@
   padding: 5rem; // temp
   margin: 5rem auto; // temp
   background-color: #fff;
+  
+  .action-buttons {
+    width: 100%;
+    margin-top: 3rem;
+    
+    .submit-btn {
+      width: 100%;
+      margin-bottom: 1.5rem;
+    }
+  }
 }

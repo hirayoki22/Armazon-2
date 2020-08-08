@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { FormField } from './form-field.class';
@@ -10,6 +11,7 @@ import { DynamicFormService } from './dynamic-form.service';
   styleUrls: ['./dynamic-form.component.scss']
 })
 export class DynamicFormComponent implements OnInit {
+  @Output('onSubmit') notifySubmit = new EventEmitter<FormGroup>();
   form: FormGroup;
   fields: FormField[] = [];
 
@@ -23,6 +25,6 @@ export class DynamicFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.ds.notifySubmit(this.form);
+    this.notifySubmit.emit(this.form);
   }
 }

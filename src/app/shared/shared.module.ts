@@ -13,6 +13,7 @@ import { RoundNearestPipe } from './round-nearest/round-nearest.pipe';
 import { ModalComponent } from './modal/modal.component';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { FormControlsComponent } from './dynamic-form/form-controls/form-controls.component';
+import { DropdownComponent } from './dynamic-form/form-controls/dropdown/dropdown.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { FormControlsComponent } from './dynamic-form/form-controls/form-control
     RoundNearestPipe,
     ModalComponent,
     DynamicFormComponent,
-    FormControlsComponent
+    FormControlsComponent,
+    DropdownComponent
   ],
   imports: [ 
     CommonModule,

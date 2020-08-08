@@ -10,9 +10,6 @@ export class DynamicFormService {
   private formSource = new Subject<{form: FormGroup, fields: FormField[]}>();
   formInit$ = this.formSource.asObservable();
 
-  private submitSource = new Subject<FormGroup>();
-  submit$ = this.submitSource.asObservable();
-
   updateFields(fields: FormField[]): void {
     fields.sort((a, b) => a.fieldOrder - b.fieldOrder);
 
@@ -20,10 +17,6 @@ export class DynamicFormService {
       form: this.initFormGroup(fields),
       fields: fields
     });
-  }
-
-  notifySubmit(form: FormGroup): void {
-    this.submitSource.next(form);
   }
 
   private initFormGroup(fields: FormField[]): FormGroup {
