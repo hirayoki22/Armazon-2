@@ -2,8 +2,11 @@
   <div class="wrapper-l">
     <h1>NOT FOUND - 404</h1>
 
-    <dynamic-form
-  
-    ></dynamic-form>
+    <div *ngIf="categories">
+      <dynamic-form
+      [selectOptions]="categories"
+      (ngSubmit)="onSubmit($event)"></dynamic-form>
+    </div>
+
   </div>
 </section>

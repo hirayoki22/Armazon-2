@@ -5,6 +5,8 @@ import { MyAsyncValidators } from '../shared/validators/async-validators.service
 import { OwnValidators } from '../shared/validators/sync-validators';
 
 import { DynamicFormService } from '../shared/dynamic-form/dynamic-form.service';
+import { ProductService } from '../product.service';
+import { Category } from '../category.model';
 
 @Component({
   selector: 'app-page-not-found',
@@ -12,8 +14,10 @@ import { DynamicFormService } from '../shared/dynamic-form/dynamic-form.service'
   styleUrls: ['./page-not-found.component.scss']
 })
 export class PageNotFoundComponent implements OnInit, AfterViewInit {
+  categories: Category[] = [];
 
   constructor(
+    private ps: ProductService,
     private ds: DynamicFormService,
     private asyncValidators: MyAsyncValidators
   ) { }
@@ -22,7 +26,10 @@ export class PageNotFoundComponent implements OnInit, AfterViewInit {
   }
   
   ngAfterViewInit(): void {
-    this.ds.updateFields(this.getfields());
+    this.ps.getCategories().subscribe(val => {
+      this.categories = val
+      this.ds.updateFields(this.getfields());
+    });
   }
 
   getfields(): FormField[] {

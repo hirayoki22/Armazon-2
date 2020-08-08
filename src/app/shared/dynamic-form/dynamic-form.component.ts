@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { delay } from 'rxjs/operators';
 
 import { FormField } from './form-field.class';
 import { DynamicFormService } from './dynamic-form.service';
@@ -12,21 +13,19 @@ import { DynamicFormService } from './dynamic-form.service';
 })
 export class DynamicFormComponent implements OnInit {
   form: FormGroup;
-  fields: FormField[];
+  fields: FormField[] = [];
   @Input() selectOptions: any[];
   @Output('onSubmit') notifySubmit = new EventEmitter<FormGroup>();
-
-  get sortedFields(): FormField[] {
-    return this.fields.map(field => field)
-    .sort((a, b) => a.fieldOrder - b.fieldOrder);
-  }
 
   constructor(private ds: DynamicFormService) { }
 
   ngOnInit(): void {
-    this.ds.fields$.subscribe(fields => {
-      console.log(fields);
-    })
+    this.ds.fields$.pipe(delay(100)).subscribe(fields => {
+      fields.sort((a, b) => a.fieldOrder - b.fieldOrder);
+      this.fields = fields;
+
+      this.form = this.initFormGroup();
+    });
   }
 
   getControl(key: string) { return this.form.get(key); }

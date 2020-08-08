@@ -1,59 +1,68 @@
-<form 
-  [formGroup]="form" 
-  (ngSubmit)="onSubmit()" 
-  id="dynamicForm"
-  *ngIf="fields?.length">
+<div *ngIf="form && fields">
+  <form 
+    [formGroup]="form" 
+    (ngSubmit)="onSubmit()" 
+    id="dynamicForm">
 
-  <div *ngFor="let field of sortedFields" class="form-group">
-    <div [ngSwitch]="field.fieldType">
-      
-      
-      <div *ngSwitchDefault class="form-group-wrapper">
-        <input [formControlName]="field.fieldKey" 
-        [class.invalid]="getControl(field.fieldKey).touched && getControl(field.fieldKey).invalid"
-        [class.valid]="getControl(field.fieldKey).touched && getControl(field.fieldKey).valid"
-        [type]="field.inpuType">
-        <label [class.shrink]="getControl(field.fieldKey).value">
-          {{ field.fieldLabel }}
-        </label>
-
-        <div *ngIf="getControl(field.fieldKey).pending" class="loader">
-          <span></span>
-          <span></span>
-          <span></span>
+    <div *ngFor="let field of fields" class="form-group">
+      <div [ngSwitch]="field.fieldType">
+        <div *ngSwitchCase="'select'" class="form-group-wrapper">
+          <select formControlName="categoryId"
+          [class.invalid]="getControl(field.fieldKey).touched && getControl(field.fieldKey).invalid"
+          [class.valid]="getControl(field.fieldKey).touched && getControl(field.fieldKey).valid">
+            <option [ngValue]="null">Choose a {{ field.fieldLabel | lowercase }}</option>
+            <option *ngFor="let option of field.selectOptions" 
+              [ngValue]="option.value">{{ option.key }}</option>
+          </select>
         </div>
+        
+        <div *ngSwitchDefault class="form-group-wrapper">
+          <input [formControlName]="field.fieldKey" 
+          [class.invalid]="getControl(field.fieldKey).touched && getControl(field.fieldKey).invalid"
+          [class.valid]="getControl(field.fieldKey).touched && getControl(field.fieldKey).valid"
+          [type]="field.inpuType">
+          <label [class.shrink]="getControl(field.fieldKey).value">
+            {{ field.fieldLabel }}
+          </label>
 
-        <span *ngIf="field.inpuType == 'password'">
-          <button 
-          
-            class="toggle_password_visibility"
-            type="button"
-            tabindex="-10">
-            <i  class="material-icons">visibility</i>
-            <!-- <i *ngIf="showPassword" class="material-icons">visibility_off</i> -->
-          </button>
-        </span>
+          <div *ngIf="getControl(field.fieldKey).pending" class="loader">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <span *ngIf="field.inpuType == 'password'">
+            <button 
+            
+              class="toggle_password_visibility"
+              type="button"
+              tabindex="-10">
+              <i  class="material-icons">visibility</i>
+              <!-- <i *ngIf="showPassword" class="material-icons">visibility_off</i> -->
+            </button>
+          </span>
+        </div>
       </div>
+
+      <div 
+        *ngIf="getControl(field.fieldKey).touched && getControl(field.fieldKey)?.errors"
+        class="invalid-feedback">
+        <p *ngIf="getControl(field.fieldKey).errors.required">
+          Enter your {{ field.fieldLabel }}
+        </p>
+
+        <p *ngIf="getControl(field.fieldKey).errors.pattern">
+          Invalid {{ field.fieldLabel }} format
+        </p>
+      </div>
+
     </div>
 
-    <div 
-      *ngIf="getControl(field.fieldKey).touched && getControl(field.fieldKey)?.errors"
-      class="invalid-feedback">
-      <p *ngIf="getControl(field.fieldKey).errors.required">
-        Enter your {{ field.fieldLabel }}
-      </p>
-
-      <p *ngIf="getControl(field.fieldKey).errors.pattern">
-        Invalid {{ field.fieldLabel }} format
-      </p>
+    <div class="action-buttons">
+      <button [disabled]="form.invalid"
+        class="btn-xl-filled submit-btn">
+        Submit
+      </button>
     </div>
-
-  </div>
-
-  <div class="action-buttons">
-    <button [disabled]="form.invalid"
-      class="btn-xl-filled submit-btn">
-      Submit
-    </button>
-  </div>
-</form>
+  </form>
+</div>
