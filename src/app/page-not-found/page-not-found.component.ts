@@ -13,7 +13,7 @@ import { Category } from '../category.model';
   templateUrl: './page-not-found.component.html',
   styleUrls: ['./page-not-found.component.scss']
 })
-export class PageNotFoundComponent implements OnInit, AfterViewInit {
+export class PageNotFoundComponent implements OnInit {
   categories: Category[] = [];
 
   constructor(
@@ -23,9 +23,6 @@ export class PageNotFoundComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
-  }
-  
-  ngAfterViewInit(): void {
     this.ps.getCategories().subscribe(val => {
       this.categories = val;
       this.ds.updateFields(this.getfields());
