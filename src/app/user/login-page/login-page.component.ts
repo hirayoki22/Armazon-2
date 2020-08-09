@@ -23,48 +23,51 @@ export class LoginPageComponent implements OnInit {
   constructor(
     private router: Router,
     private us: UserService,
-    private fb: FormBuilder
+    // private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
-    this.loginForm = this.initLoginForm();
+    // this.loginForm = this.initLoginForm();
+    this.fields = this.getFields();
   }
 
-  private initLoginForm(): FormGroup {
-    return this.fb.group({
-      username: [ null, Validators.required ],
-      password: [ null, Validators.required ],
-    });
-  }
+  // private initLoginForm(): FormGroup {
+  //   return this.fb.group({
+  //     username: [ null, Validators.required ],
+  //     password: [ null, Validators.required ],
+  //   });
+  // }
 
-  get username() {
-    return this.loginForm.get('username');
-  }
+  // get username() {
+  //   return this.loginForm.get('username');
+  // }
 
-  get password() {
-    return this.loginForm.get('password');
-  }
+  // get password() {
+  //   return this.loginForm.get('password');
+  // }
 
-  private get login(): LoginInfo {
-    return {
-      username: this.username.value.toLowerCase().trim(),
-      password: this.password.value.trim()
-    }
-  }
+  // private get login(): LoginInfo {
+  //   return {
+  //     username: this.username.value.toLowerCase().trim(),
+  //     password: this.password.value.trim()
+  //   }
+  // }
 
-  onSubmit(): void {
-    if (this.loginForm.invalid) { return; }
+  onSubmit(form: FormGroup): void {
+    if (form.invalid) { return; }
 
-    this.isLoading = true;
-    this.us.loginRequest(this.login).subscribe(state => {
-      if (!state.success) {
-        this.loginState = state;
-        this.password.setValue(null);
-      } else {
-        this.router.navigate(['/']);
-      }
-      this.isLoading = false;
-    });
+    console.log(form.value);
+
+    // this.isLoading = true;
+    // this.us.loginRequest(this.login).subscribe(state => {
+    //   if (!state.success) {
+    //     this.loginState = state;
+    //     this.password.setValue(null);
+    //   } else {
+    //     this.router.navigate(['/']);
+    //   }
+    //   this.isLoading = false;
+    // });
   }
 
   getFields(): FormField[] {
@@ -72,7 +75,7 @@ export class LoginPageComponent implements OnInit {
       new FormField({
         fieldType: 'input',
         fieldKey: 'username',
-        fieldLabel: 'Username/email address',
+        fieldLabel: 'Username or email address',
         fieldOrder: 1,
         inpuType: 'email',
         validators: {
