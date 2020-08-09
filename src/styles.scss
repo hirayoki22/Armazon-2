@@ -1,6 +1,10 @@
 @import url('./scss/reset.scss');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
 
+@import 'assets/font-awesome/scss/fontawesome.scss';
+@import 'assets/font-awesome/scss/solid.scss';
+@import 'assets/font-awesome/scss/brands.scss';
+
 @import 'scss/animations';
 
 html::-webkit-scrollbar-thumb {

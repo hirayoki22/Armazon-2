@@ -5,10 +5,10 @@
   width: 100%;
   height: 46px;
   padding: 0 1.5rem;
-  overflow: hidden;
   background-color: rgba(255, 255, 255, 0.7);
-  backdrop-filter: saturate(180%) blur(20px);
   box-shadow: 0 1px 20px rgba(190, 190, 190, 0.2);
+  backdrop-filter: saturate(180%) blur(20px);
+  overflow: hidden;
   z-index: 100;
 
   &-wrapper {
@@ -48,25 +48,25 @@
 
     .nav-btn {
       &:not(:last-of-type) {
-        margin-right: 2rem;
+        margin-right: 2.5rem;
       }
 
       .material-icons {
-        // color: #7a8196;
-        color: #4c4e5a;
         font-size: 1.4rem;
+        transition: color .4s ease;
+      }
+
+      .fa-shopping-bag {
+        font-size: 1.1rem;
         transition: color .4s ease;
       }
   
       &:hover {
-        .material-icons {
+        .material-icons,
+        .fa-shopping-bag {
           color: darken(#7a8196, 15);
         }
       }
-    }
-  
-    .search-btn {
-  
     }
     
     .cart-btn {
