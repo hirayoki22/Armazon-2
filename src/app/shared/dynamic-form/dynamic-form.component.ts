@@ -15,21 +15,21 @@ export interface SpecialFeedback { fieldOrder: number; condition: boolean }
 export class DynamicFormComponent implements OnInit {
   @Output('onSubmit') notifySubmit = new EventEmitter<FormGroup>();
   @Input() specialFeedback: SpecialFeedback;
+  @Input() onInvalidDisabled: boolean;
   form: FormGroup;
   fields: FormField[] = [];
 
   constructor(private ds: DynamicFormService) { }
 
   ngOnInit(): void {
-    this.ds.formInit$.subscribe(data => {
-      this.form = data.form;
-      this.fields = data.fields;
-    });
+    // this.ds.formInit$.subscribe(data => {
+    //   this.form = data.form;
+    //   this.fields = data.fields;
+    // });
   }
 
   onSubmit(): void {
     this.notifySubmit.emit(this.form);
   }
 
-  control(fieldKey: string) { return this.form.get(fieldKey); }
 }
