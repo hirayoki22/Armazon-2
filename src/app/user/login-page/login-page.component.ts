@@ -79,7 +79,7 @@ export class LoginPageComponent implements OnInit {
         fieldOrder: 1,
         inpuType: 'email',
         validators: {
-          sync: [ Validators.required, Validators.minLength(5) ]
+          sync: [ Validators.required ]
         }
       }),
       new FormField({

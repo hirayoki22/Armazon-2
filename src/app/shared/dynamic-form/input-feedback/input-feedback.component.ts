@@ -3,8 +3,6 @@ import { Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormField } from '../form-field.class';
 
-interface Feedback { condition: boolean, message: string };
-
 @Component({
   selector: 'input-feedback',
   templateUrl: './input-feedback.component.html',
