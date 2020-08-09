@@ -45,7 +45,7 @@ export class LoginPageComponent implements OnInit {
         } else {
           this.unsetCustomFeedback(0);
           this.setCustomFeedback(state, 1);
-          username.setErrors(null);
+          // username.setErrors(null);
           password.setErrors({invalid: true});
           password.setValue(null);
         }
@@ -64,7 +64,7 @@ export class LoginPageComponent implements OnInit {
   } 
 
   private unsetCustomFeedback(index: number) {
-    this.fields[index].customFeedback.condition = false;
+    this.fields[index].customFeedback?.condition = false;
   }
 
   private getFields(): FormField[] {

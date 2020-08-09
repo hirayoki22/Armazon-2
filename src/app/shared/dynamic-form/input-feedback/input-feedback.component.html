@@ -1,39 +1,51 @@
-<!-- <span 
+<span 
   *ngIf="control.touched && control?.errors && 
   !field?.customFeedback?.condition"
   class="invalid-feedback">
-  <p *ngIf="control.errors.required">
-    Enter your {{ field.fieldLabel | lowercase }}
-  </p>
+  <div>
+    <p *ngIf="control.errors.required">
+      Enter your {{ field.fieldLabel | lowercase }}
+    </p>
+  </div>
 
-  <p *ngIf="control.errors.pattern">
-    Invalid {{ field.fieldLabel | lowercase }} format
-  </p>
+  <div>
+    <p *ngIf="control.errors.pattern">
+      Invalid {{ field.fieldLabel | lowercase }} format
+    </p>
+  </div>
 
-  <p *ngIf="control.errors.minlength">
-    The {{ field.fieldLabel | lowercase }} can't be less than 
-    {{ control.errors.minlength.requiredLength }} characters
-  </p>
+  <div>
+    <p *ngIf="control.errors.minlength">
+      The {{ field.fieldLabel | lowercase }} can't be less than 
+      {{ control.errors.minlength.requiredLength }} characters
+    </p>
+  </div>
 
-  <p *ngIf="control.errors.exists">
-    This {{ field.fieldLabel | lowercase }} is already in use
-  </p>
+  <div>
+    <p *ngIf="control.errors.exists">
+      This {{ field.fieldLabel | lowercase }} is already in use
+    </p>
+  </div>
 
-  <p *ngIf="control.value && control.errors.password">
-    This {{ field.fieldLabel | lowercase }} isn't a secure password
-  </p>
+  <div>
+    <p *ngIf="control.value && control.errors.password">
+      This {{ field.fieldLabel | lowercase }} isn't secure
+    </p>
+  </div>
 </span>
 
 <span *ngIf="control.dirty && field?.customFeedback?.condition" 
   class="invalid-feedback">
   <p>{{ field.customFeedback.message }}</p>
-</span> -->
+</span>
 
-<span 
+<!-- <span 
   *ngIf="control.touched && control?.errors"
   class="invalid-feedback">
-  <p *ngFor=""></p>
-</span>
+  <div *ngFor="let feedback of feedbacks">
+    <p *ngIf="feedback.condition">{{ feedback.message }}</p>
+  </div>
+</span> -->
 
 <!-- <span *ngIf="field.fieldType == 'email' && control.valid" class="valid-feedback">
   <p>Available! <i class="material-icons">done</i></p>

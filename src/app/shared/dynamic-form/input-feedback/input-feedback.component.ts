@@ -21,7 +21,7 @@ export class InputFeedbackComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.feedbacks = this.initFeedbacks();
+    // this.feedbacks = this.initFeedbacks();
   }
 
   get label(): string {
@@ -31,11 +31,11 @@ export class InputFeedbackComponent implements OnInit {
   initFeedbacks(): Feedback[] {
     return [
       { 
-        condition: this.control?.errors?.required,
+        condition: this.control.errors.required,
         message: `Enter your ${this.label}`
       },
       { 
-        condition: this.control?.errors?.pattern,
+        condition: this.control.errors.pattern,
         message: `Invalid ${this.label} format`
       },
       { 
@@ -44,17 +44,17 @@ export class InputFeedbackComponent implements OnInit {
         ${this.control?.errors?.minlength?.requiredLength} characters`
       },
       { 
-        condition: this.control?.errors?.exists,
+        condition: this.control.errors.exists,
         message: `This ${this.label} is already in use`
       },
       { 
-        condition: this.control.value &&this.control?.errors?.password,
+        condition: this.control.value && this.control?.errors?.password,
         message: `This ${this.label} is not secure`
       },
-      { 
-        condition: this.control.dirty && this.field?.customFeedback?.condition,
-        message: this.field?.customFeedback?.message
-      }
+      // { 
+      //   condition: this.control.dirty && this.field?.customFeedback?.condition,
+      //   message: this.field?.customFeedback?.message
+      // }
     ];
   }
 }

@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
     ).subscribe((navigation: NavigationEnd) => {
       const url = navigation.urlAfterRedirects;
 
-      this.hideNavbar = url == '/user/login' || url == '/user/signup';
+      this.hideNavbar = url == '/user/login' || url == '/user/signup' || url == '/404';
       this.hideFooter = url == '/user/login' || url == '/user/signup' || url == '/404';
     });
   }
