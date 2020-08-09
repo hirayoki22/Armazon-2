@@ -4,26 +4,21 @@
     (ngSubmit)="onSubmit()" 
     id="dynamicForm">
 
-    <div *ngFor="let field of fields">
-      <div [ngSwitch]="field.fieldType" class="form-group">
-        <dropdown *ngSwitchCase="'select'" 
-        [form]="form" [field]="field"></dropdown>
-
-        <text-field *ngSwitchDefault 
-        [form]="form" [field]="field"></text-field>
-
+    <div 
+      *ngFor="let field of fields"
+      [ngSwitch]="field.fieldType" 
+      class="form-group">
+      <!-- <div class="form-group-wrapper">
+        <input
+          [formControlName]="field.fieldKey" 
+          [type]="field.fieldType">
         
+        <label>{{ field.fieldLabel }}</label>
+      </div>       -->
 
-        <!-- <div 
-        *ngIf="control(field.fieldKey).touched && 
-        !control(field.fieldKey).errors && 
-        field.customFeedback && 
-        field.fieldOrder == specialFeedback.fieldOrder &&
-        specialFeedback.condition" class="invalid-feedback">
-          <p>{{ field.customFeedback }}</p>
-        </div> -->
-
-      </div>
+      <text-field
+        
+        ></text-field>
     </div>
 
     <div class="action-buttons">

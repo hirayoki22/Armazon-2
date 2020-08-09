@@ -14,6 +14,7 @@ import { Category } from '../category.model';
   styleUrls: ['./page-not-found.component.scss']
 })
 export class PageNotFoundComponent implements OnInit {
+  fields: FormField[];
   categories: Category[] = [];
   badGenderChoice: boolean = false;
 
@@ -24,10 +25,7 @@ export class PageNotFoundComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.ps.getCategories().subscribe(val => {
-      this.categories = val;
-      this.ds.updateFields(this.getfields());
-    });
+    this.fields = this.getfields();
   }
 
   onClick(): void {
@@ -95,18 +93,18 @@ export class PageNotFoundComponent implements OnInit {
         },
         selectOptions: this.categories
       }),
-      new FormField({
-        fieldType: 'input',
-        fieldKey: 'gender',
-        fieldLabel: 'Gender',
-        fieldOrder: 6,
-        validators: {
-          sync: [ 
-            Validators.required
-          ]
-        },
-        customFeedback: 'Invalid gender choice. Stop trying to be progre!'     
-      })
+      // new FormField({
+      //   fieldType: 'input',
+      //   fieldKey: 'gender',
+      //   fieldLabel: 'Gender',
+      //   fieldOrder: 6,
+      //   validators: {
+      //     sync: [ 
+      //       Validators.required
+      //     ]
+      //   },
+      //   customFeedback: 'Invalid gender choice. Stop trying to be progre!'     
+      // })
     ];  
   }
 

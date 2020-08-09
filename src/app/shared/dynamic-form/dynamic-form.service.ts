@@ -1,26 +1,17 @@
 import { Injectable } from '@angular/core';
 import { FormField } from './form-field.class';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DynamicFormService {
-  private formSource = new Subject<{form: FormGroup, fields: FormField[]}>();
-  formInit$ = this.formSource.asObservable();
+  constructor() { }
 
-  updateFields(fields: FormField[]): void {
-    fields.sort((a, b) => a.fieldOrder - b.fieldOrder);
-
-    this.formSource.next({
-      form: this.initFormGroup(fields),
-      fields: fields
-    });
-  }
-
-  private initFormGroup(fields: FormField[]): FormGroup {
+  createForm(fields: FormField[]): FormGroup {
     let form: {} = {};
+
+    fields.sort((a, b) => a.fieldOrder - b.fieldOrder);
 
     fields.forEach(field => {
       if (!field.validators.async) {

@@ -16,8 +16,8 @@ export class DynamicFormComponent implements OnInit {
   @Output('onSubmit') notifySubmit = new EventEmitter<FormGroup>();
   @Input() specialFeedback: SpecialFeedback;
   @Input() onInvalidDisabled: boolean;
+  @Input() fields: FormField[] = [];
   form: FormGroup;
-  fields: FormField[] = [];
 
   constructor(private ds: DynamicFormService) { }
 
@@ -26,6 +26,7 @@ export class DynamicFormComponent implements OnInit {
     //   this.form = data.form;
     //   this.fields = data.fields;
     // });
+    this.form = this.ds.createForm(this.fields);
   }
 
   onSubmit(): void {
