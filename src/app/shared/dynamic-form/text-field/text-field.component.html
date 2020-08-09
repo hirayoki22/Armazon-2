@@ -1,9 +1,9 @@
 <div [formGroup]="form" class="form-group-wrapper">
   <input
-  [formControlName]="field.fieldKey"
-  [class.invalid]="(control.touched && control.invalid)"
-  [class.valid]="control.touched && control.valid"
-  [type]="showPassword ? 'text' : field.inpuType">
+    [formControlName]="field.fieldKey"
+    [class.invalid]="(control.touched && control.invalid)"
+    [class.valid]="control.touched && control.valid"
+    [type]="showPassword ? 'text' : field.inpuType">
   <label [class.shrink]="control.value">{{ field.fieldLabel }}</label>
 
   <div *ngIf="control.pending" class="loader">

@@ -1,14 +1,12 @@
-<div [formGroup]="form">
-  <div class="form-group-wrapper">
-    <select 
+<div [formGroup]="form" class="form-group-wrapper">
+  <select 
     [formControlName]="field.fieldKey"
     [class.invalid]="control.touched && control.invalid"
     [class.valid]="control.dirty && control.valid">
-      <option [ngValue]="null">
-        Choose a {{ field.fieldLabel | lowercase }}
-      </option>
-      <option *ngFor="let option of field.selectOptions" 
-        [ngValue]="option.value">{{ option.key }}</option>
-    </select>
-  </div>
+    <option [ngValue]="null">
+      Choose a {{ field.fieldLabel | lowercase }}
+    </option>
+    <option *ngFor="let option of field.selectOptions" 
+      [ngValue]="option.value">{{ option.key }}</option>
+  </select>
 </div>
