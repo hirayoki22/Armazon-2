@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormField } from '../form-field.class';
-import { SpecialFeedback } from '../dynamic-form.component';
 
 @Component({
   selector: 'dynamic-dropdown',
@@ -14,7 +13,7 @@ import { SpecialFeedback } from '../dynamic-form.component';
 export class DropdownComponent implements OnInit {
   @Input() form: FormGroup;
   @Input() field: FormField;
-  @Input() specialFeedback: SpecialFeedback;
+  @Input() showValidInputClass: boolean;
  
   get control() { return this.form.get(this.field.fieldKey); }
 

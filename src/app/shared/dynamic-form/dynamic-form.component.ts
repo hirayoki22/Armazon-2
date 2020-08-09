@@ -5,8 +5,6 @@ import { FormGroup } from '@angular/forms';
 import { FormField } from './form-field.class';
 import { DynamicFormService } from './dynamic-form.service';
 
-export interface SpecialFeedback { fieldOrder: number; condition: boolean }
-
 @Component({
   selector: 'dynamic-form',
   templateUrl: './dynamic-form.component.html',
@@ -14,7 +12,8 @@ export interface SpecialFeedback { fieldOrder: number; condition: boolean }
 })
 export class DynamicFormComponent implements OnInit {
   @Input() fields: FormField[] = [];
-  @Input() onInvalidDisabled: boolean;
+  @Input() showValidInputClass: boolean;
+  @Input() disableSubmitBtn: boolean;
   @Output('onSubmit') notifySubmit = new EventEmitter<FormGroup>();
   form: FormGroup;
 
