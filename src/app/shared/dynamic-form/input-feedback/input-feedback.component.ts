@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { SpecialFeedback } from '../dynamic-form.component';
-import { FormField } from '../form-field.class';
+import { FormField, customFeedback } from '../form-field.class';
 
 @Component({
   selector: 'input-feedback',
@@ -15,13 +14,13 @@ export class InputFeedbackComponent implements OnInit {
   @Input() control: FormControl;
   @Input() field: FormField;
   @Input() fieldLabel: string;
-  @Input() specialFeedback: SpecialFeedback;
+  @Input() customFeedback: customFeedback;
 
   get specialCondition(): boolean {
     return this.control.touched && !this.control.errors && 
     this.field.customFeedback && 
-    this.field.fieldOrder == this.specialFeedback.fieldOrder &&
-    this.specialFeedback.condition
+    this.field.fieldOrder == this.customFeedback.fieldOrder &&
+    this.customFeedback.condition
   }
 
   constructor() { }

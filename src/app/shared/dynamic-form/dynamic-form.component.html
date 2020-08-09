@@ -19,10 +19,10 @@
         [form]="form"
         [field]="field"></text-field>
 
-      <!-- <input-feedback
-      [control]="control"
-      [field]="field"
-      [specialFeedback]="specialFeedback"></input-feedback> -->
+      <input-feedback
+        [control]="form.get(field.fieldKey)"
+        [field]="field"
+        [specialFeedback]=""></input-feedback>
     </div>
 
     <div class="action-buttons">

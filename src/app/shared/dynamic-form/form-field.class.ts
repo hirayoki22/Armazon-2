@@ -1,6 +1,7 @@
 import { ValidatorFn, AsyncValidatorFn } from '@angular/forms';
 
 interface SelectOption { key: string | number, value: any };
+export interface customFeedback { condition: boolean, message: string };
 
 export class FormField {
   fieldType: 'input' | 'dropdown' | 'textarea';
@@ -14,7 +15,7 @@ export class FormField {
     async?: AsyncValidatorFn[]
   };
   selectOptions: SelectOption[];
-  customFeedback: string;
+  customFeedback: customFeedback;
 
   constructor(params: {
     fieldType: 'input' | 'dropdown' | 'textarea',
@@ -28,7 +29,7 @@ export class FormField {
       async?: AsyncValidatorFn[]
     },
     selectOptions?: { [key: string]: any }[],
-    customFeedback?: string;
+    customFeedback?: customFeedback;
   }) {
     this.fieldType  = params.fieldType;
     this.fieldKey   = params.fieldKey   || '';
