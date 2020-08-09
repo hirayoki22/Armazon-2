@@ -1,4 +1,5 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
+import { Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormField } from '../form-field.class';
 
