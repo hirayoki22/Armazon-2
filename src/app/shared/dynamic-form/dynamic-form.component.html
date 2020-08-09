@@ -2,7 +2,8 @@
   <form 
     [formGroup]="form" 
     (ngSubmit)="onSubmit()" 
-    id="dynamicForm">
+    id="dynamicForm"
+    [style.maxWidth]="width">
 
     <div 
       *ngFor="let field of fields"

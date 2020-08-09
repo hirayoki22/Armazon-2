@@ -13,9 +13,10 @@ export interface SpecialFeedback { fieldOrder: number; condition: boolean }
   styleUrls: ['./dynamic-form.component.scss']
 })
 export class DynamicFormComponent implements OnInit {
-  @Output('onSubmit') notifySubmit = new EventEmitter<FormGroup>();
-  @Input() onInvalidDisabled: boolean;
+  @Input() width: string;
   @Input() fields: FormField[] = [];
+  @Input() onInvalidDisabled: boolean;
+  @Output('onSubmit') notifySubmit = new EventEmitter<FormGroup>();
   form: FormGroup;
 
   constructor(private ds: DynamicFormService) { }
