@@ -26,6 +26,11 @@ export class PageNotFoundComponent implements OnInit {
 
   ngOnInit(): void {
     this.fields = this.getfields();
+
+    this.ps.getCategories().subscribe(val => {
+      this.categories = val;
+      // this.fields[4].selectOptions = this.categories;
+    });
   }
 
   onClick(): void {
@@ -84,7 +89,7 @@ export class PageNotFoundComponent implements OnInit {
         }
       }),
       new FormField({
-        fieldType: 'select',
+        fieldType: 'dropdown',
         fieldKey: 'categoryId',
         fieldLabel: 'Category',
         fieldOrder: 5,

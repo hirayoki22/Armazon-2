@@ -3,7 +3,7 @@ import { ValidatorFn, AsyncValidatorFn } from '@angular/forms';
 interface SelectOption { key: string | number, value: any };
 
 export class FormField {
-  fieldType: 'input' | 'select' | 'textarea';
+  fieldType: 'input' | 'dropdown' | 'textarea';
   fieldKey: string;
   fieldLabel: string;
   fieldOrder: number;
@@ -17,7 +17,7 @@ export class FormField {
   customFeedback: string;
 
   constructor(params: {
-    fieldType: 'input' | 'select' | 'textarea',
+    fieldType: 'input' | 'dropdown' | 'textarea',
     fieldKey: string,
     fieldLabel: string,
     fieldOrder?: number,

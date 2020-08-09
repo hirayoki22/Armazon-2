@@ -1,4 +1,4 @@
-<div *ngIf="form && fields">
+<div *ngIf="fields">
   <form 
     [formGroup]="form" 
     (ngSubmit)="onSubmit()" 
@@ -8,18 +8,21 @@
       *ngFor="let field of fields"
       [ngSwitch]="field.fieldType" 
       class="form-group">
-      <!-- <div class="form-group-wrapper">
-        <input
-          [formControlName]="field.fieldKey" 
-          [type]="field.fieldType">
-        
-        <label>{{ field.fieldLabel }}</label>
-      </div>       -->
+
+      <dropdown
+        *ngSwitchCase="'dropdown'"
+        [form]="form"
+        [field]="field"></dropdown>
 
       <text-field
         *ngSwitchDefault
         [form]="form"
         [field]="field"></text-field>
+
+      <!-- <input-feedback
+      [control]="control"
+      [field]="field"
+      [specialFeedback]="specialFeedback"></input-feedback> -->
     </div>
 
     <div class="action-buttons">
