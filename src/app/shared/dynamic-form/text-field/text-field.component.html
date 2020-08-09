@@ -2,7 +2,7 @@
   <input
     [formControlName]="field.fieldKey"
     [class.invalid]="(control.touched && control.invalid)"
-    [class.valid]="control.touched && control.valid"
+    [class.valid]="enableValidCSS && control.dirty && control.valid"
     [type]="showPassword ? 'text' : field.inpuType">
   <label [class.shrink]="control.value">{{ field.fieldLabel }}</label>
 

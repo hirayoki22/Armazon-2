@@ -12,17 +12,20 @@
       <dynamic-dropdown
         *ngSwitchCase="'dropdown'"
         [form]="form"
-        [field]="field"></dynamic-dropdown>
+        [field]="field"
+        [enableValidCSS]="enableValidCSS"></dynamic-dropdown>
 
       <dynamic-textarea
         *ngSwitchCase="'textarea'"
         [form]="form"
-        [field]="field"></dynamic-textarea>
+        [field]="field"
+        [enableValidCSS]="enableValidCSS"></dynamic-textarea>
 
       <dynamic-text-field
         *ngSwitchDefault
         [form]="form"
-        [field]="field"></dynamic-text-field>
+        [field]="field"
+        [enableValidCSS]="enableValidCSS"></dynamic-text-field>
 
       <input-feedback
         [control]="form.get(field.fieldKey)"

@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+
 import { FormField } from '../form-field.class';
+import { DynamicFormService } from '../dynamic-form.service';
 
 @Component({
   selector: 'dynamic-dropdown',
@@ -13,11 +15,11 @@ import { FormField } from '../form-field.class';
 export class DropdownComponent implements OnInit {
   @Input() form: FormGroup;
   @Input() field: FormField;
-  @Input() showValidInputClass: boolean;
+  @Input() enableValidCSS: boolean;
  
   get control() { return this.form.get(this.field.fieldKey); }
 
-  constructor() { }
+  constructor(private ds: DynamicFormService) { }
 
   ngOnInit(): void {
   }

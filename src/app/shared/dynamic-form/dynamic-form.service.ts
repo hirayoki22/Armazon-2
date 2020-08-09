@@ -6,6 +6,7 @@ import { FormGroup, FormControl } from '@angular/forms';
   providedIn: 'root'
 })
 export class DynamicFormService {
+
   constructor() { }
 
   createForm(fields: FormField[]): FormGroup {
@@ -32,5 +33,4 @@ export class DynamicFormService {
     });
     return new FormGroup(form);
   }
-
 }

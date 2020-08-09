@@ -12,8 +12,8 @@ import { DynamicFormService } from './dynamic-form.service';
 })
 export class DynamicFormComponent implements OnInit {
   @Input() fields: FormField[] = [];
-  @Input() showValidInputClass: boolean;
-  @Input() disableSubmitBtn: boolean;
+  @Input() enableValidCSS: boolean = true;
+  @Input() disableSubmit: boolean = false;
   @Output('onSubmit') notifySubmit = new EventEmitter<FormGroup>();
   form: FormGroup;
 
