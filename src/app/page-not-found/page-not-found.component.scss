@@ -6,7 +6,7 @@
   justify-content: center;
   width: 100%;
   min-height: 100vh;
-  padding: 70px 2rem 5rem;
+  padding: 70px 2rem 3rem;
   animation: reveal .4s ease;
   background: #fff url('../../assets/img/404-background.webp') 
   center center/cover no-repeat;
@@ -43,12 +43,12 @@
     flex-direction: column;
     align-items: center;
     position: relative;
-    margin-top: 12rem;
+    margin-top: 15rem;
     z-index: 10;
 
     .logo {
       display: flex;
-      margin-bottom: 7rem;
+      margin-bottom: 4rem;
       align-items: center;
       text-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
       user-select: none;
@@ -110,6 +110,7 @@
     position: relative;
     max-width: 300px;
     margin-top: auto;
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     z-index: 10;
 
     a {
