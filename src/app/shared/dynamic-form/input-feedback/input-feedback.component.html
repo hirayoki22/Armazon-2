@@ -2,7 +2,7 @@
   *ngIf="control.touched && control?.errors && 
   !field?.customFeedback?.condition"
   class="invalid-feedback">
-  <p *ngIf="control.errors.required">
+  <p *ngIf="field.fieldKey !== 'rePassword' && control.errors.required">
     Enter your {{ label }}
   </p>
 
@@ -28,12 +28,29 @@
   </p>
 </span>
 
+<!-- Re-password control -->
+<span 
+  *ngIf="field.fieldKey === 'rePassword' && 
+  control.touched && form.get('password').value"
+  class="invalid-feedback">
+  <p *ngIf="control?.errors?.required">
+    Re-enter your password
+  </p>
+
+  <p 
+    *ngIf="control.value && form?.errors?.rePassword">
+    The passwords don't match
+  </p>
+</span>
+
+<!-- Custom feedback -->
 <span 
   *ngIf="control.dirty && field?.customFeedback?.condition" 
   class="invalid-feedback">
   <p>{{ field.customFeedback.message }}</p>
 </span>
 
+<!-- After async valid feedback -->
 <span 
   *ngIf="field.validators.async && control.valid" 
   class="valid-feedback">
