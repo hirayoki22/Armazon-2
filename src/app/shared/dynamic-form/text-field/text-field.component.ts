@@ -4,7 +4,7 @@ import { FormField } from '../form-field.class';
 import { SpecialFeedback } from '../dynamic-form.component';
 
 @Component({
-  selector: 'text-field',
+  selector: 'dynamic-text-field',
   templateUrl: './text-field.component.html',
   styleUrls: [
     './text-field.component.scss',

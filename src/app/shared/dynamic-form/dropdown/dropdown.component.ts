@@ -4,7 +4,7 @@ import { FormField } from '../form-field.class';
 import { SpecialFeedback } from '../dynamic-form.component';
 
 @Component({
-  selector: 'dropdown',
+  selector: 'dynamic-dropdown',
   templateUrl: './dropdown.component.html',
   styleUrls: [
     './dropdown.component.scss',

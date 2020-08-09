@@ -14,6 +14,7 @@ import { ModalComponent } from './modal/modal.component';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { DropdownComponent } from './dynamic-form/dropdown/dropdown.component';
 import { TextFieldComponent } from './dynamic-form/text-field/text-field.component';
+import { TextareaComponent } from './dynamic-form/textarea/textarea.component';
 import { InputFeedbackComponent } from './dynamic-form/input-feedback/input-feedback.component';
 
 
@@ -30,6 +31,7 @@ import { InputFeedbackComponent } from './dynamic-form/input-feedback/input-feed
     DynamicFormComponent,
     DropdownComponent,
     TextFieldComponent,
+    TextareaComponent,
     InputFeedbackComponent
   ],
   imports: [ 
@@ -49,6 +51,7 @@ import { InputFeedbackComponent } from './dynamic-form/input-feedback/input-feed
     DynamicFormComponent,
     DropdownComponent,
     TextFieldComponent,
+    TextareaComponent,
     InputFeedbackComponent
   ]
 })

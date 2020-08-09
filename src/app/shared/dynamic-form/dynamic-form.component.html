@@ -9,15 +9,15 @@
       [ngSwitch]="field.fieldType" 
       class="form-group">
 
-      <dropdown
+      <dynamic-dropdown
         *ngSwitchCase="'dropdown'"
         [form]="form"
-        [field]="field"></dropdown>
+        [field]="field"></dynamic-dropdown>
 
-      <text-field
+      <dynamic-text-field
         *ngSwitchDefault
         [form]="form"
-        [field]="field"></text-field>
+        [field]="field"></dynamic-text-field>
 
       <input-feedback
         [control]="form.get(field.fieldKey)"

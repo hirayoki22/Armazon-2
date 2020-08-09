@@ -4,14 +4,14 @@ import { FormField } from '../form-field.class';
 import { SpecialFeedback } from '../dynamic-form.component';
 
 @Component({
-  selector: 'text-field',
-  templateUrl: './text-field.component.html',
+  selector: 'd-textarea',
+  templateUrl: './textarea.component.html',
   styleUrls: [
-    './text-field.component.scss',
+    './textarea.component.scss',
     '../dynamic-form.component.scss'
   ]
 })
-export class TextFieldComponent implements OnInit {
+export class TextareaComponent implements OnInit {
   @Input() form: FormGroup;
   @Input() field: FormField;
   @Input() specialFeedback: SpecialFeedback;
