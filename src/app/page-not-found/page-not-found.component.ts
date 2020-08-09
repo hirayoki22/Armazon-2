@@ -55,6 +55,15 @@ export class PageNotFoundComponent implements OnInit {
         }
       }),
       new FormField({
+        fieldType: 'textarea',
+        fieldKey: 'aboutyour',
+        fieldLabel: 'About you',
+        fieldOrder: 7,
+        validators: {
+          sync: [ Validators.maxLength(700) ]
+        }
+      }),
+      new FormField({
         fieldType: 'input',
         fieldKey: 'firstName',
         fieldLabel: 'First name',
