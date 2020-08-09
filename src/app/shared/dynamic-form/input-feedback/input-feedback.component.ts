@@ -8,10 +8,7 @@ interface Feedback { condition: boolean, message: string };
 @Component({
   selector: 'input-feedback',
   templateUrl: './input-feedback.component.html',
-  styleUrls: [
-    './input-feedback.component.scss',
-    '../dynamic-form.component.scss'
-  ]
+  styleUrls: ['./input-feedback.component.scss']
 })
 export class InputFeedbackComponent implements OnInit {
   @Input() control: FormControl;
@@ -21,7 +18,7 @@ export class InputFeedbackComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    // this.feedbacks = this.initFeedbacks();
+    this.feedbacks = this.initFeedbacks();
   }
 
   get label(): string {
@@ -30,16 +27,16 @@ export class InputFeedbackComponent implements OnInit {
 
   initFeedbacks(): Feedback[] {
     return [
+      // { 
+      //   condition: this.control.errors.required,
+      //   message: `Enter your ${this.label}`
+      // },
+      // { 
+      //   condition: this.control.errors.pattern,
+      //   message: `Invalid ${this.label} format`
+      // },
       { 
         condition: this.control.errors.required,
-        message: `Enter your ${this.label}`
-      },
-      { 
-        condition: this.control.errors.pattern,
-        message: `Invalid ${this.label} format`
-      },
-      { 
-        condition: this.control?.errors?.minlength,
         message: `The ${this.label} cannot be less than 
         ${this.control?.errors?.minlength?.requiredLength} characters`
       },

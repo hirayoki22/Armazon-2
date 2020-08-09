@@ -1,4 +1,4 @@
-<span 
+<!-- <span 
   *ngIf="control.touched && control?.errors && 
   !field?.customFeedback?.condition"
   class="invalid-feedback">
@@ -32,20 +32,20 @@
       This {{ field.fieldLabel | lowercase }} isn't secure
     </p>
   </div>
-</span>
+</span> -->
 
 <span *ngIf="control.dirty && field?.customFeedback?.condition" 
   class="invalid-feedback">
   <p>{{ field.customFeedback.message }}</p>
 </span>
 
-<!-- <span 
+<span 
   *ngIf="control.touched && control?.errors"
   class="invalid-feedback">
   <div *ngFor="let feedback of feedbacks">
     <p *ngIf="feedback.condition">{{ feedback.message }}</p>
   </div>
-</span> -->
+</span>
 
 <!-- <span *ngIf="field.fieldType == 'email' && control.valid" class="valid-feedback">
   <p>Available! <i class="material-icons">done</i></p>

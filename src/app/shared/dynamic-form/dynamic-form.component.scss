@@ -116,33 +116,3 @@
     }
   }   
 }
-
-.invalid-feedback {
-  position: absolute;
-  left: 0;
-  bottom: -1.2rem;
-  display: block;
-  width: 100%;
-  animation: slideUp 0.2s ease;
-
-  p {
-    color: #ff2d2d;
-    font-size: 0.8rem;
-  }
-}
-
-.valid-feedback {
-  @extend .invalid-feedback;
-
-  p {
-    display: flex;
-    align-items: center;
-    color: #26c45b;
-
-    .material-icons {
-      margin-left: 0.2rem;
-      color: inherit;
-      font-size: 0.8rem;
-    }
-  }
-}
