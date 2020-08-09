@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, Validators, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
 import { OwnValidators } from '../../shared/validators/sync-validators';
 import { MyAsyncValidators } from '../../shared/validators/async-validators.service';
@@ -21,10 +21,13 @@ export class SignupPageComponent implements OnInit {
     return new Date().getFullYear();
   }
 
+  get formValidator(): ValidatorFn {
+    return OwnValidators.passwordMatch;
+  }
+
   constructor(
     private router: Router,
     private us: UserService,
-    private fb: FormBuilder,
     private asyncValidator: MyAsyncValidators
   ) { }
 

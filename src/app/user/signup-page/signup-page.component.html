@@ -31,8 +31,9 @@
     <div class="form-wrapper">
       <dynamic-form
         [fields]="fields"
-        [disableSubmit]="true"
         [enableValidCSS]="true"
+        [validators]="formValidator"
+        [disableSubmit]="true"
         (onSubmit)="onSubmit($event)"></dynamic-form>
 
       <a routerLink="../login" class="existing-user">

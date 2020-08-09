@@ -14,7 +14,7 @@ export class DynamicFormComponent implements OnInit {
   @Input() fields: FormField[] = [];
   @Input() enableValidCSS: boolean = false;
   @Input() disableSubmit: boolean = false;
-  @Input() validator: ValidatorFn;
+  @Input() validators: ValidatorFn | ValidatorFn[];
   @Output('onSubmit') notifySubmit = new EventEmitter<FormGroup>();
   form: FormGroup;
 
@@ -22,6 +22,7 @@ export class DynamicFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.ds.createForm(this.fields);
+    this.form.setValidators(this.validators);
     this.ds.enableValidCSS = this.enableValidCSS;
   }
 
