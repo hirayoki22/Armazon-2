@@ -23,9 +23,9 @@
   </p>
 </div>
 
-<div 
-*ngIf="specialCondition" class="invalid-feedback">
-  <p>{{ field.customFeedback }}</p>
+<div *ngIf="!control.errors && field.customFeedback.condition" 
+  class="invalid-feedback">
+  <p>{{ field.customFeedback.message }}</p>
 </div>
 
 <!-- <div *ngIf="control.valid" class="valid-feedback">

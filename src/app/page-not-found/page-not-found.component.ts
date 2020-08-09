@@ -98,18 +98,21 @@ export class PageNotFoundComponent implements OnInit {
         },
         selectOptions: this.categories
       }),
-      // new FormField({
-      //   fieldType: 'input',
-      //   fieldKey: 'gender',
-      //   fieldLabel: 'Gender',
-      //   fieldOrder: 6,
-      //   validators: {
-      //     sync: [ 
-      //       Validators.required
-      //     ]
-      //   },
-      //   customFeedback: 'Invalid gender choice. Stop trying to be progre!'     
-      // })
+      new FormField({
+        fieldType: 'input',
+        fieldKey: 'gender',
+        fieldLabel: 'Gender',
+        fieldOrder: 6,
+        validators: {
+          sync: [ 
+            Validators.required
+          ]
+        },
+        customFeedback: {
+          condition: false,
+          message: 'Invalid gender choice. Stop trying to be progre, bitch!'
+        }
+      })
     ];  
   }
 
