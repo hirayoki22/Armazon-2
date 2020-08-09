@@ -32,7 +32,9 @@
     <div class="form-wrapper">
       <dynamic-form 
       [fields]="fields"
+      [disableSubmit]="true"
       (onSubmit)="onSubmit($event)"></dynamic-form>
+
       <button 
         routerLink="../signup" 
         class="btn-xl signup-btn">Create Account</button>
