@@ -12,7 +12,7 @@ import { DynamicFormService } from './dynamic-form.service';
 })
 export class DynamicFormComponent implements OnInit {
   @Input() fields: FormField[] = [];
-  @Input() enableValidCSS: boolean = true;
+  @Input() enableValidCSS: boolean = false;
   @Input() disableSubmit: boolean = false;
   @Output('onSubmit') notifySubmit = new EventEmitter<FormGroup>();
   form: FormGroup;

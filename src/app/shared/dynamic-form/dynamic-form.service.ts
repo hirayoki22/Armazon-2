@@ -10,8 +10,7 @@ export class DynamicFormService {
   fields: FormField[] = [];
   enableValidCSS: boolean;
 
-  constructor() {
-  }
+  constructor() { }
 
   createForm(fields: FormField[]): FormGroup {
     let form: {} = {};

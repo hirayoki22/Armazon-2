@@ -28,6 +28,7 @@
 
     <div class="action-buttons">
       <button 
+        [disabled]="disableSubmit && form.invalid"
         class="btn-xl-filled submit-btn">
         Submit
       </button>
