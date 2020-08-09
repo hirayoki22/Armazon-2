@@ -1,4 +1,4 @@
-<span 
+<!-- <span 
   *ngIf="control.touched && control?.errors && 
   !field?.customFeedback?.condition"
   class="invalid-feedback">
@@ -20,13 +20,19 @@
   </p>
 
   <p *ngIf="control.value && control.errors.password">
-    This {{ field.fieldLabel | lowercase }} isn't secure
+    This {{ field.fieldLabel | lowercase }} isn't a secure password
   </p>
 </span>
 
 <span *ngIf="control.dirty && field?.customFeedback?.condition" 
   class="invalid-feedback">
   <p>{{ field.customFeedback.message }}</p>
+</span> -->
+
+<span 
+  *ngIf="control.touched && control?.errors"
+  class="invalid-feedback">
+  <p *ngFor=""></p>
 </span>
 
 <!-- <span *ngIf="field.fieldType == 'email' && control.valid" class="valid-feedback">
