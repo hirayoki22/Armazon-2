@@ -16,7 +16,7 @@
 
   <div>
     <p *ngIf="control.errors.minlength">
-      The {{ field.fieldLabel | lowercase }} can't be less than 
+      Cannot be less than 
       {{ control.errors.minlength.requiredLength }} characters
     </p>
   </div>
@@ -34,10 +34,10 @@
   </div>
 </span> -->
 
-<span *ngIf="control.dirty && field?.customFeedback?.condition" 
+<!-- <span *ngIf="control.dirty && field?.customFeedback?.condition" 
   class="invalid-feedback">
   <p>{{ field.customFeedback.message }}</p>
-</span>
+</span> -->
 
 <span 
   *ngIf="control.touched && control?.errors"
