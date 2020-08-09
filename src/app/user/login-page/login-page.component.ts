@@ -40,13 +40,15 @@ export class LoginPageComponent implements OnInit {
     this.us.loginRequest(login).subscribe(state => {
       if (!state.success) {
         if (state.error.username) {
-          this.setCustomFeedback(state, 0);
           username.setErrors({invalid: true});
+          this.setCustomFeedback(state, 0);
+          this.unsetCustomFeedback(1);
         } else {
-          this.setCustomFeedback(state, 1);
-          username.setErrors(null);
           password.setErrors({invalid: true});
+          username.setErrors(null);
           password.setValue(null);
+          this.setCustomFeedback(state, 1);
+          this.unsetCustomFeedback(0);
         }
       } else {
         this.router.navigate(['/']);
@@ -61,6 +63,12 @@ export class LoginPageComponent implements OnInit {
       message: state.message
     }
   } 
+
+  private unsetCustomFeedback(index: number) {
+    if (this.fields[index].customFeedback) {
+      this.fields[index].customFeedback.condition = false;
+    }
+  }
 
   private getFields(): FormField[] {
     return [
