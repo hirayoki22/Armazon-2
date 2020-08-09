@@ -1,16 +1,16 @@
-<!-- <span 
+<span 
   *ngIf="control.touched && control?.errors && 
   !field?.customFeedback?.condition"
   class="invalid-feedback">
   <div>
     <p *ngIf="control.errors.required">
-      Enter your {{ field.fieldLabel | lowercase }}
+      Enter your {{ label }}
     </p>
   </div>
 
   <div>
     <p *ngIf="control.errors.pattern">
-      Invalid {{ field.fieldLabel | lowercase }} format
+      Invalid {{ label }} format
     </p>
   </div>
 
@@ -23,28 +23,20 @@
 
   <div>
     <p *ngIf="control.errors.exists">
-      This {{ field.fieldLabel | lowercase }} is already in use
+      This {{ label }} is already in use
     </p>
   </div>
 
   <div>
     <p *ngIf="control.value && control.errors.password">
-      This {{ field.fieldLabel | lowercase }} isn't secure
+      This {{ label }} isn't secure
     </p>
   </div>
-</span> -->
+</span>
 
-<!-- <span *ngIf="control.dirty && field?.customFeedback?.condition" 
+<span *ngIf="control.dirty && field?.customFeedback?.condition" 
   class="invalid-feedback">
   <p>{{ field.customFeedback.message }}</p>
-</span> -->
-
-<span 
-  *ngIf="control.touched && control?.errors"
-  class="invalid-feedback">
-  <div *ngFor="let feedback of feedbacks">
-    <p *ngIf="feedback.condition">{{ feedback.message }}</p>
-  </div>
 </span>
 
 <!-- <span *ngIf="field.fieldType == 'email' && control.valid" class="valid-feedback">
