@@ -21,6 +21,7 @@ export class DynamicFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.ds.createForm(this.fields);
+    this.ds.enableValidCSS = this.enableValidCSS;
   }
 
   onSubmit(): void {

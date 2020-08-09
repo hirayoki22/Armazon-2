@@ -6,15 +6,20 @@ import { FormGroup, FormControl } from '@angular/forms';
   providedIn: 'root'
 })
 export class DynamicFormService {
+  form: FormGroup;
+  fields: FormField[] = [];
+  enableValidCSS: boolean;
 
-  constructor() { }
+  constructor() {
+  }
 
   createForm(fields: FormField[]): FormGroup {
     let form: {} = {};
+    this.fields = fields;
 
-    fields.sort((a, b) => a.fieldOrder - b.fieldOrder);
+    this.fields.sort((a, b) => a.fieldOrder - b.fieldOrder);
 
-    fields.forEach(field => {
+    this.fields.forEach(field => {
       if (!field.validators.async) {
         form[field.fieldKey] = new FormControl(
           field.value, 
@@ -31,6 +36,7 @@ export class DynamicFormService {
         );
       }
     });
-    return new FormGroup(form);
+    this.form = new FormGroup(form);
+    return this.form;
   }
 }

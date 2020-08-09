@@ -13,9 +13,9 @@ import { DynamicFormService } from '../dynamic-form.service';
   ]
 })
 export class TextFieldComponent implements OnInit {
-  @Input() form: FormGroup;
   @Input() field: FormField;
-  @Input() enableValidCSS: boolean;
+  form: FormGroup;
+  enableValidCSS: boolean;
   showPassword: boolean = false;
  
   get control() { return this.form.get(this.field.fieldKey); }
@@ -23,6 +23,8 @@ export class TextFieldComponent implements OnInit {
   constructor(private ds: DynamicFormService) { }
 
   ngOnInit(): void {
+    this.form = this.ds.form;
+    this.enableValidCSS = this.ds.enableValidCSS;
   }
 
 }
