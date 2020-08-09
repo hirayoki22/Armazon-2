@@ -23,6 +23,7 @@ import { LightboxComponent } from './product-details/slider/lightbox/lightbox.co
 import { ReviewFormComponent } from './product-ratings/review-form/review-form.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

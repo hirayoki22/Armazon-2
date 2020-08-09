@@ -46,7 +46,10 @@ import { InputFeedbackComponent } from './dynamic-form/input-feedback/input-feed
     AsidePanelComponent,
     RoundNearestPipe,
     ModalComponent,
-    DynamicFormComponent
+    DynamicFormComponent,
+    DropdownComponent,
+    TextFieldComponent,
+    InputFeedbackComponent
   ]
 })
 export class SharedModule { }
