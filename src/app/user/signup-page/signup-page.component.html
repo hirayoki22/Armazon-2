@@ -29,7 +29,7 @@
   </div>
 
   <div class="signup-form-column">
-    <form 
+    <!-- <form 
       [formGroup]="signupForm" 
       (ngSubmit)="onSubmit()" 
       id="signupForm">
@@ -149,8 +149,6 @@
           [type]="!showPassword ? 'password' : 'text'">
           <label [class.shrink]="password.value">Password</label>
 
-          <!-- Create password strength indicator that updates on valueChanges -->
-
           <button 
             (click)="showPassword = !showPassword"
             class="toggle_password_visibility"
@@ -219,7 +217,19 @@
       <a routerLink="../login" class="existing-user">
         Already a member? Log in now
       </a>
-    </form>
+    </form> -->
+
+    <div class="form-wrapper">
+      <dynamic-form
+        [fields]="fields"
+        [disableSubmit]="true"
+        [enableValidCSS]="true"
+        (onSubmit)="onSubmit($event)"></dynamic-form>
+
+      <a routerLink="../login" class="existing-user">
+        Already a member? Log in now
+      </a>
+    </div>
   </div>
 
   <app-spinner [loading]="isLoading"></app-spinner>

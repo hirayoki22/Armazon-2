@@ -2,36 +2,30 @@
   *ngIf="control.touched && control?.errors && 
   !field?.customFeedback?.condition"
   class="invalid-feedback">
-  <div>
-    <p *ngIf="control.errors.required">
-      Enter your {{ label }}
-    </p>
-  </div>
+  <p *ngIf="control.errors.required">
+    Enter your {{ label }}
+  </p>
 
-  <div>
-    <p *ngIf="control.errors.pattern || control.errors.email">
-      Invalid {{ label }} format
-    </p>
-  </div>
+  <p *ngIf="control.errors.pattern">
+    Invalid {{ label }} format
+  </p>
 
-  <div>
-    <p *ngIf="control.errors.minlength">
-      Cannot be less than 
-      {{ control.errors.minlength.requiredLength }} characters
-    </p>
-  </div>
+  <p *ngIf="control.value && control.errors.email">
+    Invalid email format
+  </p>
 
-  <div>
-    <p *ngIf="control.errors.exists">
-      This {{ label }} is already in use
-    </p>
-  </div>
+  <p *ngIf="control.errors.minlength">
+    Cannot be less than 
+    {{ control.errors.minlength.requiredLength }} characters
+  </p>
 
-  <div>
-    <p *ngIf="control.value && control.errors.password">
-      This {{ label }} isn't secure
-    </p>
-  </div>
+  <p *ngIf="control.errors.exists">
+    This {{ label }} is already in use
+  </p>
+
+  <p *ngIf="control.value && control.errors.password">
+    This {{ label }} isn't secure
+  </p>
 </span>
 
 <span 

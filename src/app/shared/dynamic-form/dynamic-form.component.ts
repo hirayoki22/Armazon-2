@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, ValidatorFn } from '@angular/forms';
 
 import { FormField } from './form-field.class';
 import { DynamicFormService } from './dynamic-form.service';
@@ -14,6 +14,7 @@ export class DynamicFormComponent implements OnInit {
   @Input() fields: FormField[] = [];
   @Input() enableValidCSS: boolean = false;
   @Input() disableSubmit: boolean = false;
+  @Input() validator: ValidatorFn;
   @Output('onSubmit') notifySubmit = new EventEmitter<FormGroup>();
   form: FormGroup;
 

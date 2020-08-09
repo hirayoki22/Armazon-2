@@ -28,40 +28,40 @@ export class SignupPageComponent implements OnInit {
     private router: Router,
     private us: UserService,
     private fb: FormBuilder,
-    private emailValidator: MyAsyncValidators
+    private asyncValidator: MyAsyncValidators
   ) { }
 
   ngOnInit(): void {
-    this.signupForm = this.initSignupForm();  // temp
+    this.fields = this.getFields();
   }
 
-  private initSignupForm(): FormGroup {  // temp
-    return this.fb.group({
-      firstName:  [ null, [ Validators.required, Validators.pattern(/^[A-zÀ-ú\s]+$/) ] ],
-      lastName:   [ null, [ Validators.required, Validators.pattern(/^[A-zÀ-ú\s]+$/) ] ],
-      mobile:     [ null, [ OwnValidators.mobile] ],
-      email:      [ 
-        null,
-        {
-          validators: [ Validators.required, OwnValidators.email ],
-          asyncValidators: [this.emailValidator.emailValidator()],
-          updateOn: 'blur'
-        }
-      ],
-      password:   [ 
-        null, 
-        [ 
-          Validators.required, 
-          Validators.minLength(5),
-          OwnValidators.password 
-        ] 
-      ],
-      rePassword: [ null, [ Validators.required ] ],
-    },
-    {
-      validators: OwnValidators.passwordMatch
-    });
-  }
+  // private initSignupForm(): FormGroup {  // temp
+  //   return this.fb.group({
+  //     firstName:  [ null, [ Validators.required, Validators.pattern(/^[A-zÀ-ú\s]+$/) ] ],
+  //     lastName:   [ null, [ Validators.required, Validators.pattern(/^[A-zÀ-ú\s]+$/) ] ],
+  //     mobile:     [ null, [ OwnValidators.mobile] ],
+  //     email:      [ 
+  //       null,
+  //       {
+  //         validators: [ Validators.required, OwnValidators.email ],
+  //         asyncValidators: [this.emailValidator.emailValidator()],
+  //         updateOn: 'blur'
+  //       }
+  //     ],
+  //     password:   [ 
+  //       null, 
+  //       [ 
+  //         Validators.required, 
+  //         Validators.minLength(5),
+  //         OwnValidators.password 
+  //       ] 
+  //     ],
+  //     rePassword: [ null, [ Validators.required ] ],
+  //   },
+  //   {
+  //     validators: OwnValidators.passwordMatch
+  //   });
+  // }
 
   get firstName()  { return this.signupForm.get('firstName'); }  // temp
   get lastName()   { return this.signupForm.get('lastName'); }  // temp
@@ -90,7 +90,7 @@ export class SignupPageComponent implements OnInit {
     }
   }
 
-  onSubmit(): void {
+  onSubmit(form: FormGroup): void {
     // this.isLoading = true;
     // this.us.signupRequest(this.formSantize).subscribe(state => {
     //   if (state.success) {
@@ -104,19 +104,72 @@ export class SignupPageComponent implements OnInit {
     return [
       new FormField({
         fieldType: 'input',
-        fieldKey: 'username',
-        fieldLabel: 'Username or email address',
+        fieldKey: 'firstName',
+        fieldLabel: 'First name',
         fieldOrder: 1,
+        validators: {
+          sync: [ 
+            Validators.required,
+            Validators.pattern(/^[A-zÀ-ú\s]+$/)
+          ]
+        }
+      }),
+      new FormField({
+        fieldType: 'input',
+        fieldKey: 'lastName',
+        fieldLabel: 'Last name',
+        fieldOrder: 2,
+        validators: {
+          sync: [ 
+            Validators.required,
+            Validators.pattern(/^[A-zÀ-ú\s]+$/)
+          ]
+        }
+      }),
+      new FormField({
+        fieldType: 'input',
+        fieldKey: 'mobile',
+        fieldLabel: 'Mobile (DO)',
+        fieldOrder: 3,
+        validators: {
+          sync: [ 
+            Validators.required,
+            OwnValidators.mobile
+          ]
+        }
+      }),
+      new FormField({
+        fieldType: 'input',
+        fieldKey: 'email',
+        fieldLabel: 'Email address (username)',
+        fieldOrder: 4,
         inpuType: 'email',
         validators: {
-          sync: [ Validators.required ]
+          sync: [
+            Validators.required,
+            OwnValidators.email 
+          ],
+          async: [ this.asyncValidator.emailValidator() ]
         }
       }),
       new FormField({
         fieldType: 'input',
         fieldKey: 'password',
         fieldLabel: 'Password',
-        fieldOrder: 2,
+        fieldOrder: 5,
+        inpuType: 'password',
+        validators: {
+          sync: [ 
+            Validators.required,
+            OwnValidators.password
+          ]
+        }
+      }),
+      new FormField({
+        fieldType: 'input',
+        fieldKey: 'rePassword',
+        fieldLabel: 'Re-enter your password',
+        fieldOrder: 6,
         inpuType: 'password',
         validators: {
           sync: [ Validators.required ]
