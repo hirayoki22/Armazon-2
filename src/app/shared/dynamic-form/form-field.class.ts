@@ -41,7 +41,7 @@ export class FormField {
     this.customFeedback = params.customFeedback || null;
   }
 
-  private formatedOptions(options: any[]): SelectOption[] {
+  formatedOptions(options: any[]): SelectOption[] {
     let formated = [];
 
     if (!options) {

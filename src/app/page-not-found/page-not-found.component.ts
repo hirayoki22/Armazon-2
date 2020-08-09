@@ -29,7 +29,7 @@ export class PageNotFoundComponent implements OnInit {
 
     this.ps.getCategories().subscribe(val => {
       this.categories = val;
-      // this.fields[4].selectOptions = this.categories;
+      this.fields[4].selectOptions = this.fields[4].formatedOptions(this.categories);
     });
   }
 
