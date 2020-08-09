@@ -6,6 +6,7 @@ import { MyAsyncValidators } from '../../shared/validators/async-validators.serv
 
 import { UserService } from '../user.service';
 import { SignupDetails } from '../user-signup.model';
+import { FormField } from 'src/app/shared/dynamic-form/form-field.class';
 
 @Component({
   selector: 'app-signup-page',
@@ -13,9 +14,10 @@ import { SignupDetails } from '../user-signup.model';
   styleUrls: ['./signup-page.component.scss']
 })
 export class SignupPageComponent implements OnInit {
-  signupForm: FormGroup;
-  showPassword: boolean = false;
-  showRePassword: boolean = false;
+  fields: FormField[];
+  signupForm: FormGroup;  // temp
+  showPassword: boolean = false;  // temp
+  showRePassword: boolean = false; // temp
   isLoading: boolean = false;
 
   get currentYear(): number {
@@ -30,10 +32,10 @@ export class SignupPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.signupForm = this.initSignupForm();
+    this.signupForm = this.initSignupForm();  // temp
   }
 
-  private initSignupForm(): FormGroup {
+  private initSignupForm(): FormGroup {  // temp
     return this.fb.group({
       firstName:  [ null, [ Validators.required, Validators.pattern(/^[A-zÀ-ú\s]+$/) ] ],
       lastName:   [ null, [ Validators.required, Validators.pattern(/^[A-zÀ-ú\s]+$/) ] ],
@@ -61,14 +63,14 @@ export class SignupPageComponent implements OnInit {
     });
   }
 
-  get firstName()  { return this.signupForm.get('firstName'); }
-  get lastName()   { return this.signupForm.get('lastName'); }
-  get mobile()     { return this.signupForm.get('mobile'); }
-  get email()      { return this.signupForm.get('email'); }
-  get password()   { return this.signupForm.get('password'); }
-  get rePassword() { return this.signupForm.get('rePassword'); }
+  get firstName()  { return this.signupForm.get('firstName'); }  // temp
+  get lastName()   { return this.signupForm.get('lastName'); }  // temp
+  get mobile()     { return this.signupForm.get('mobile'); }  // temp
+  get email()      { return this.signupForm.get('email'); }  // temp
+  get password()   { return this.signupForm.get('password'); }  // temp
+  get rePassword() { return this.signupForm.get('rePassword'); }  // temp
 
-  private get formSantize(): SignupDetails {
+  private sanitizeForm(form?: FormGroup): SignupDetails {
     const toCapitalize = (value: string) => {
       return value.toLowerCase().trim().split(' ')
       .map(word => word[0].toUpperCase() + word.slice(1)).join(' ');
@@ -96,6 +98,30 @@ export class SignupPageComponent implements OnInit {
     //   }
     //   this.isLoading = false;
     // });
-    console.log(this.password.errors.minlength.requiredLength);
+  }
+
+  private getFields(): FormField[] {
+    return [
+      new FormField({
+        fieldType: 'input',
+        fieldKey: 'username',
+        fieldLabel: 'Username or email address',
+        fieldOrder: 1,
+        inpuType: 'email',
+        validators: {
+          sync: [ Validators.required ]
+        }
+      }),
+      new FormField({
+        fieldType: 'input',
+        fieldKey: 'password',
+        fieldLabel: 'Password',
+        fieldOrder: 2,
+        inpuType: 'password',
+        validators: {
+          sync: [ Validators.required ]
+        }
+      })
+    ]
   }
 }
