@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService, LoginInfo, LoginState } from '../user.service';
+import { FormField } from 'src/app/shared/dynamic-form/form-field.class';
 
 @Component({
   selector: 'app-login-page',
@@ -9,6 +10,7 @@ import { UserService, LoginInfo, LoginState } from '../user.service';
   styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent implements OnInit {
+  fields: FormField[];
   loginForm: FormGroup;
   loginState: LoginState;
   showPassword: boolean = false;
@@ -65,4 +67,28 @@ export class LoginPageComponent implements OnInit {
     });
   }
 
+  getFields(): FormField[] {
+    return [
+      new FormField({
+        fieldType: 'input',
+        fieldKey: 'username',
+        fieldLabel: 'Username/email address',
+        fieldOrder: 1,
+        inpuType: 'email',
+        validators: {
+          sync: [ Validators.required ]
+        }
+      }),
+      new FormField({
+        fieldType: 'input',
+        fieldKey: 'password',
+        fieldLabel: 'Password',
+        fieldOrder: 2,
+        inpuType: 'password',
+        validators: {
+          sync: [ Validators.required ]
+        }
+      })
+    ]
+  }
 }

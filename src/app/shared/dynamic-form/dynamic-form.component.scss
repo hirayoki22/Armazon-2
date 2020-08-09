@@ -1,6 +1,6 @@
 #dynamicForm {
-  width: auto;
-  background-color: #fff;
+  width: 100%;
+  background-color: transparent;
 
   .action-buttons {
     width: 100%;
@@ -18,7 +18,6 @@
   width: 100%;
   height: auto;
   margin-bottom: 1.5rem;
-  background-color: inherit;
 
   &-wrapper {
     position: relative;
@@ -26,7 +25,7 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 1rem 0 0;
-    background-color: inherit;
+
 
     input, select, textarea {
       position: relative;

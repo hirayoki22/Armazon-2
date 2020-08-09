@@ -29,7 +29,7 @@
   </div>
 
   <div class="login-form-column">
-    <form 
+    <!-- <form 
       [formGroup]="loginForm" 
       (ngSubmit)="onSubmit()" 
       id="loginForm">
@@ -94,7 +94,11 @@
           routerLink="../signup" 
           class="btn-xl signup-btn">Create Account</button>
       </div>
-    </form>
+    </form> -->
+    
+    <!-- <dynamic-form 
+    [fields]="fields"
+    (onSubmit)="onSubmit($event)"></dynamic-form> -->
   </div>
 
   <app-spinner [loading]="isLoading"></app-spinner>
