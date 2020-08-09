@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UserService, LoginInfo, LoginState } from '../user.service';
+import { FormGroup, Validators } from '@angular/forms';
+import { UserService, LoginInfo } from '../user.service';
 import { FormField } from 'src/app/shared/dynamic-form/form-field.class';
 
 @Component({
@@ -11,9 +11,6 @@ import { FormField } from 'src/app/shared/dynamic-form/form-field.class';
 })
 export class LoginPageComponent implements OnInit {
   fields: FormField[];
-  loginForm: FormGroup;
-  loginState: LoginState;
-  showPassword: boolean = false;
   isLoading: boolean = false;
 
   get currentYear(): number {
@@ -23,51 +20,38 @@ export class LoginPageComponent implements OnInit {
   constructor(
     private router: Router,
     private us: UserService,
-    // private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
-    // this.loginForm = this.initLoginForm();
     this.fields = this.getFields();
   }
-
-  // private initLoginForm(): FormGroup {
-  //   return this.fb.group({
-  //     username: [ null, Validators.required ],
-  //     password: [ null, Validators.required ],
-  //   });
-  // }
-
-  // get username() {
-  //   return this.loginForm.get('username');
-  // }
-
-  // get password() {
-  //   return this.loginForm.get('password');
-  // }
-
-  // private get login(): LoginInfo {
-  //   return {
-  //     username: this.username.value.toLowerCase().trim(),
-  //     password: this.password.value.trim()
-  //   }
-  // }
 
   onSubmit(form: FormGroup): void {
     if (form.invalid) { return; }
 
-    console.log(form.value);
+    const username = form.get('username');
+    const password = form.get('password');
+    const login: LoginInfo = {
+      username: username.value.trim(),
+      password: password.value
+    }
 
-    // this.isLoading = true;
-    // this.us.loginRequest(this.login).subscribe(state => {
-    //   if (!state.success) {
-    //     this.loginState = state;
-    //     this.password.setValue(null);
-    //   } else {
-    //     this.router.navigate(['/']);
-    //   }
-    //   this.isLoading = false;
-    // });
+    // console.log(login);
+
+    this.isLoading = true;
+    this.us.loginRequest(login).subscribe(state => {
+      if (!state.success) {
+        if (state.error.password) {
+          password.reset();
+          password.setErrors({invalid: true});
+        } else {
+          username.setErrors({invalid: true});
+        }
+      } else {
+        this.router.navigate(['/']);
+      }
+      this.isLoading = false;
+    });
   }
 
   getFields(): FormField[] {
