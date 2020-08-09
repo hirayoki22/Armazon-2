@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, Validators } from '@angular/forms';
-import { UserService, LoginInfo } from '../user.service';
+import { UserService, LoginInfo, LoginState } from '../user.service';
 import { FormField } from 'src/app/shared/dynamic-form/form-field.class';
 
 @Component({
@@ -24,6 +24,7 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.fields = this.getFields();
+    // this.fields[0].customFeedback.condition = true;
   }
 
   onSubmit(form: FormGroup): void {
@@ -36,16 +37,16 @@ export class LoginPageComponent implements OnInit {
       password: password.value
     }
 
-    // console.log(login);
-
     this.isLoading = true;
     this.us.loginRequest(login).subscribe(state => {
       if (!state.success) {
-        if (state.error.password) {
-          password.reset();
-          password.setErrors({invalid: true});
-        } else {
+        if (state.error.username) {
+          this.setCustomFeedback(state, 0);
           username.setErrors({invalid: true});
+        } else {
+          this.setCustomFeedback(state, 1);
+          password.setErrors({invalid: true});
+          password.setValue(null);
         }
       } else {
         this.router.navigate(['/']);
@@ -53,6 +54,13 @@ export class LoginPageComponent implements OnInit {
       this.isLoading = false;
     });
   }
+
+  setCustomFeedback(state: LoginState, index: number) {
+    this.fields[index].customFeedback = {
+      condition: true,
+      message: state.message
+    }
+  } 
 
   getFields(): FormField[] {
     return [
@@ -64,7 +72,11 @@ export class LoginPageComponent implements OnInit {
         inpuType: 'email',
         validators: {
           sync: [ Validators.required ]
-        }
+        },
+        // customFeedback: {
+        //   condition: false,
+        //   message: 'Username/email not found'
+        // }
       }),
       new FormField({
         fieldType: 'input',
