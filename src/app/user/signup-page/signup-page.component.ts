@@ -15,9 +15,6 @@ import { FormField } from 'src/app/shared/dynamic-form/form-field.class';
 })
 export class SignupPageComponent implements OnInit {
   fields: FormField[];
-  signupForm: FormGroup;  // temp
-  showPassword: boolean = false;  // temp
-  showRePassword: boolean = false; // temp
   isLoading: boolean = false;
 
   get currentYear(): number {
@@ -35,41 +32,6 @@ export class SignupPageComponent implements OnInit {
     this.fields = this.getFields();
   }
 
-  // private initSignupForm(): FormGroup {  // temp
-  //   return this.fb.group({
-  //     firstName:  [ null, [ Validators.required, Validators.pattern(/^[A-zÀ-ú\s]+$/) ] ],
-  //     lastName:   [ null, [ Validators.required, Validators.pattern(/^[A-zÀ-ú\s]+$/) ] ],
-  //     mobile:     [ null, [ OwnValidators.mobile] ],
-  //     email:      [ 
-  //       null,
-  //       {
-  //         validators: [ Validators.required, OwnValidators.email ],
-  //         asyncValidators: [this.emailValidator.emailValidator()],
-  //         updateOn: 'blur'
-  //       }
-  //     ],
-  //     password:   [ 
-  //       null, 
-  //       [ 
-  //         Validators.required, 
-  //         Validators.minLength(5),
-  //         OwnValidators.password 
-  //       ] 
-  //     ],
-  //     rePassword: [ null, [ Validators.required ] ],
-  //   },
-  //   {
-  //     validators: OwnValidators.passwordMatch
-  //   });
-  // }
-
-  get firstName()  { return this.signupForm.get('firstName'); }  // temp
-  get lastName()   { return this.signupForm.get('lastName'); }  // temp
-  get mobile()     { return this.signupForm.get('mobile'); }  // temp
-  get email()      { return this.signupForm.get('email'); }  // temp
-  get password()   { return this.signupForm.get('password'); }  // temp
-  get rePassword() { return this.signupForm.get('rePassword'); }  // temp
-
   private sanitizeForm(form?: FormGroup): SignupDetails {
     const toCapitalize = (value: string) => {
       return value.toLowerCase().trim().split(' ')
@@ -82,11 +44,11 @@ export class SignupPageComponent implements OnInit {
     }
     
     return {
-      firstName: toCapitalize(this.firstName.value),
-      lastName:  toCapitalize(this.lastName.value),
-      mobile:    phoneFormatter(this.mobile.value),
-      email:     this.email.value,
-      password:  this.password.value
+      firstName: toCapitalize(form.get('firstName').value),
+      lastName:  toCapitalize(form.get('lastName').value),
+      mobile:    phoneFormatter(form.get('mobile').value),
+      email:     form.get('email').value,
+      password:  form.get('password').value
     }
   }
 
@@ -98,6 +60,7 @@ export class SignupPageComponent implements OnInit {
     //   }
     //   this.isLoading = false;
     // });
+    console.log(this.sanitizeForm(form));
   }
 
   private getFields(): FormField[] {
