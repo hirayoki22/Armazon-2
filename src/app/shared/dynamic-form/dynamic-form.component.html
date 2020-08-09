@@ -21,9 +21,7 @@
         *ngSwitchDefault
         [field]="field"></dynamic-text-field>
 
-      <input-feedback
-        [control]="form.get(field.fieldKey)"
-        [field]="field"></input-feedback>
+      <input-feedback [field]="field"></input-feedback>
     </div>
 
     <div class="action-buttons">

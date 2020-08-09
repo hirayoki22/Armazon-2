@@ -138,6 +138,6 @@ export class SignupPageComponent implements OnInit {
           sync: [ Validators.required ]
         }
       })
-    ]
+    ];
   }
 }

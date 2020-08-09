@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
 import { FormField } from '../form-field.class';
 import { DynamicFormService } from '../dynamic-form.service';
@@ -11,9 +11,10 @@ import { DynamicFormService } from '../dynamic-form.service';
   styleUrls: ['./input-feedback.component.scss']
 })
 export class InputFeedbackComponent implements OnInit {
-  @Input() control: FormControl;
   @Input() field: FormField;
   form: FormGroup;
+  
+  get control() { return this.form.get(this.field.fieldKey); }
 
   get label(): string {
     return this.field?.fieldLabel.toLowerCase();
