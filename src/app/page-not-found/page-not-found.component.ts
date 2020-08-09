@@ -35,6 +35,7 @@ export class PageNotFoundComponent implements OnInit {
 
   onClick(): void {
     this.badGenderChoice = !this.badGenderChoice;
+    this.fields[5].customFeedback.condition = this.badGenderChoice;
   }
 
   getfields(): FormField[] {

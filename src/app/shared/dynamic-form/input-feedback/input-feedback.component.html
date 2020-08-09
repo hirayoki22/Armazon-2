@@ -23,7 +23,7 @@
   </p>
 </div>
 
-<div *ngIf="!control.errors && field.customFeedback.condition" 
+<div *ngIf="!control.errors && field?.customFeedback?.condition" 
   class="invalid-feedback">
   <p>{{ field.customFeedback.message }}</p>
 </div>

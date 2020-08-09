@@ -1,0 +1,27 @@
+<div [formGroup]="form">
+  <div class="form-group-wrapper">
+    <input
+    [formControlName]="field.fieldKey"
+    [class.invalid]="control.touched && control.invalid"
+    [class.valid]="control.touched && control.valid"
+    [type]="showPassword ? 'text' : field.inpuType">
+    <label [class.shrink]="control.value">{{ field.fieldLabel }}</label>
+  
+    <div *ngIf="control.pending" class="loader">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  
+    <span *ngIf="field.inpuType == 'password'">
+      <button 
+        (click)="showPassword = !showPassword"
+        class="toggle_password_visibility"
+        type="button"
+        tabindex="-10">
+        <i *ngIf="!showPassword" class="material-icons">visibility</i>
+        <i *ngIf="showPassword" class="material-icons">visibility_off</i>
+      </button>
+    </span>
+  </div>
+</div>

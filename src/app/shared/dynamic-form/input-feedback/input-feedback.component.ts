@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormField } from '../form-field.class';
 
@@ -10,21 +10,19 @@ import { FormField } from '../form-field.class';
     '../dynamic-form.component.scss'
   ]
 })
-export class InputFeedbackComponent implements OnInit {
+export class InputFeedbackComponent implements OnInit, OnChanges {
   @Input() control: FormControl;
   @Input() field: FormField;
-  @Input() fieldLabel: string;
-
-  // get specialCondition(): boolean {
-  //   return this.control.touched && !this.control.errors && 
-  //   this.field.customFeedback && 
-  //   this.field.fieldOrder == this.customFeedback.fieldOrder &&
-  //   this.customFeedback.condition
-  // }
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(): void {
+    if (this.field?.customFeedback?.condition) {
+      console.log(this.field)
+    }
   }
 
 }
