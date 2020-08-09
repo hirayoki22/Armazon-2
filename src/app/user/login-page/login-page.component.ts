@@ -24,7 +24,6 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.fields = this.getFields();
-    // this.fields[0].customFeedback.condition = true;
   }
 
   onSubmit(form: FormGroup): void {
@@ -55,14 +54,14 @@ export class LoginPageComponent implements OnInit {
     });
   }
 
-  setCustomFeedback(state: LoginState, index: number) {
+  private setCustomFeedback(state: LoginState, index: number) {
     this.fields[index].customFeedback = {
       condition: true,
       message: state.message
     }
   } 
 
-  getFields(): FormField[] {
+  private getFields(): FormField[] {
     return [
       new FormField({
         fieldType: 'input',
@@ -72,11 +71,7 @@ export class LoginPageComponent implements OnInit {
         inpuType: 'email',
         validators: {
           sync: [ Validators.required ]
-        },
-        // customFeedback: {
-        //   condition: false,
-        //   message: 'Username/email not found'
-        // }
+        }
       }),
       new FormField({
         fieldType: 'input',
