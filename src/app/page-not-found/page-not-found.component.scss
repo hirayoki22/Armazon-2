@@ -126,7 +126,7 @@
     }
   }
 
-  .bottom-content {
+  .footer{
     position: relative;
     max-width: 300px;
     margin-top: auto;
@@ -143,6 +143,12 @@
       font-size: 0.7rem;
       font-weight: 300;
       line-height: 1.2rem;
+    }
+
+    .fa-github {
+      margin-left: 0.2rem;
+      color: #e6e9f0;
+      font-size: 1rem;
     }
   }
 }
