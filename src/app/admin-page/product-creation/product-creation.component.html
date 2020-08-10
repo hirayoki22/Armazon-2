@@ -1,4 +1,6 @@
 <section class="product-form-section">
+  <app-spinner [loading]="isLoading" overlayStyle="fixed"></app-spinner>
+  
   <div class="column-s">
     <div class="form-group">
       <input 
@@ -21,7 +23,4 @@
     <app-image-uploader formControlName="images"></app-image-uploader>
   </div>
 
-  <app-spinner 
-    [loading]="isLoading"
-    [overlayStyle]="'fixed'"></app-spinner>
 </section>
