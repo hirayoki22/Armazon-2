@@ -4,6 +4,7 @@
   [showModal]="showForm" 
   (showModal)="onClose()">
   <div class="container" [class.review-submitted]="reviewSubmitted">
+    <app-spinner [loading]="isLoading"></app-spinner>
 
     <div *ngIf="!isLoading && !reviewSubmitted" class="scrollable-area">
       <div class="product-details">
@@ -44,7 +45,5 @@
         <i class="material-icons">done</i>
       </div>
     </div>
-
-    <app-spinner [loading]="isLoading"></app-spinner>
   </div>
 </app-modal>
