@@ -5,9 +5,10 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   padding: 70px 2rem 3rem;
   animation: reveal .4s ease;
+  transition: width .3s ease, height .3s ease;
 
   .background {
     position: absolute;
@@ -62,7 +63,6 @@
     position: relative;
     margin: auto 0;
     z-index: 10;
-    transition: inherit;
 
     .logo {
       display: flex;
@@ -100,7 +100,7 @@
       line-height: 6.5rem;
       text-align: center;
       text-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-      transition: width 0.3s ease, font-size .3s ease;
+      transition: font-size .3s ease;
 
       &::before {
         content: '';
