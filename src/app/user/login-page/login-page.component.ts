@@ -74,7 +74,7 @@ export class LoginPageComponent implements OnInit {
     return [
       new FormField({
         fieldKey: 'username',
-        fieldLabel: 'Username or email address - Username or email address - Username or email address - Username or email address',
+        fieldLabel: 'Username or email address',
         fieldOrder: 1,
         inpuType: 'email',
         validators: {
