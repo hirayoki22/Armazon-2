@@ -58,8 +58,11 @@ export class ProductCreationComponent implements OnInit {
 
     form.get('productName').setValue(productName);
     form.get('productDesc').setValue(productDesc);
-    form.get('variantInfo').setValue(this.variantForm.form.value);
     form.get('brand').setValue(brand);     
+
+    if (this.isVariant) {
+      form.get('variantInfo').setValue(this.variantForm.form.value);
+    }
 
     return JSON.stringify(form.value);
   }
