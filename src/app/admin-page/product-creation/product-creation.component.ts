@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { OwnValidators } from '../../shared/validators/sync-validators';
 import { MyAsyncValidators } from '../../shared/validators/async-validators.service';
 
 import { ProductService } from 'src/app/product.service';
 import { FormField } from 'src/app/shared/dynamic-form/form-field.class';
+import { DynamicFormComponent } from 'src/app/shared/dynamic-form/dynamic-form.component';
 
 interface Category { categoryId: number; category: string };
 interface VariantOption { optionId: number; option: string };
@@ -18,7 +19,6 @@ export class ProductCreationComponent implements OnInit {
   fields: FormField[];
   fields2: FormField[];
 
-  productForm: FormGroup;
   variantForm: FormGroup;
   categories: Category[];
   variantOptions: VariantOption[];
@@ -28,34 +28,20 @@ export class ProductCreationComponent implements OnInit {
   constructor(
     private ps: ProductService,
     private fb: FormBuilder,
-    private productValidator: MyAsyncValidators
+    private asyncValidators: MyAsyncValidators
   ) { }
 
   ngOnInit(): void {
     this.fields = this.getFields();
 
-    this.productForm = this.initForm();
     this.variantForm = this.initVariantForm();
 
-    this.ps.getCategories().subscribe((categories: Category[]) => {
-      this.categories = categories;
+    this.ps.getCategories().subscribe(categories => {
+      this.fields[3].selectOptions = this.fields[3].formatedOptions(categories);
     });
 
     this.ps.getVariantOptions().subscribe(options => {
       this.variantOptions = options;
-    });
-  }
-
-  private initForm(): FormGroup {
-    return this.fb.group({
-      productName: [ '', Validators.required ],
-      brand:       [ '', Validators.required ],
-      price:       [ 1, [Validators.required, Validators.min(1)] ],
-      categoryId:  [ null, Validators.required ],
-      productDesc: [ '', Validators.required ],
-      totalStock:  [ 1, [Validators.required, Validators.min(1)]],      
-      images:      [ [], OwnValidators.imageValidator ],
-      variantInfo: null
     });
   }
 
@@ -65,7 +51,7 @@ export class ProductCreationComponent implements OnInit {
         null, 
         {
           validators: [Validators.required],
-          asyncValidators: [this.productValidator.productValidator()],
+          asyncValidators: [this.asyncValidators.productValidator()],
           updateOn: 'blur'
         }
       ],
@@ -79,40 +65,40 @@ export class ProductCreationComponent implements OnInit {
   }
 
   onSubmit(form?: FormGroup): void {
-    const images = <File[]>this.productForm.get('images').value;
-    const formData = new FormData();
+    // const images = <File[]>this.productForm.get('images').value;
+    // const formData = new FormData();
 
-    formData.append('product', this.getSanitizedForm());    
-    images.forEach(image => formData.append('images[]', image));
-    this.isLoading = true;
+    // formData.append('product', this.getSanitizedForm());    
+    // images.forEach(image => formData.append('images[]', image));
+    // this.isLoading = true;
 
-    if (!this.isVariant) {
-      this.ps.addProducts(formData).subscribe(() => {
-        this.productForm.reset();
-        this.isLoading = false;
-      });
-    } else {
-      this.ps.addProductVariant(formData).subscribe(() => {
-        this.productForm.reset();
-        this.variantForm.reset();
-        this.isLoading = false;
-        this.isVariant = false;
-      });
-    }
+    // if (!this.isVariant) {
+    //   this.ps.addProducts(formData).subscribe(() => {
+    //     this.productForm.reset();
+    //     this.isLoading = false;
+    //   });
+    // } else {
+    //   this.ps.addProductVariant(formData).subscribe(() => {
+    //     this.productForm.reset();
+    //     this.variantForm.reset();
+    //     this.isLoading = false;
+    //     this.isVariant = false;
+    //   });
+    // }
   }
 
-  private getSanitizedForm(form?: FormGroup): string {
-    let productName = this.productForm.get('productName').value.trim();
-    let productDesc = this.productForm.get('productDesc').value.trim();
-    let brand = this.productForm.get('brand').value.trim();
+  // private getSanitizedForm(form?: FormGroup): string {
+  //   let productName = this.productForm.get('productName').value.trim();
+  //   let productDesc = this.productForm.get('productDesc').value.trim();
+  //   let brand = this.productForm.get('brand').value.trim();
 
-    this.productForm.get('productName').setValue(productName);
-    this.productForm.get('productDesc').setValue(productDesc);
-    this.productForm.get('variantInfo').setValue(this.variantForm.value);
-    this.productForm.get('brand').setValue(brand);     
+  //   this.productForm.get('productName').setValue(productName);
+  //   this.productForm.get('productDesc').setValue(productDesc);
+  //   this.productForm.get('variantInfo').setValue(this.variantForm.value);
+  //   this.productForm.get('brand').setValue(brand);     
 
-    return JSON.stringify(this.productForm.value);
-  }
+  //   return JSON.stringify(this.productForm.value);
+  // }
 
   private getFields(): FormField[] {
     return [
@@ -189,11 +175,19 @@ export class ProductCreationComponent implements OnInit {
           sync: [ Validators.required ]
         }
       }),
-      // new FormField({
-      //   fieldType: 'none',
-      //   fieldKey: 'variantInfo',
-      //   fieldOrder: 8
-      // })
+      new FormField({
+        fieldType: 'none',
+        fieldKey: 'images',
+        fieldOrder: 8,
+        validators: {
+          sync: [ Validators.required ]
+        }
+      }),
+      new FormField({
+        fieldType: 'none',
+        fieldKey: 'variantInfo',
+        fieldOrder: 9
+      })
     ];
   }
 }

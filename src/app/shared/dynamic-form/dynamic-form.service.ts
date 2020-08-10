@@ -19,21 +19,26 @@ export class DynamicFormService {
     this.fields.sort((a, b) => a.fieldOrder - b.fieldOrder);
 
     this.fields.forEach(field => {
-      if (!field.validators.async) {
-        form[field.fieldKey] = new FormControl(
-          field.value, 
-          field?.validators?.sync
-        );
+      if (field.validators) {
+        if (!field.validators.async) {
+          form[field.fieldKey] = new FormControl(
+            field.value, 
+            field.validators.sync
+          );
+        } else {
+          form[field.fieldKey] = new FormControl(
+            field.value, 
+            {          
+              validators: field.validators.sync || null,
+              asyncValidators: field.validators.async,
+              updateOn: 'blur'
+            }
+          );
+        }
       } else {
-        form[field.fieldKey] = new FormControl(
-          field.value, 
-          {          
-            validators: field?.validators?.sync,
-            asyncValidators: field?.validators?.async,
-            updateOn: 'blur'
-          }
-        );
+        form[field.fieldKey] = new FormControl(field.value);
       }
+      
     });
     this.form = new FormGroup(form);
     return this.form;
