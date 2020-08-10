@@ -2,7 +2,7 @@
   <div class="column-s">
     <div class="form-group">
       <input 
-        (change)="showVariantFields($event.target)" 
+        (change)="isVariant = !isVariant" 
         type="checkbox" id="variant">
       <label for="variant">Mark as product variant</label>
     </div>
@@ -21,4 +21,7 @@
     <app-image-uploader formControlName="images"></app-image-uploader>
   </div>
 
+  <app-spinner 
+  [loading]="isLoading"
+  [overlayStyle]="'fixed'"></app-spinner>
 </section>

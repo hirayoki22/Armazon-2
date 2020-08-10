@@ -21,7 +21,7 @@ import { trigger, state, transition, animate, style } from '@angular/animations'
   ]
 })
 export class SpinnerComponent implements OnInit, OnChanges {
-  @Input() loading: boolean;
+  @Input() loading: boolean = false;
   @Input() overlayStyle: 'fixed' | 'absolute';
 
   constructor() { }
@@ -30,6 +30,16 @@ export class SpinnerComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
+    this.setBodyOverflow();
   }
 
+  setBodyOverflow(): void {
+    if (this.overlayStyle === 'fixed') {
+      if (!this.loading) {
+        document.body.classList.remove('active-spinner');
+      } else {
+        document.body.classList.add('active-spinner');
+      }
+    }
+  }
 }
