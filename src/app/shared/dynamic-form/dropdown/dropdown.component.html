@@ -2,7 +2,7 @@
   <select 
     [formControlName]="field.fieldKey"
     [class.invalid]="control.touched && control.invalid"
-    [class.valid]="control.dirty && control.valid">
+    [class.valid]="enableValidCSS && control.dirty && control.valid">
     <option [ngValue]="null">
       Choose a {{ field.fieldLabel | lowercase }}
     </option>
