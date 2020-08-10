@@ -36,20 +36,19 @@ export class ProductCreationComponent implements OnInit {
     images.forEach(image => formData.append('images[]', image));
     this.isLoading = true;
 
-    // if (!this.isVariant) {
-    //   this.ps.addProducts(formData).subscribe(() => {
-    //     form.reset();
-    //     this.isLoading = false;
-    //   });
-    // } else {
-    //   this.ps.addProductVariant(formData).subscribe(() => {
-    //     form.reset();
-    //     this.variantForm.form.reset();
-    //     this.isLoading = false;
-    //     this.isVariant = false;
-    //   });
-    // }
-    console.log(this.getSanitizedForm(form));
+    if (!this.isVariant) {
+      this.ps.addProducts(formData).subscribe(() => {
+        form.reset();
+        this.isLoading = false;
+      });
+    } else {
+      this.ps.addProductVariant(formData).subscribe(() => {
+        form.reset();
+        this.variantForm.form.reset();
+        this.isLoading = false;
+        this.isVariant = false;
+      });
+    }
   }
 
   private getSanitizedForm(form: FormGroup): string {
