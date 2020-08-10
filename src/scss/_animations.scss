@@ -62,3 +62,17 @@
     opacity: 0;
   }
 }
+
+@keyframes fileAdded {
+  from {
+    transform: scale(0.94, 0.94);
+    opacity: 0;
+  }
+}
+
+@keyframes fileRemoved {
+  to {
+    transform: scale(0.90, 0.90);
+    opacity: 0;
+  }
+}

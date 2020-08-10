@@ -2,14 +2,14 @@
   <app-spinner [loading]="isLoading" overlayStyle="fixed"></app-spinner>
   
   <div class="column-s">
-    <div class="form-group">
-      <input 
-        (change)="isVariant = !isVariant" 
-        type="checkbox" id="variant">
-      <label for="variant">Mark as product variant</label>
-    </div>
-
     <div class="form-wrapper">
+      <button class="variant-button">
+        <input 
+          (change)="isVariant = !isVariant" 
+          type="checkbox" id="variant">
+        <label for="variant">Mark as product variant</label>
+      </button>
+
       <dynamic-form
         #form
         [fields]="fields"
