@@ -6,6 +6,7 @@ import { ProductService } from 'src/app/product.service';
 import { ReviewRatingService } from '../review-rating.service';
 import { Product } from 'src/app/product.model';
 import { NewReview } from './new-review.model';
+import { FormField } from 'src/app/shared/dynamic-form/form-field.class';
 
 
 @Component({
@@ -14,6 +15,7 @@ import { NewReview } from './new-review.model';
   styleUrls: ['./review-form.component.scss']
 })
 export class ReviewFormComponent implements OnInit {
+  fields: FormField[];
   product: Product;
   reviewForm: FormGroup;
   showForm: boolean = false;
@@ -30,6 +32,7 @@ export class ReviewFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.rf.$formState.subscribe(productId => {
+      this.fields = this.initFields();
       this.reviewForm = this.initiReviewForm();
       this.showForm = true;
       this.isLoading = true;
@@ -61,7 +64,7 @@ export class ReviewFormComponent implements OnInit {
     this.reviewForm.get('rating').setValue(rating);
   }
 
-  onSubmit(): void {
+  onSubmit(form?: FormGroup): void {
     const review: NewReview = {
       productId: this.product.productId,
       userId: 12,
@@ -73,7 +76,6 @@ export class ReviewFormComponent implements OnInit {
     this.isLoading = true;
     this.rs.submitNewReview(review).subscribe(res => {
       if (res.existingRecord) {
-        console.log('You have already submitted a review for the ', this.product.productName);
         this.userReviewExists = true;
         this.reviewForm.reset();
       } else {
@@ -88,5 +90,32 @@ export class ReviewFormComponent implements OnInit {
     this.showForm = false;
     this.reviewSubmitted = false;
     this.userReviewExists = false;
+  }
+
+  private initFields(): FormField[] {
+    return [
+      new FormField({
+        fieldType: 'none',
+        fieldKey: 'rating',
+        fieldOrder: 1,
+        validators: {
+          sync: [ Validators.required ]
+        }
+      }),
+      new FormField({
+        fieldKey: 'headline',
+        fieldLabel: 'Add a headline',
+        fieldOrder: 2
+      }),
+      new FormField({
+        fieldType: 'textarea',
+        fieldKey: 'review',
+        fieldLabel: 'Wire your review',
+        fieldOrder: 3,
+        validators: {
+          sync: [ Validators.required ]
+        }
+      })
+    ];
   }
 }
