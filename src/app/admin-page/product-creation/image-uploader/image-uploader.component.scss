@@ -48,6 +48,7 @@
 
   .image-selector, .preview {
     height: 120px;
+    border-radius: 8px;
     border: thin solid #e3e6ec;
   }
 
@@ -98,7 +99,7 @@
       height: 100%;
       left: 0;
       top: 0;
-      background-color: rgba(248, 96, 129, 0.6);
+      background-color: rgba(0, 0, 0, 0.6);
       transition: opacity .3s ease;
       cursor: pointer;
 
@@ -118,7 +119,6 @@
 @media (max-width: 900px) {
   .container {
     height: 642px;
-    // height: auto;
   
     .preview-list {
       grid-template-columns: repeat(4, 1fr);
