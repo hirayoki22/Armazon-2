@@ -24,7 +24,7 @@ export class ImageUploaderComponent implements ControlValueAccessor {
 
   @HostListener('change', ['$event.target.files']) emitFiles(images: FileList) {
     this.validateImages(images);
-    // this.host.nativeElement.value = null;
+
     if (this.images && this.images.length) {
       this.onChange(this.images);
     }
@@ -58,7 +58,7 @@ export class ImageUploaderComponent implements ControlValueAccessor {
   }
 
   writeValue(value: null) {
-    this.host.nativeElement.value = null;
+    this.host.nativeElement.value = value;
     this.images = [];
   }
 
