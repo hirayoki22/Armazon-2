@@ -39,7 +39,7 @@ export class OwnValidators {
     }
   }
   
-  static imageValidator(control: AbstractControl): ValidationErrors | null {
+  static image(control: AbstractControl): ValidationErrors | null {
     const files: File[] = control.value;
     const allowedExts = ['image/jpeg', 'image/png', 'image/webp'];
     const maxImgSize = 10000000;

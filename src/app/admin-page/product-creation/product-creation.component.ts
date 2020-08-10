@@ -170,15 +170,16 @@ export class ProductCreationComponent implements OnInit {
       new FormField({
         fieldType: 'none',
         fieldKey: 'images',
-        fieldOrder: 7,
         validators: {
-          sync: [ Validators.required ]
+          sync: [ 
+            Validators.required,
+            OwnValidators.image
+          ]
         }
       }),
       new FormField({
         fieldType: 'none',
-        fieldKey: 'variantInfo',
-        fieldOrder: 8
+        fieldKey: 'variantInfo'
       })
     ];
   }
