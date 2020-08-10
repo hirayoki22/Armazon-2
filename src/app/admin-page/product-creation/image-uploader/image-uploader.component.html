@@ -4,8 +4,8 @@
   </div>
 
   <div class="scrollable-area">
-    <ul class="preview-list" [class.alternate]="files.length > 3">
-      <li #previewEle *ngFor="let preview of files" class="preview">
+    <ul class="preview-list" [class.alternate]="images.length > 1">
+      <li #previewEle *ngFor="let preview of images" class="preview">
         <img [src]="getImageUrl(preview)" draggable="false">
 
         <div (click)="onRemove(preview, previewEle)" class="remove-overlay">
@@ -13,7 +13,7 @@
         </div>
       </li>
 
-      <label class="image-selector">
+      <label *ngIf="images.length < 20" class="image-selector">
         <input type="file" multiple>
         <i class="material-icons">add_photo_alternate</i>
       </label>

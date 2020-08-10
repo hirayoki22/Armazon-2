@@ -14,7 +14,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class ImageUploaderComponent implements ControlValueAccessor {
   onChange: Function;
-  files: File[] | null = [];
+  images: File[] | null = [];
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -22,12 +22,26 @@ export class ImageUploaderComponent implements ControlValueAccessor {
   ) { }
 
 
-  @HostListener('change', ['$event.target.files']) emitFiles(files: FileList) {
-    Array.from(files).forEach(file => this.files.push(file));
-    
-    if (this.files && this.files.length) {
-      this.onChange(this.files);
+  @HostListener('change', ['$event.target.files']) emitFiles(images: FileList) {
+    this.validateImages(images);
+    // this.host.nativeElement.value = null;
+    if (this.images && this.images.length) {
+      this.onChange(this.images);
     }
+  }
+
+  validateImages(files: FileList): void {
+    if (this.images.length == 20) { return; }
+    
+    const images = Array.from(files).slice(0, 20);
+    const allowedExts = ['image/jpeg', 'image/png', 'image/webp'];
+    const maxImgSize = 5000000;
+
+    images.forEach(image => {
+      if (allowedExts.includes(image.type) && image.size <= maxImgSize) {
+        this.images.push(image);
+      }
+    });
   }
 
   getImageUrl(file: File) {
@@ -38,14 +52,14 @@ export class ImageUploaderComponent implements ControlValueAccessor {
     previewEle.classList.add('removed');
     
     setTimeout(() => {
-      this.files = this.files.filter(cur => cur.name !== file.name);
-      this.onChange(this.files);
+      this.images = this.images.filter(cur => cur.name !== file.name);
+      this.onChange(this.images);
     }, 300);
   }
 
   writeValue(value: null) {
-    this.host.nativeElement.value = '';
-    this.files = [];
+    this.host.nativeElement.value = null;
+    this.images = [];
   }
 
   registerOnChange(callback: Function) {
