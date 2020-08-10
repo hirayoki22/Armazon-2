@@ -30,7 +30,7 @@ export class ProductCreationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.fields = this.getFields();
+    this.fields = this.initFields();
     this.variantForm = this.initVariantForm();
 
     this.ps.getCategories().subscribe(categories => {
@@ -94,7 +94,7 @@ export class ProductCreationComponent implements OnInit {
     return JSON.stringify(form.value);
   }
 
-  private getFields(): FormField[] {
+  private initFields(): FormField[] {
     return [
       new FormField({
         fieldKey: 'productName',
