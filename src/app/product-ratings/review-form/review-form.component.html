@@ -18,21 +18,23 @@
         <p>You already reviewed this item</p>
       </div>
 
-      <div class="form-group">
-        <label>Overall rating</label>
-        <star-rating             
-          [newRating]="true"
-          [overall]="rating"
-          (selectedRating)="onRatingSelection($event)"
-          [class.read-only]="userReviewExists"></star-rating>
+      <div class="form-wrapper">
+        <div class="form-group">
+          <label>Overall rating</label>
+          <star-rating             
+            [newRating]="true"
+            [overall]="rating"
+            (selectedRating)="form"
+            [class.read-only]="userReviewExists"></star-rating>
+        </div>
+  
+        <dynamic-form
+          #form
+          [fields]="fields"
+          [disableFeedback]="true"
+          [disableSubmit]="true"
+          (onSubmit)="onSubmit($event)"></dynamic-form>
       </div>
-
-      <dynamic-form
-        #form
-        [fields]="fields"
-        [disableFeedback]="true"
-        [disableSubmit]="true"
-        (onSubmit)="onSubmit($event)"></dynamic-form>
 
       <!-- <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()" id="review-form">
         <div class="form-group">
