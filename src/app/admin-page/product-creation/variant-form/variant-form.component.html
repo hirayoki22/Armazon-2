@@ -1,0 +1,57 @@
+<form *ngIf="variantOptions" [formGroup]="form">
+
+  <div *ngFor="let field of fields" class="form-group">
+    <div [ngSwitch]="field.fieldType" class="form-group-wrapper">
+      <select 
+        *ngSwitchCase="'dropdown'"
+        [formControlName]="field.key"
+        [class.invalid]="control(field.key).touched && control(field.key).invalid"
+        [class.valid]="control(field.key).dirty && control(field.key).valid">
+        <option [ngValue]="null">
+          Choose an option
+        </option>
+        <option 
+          *ngFor="let option of variantOptions" 
+          [ngValue]="option.optionId">{{ option.option }}</option>
+      </select>
+
+      <input
+        *ngSwitchDefault
+        [formControlName]="field.key"
+        [class.invalid]="control(field.key).touched && control(field.key).invalid"
+        [class.valid]="control(field.key).dirty && control(field.key).valid">
+
+      <label 
+        *ngIf="field.fieldType !== 'dropdown'"
+        [class.shrink]="control(field.key).value">
+        {{ field.label }}
+      </label>
+
+      <div *ngIf="control(field.key).pending" class="loader">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <span 
+      *ngIf="control(field.key).touched && 
+      control(field.key)?.errors"
+      class="invalid-feedback">
+      <p *ngIf="control(field.key).errors.required">
+        Please enter a valid {{ field.label | lowercase }}
+      </p>
+
+      <p *ngIf="control(field.key).errors.notFound">
+        This product could not be found
+      </p>
+    </span>
+
+    <span 
+      *ngIf="field.key == 'productId' && control(field.key).valid" 
+      class="valid-feedback">
+      <p>Product found <i class="material-icons">done</i></p>
+    </span>
+  </div>
+
+</form>

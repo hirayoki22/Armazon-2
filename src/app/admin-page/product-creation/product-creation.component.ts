@@ -1,14 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 import { OwnValidators } from '../../shared/validators/sync-validators';
-import { MyAsyncValidators } from '../../shared/validators/async-validators.service';
 
 import { ProductService } from 'src/app/product.service';
 import { FormField } from 'src/app/shared/dynamic-form/form-field.class';
-import { DynamicFormComponent } from 'src/app/shared/dynamic-form/dynamic-form.component';
-
-interface Category { categoryId: number; category: string };
-interface VariantOption { optionId: number; option: string };
+import { VariantFormComponent } from './variant-form/variant-form.component';
 
 @Component({
   selector: 'app-product-creation',
@@ -16,52 +12,23 @@ interface VariantOption { optionId: number; option: string };
   styleUrls: ['./product-creation.component.scss']
 })
 export class ProductCreationComponent implements OnInit {
-  @ViewChild('variantForm') variantForm: DynamicFormComponent;
-  // variantForm: FormGroup;
+  @ViewChild(VariantFormComponent) variantForm: VariantFormComponent;
   fields: FormField[];
-  otherFields: FormField[];
-
-  variantOptions: VariantOption[];
   isVariant: boolean = false;
   isLoading: boolean = false;
 
-  constructor(
-    private ps: ProductService,
-    private fb: FormBuilder,
-    private asyncValidators: MyAsyncValidators
-  ) { }
+  constructor(private ps: ProductService) { }
 
   ngOnInit(): void {
     this.fields = this.initFields();
-    this.otherFields = this.variantFields();
-    // this.variantForm = this.initVariantForm();
 
     this.ps.getCategories().subscribe(categories => {
       this.fields[3].selectOptions = 
         this.fields[3].formatedOptions(categories);
     });
-
-    this.ps.getVariantOptions().subscribe(options => {
-      this.variantOptions = options;
-    });
   }
 
-  // private initVariantForm(): FormGroup {
-  //   return this.fb.group({ 
-  //     productId: [ 
-  //       null, 
-  //       {
-  //         validators: [Validators.required],
-  //         asyncValidators: [this.asyncValidators.productValidator()],
-  //         updateOn: 'blur'
-  //       }
-  //     ],
-  //     optionId: [ null, Validators.required ],
-  //     optionValue: [ null, Validators.required ] 
-  //   });
-  // }
-
-  onSubmit(form?: FormGroup): void {
+  onSubmit(form: FormGroup): void {
     const images = <File[]>form.get('images').value;
     const formData = new FormData();
 
@@ -175,37 +142,6 @@ export class ProductCreationComponent implements OnInit {
         fieldType: 'none',
         fieldKey: 'variantInfo',
         fieldOrder: 8
-      })
-    ];
-  }
-
-  private variantFields(): FormField[] {
-    return [
-      new FormField({
-        fieldKey: 'productId',
-        fieldLabel: 'Original Product ID',
-        fieldOrder: 1,
-        validators: {
-          sync: [ Validators.required ],
-          async: [ this.asyncValidators.productValidator() ]
-        }
-      }),
-      new FormField({
-        fieldType: 'dropdown',
-        fieldKey: 'optionId',
-        fieldLabel: 'Option ID',
-        fieldOrder: 2,
-        validators: {
-          sync: [ Validators.required ]
-        }
-      }),
-      new FormField({
-        fieldKey: 'optionValue',
-        fieldLabel: 'Option value',
-        fieldOrder: 3,
-        validators: {
-          sync: [ Validators.required ]
-        }
       })
     ];
   }

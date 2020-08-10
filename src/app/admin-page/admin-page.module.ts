@@ -7,12 +7,13 @@ import { ProductCreationComponent } from './product-creation/product-creation.co
 import { SharedModule } from '../shared/shared.module';
 import { ImageUploaderComponent } from './product-creation/image-uploader/image-uploader.component';
 import { ProductListComponent } from './product-list/product-list.component';
+import { VariantFormComponent } from './product-creation/variant-form/variant-form.component';
 
 
 @NgModule({
   declarations: [
     AdminPageComponent, 
-    ProductCreationComponent, ImageUploaderComponent, ProductListComponent
+    ProductCreationComponent, ImageUploaderComponent, ProductListComponent, VariantFormComponent
   ],
   imports: [
     CommonModule,
