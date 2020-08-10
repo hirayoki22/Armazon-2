@@ -1,24 +1,21 @@
 <section class="product-form-section">
   <div class="column-s">
+    <div class="form-group">
+      <input 
+        (change)="showVariantFields($event.target)" 
+        type="checkbox" id="variant">
+      <label for="variant">Mark as product variant</label>
+    </div>
 
     <div class="form-wrapper">
       <dynamic-form
-      #form
-      [fields]="fields"
-      [disableFeedback]="true"
-      [disableSubmit]="true"
-      (onSubmit)="onSubmit($event)"></dynamic-form>
+        #form
+        [fields]="fields"
+        [disableFeedback]="true"
+        [disableSubmit]="true"
+        (onSubmit)="onSubmit($event)"></dynamic-form>
     </div>
-
-    <!-- <div class="form-group-2">
-      <input 
-        (change)="isVariant = !isVariant" 
-        type="checkbox" id="variant">
-      <label for="variant">Mark as product variant</label>
-    </div> -->
-
   </div>
-
 
   <div [formGroup]="form.form" class="column-l">
     <app-image-uploader formControlName="images"></app-image-uploader>

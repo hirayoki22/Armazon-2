@@ -41,13 +41,17 @@
       }
     }
 
-    .form-group-2 {
+    .form-group {
       display: flex;
       align-items: center;
       margin: 1.5rem 0;
 
       input {
         margin-right: 0.5rem;
+      }
+
+      label {
+        font-size: .8rem;
       }
     }
   }

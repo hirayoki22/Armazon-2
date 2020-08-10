@@ -19,8 +19,6 @@ export class ProductCreationComponent implements OnInit {
   fields: FormField[];
   fields2: FormField[];
 
-  variantForm: FormGroup;
-  categories: Category[];
   variantOptions: VariantOption[];
   isVariant: boolean = false;
   isLoading: boolean = false;
@@ -34,8 +32,6 @@ export class ProductCreationComponent implements OnInit {
   ngOnInit(): void {
     this.fields = this.getFields();
 
-    this.variantForm = this.initVariantForm();
-
     this.ps.getCategories().subscribe(categories => {
       this.fields[3].selectOptions = this.fields[3].formatedOptions(categories);
     });
@@ -45,24 +41,8 @@ export class ProductCreationComponent implements OnInit {
     });
   }
 
-  private initVariantForm(): FormGroup {
-    return this.fb.group({ 
-      originalProductId: [ 
-        null, 
-        {
-          validators: [Validators.required],
-          asyncValidators: [this.asyncValidators.productValidator()],
-          updateOn: 'blur'
-        }
-      ],
-      optionId: [ null, Validators.required ],
-      optionValue: [ null, Validators.required ] 
-    });
-  }
 
-  get originalProductId(): FormControl {
-    return <FormControl>this.variantForm.get('originalProductId');
-  }
+  
 
   onSubmit(form?: FormGroup): void {
     // const images = <File[]>this.productForm.get('images').value;
@@ -101,10 +81,13 @@ export class ProductCreationComponent implements OnInit {
   //   return JSON.stringify(this.productForm.value);
   // }
 
+  showVariantFields(input: HTMLInputElement): void {
+    console.log(input.checked);
+  }
+
   private getFields(): FormField[] {
     return [
       new FormField({
-        fieldType: 'input',
         fieldKey: 'productName',
         fieldLabel: 'Product',
         fieldOrder: 1,
@@ -113,7 +96,6 @@ export class ProductCreationComponent implements OnInit {
         }
       }),
       new FormField({
-        fieldType: 'input',
         fieldKey: 'brand',
         fieldLabel: 'Brand',
         fieldOrder: 2,
@@ -122,7 +104,6 @@ export class ProductCreationComponent implements OnInit {
         }
       }),
       new FormField({
-        fieldType: 'input',
         fieldKey: 'price',
         fieldLabel: 'Listed price',
         fieldOrder: 3,
@@ -145,16 +126,6 @@ export class ProductCreationComponent implements OnInit {
         }
       }),
       new FormField({
-        fieldType: 'textarea',
-        fieldKey: 'productDesc',
-        fieldLabel: 'Description',
-        fieldOrder: 6,
-        validators: {
-          sync: [ Validators.required ]
-        }
-      }),
-      new FormField({
-        fieldType: 'input',
         fieldKey: 'totalStock',
         fieldLabel: 'Total in stock',
         fieldOrder: 5,
@@ -168,8 +139,18 @@ export class ProductCreationComponent implements OnInit {
         }
       }),
       new FormField({
+        fieldType: 'textarea',
+        fieldKey: 'productDesc',
+        fieldLabel: 'Description',
+        fieldOrder: 6,
+        validators: {
+          sync: [ Validators.required ]
+        }
+      }),
+      new FormField({
         fieldType: 'none',
         fieldKey: 'images',
+        fieldOrder: 7,
         validators: {
           sync: [ 
             Validators.required,
@@ -179,7 +160,40 @@ export class ProductCreationComponent implements OnInit {
       }),
       new FormField({
         fieldType: 'none',
-        fieldKey: 'variantInfo'
+        fieldKey: 'variantInfo',
+        fieldOrder: 8
+      })
+    ];
+  }
+
+  private variantFields(): FormField[] {
+    return [
+      new FormField({
+        fieldKey: 'originalProductId',
+        fieldLabel: 'Original Product ID',
+        fieldOrder: 1,
+        inpuType: 'number',
+        validators: {
+          sync: [ Validators.required ],
+          async: [this.asyncValidators.productValidator()]
+        }
+      }),
+      new FormField({
+        fieldType: 'dropdown',
+        fieldKey: 'optionId',
+        fieldLabel: 'Option',
+        fieldOrder: 2,
+        validators: {
+          sync: [ Validators.required ],
+        }
+      }),
+      new FormField({
+        fieldKey: 'optionValue',
+        fieldLabel: 'Option value/name',
+        fieldOrder: 3,
+        validators: {
+          sync: [ Validators.required ],
+        }
       })
     ];
   }
