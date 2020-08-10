@@ -85,6 +85,7 @@ export class ProductCreationComponent implements OnInit {
     //     this.isVariant = false;
     //   });
     // }
+    console.log(form.value);
   }
 
   // private getSanitizedForm(form?: FormGroup): string {
@@ -144,10 +145,10 @@ export class ProductCreationComponent implements OnInit {
         }
       }),
       new FormField({
-        fieldType: 'input',
+        fieldType: 'textarea',
         fieldKey: 'productDesc',
         fieldLabel: 'Description',
-        fieldOrder: 5,
+        fieldOrder: 6,
         validators: {
           sync: [ Validators.required ]
         }
@@ -156,7 +157,7 @@ export class ProductCreationComponent implements OnInit {
         fieldType: 'input',
         fieldKey: 'totalStock',
         fieldLabel: 'Total in stock',
-        fieldOrder: 6,
+        fieldOrder: 5,
         inpuType: 'number',
         value: 1,
         validators: {
@@ -167,9 +168,8 @@ export class ProductCreationComponent implements OnInit {
         }
       }),
       new FormField({
-        fieldType: 'input',
-        fieldKey: 'productDesc',
-        fieldLabel: 'Description',
+        fieldType: 'none',
+        fieldKey: 'images',
         fieldOrder: 7,
         validators: {
           sync: [ Validators.required ]
@@ -177,16 +177,8 @@ export class ProductCreationComponent implements OnInit {
       }),
       new FormField({
         fieldType: 'none',
-        fieldKey: 'images',
-        fieldOrder: 8,
-        validators: {
-          sync: [ Validators.required ]
-        }
-      }),
-      new FormField({
-        fieldType: 'none',
         fieldKey: 'variantInfo',
-        fieldOrder: 9
+        fieldOrder: 8
       })
     ];
   }
