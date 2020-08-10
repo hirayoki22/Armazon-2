@@ -7,10 +7,7 @@ import { DynamicFormService } from '../dynamic-form.service';
 @Component({
   selector: 'dynamic-text-field',
   templateUrl: './text-field.component.html',
-  styleUrls: [
-    './text-field.component.scss',
-    '../dynamic-form.component.scss'
-  ]
+  styleUrls: ['../dynamic-form.component.scss']
 })
 export class TextFieldComponent implements OnInit {
   @Input() field: FormField;

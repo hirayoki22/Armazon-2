@@ -58,8 +58,12 @@
       position: absolute;
       left: 0;
       top: calc(100% - 0.9rem - 1px - 0.5rem);
+      width: 100%;
       font-size: 0.9rem;
+      white-space: nowrap;
+      text-overflow: ellipsis;
       transition: 0.2s ease;
+      overflow: hidden;
       user-select: none;
 
       &.shrink {

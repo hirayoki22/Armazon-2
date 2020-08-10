@@ -3,7 +3,7 @@
   !field?.customFeedback?.condition"
   class="invalid-feedback">
   <p *ngIf="field.fieldKey !== 'rePassword' && control.errors.required">
-    Enter your {{ label }}
+    Please enter a valid {{ label }}
   </p>
 
   <p *ngIf="control.errors.pattern">
@@ -24,7 +24,7 @@
   </p>
 
   <p *ngIf="control.value && control.errors.password">
-    This {{ label }} isn't secure
+    This {{ label }} is not secure
   </p>
 </span>
 
@@ -34,12 +34,12 @@
   control.touched && form.get('password').value"
   class="invalid-feedback">
   <p *ngIf="control?.errors?.required">
-    Re-enter your password
+    Please re-enter your password
   </p>
 
   <p 
     *ngIf="control.value && form?.errors?.rePassword">
-    The passwords don't match
+    The passwords don't match. Please verify
   </p>
 </span>
 

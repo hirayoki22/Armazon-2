@@ -7,10 +7,7 @@ import { DynamicFormService } from '../dynamic-form.service';
 @Component({
   selector: 'dynamic-dropdown',
   templateUrl: './dropdown.component.html',
-  styleUrls: [
-    './dropdown.component.scss',
-    '../dynamic-form.component.scss'
-  ]
+  styleUrls: ['../dynamic-form.component.scss']
 })
 export class DropdownComponent implements OnInit {
   @Input() field: FormField;

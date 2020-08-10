@@ -23,7 +23,7 @@ export class LoginPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.fields = this.getFields();
+    this.fields = this.initFields();
   }
 
   onSubmit(form: FormGroup): void {
@@ -70,11 +70,11 @@ export class LoginPageComponent implements OnInit {
     }
   }
 
-  private getFields(): FormField[] {
+  private initFields(): FormField[] {
     return [
       new FormField({
         fieldKey: 'username',
-        fieldLabel: 'Username or email address',
+        fieldLabel: 'Username or email address - Username or email address - Username or email address - Username or email address',
         fieldOrder: 1,
         inpuType: 'email',
         validators: {

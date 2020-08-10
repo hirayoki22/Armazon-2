@@ -2,7 +2,7 @@
   <div class="form-group-wrapper">
     <textarea
     [formControlName]="field.fieldKey"
-    [class.invalid]="control.touched && control.invalid"
+    [class.invalid]="enableValidCSS && control.touched && control.invalid"
     [class.valid]="enableValidCSS && control.dirty && control.valid"
     rows="5"></textarea>
     <label [class.shrink]="control.value">{{ field.fieldLabel }}</label>
