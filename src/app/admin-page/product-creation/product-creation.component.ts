@@ -34,6 +34,7 @@ export class ProductCreationComponent implements OnInit {
 
     formData.append('product', this.getSanitizedForm(form));    
     images.forEach(image => formData.append('images[]', image));
+    
     this.isLoading = true;
 
     if (!this.isVariant) {
@@ -44,9 +45,8 @@ export class ProductCreationComponent implements OnInit {
     } else {
       this.ps.addProductVariant(formData).subscribe(() => {
         form.reset();
-        this.variantForm.form.reset();
-        this.isLoading = false;
         this.isVariant = false;
+        this.isLoading = false;
       });
     }
   }
