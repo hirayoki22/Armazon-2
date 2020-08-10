@@ -17,7 +17,7 @@ interface VariantOption { optionId: number; option: string };
 })
 export class ProductCreationComponent implements OnInit {
   fields: FormField[];
-  fields2: FormField[];
+  variantFields: FormField[];
 
   variantOptions: VariantOption[];
   isVariant: boolean = false;
@@ -31,6 +31,7 @@ export class ProductCreationComponent implements OnInit {
 
   ngOnInit(): void {
     this.fields = this.getFields();
+    this.variantFields = this.getVariantFields();
 
     this.ps.getCategories().subscribe(categories => {
       this.fields[3].selectOptions = this.fields[3].formatedOptions(categories);
@@ -82,7 +83,9 @@ export class ProductCreationComponent implements OnInit {
   // }
 
   showVariantFields(input: HTMLInputElement): void {
-    console.log(input.checked);
+    if (input.checked) {
+      this.fields = this.variantFields;
+    }
   }
 
   private getFields(): FormField[] {
@@ -166,7 +169,7 @@ export class ProductCreationComponent implements OnInit {
     ];
   }
 
-  private variantFields(): FormField[] {
+  private getVariantFields(): FormField[] {
     return [
       new FormField({
         fieldKey: 'originalProductId',

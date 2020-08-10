@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
+import { Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, ValidatorFn } from '@angular/forms';
 
 import { FormField } from './form-field.class';
@@ -10,7 +10,7 @@ import { DynamicFormService } from './dynamic-form.service';
   templateUrl: './dynamic-form.component.html',
   styleUrls: ['./dynamic-form.component.scss']
 })
-export class DynamicFormComponent implements OnInit {
+export class DynamicFormComponent implements OnInit, OnChanges {
   @Input() fields: FormField[] = [];
   @Input() enableValidCSS: boolean = false;
   @Input() disableFeedback: boolean = false;
@@ -25,6 +25,10 @@ export class DynamicFormComponent implements OnInit {
     this.form = this.ds.createForm(this.fields);
     this.form.setValidators(this.validators);
     this.ds.enableValidCSS = this.enableValidCSS;
+  }
+
+  ngOnChanges(): void {
+    
   }
 
   onSubmit(): void {
