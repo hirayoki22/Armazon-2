@@ -73,7 +73,6 @@ export class LoginPageComponent implements OnInit {
   private getFields(): FormField[] {
     return [
       new FormField({
-        fieldType: 'input',
         fieldKey: 'username',
         fieldLabel: 'Username or email address',
         fieldOrder: 1,
@@ -83,7 +82,6 @@ export class LoginPageComponent implements OnInit {
         }
       }),
       new FormField({
-        fieldType: 'input',
         fieldKey: 'password',
         fieldLabel: 'Password',
         fieldOrder: 2,

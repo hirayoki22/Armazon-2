@@ -4,6 +4,7 @@ import { OwnValidators } from '../../shared/validators/sync-validators';
 import { MyAsyncValidators } from '../../shared/validators/async-validators.service';
 
 import { ProductService } from 'src/app/product.service';
+import { FormField } from 'src/app/shared/dynamic-form/form-field.class';
 
 interface Category { categoryId: number; category: string };
 interface VariantOption { optionId: number; option: string };
@@ -14,6 +15,9 @@ interface VariantOption { optionId: number; option: string };
   styleUrls: ['./product-creation.component.scss']
 })
 export class ProductCreationComponent implements OnInit {
+  fields: FormField[];
+  fields2: FormField[];
+
   productForm: FormGroup;
   variantForm: FormGroup;
   categories: Category[];
@@ -28,6 +32,8 @@ export class ProductCreationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.fields = this.getFields();
+
     this.productForm = this.initForm();
     this.variantForm = this.initVariantForm();
 
@@ -72,7 +78,7 @@ export class ProductCreationComponent implements OnInit {
     return <FormControl>this.variantForm.get('originalProductId');
   }
 
-  onSubmit(): void {
+  onSubmit(form?: FormGroup): void {
     const images = <File[]>this.productForm.get('images').value;
     const formData = new FormData();
 
@@ -95,7 +101,7 @@ export class ProductCreationComponent implements OnInit {
     }
   }
 
-  private getSanitizedForm(): string {
+  private getSanitizedForm(form?: FormGroup): string {
     let productName = this.productForm.get('productName').value.trim();
     let productDesc = this.productForm.get('productDesc').value.trim();
     let brand = this.productForm.get('brand').value.trim();
@@ -108,4 +114,80 @@ export class ProductCreationComponent implements OnInit {
     return JSON.stringify(this.productForm.value);
   }
 
+  private getFields(): FormField[] {
+    return [
+      new FormField({
+        fieldKey: 'productName',
+        fieldLabel: 'Product',
+        fieldOrder: 1,
+        validators: {
+          sync: [ Validators.required ]
+        }
+      }),
+      new FormField({
+        fieldKey: 'brand',
+        fieldLabel: 'Brand',
+        fieldOrder: 2,
+        validators: {
+          sync: [ Validators.required ]
+        }
+      }),
+      new FormField({
+        fieldKey: 'price',
+        fieldLabel: 'Listed price',
+        fieldOrder: 3,
+        inpuType: 'number',
+        value: 1,
+        validators: {
+          sync: [ 
+            Validators.required,
+            Validators.min(1)
+          ]
+        }
+      }),
+      new FormField({
+        fieldType: 'dropdown',
+        fieldKey: 'categoryId',
+        fieldLabel: 'Category',
+        fieldOrder: 4,
+        validators: {
+          sync: [ Validators.required ]
+        }
+      }),
+      new FormField({
+        fieldKey: 'productDesc',
+        fieldLabel: 'Description',
+        fieldOrder: 5,
+        validators: {
+          sync: [ Validators.required ]
+        }
+      }),
+      new FormField({
+        fieldKey: 'totalStock',
+        fieldLabel: 'Total in stock',
+        fieldOrder: 6,
+        inpuType: 'number',
+        value: 1,
+        validators: {
+          sync: [ 
+            Validators.required,
+            Validators.min(1)
+          ]
+        }
+      }),
+      new FormField({
+        fieldKey: 'productDesc',
+        fieldLabel: 'Description',
+        fieldOrder: 7,
+        validators: {
+          sync: [ Validators.required ]
+        }
+      }),
+      new FormField({
+        fieldType: 'none',
+        fieldKey: 'variantInfo',
+        fieldOrder: 8
+      })
+    ];
+  }
 }

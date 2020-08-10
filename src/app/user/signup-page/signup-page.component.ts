@@ -56,20 +56,20 @@ export class SignupPageComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup): void {
-    // this.isLoading = true;
-    // this.us.signupRequest(this.formSantize).subscribe(state => {
-    //   if (state.success) {
-    //     this.router.navigate(['/user/login']);
-    //   }
-    //   this.isLoading = false;
-    // });
-    console.log(this.sanitizeForm(form));
+    this.isLoading = true;
+    this.us.signupRequest(this.sanitizeForm(form)).subscribe(state => {
+      if (state.success) {
+        this.router.navigate(['/user/login']);
+      } else {
+        console.error('Unable to complete request: ', state.message);
+      }
+      this.isLoading = false;
+    });
   }
 
   private getFields(): FormField[] {
     return [
       new FormField({
-        fieldType: 'input',
         fieldKey: 'firstName',
         fieldLabel: 'First name',
         fieldOrder: 1,
@@ -81,7 +81,6 @@ export class SignupPageComponent implements OnInit {
         }
       }),
       new FormField({
-        fieldType: 'input',
         fieldKey: 'lastName',
         fieldLabel: 'Last name',
         fieldOrder: 2,
@@ -93,7 +92,6 @@ export class SignupPageComponent implements OnInit {
         }
       }),
       new FormField({
-        fieldType: 'input',
         fieldKey: 'mobile',
         fieldLabel: 'Mobile (DO)',
         fieldOrder: 3,
@@ -105,7 +103,6 @@ export class SignupPageComponent implements OnInit {
         }
       }),
       new FormField({
-        fieldType: 'input',
         fieldKey: 'email',
         fieldLabel: 'Email address (username)',
         fieldOrder: 4,
@@ -119,7 +116,6 @@ export class SignupPageComponent implements OnInit {
         }
       }),
       new FormField({
-        fieldType: 'input',
         fieldKey: 'password',
         fieldLabel: 'Password',
         fieldOrder: 5,
@@ -132,7 +128,6 @@ export class SignupPageComponent implements OnInit {
         }
       }),
       new FormField({
-        fieldType: 'input',
         fieldKey: 'rePassword',
         fieldLabel: 'Re-enter your password',
         fieldOrder: 6,

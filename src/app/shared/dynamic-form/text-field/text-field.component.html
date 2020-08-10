@@ -1,7 +1,8 @@
 <div [formGroup]="form" class="form-group-wrapper">
   <input
     [formControlName]="field.fieldKey"
-    [class.invalid]="(control.touched && control.invalid)"
+    [class.invalid]="(control.touched && control.invalid) ||
+    (control.touched && form?.errors)"
     [class.valid]="enableValidCSS && control.dirty && control.valid"
     [type]="showPassword ? 'text' : field.inpuType">
   <label [class.shrink]="control.value">{{ field.fieldLabel }}</label>

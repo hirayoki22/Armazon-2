@@ -4,11 +4,11 @@ interface SelectOption { key: string | number, value: any };
 export interface customFeedback { condition: boolean, message: string };
 
 export class FormField {
-  fieldType: 'input' | 'dropdown' | 'textarea';
+  fieldType: 'input' | 'dropdown' | 'textarea' | 'file' | 'none';
   fieldKey: string;
   fieldLabel: string;
   fieldOrder: number;
-  inpuType: 'text' | 'password' | 'email' | 'radio' | 'checkbox' | 'file';
+  inpuType: 'text' | 'password' | 'email' | 'radio' | 'checkbox' | 'number';
   value: any;
   validators: {
     sync?: ValidatorFn[],
@@ -18,11 +18,11 @@ export class FormField {
   customFeedback: customFeedback;
 
   constructor(params: {
-    fieldType: 'input' | 'dropdown' | 'textarea',
+    fieldType?: 'input' | 'dropdown' | 'textarea' | 'file' | 'none',
     fieldKey: string,
-    fieldLabel: string,
+    fieldLabel?: string,
     fieldOrder?: number,
-    inpuType?: 'text' | 'password' | 'email' | 'radio' | 'checkbox' | 'file',
+    inpuType?: 'text' | 'password' | 'email' | 'radio' | 'checkbox' | 'number',
     value?: any,
     validators?: {
       sync?: ValidatorFn[],
@@ -31,7 +31,7 @@ export class FormField {
     selectOptions?: { [key: string]: any }[],
     customFeedback?: customFeedback;
   }) {
-    this.fieldType  = params.fieldType;
+    this.fieldType  = params.fieldType  || 'input';
     this.fieldKey   = params.fieldKey   || '';
     this.fieldLabel = params.fieldLabel || this.fieldKey;
     this.fieldOrder = params.fieldOrder || 1;
