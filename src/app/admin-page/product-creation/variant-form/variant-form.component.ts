@@ -10,7 +10,11 @@ interface VariantField { key: string, label: string, fieldType?: 'input' | 'drop
 @Component({
   selector: 'variant-form',
   templateUrl: './variant-form.component.html',
-  styleUrls: ['./variant-form.component.scss']
+  styleUrls: [
+    './variant-form.component.scss',
+    '../../../shared/dynamic-form/dynamic-form.component.scss',
+    '../../../shared/dynamic-form/input-feedback/input-feedback.component.scss',
+  ]
 })
 export class VariantFormComponent implements OnInit {
   form: FormGroup;
