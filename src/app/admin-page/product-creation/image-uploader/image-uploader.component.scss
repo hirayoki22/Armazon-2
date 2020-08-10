@@ -27,7 +27,7 @@
 
   .scrollable-area {
     width: 100%;
-    max-height: 800px;
+    max-height: calc(877px - 4rem);
     padding: 4rem 2rem 2rem;
     overflow: hidden;
     overflow-y: auto;
@@ -125,7 +125,7 @@
 
 @media (max-width: 900px) {
   .container {
-    height: 642px;
+    // height: 667px;
   
     .preview-list {
       grid-template-columns: repeat(4, 1fr);
