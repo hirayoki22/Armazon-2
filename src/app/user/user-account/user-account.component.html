@@ -1,4 +1,6 @@
 <section class="container">
+  <app-spinner [loading]="isLoading" overlayStyle="fixed"></app-spinner>
+  
   <div class="wrapper-l">
     <button (click)="onLogout()" class="btn-xl">Log out</button>
 
@@ -6,6 +8,4 @@
       <h3>{{ userAccount.fullName }}</h3>
     </div>
   </div>
-
-  <app-spinner [loading]="isLoading"></app-spinner>
 </section>
