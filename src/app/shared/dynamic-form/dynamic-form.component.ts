@@ -13,6 +13,7 @@ import { DynamicFormService } from './dynamic-form.service';
 export class DynamicFormComponent implements OnInit {
   @Input() fields: FormField[] = [];
   @Input() enableValidCSS: boolean = false;
+  @Input() disableFeedback: boolean = false;
   @Input() disableSubmit: boolean = false;
   @Input() validators: ValidatorFn | ValidatorFn[];
   @Output('onSubmit') notifySubmit = new EventEmitter<FormGroup>();

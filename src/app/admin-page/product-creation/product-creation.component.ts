@@ -117,6 +117,7 @@ export class ProductCreationComponent implements OnInit {
   private getFields(): FormField[] {
     return [
       new FormField({
+        fieldType: 'input',
         fieldKey: 'productName',
         fieldLabel: 'Product',
         fieldOrder: 1,
@@ -125,6 +126,7 @@ export class ProductCreationComponent implements OnInit {
         }
       }),
       new FormField({
+        fieldType: 'input',
         fieldKey: 'brand',
         fieldLabel: 'Brand',
         fieldOrder: 2,
@@ -133,6 +135,7 @@ export class ProductCreationComponent implements OnInit {
         }
       }),
       new FormField({
+        fieldType: 'input',
         fieldKey: 'price',
         fieldLabel: 'Listed price',
         fieldOrder: 3,
@@ -155,6 +158,7 @@ export class ProductCreationComponent implements OnInit {
         }
       }),
       new FormField({
+        fieldType: 'input',
         fieldKey: 'productDesc',
         fieldLabel: 'Description',
         fieldOrder: 5,
@@ -163,6 +167,7 @@ export class ProductCreationComponent implements OnInit {
         }
       }),
       new FormField({
+        fieldType: 'input',
         fieldKey: 'totalStock',
         fieldLabel: 'Total in stock',
         fieldOrder: 6,
@@ -176,6 +181,7 @@ export class ProductCreationComponent implements OnInit {
         }
       }),
       new FormField({
+        fieldType: 'input',
         fieldKey: 'productDesc',
         fieldLabel: 'Description',
         fieldOrder: 7,
@@ -183,11 +189,11 @@ export class ProductCreationComponent implements OnInit {
           sync: [ Validators.required ]
         }
       }),
-      new FormField({
-        fieldType: 'none',
-        fieldKey: 'variantInfo',
-        fieldOrder: 8
-      })
+      // new FormField({
+      //   fieldType: 'none',
+      //   fieldKey: 'variantInfo',
+      //   fieldOrder: 8
+      // })
     ];
   }
 }

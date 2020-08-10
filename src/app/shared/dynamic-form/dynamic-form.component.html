@@ -6,8 +6,12 @@
 
     <div 
       *ngFor="let field of fields"
-      [ngSwitch]="field.fieldType" 
+      [ngSwitch]="field?.fieldType" 
       class="form-group">
+
+      <div *ngSwitchCase="''file"></div>
+
+      <div *ngSwitchCase="''none"></div>
 
       <dynamic-dropdown
         *ngSwitchCase="'dropdown'"
@@ -21,7 +25,9 @@
         *ngSwitchDefault
         [field]="field"></dynamic-text-field>
 
-      <input-feedback [field]="field"></input-feedback>
+      <input-feedback 
+        *ngIf="!disableFeedback"
+        [field]="field"></input-feedback>
     </div>
 
     <div class="action-buttons">
