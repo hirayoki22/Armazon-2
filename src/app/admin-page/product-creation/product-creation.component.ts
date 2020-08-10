@@ -16,8 +16,10 @@ interface VariantOption { optionId: number; option: string };
   styleUrls: ['./product-creation.component.scss']
 })
 export class ProductCreationComponent implements OnInit {
-  variantForm: FormGroup;
+  @ViewChild('variantForm') variantForm: DynamicFormComponent;
+  // variantForm: FormGroup;
   fields: FormField[];
+  otherFields: FormField[];
 
   variantOptions: VariantOption[];
   isVariant: boolean = false;
@@ -31,7 +33,8 @@ export class ProductCreationComponent implements OnInit {
 
   ngOnInit(): void {
     this.fields = this.initFields();
-    this.variantForm = this.initVariantForm();
+    this.otherFields = this.variantFields();
+    // this.variantForm = this.initVariantForm();
 
     this.ps.getCategories().subscribe(categories => {
       this.fields[3].selectOptions = 
@@ -43,20 +46,20 @@ export class ProductCreationComponent implements OnInit {
     });
   }
 
-  private initVariantForm(): FormGroup {
-    return this.fb.group({ 
-      productId: [ 
-        null, 
-        {
-          validators: [Validators.required],
-          asyncValidators: [this.asyncValidators.productValidator()],
-          updateOn: 'blur'
-        }
-      ],
-      optionId: [ null, Validators.required ],
-      optionValue: [ null, Validators.required ] 
-    });
-  }
+  // private initVariantForm(): FormGroup {
+  //   return this.fb.group({ 
+  //     productId: [ 
+  //       null, 
+  //       {
+  //         validators: [Validators.required],
+  //         asyncValidators: [this.asyncValidators.productValidator()],
+  //         updateOn: 'blur'
+  //       }
+  //     ],
+  //     optionId: [ null, Validators.required ],
+  //     optionValue: [ null, Validators.required ] 
+  //   });
+  // }
 
   onSubmit(form?: FormGroup): void {
     const images = <File[]>form.get('images').value;
@@ -66,19 +69,20 @@ export class ProductCreationComponent implements OnInit {
     images.forEach(image => formData.append('images[]', image));
     this.isLoading = true;
 
-    if (!this.isVariant) {
-      this.ps.addProducts(formData).subscribe(() => {
-        form.reset();
-        this.isLoading = false;
-      });
-    } else {
-      this.ps.addProductVariant(formData).subscribe(() => {
-        form.reset();
-        this.variantForm.reset();
-        this.isLoading = false;
-        this.isVariant = false;
-      });
-    }
+    // if (!this.isVariant) {
+    //   this.ps.addProducts(formData).subscribe(() => {
+    //     form.reset();
+    //     this.isLoading = false;
+    //   });
+    // } else {
+    //   this.ps.addProductVariant(formData).subscribe(() => {
+    //     form.reset();
+    //     this.variantForm.form.reset();
+    //     this.isLoading = false;
+    //     this.isVariant = false;
+    //   });
+    // }
+    console.log(this.getSanitizedForm(form));
   }
 
   private getSanitizedForm(form: FormGroup): string {
@@ -88,7 +92,7 @@ export class ProductCreationComponent implements OnInit {
 
     form.get('productName').setValue(productName);
     form.get('productDesc').setValue(productDesc);
-    form.get('variantInfo').setValue(this.variantForm.value);
+    form.get('variantInfo').setValue(this.variantForm.form.value);
     form.get('brand').setValue(brand);     
 
     return JSON.stringify(form.value);
@@ -174,4 +178,36 @@ export class ProductCreationComponent implements OnInit {
       })
     ];
   }
+
+  private variantFields(): FormField[] {
+    return [
+      new FormField({
+        fieldKey: 'productId',
+        fieldLabel: 'Original Product ID',
+        fieldOrder: 1,
+        validators: {
+          sync: [ Validators.required ],
+          async: [ this.asyncValidators.productValidator() ]
+        }
+      }),
+      new FormField({
+        fieldType: 'dropdown',
+        fieldKey: 'optionId',
+        fieldLabel: 'Option ID',
+        fieldOrder: 2,
+        validators: {
+          sync: [ Validators.required ]
+        }
+      }),
+      new FormField({
+        fieldKey: 'optionValue',
+        fieldLabel: 'Option value',
+        fieldOrder: 3,
+        validators: {
+          sync: [ Validators.required ]
+        }
+      })
+    ];
+  }
+
 }
