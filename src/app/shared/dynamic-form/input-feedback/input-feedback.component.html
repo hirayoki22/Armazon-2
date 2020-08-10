@@ -52,7 +52,7 @@
 
 <!-- After async valid feedback -->
 <span 
-  *ngIf="field.validators.async && control.valid" 
+  *ngIf="field?.validators?.async && control.valid" 
   class="valid-feedback">
   <p>Available! <i class="material-icons">done</i></p>
 </span>

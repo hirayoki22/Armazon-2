@@ -47,7 +47,7 @@ export class ReviewFormComponent implements OnInit {
   onSubmit(form?: FormGroup): void {
     const review: NewReview = {
       productId: this.product.productId,
-      userId: 14,
+      userId: 1,
       headline: form.get('headline').value.trim(),
       review: form.get('review').value.trim(),
       rating: form.get('rating').value      

@@ -98,7 +98,7 @@ export class ProductCreationComponent implements OnInit {
     return [
       new FormField({
         fieldKey: 'productName',
-        fieldLabel: 'Product',
+        fieldLabel: 'Product name',
         fieldOrder: 1,
         validators: {
           sync: [ Validators.required ]
