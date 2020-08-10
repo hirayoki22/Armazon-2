@@ -23,8 +23,8 @@
           <label>Overall rating</label>
           <star-rating             
             [newRating]="true"
-            [overall]="rating"
-            (selectedRating)="form"
+            [overall]="form.form?.get('rating').value"
+            (selectedRating)="form.form.get('rating').setValue($event)"
             [class.read-only]="userReviewExists"></star-rating>
         </div>
   
@@ -35,35 +35,6 @@
           [disableSubmit]="true"
           (onSubmit)="onSubmit($event)"></dynamic-form>
       </div>
-
-      <!-- <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()" id="review-form">
-        <div class="form-group">
-          <label>Overall rating</label>
-          <star-rating             
-            [newRating]="true"
-            [overall]="rating"
-            (selectedRating)="onRatingSelection($event)"
-            [class.read-only]="userReviewExists"></star-rating>
-        </div>
-        
-        <div class="form-group">
-          <label>Add a headline</label>
-          <input formControlName="headline" 
-            [readonly]="userReviewExists">
-        </div>
-  
-        <div class="form-group">
-          <label>Wire your review</label>
-          <textarea formControlName="review" 
-            [readonly]="userReviewExists" rows="7"></textarea>
-        </div>
-  
-        <div class="form-group">
-          <button 
-            [disabled]="reviewForm.invalid || userReviewExists"
-            class="btn-xl submit-btn">Submit</button>
-        </div>
-      </form> -->
     </div>
 
     <div *ngIf="reviewSubmitted" class="success-msg">

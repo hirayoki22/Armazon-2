@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 
-import { ReviewFormService } from './review-form.service';
 import { ProductService } from 'src/app/product.service';
+import { ReviewFormService } from './review-form.service';
 import { ReviewRatingService } from '../review-rating.service';
 import { Product } from 'src/app/product.model';
 import { NewReview } from './new-review.model';
 import { FormField } from 'src/app/shared/dynamic-form/form-field.class';
-
 
 @Component({
   selector: 'review-form',
@@ -17,7 +16,6 @@ import { FormField } from 'src/app/shared/dynamic-form/form-field.class';
 export class ReviewFormComponent implements OnInit {
   fields: FormField[];
   product: Product;
-  reviewForm: FormGroup;
   showForm: boolean = false;
   isLoading: boolean = true;
   reviewSubmitted: boolean = false;
@@ -26,14 +24,12 @@ export class ReviewFormComponent implements OnInit {
   constructor(
     private ps: ProductService,
     private rs: ReviewRatingService,
-    private rf: ReviewFormService,
-    private fb: FormBuilder
+    private rf: ReviewFormService
   ) { }
 
   ngOnInit(): void {
     this.rf.$formState.subscribe(productId => {
       this.fields = this.initFields();
-      this.reviewForm = this.initiReviewForm();
       this.showForm = true;
       this.isLoading = true;
 
@@ -48,36 +44,20 @@ export class ReviewFormComponent implements OnInit {
     });
   }
 
-  private initiReviewForm(): FormGroup {
-    return this.fb.group({
-      rating:   [ null, Validators.required ],
-      headline: [ null ],
-      review:   [ null, Validators.required ]
-    });
-  }
-
-  get rating(): number {
-    return this.reviewForm.get('rating').value;
-  }
-
-  onRatingSelection(rating: number): void {
-    this.reviewForm.get('rating').setValue(rating);
-  }
-
   onSubmit(form?: FormGroup): void {
     const review: NewReview = {
       productId: this.product.productId,
-      userId: 12,
-      headline: this.reviewForm.get('headline').value.trim(),
-      review: this.reviewForm.get('review').value.trim(),
-      rating: this.reviewForm.get('rating').value      
+      userId: 14,
+      headline: form.get('headline').value.trim(),
+      review: form.get('review').value.trim(),
+      rating: form.get('rating').value      
     }
 
     this.isLoading = true;
     this.rs.submitNewReview(review).subscribe(res => {
       if (res.existingRecord) {
         this.userReviewExists = true;
-        this.reviewForm.reset();
+        form.reset();
       } else {
         this.reviewSubmitted = true;
         setTimeout(() => location.reload(), 2000);

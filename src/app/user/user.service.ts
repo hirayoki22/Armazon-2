@@ -3,7 +3,6 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { tap, map, catchError, delay } from 'rxjs/operators';
 import { UserAccount } from './user-account.model';
-import { SignupDetails } from './user-signup.model';
 
 export interface LoginInfo { username: string; password: string }
 export interface LoginState { 
@@ -71,7 +70,7 @@ export class UserService {
     );
   }
 
-  signupRequest(details: SignupDetails): Observable<LoginState> {
+  signupRequest(details: {}): Observable<LoginState> {
     return this.http.post<LoginState>(
       this.URL3,
       details, 

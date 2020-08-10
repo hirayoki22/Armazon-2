@@ -60,6 +60,7 @@
     width: 100%;
     min-height: 400px;
     animation: reveal .4s ease;
+    transition: width .3s ease;
     
     .form-group {
       display: flex;

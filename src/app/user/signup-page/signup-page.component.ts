@@ -5,7 +5,6 @@ import { OwnValidators } from '../../shared/validators/sync-validators';
 import { MyAsyncValidators } from '../../shared/validators/async-validators.service';
 
 import { UserService } from '../user.service';
-import { SignupDetails } from '../user-signup.model';
 import { FormField } from 'src/app/shared/dynamic-form/form-field.class';
 
 @Component({
@@ -35,7 +34,7 @@ export class SignupPageComponent implements OnInit {
     this.fields = this.getFields();
   }
 
-  private sanitizeForm(form?: FormGroup): SignupDetails {
+  private sanitizeForm(form?: FormGroup) {
     const toCapitalize = (value: string) => {
       return value.toLowerCase().trim().split(' ')
       .map(word => word[0].toUpperCase() + word.slice(1)).join(' ');
