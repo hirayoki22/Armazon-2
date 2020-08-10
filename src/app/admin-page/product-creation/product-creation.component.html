@@ -14,7 +14,6 @@
       <dynamic-form
         #form
         [fields]="fields"
-        [disableSubmit]="true"
         [enableValidCSS]="true"
         [submitOnInvalid]="false"
         (onSubmit)="onSubmit($event)"></dynamic-form>
@@ -24,5 +23,4 @@
   <div [formGroup]="form.form" class="column-l">
     <app-image-uploader formControlName="images"></app-image-uploader>
   </div>
-
 </section>

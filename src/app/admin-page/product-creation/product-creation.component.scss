@@ -4,15 +4,17 @@
   width: 100%;
   min-height: 642px;
   margin-top: 3rem;
+  background-color: #fff;
 
   .column-s {
     width: calc(400px + 8rem);
     height: inherit;
     padding: 4rem;
-    background-color: #fff;
     transition: width .3s ease;
+    overflow: hidden;
 
     .form-wrapper {
+      margin: auto;
       transition: width .3s ease;
 
       .variant-button {
@@ -33,9 +35,8 @@
 
   .column-l {
     position: relative;
-    width: calc(100% - 400px);
+    flex: 1;
     height: inherit;
-    background-color: #f7f9fd;
     user-select: none;      
   }
 }
@@ -51,14 +52,13 @@
 
     .column-s {
       padding: 2.5rem;
-    }
-    
-    .form-wrapper {
-      width: 400px;
-      margin: auto;
 
-      .variant-button {
-        margin: auto;
+      .form-wrapper {
+        width: 400px;
+
+        .variant-button {
+          margin: auto;
+        }
       }
     }
   }
@@ -68,7 +68,6 @@
   .product-form-section {
   
     .column-s {
-
       .form-wrapper {
         width: 100%;
       }
