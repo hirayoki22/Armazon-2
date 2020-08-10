@@ -14,8 +14,9 @@
       <dynamic-form
         #form
         [fields]="fields"
-        [enableValidCSS]="true"
         [disableSubmit]="true"
+        [enableValidCSS]="true"
+        [submitOnInvalid]="false"
         (onSubmit)="onSubmit($event)"></dynamic-form>
     </div>
   </div>

@@ -30,9 +30,9 @@
         [field]="field"></input-feedback>
     </div>
 
-    <div class="action-buttons">
+    <div *ngIf="!disableSubmit" class="action-buttons">
       <button 
-        [disabled]="disableSubmit && form.invalid"
+        [disabled]="!submitOnInvalid && form.invalid"
         class="btn-xl-filled submit-btn">
         Submit
       </button>
