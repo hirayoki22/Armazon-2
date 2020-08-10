@@ -3,11 +3,12 @@
   
   <div class="column-s">
     <div class="form-wrapper">
-      <button class="variant-button">
-        <input 
-          (change)="isVariant = !isVariant" 
-          type="checkbox" id="variant">
-        <label for="variant">Mark as product variant</label>
+      <button (click)="isVariant = !isVariant" class="variant-button">
+        <i *ngIf="!isVariant" class="icon fas fa-toggle-off"></i>
+        <i *ngIf="isVariant" class="icon fas fa-toggle-on"></i>
+        <span>
+          {{ !isVariant ? 'Mark as variant' : 'Unmark as variant' }}
+        </span>
       </button>
 
       <dynamic-form

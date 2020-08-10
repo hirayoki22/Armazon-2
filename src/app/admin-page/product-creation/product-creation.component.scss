@@ -13,47 +13,21 @@
     transition: width .3s ease;
 
     .form-wrapper {
+      width: 100%;
       transition: width .3s ease;
 
-      .add-btn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 36px;
-        color: #fff;
-        font-size: .85rem;
-        border: 1px solid #F72551;
-        border-radius: 40px;
-        background-color: #F72551;
-        transition: background-color .4s ease;
-  
-        &:disabled {
-          opacity: 0.6 !important;
-          cursor: default;
-        }
-  
-        &:not(:disabled):hover {
-          background-color: darken(#F72551, 5); 
-        }
-      }
-  
-      .add-btn-2 {
-        display: none;
-      }
-
       .variant-button {
-        display: flex;
-        align-items: center;
         margin-bottom: 1.5rem;
   
-        input {
+        .icon {
           margin-right: 0.5rem;
+          font-size: 1.2rem;
+          animation: reveal .3s ease;
         }
-  
-        label {
-          font-size: .8rem;
-        }
+
+        .icon, span {
+          color: #2587f7;
+        } 
       }
     }
   }
