@@ -55,7 +55,6 @@
   .image-selector, .preview {
     height: 120px;
     border-radius: 8px;
-    border: thin solid #e3e6ec;
   }
 
   .image-selector {
@@ -63,11 +62,12 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    background-color: #e6e9f0;
     transition: background-color 0.3s ease;
     animation: reveal .4s ease;
 
     &:hover {
-      background-color: #e6e9f0;
+      background-color: darken(#e6e9f0, 5);
     }
     
     .material-icons {
@@ -83,6 +83,7 @@
   .preview {
     position: relative;
     background-color: #fff;
+    border: thin solid #e3e6ec;
     animation: fileAdded 0.3s ease;
     overflow: hidden;
 
