@@ -16,8 +16,8 @@ interface VariantOption { optionId: number; option: string };
   styleUrls: ['./product-creation.component.scss']
 })
 export class ProductCreationComponent implements OnInit {
+  variantForm: FormGroup;
   fields: FormField[];
-  variantFields: FormField[];
 
   variantOptions: VariantOption[];
   isVariant: boolean = false;
@@ -31,10 +31,11 @@ export class ProductCreationComponent implements OnInit {
 
   ngOnInit(): void {
     this.fields = this.getFields();
-    this.variantFields = this.getVariantFields();
+    this.variantForm = this.initVariantForm();
 
     this.ps.getCategories().subscribe(categories => {
-      this.fields[3].selectOptions = this.fields[3].formatedOptions(categories);
+      this.fields[3].selectOptions = 
+        this.fields[3].formatedOptions(categories);
     });
 
     this.ps.getVariantOptions().subscribe(options => {
@@ -42,50 +43,55 @@ export class ProductCreationComponent implements OnInit {
     });
   }
 
-
-  
-
-  onSubmit(form?: FormGroup): void {
-    // const images = <File[]>this.productForm.get('images').value;
-    // const formData = new FormData();
-
-    // formData.append('product', this.getSanitizedForm());    
-    // images.forEach(image => formData.append('images[]', image));
-    // this.isLoading = true;
-
-    // if (!this.isVariant) {
-    //   this.ps.addProducts(formData).subscribe(() => {
-    //     this.productForm.reset();
-    //     this.isLoading = false;
-    //   });
-    // } else {
-    //   this.ps.addProductVariant(formData).subscribe(() => {
-    //     this.productForm.reset();
-    //     this.variantForm.reset();
-    //     this.isLoading = false;
-    //     this.isVariant = false;
-    //   });
-    // }
-    console.log(form.value);
+  private initVariantForm(): FormGroup {
+    return this.fb.group({ 
+      productId: [ 
+        null, 
+        {
+          validators: [Validators.required],
+          asyncValidators: [this.asyncValidators.productValidator()],
+          updateOn: 'blur'
+        }
+      ],
+      optionId: [ null, Validators.required ],
+      optionValue: [ null, Validators.required ] 
+    });
   }
 
-  // private getSanitizedForm(form?: FormGroup): string {
-  //   let productName = this.productForm.get('productName').value.trim();
-  //   let productDesc = this.productForm.get('productDesc').value.trim();
-  //   let brand = this.productForm.get('brand').value.trim();
+  onSubmit(form?: FormGroup): void {
+    const images = <File[]>form.get('images').value;
+    const formData = new FormData();
 
-  //   this.productForm.get('productName').setValue(productName);
-  //   this.productForm.get('productDesc').setValue(productDesc);
-  //   this.productForm.get('variantInfo').setValue(this.variantForm.value);
-  //   this.productForm.get('brand').setValue(brand);     
+    formData.append('product', this.getSanitizedForm(form));    
+    images.forEach(image => formData.append('images[]', image));
+    this.isLoading = true;
 
-  //   return JSON.stringify(this.productForm.value);
-  // }
-
-  showVariantFields(input: HTMLInputElement): void {
-    if (input.checked) {
-      this.fields = this.variantFields;
+    if (!this.isVariant) {
+      this.ps.addProducts(formData).subscribe(() => {
+        form.reset();
+        this.isLoading = false;
+      });
+    } else {
+      this.ps.addProductVariant(formData).subscribe(() => {
+        form.reset();
+        this.variantForm.reset();
+        this.isLoading = false;
+        this.isVariant = false;
+      });
     }
+  }
+
+  private getSanitizedForm(form: FormGroup): string {
+    let productName = form.get('productName').value.trim();
+    let productDesc = form.get('productDesc').value.trim();
+    let brand = form.get('brand').value.trim();
+
+    form.get('productName').setValue(productName);
+    form.get('productDesc').setValue(productDesc);
+    form.get('variantInfo').setValue(this.variantForm.value);
+    form.get('brand').setValue(brand);     
+
+    return JSON.stringify(form.value);
   }
 
   private getFields(): FormField[] {
@@ -165,38 +171,6 @@ export class ProductCreationComponent implements OnInit {
         fieldType: 'none',
         fieldKey: 'variantInfo',
         fieldOrder: 8
-      })
-    ];
-  }
-
-  private getVariantFields(): FormField[] {
-    return [
-      new FormField({
-        fieldKey: 'originalProductId',
-        fieldLabel: 'Original Product ID',
-        fieldOrder: 1,
-        inpuType: 'number',
-        validators: {
-          sync: [ Validators.required ],
-          async: [this.asyncValidators.productValidator()]
-        }
-      }),
-      new FormField({
-        fieldType: 'dropdown',
-        fieldKey: 'optionId',
-        fieldLabel: 'Option',
-        fieldOrder: 2,
-        validators: {
-          sync: [ Validators.required ],
-        }
-      }),
-      new FormField({
-        fieldKey: 'optionValue',
-        fieldLabel: 'Option value/name',
-        fieldOrder: 3,
-        validators: {
-          sync: [ Validators.required ],
-        }
       })
     ];
   }
