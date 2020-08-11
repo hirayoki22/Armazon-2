@@ -1,6 +1,6 @@
 import { Component, OnChanges } from '@angular/core';
 import { Input } from '@angular/core';
-import { Review } from '../review.model';
+import { Review } from '../../models/review.model';
 
 @Component({
   selector: 'review-section',

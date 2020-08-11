@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminPageComponent } from './admin-page.component';
 import { ProductCreationComponent } from './product-creation/product-creation.component';
 import { ProductListComponent } from './product-list/product-list.component';
-import { AdminAuthGuard } from './admin-auth.guard';
+import { AdminAuthGuard } from './guards/admin-auth.guard';
 
 const routes: Routes = [
   { 

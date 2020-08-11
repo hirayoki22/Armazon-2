@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewChild, ElementRef } from '@angular/core';
 
-import { ReviewRatingService } from './review-rating.service';
-import { ReviewFormService } from './review-form/review-form.service';
-import { Rating } from './rating.model';
-import { Review } from './review.model';
+import { Rating } from '../models/rating.model';
+import { Review } from '../models/review.model';
+import { ReviewRatingService } from '../services/review-rating.service';
+import { ReviewFormService } from '../services/review-form.service';
 
 @Component({
   selector: 'app-product-ratings',

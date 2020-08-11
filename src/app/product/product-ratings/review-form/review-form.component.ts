@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 
-import { ProductService } from 'src/app/product.service';
-import { ReviewFormService } from './review-form.service';
-import { ReviewRatingService } from '../review-rating.service';
-import { Product } from 'src/app/product.model';
-import { NewReview } from './new-review.model';
+import { Product } from '../../models/product.model';
+import { ProductService } from '../../services/product.service';
+import { ReviewRatingService } from '../../services/review-rating.service';
+import { ReviewFormService } from '../../services/review-form.service';
+import { NewReview } from '../../models/new-review.model';
 import { FormField } from 'src/app/shared/dynamic-form/form-field.class';
 
 @Component({

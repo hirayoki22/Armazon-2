@@ -1,4 +1,4 @@
-import { CartItem } from './cart/cart-item.model';
+import { CartItem } from '../models/cart-item.model';
 
 export interface Order {
   userId: number;

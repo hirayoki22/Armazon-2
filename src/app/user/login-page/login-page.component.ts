@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, Validators } from '@angular/forms';
-import { UserService, LoginInfo, LoginState } from '../user.service';
+import { UserService, LoginInfo, LoginState } from '../services/user.service';
 import { FormField } from 'src/app/shared/dynamic-form/form-field.class';
 
 @Component({

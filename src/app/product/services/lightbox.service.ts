@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
-import { LightboxData } from './lightbox.model';
+import { LightboxData } from '../models/lightbox.model';
 
 @Injectable({
   providedIn: 'root'

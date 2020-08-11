@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ProductService } from '../product.service';
-import { CartService } from '../cart/cart.service';
-import { Product } from '../product.model';
+import { Product } from './models/product.model';
+import { ProductService } from './services/product.service';
+import { CartService } from './services/cart.service';
 
 @Component({
   selector: 'app-product',
@@ -18,7 +18,9 @@ export class ProductComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.ps.getProducts().subscribe(prodcuts => this.products = prodcuts);
+    this.ps.getProducts().subscribe(prodcuts => {
+      this.products = prodcuts
+    });
   }
 
   onBuyNow(productId: number): void {

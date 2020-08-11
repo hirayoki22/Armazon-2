@@ -3,9 +3,9 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError, Subject } from 'rxjs';
 import { map, catchError, tap, delay } from 'rxjs/operators';
 
-import { Rating } from './rating.model';
-import { Review } from './review.model';
-import { NewReview } from './review-form/new-review.model';
+import { Rating } from '../models/rating.model';
+import { Review } from '../models/review.model';
+import { NewReview } from '../models/new-review.model';
 
 @Injectable({
   providedIn: 'root'

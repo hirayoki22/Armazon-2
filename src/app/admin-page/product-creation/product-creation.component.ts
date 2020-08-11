@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { VariantFormComponent } from './variant-form/variant-form.component';
 import { FormGroup, Validators } from '@angular/forms';
 import { OwnValidators } from '../../shared/validators/sync-validators';
 
-import { ProductService } from 'src/app/product.service';
+import { ProductService } from 'src/app/product/services/product.service';
 import { FormField } from 'src/app/shared/dynamic-form/form-field.class';
-import { VariantFormComponent } from './variant-form/variant-form.component';
 
 @Component({
   selector: 'app-product-creation',

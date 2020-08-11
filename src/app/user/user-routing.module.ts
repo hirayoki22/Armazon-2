@@ -5,7 +5,7 @@ import { UserComponent } from './user.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
 import { UserAccountComponent } from './user-account/user-account.component';
-import { UserAuthGuard } from './user-auth.guard';
+import { UserAuthGuard } from './guards/user-auth.guard';
 
 const routes: Routes = [
   { 

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { OwnValidators } from '../../shared/validators/sync-validators';
 import { MyAsyncValidators } from '../../shared/validators/async-validators.service';
 
-import { UserService } from '../user.service';
+import { UserService } from '../services/user.service';
 import { FormField } from 'src/app/shared/dynamic-form/form-field.class';
 
 @Component({

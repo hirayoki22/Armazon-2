@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { tap, map, catchError, delay } from 'rxjs/operators';
-import { UserAccount } from './user-account.model';
+import { UserAccount } from '../models/user-account.model';
 
 export interface LoginInfo { username: string; password: string }
 export interface LoginState { 

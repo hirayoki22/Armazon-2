@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewChildren, ElementRef, QueryList } from '@angular/core';
-import { ProductService } from 'src/app/product.service';
-import { Product } from 'src/app/product.model';
+
+import { Product } from 'src/app/product/models/product.model';
+import { ProductService } from 'src/app/product/services/product.service';
 
 @Component({
   selector: 'app-product-list',

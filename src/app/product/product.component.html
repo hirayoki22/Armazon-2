@@ -7,16 +7,16 @@
       <div class="banner-text">
         <h3>We're here with you!</h3>
 
-        <p>During this harsh times, online shopping has never been easier. We're giving you elegible products off sales taxes through July - August</p>
-
-        <button routerLink="/" type="button">Learn more</button>
+        <p>During this harsh times, online shopping has never been easier. 
+          We're giving you elegible products off sales taxes through July - August
+        </p>
       </div>
     </div>
 
     <ul class="products">
       <li *ngFor="let product of products">
         <a *ngIf="product.images" 
-          [routerLink]="['/product', product.productId]"
+          [routerLink]="['./product-details/', product.productId]"
           class="product-image">
           <img 
             image-loader 
@@ -25,7 +25,7 @@
         </a>
   
         <div class="product-info">
-          <a [routerLink]="['/product', product.productId]" 
+          <a [routerLink]="['./product-details/', product.productId]" 
             class="product-name" [title]="product.productName">
             {{ product.productName | textClip:75 }}
           </a>
