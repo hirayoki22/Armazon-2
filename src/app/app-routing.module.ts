@@ -15,10 +15,10 @@ const routes: Routes = [
   },
   { path: 'order-checkout', component: CheckoutComponent },
   { path: 'product', loadChildren: () => import('./product/product.module').then(m => m.ProductModule) },
-  { path: 'admin-page', loadChildren: () => import('./admin-page/admin-page.module').then(m => m.AdminPageModule) },
   { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'admin-page', loadChildren: () => import('./admin-page/admin-page.module').then(m => m.AdminPageModule) },
   { path: '404', component: PageNotFoundComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/404' },
 ];
 
