@@ -10,14 +10,25 @@
           [alt]="product.productName">
       </div>
       
-      <p class="product-name">{{ product.productName }}</p>
+      <div class="product-info">
+        <a [routerLink]="['/product', product.productId]" 
+          class="product-name" [title]="product.productName">
+          {{ product.productName }}
+        </a>
+
+        <div>
+          <p class="price">{{ product.price | currency }}</p>
+          <p class="stock-label">
+            {{ product.totalStock > 0 ? 'In stock' : 'Not in stock' }}
+          </p>
+        </div>
+      </div>
     </li>
   </ul>
 
   <h3 *ngIf="noMoreProducts" class="end-msg">
     No more products
   </h3>
-
 </section>
 
 <span class="spacer" style="display: none; height: 2000px;"></span>

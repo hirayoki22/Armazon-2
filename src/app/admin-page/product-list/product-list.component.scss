@@ -35,12 +35,39 @@
         }
       }
 
-      .product-name {
-        display: block;
+      .product-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         width: 100%;
-        color: #2587f7;
-        font-weight: 400;
-        line-height: 1.5rem;
+        height: 100%;
+        overflow: hidden;
+
+        .product-name {
+          display: block;
+          margin-bottom: 0.5rem;
+          color: #2587f7;
+          font-weight: 500;
+          line-height: 1.5rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          transition: color 0.3s ease;
+
+          &:hover {
+            color: #66a6ff;
+          }
+        }
+
+        .price {
+          margin-bottom: 0.5rem;
+          font-size: 0.95rem;
+          font-weight: 600;
+        }
+
+        .stock-label {
+          color: #4da861;
+          font-size: .8rem;
+        }
       }
     }
   }
