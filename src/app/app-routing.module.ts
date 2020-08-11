@@ -8,12 +8,6 @@ import { ProductExistsGuard } from './product-details/product-exists.guard';
 
 const routes: Routes = [
   { path: 'home', component: MainComponent },
-  { 
-    path: 'product/:id', 
-    component: ProductDetailsComponent,
-    canActivate: [ProductExistsGuard]
-  },
-  { path: 'order-checkout', component: CheckoutComponent },
   { path: 'product', loadChildren: () => import('./product/product.module').then(m => m.ProductModule) },
   { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
   { path: 'admin-page', loadChildren: () => import('./admin-page/admin-page.module').then(m => m.AdminPageModule) },
