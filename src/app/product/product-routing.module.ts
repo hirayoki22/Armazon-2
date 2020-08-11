@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ProductComponent } from './product.component';
-import { ProductDetailsComponent } from '../product-details/product-details.component';
-import { ProductExistsGuard } from '../product-details/product-exists.guard';
-import { CheckoutComponent } from '../checkout/checkout.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { ProductExistsGuard } from './product-details/product-exists.guard';
 
 const routes: Routes = [
   { path: '', component: ProductComponent },

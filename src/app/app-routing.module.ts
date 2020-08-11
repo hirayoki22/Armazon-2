@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { MainComponent } from './main/main.component';
-import { ProductDetailsComponent } from './product-details/product-details.component';
-import { CheckoutComponent } from './checkout/checkout.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { ProductExistsGuard } from './product-details/product-exists.guard';
 
 const routes: Routes = [
   { path: 'home', component: MainComponent },
