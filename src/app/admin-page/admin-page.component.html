@@ -1,12 +1,18 @@
 <main>
   <div class="wrapper">
     <nav class="navbar">
-      <a routerLink="./product-list" class="navbar-link">Product list</a>
-      <a routerLink="./product-creation" class="navbar-link">Add new product</a>
+      <a routerLink="./product-list" 
+        routerLinkActive="active-link" 
+        class="navbar-link">
+        Product list
+      </a>
+      <a routerLink="./product-creation" 
+        routerLinkActive="active-link" 
+        class="navbar-link">
+        Add product
+      </a>
     </nav>
     
     <router-outlet></router-outlet>
   </div>
 </main>
-  
-  
