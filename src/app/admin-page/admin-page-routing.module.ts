@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminPageComponent } from './admin-page.component';
 import { ProductCreationComponent } from './product-creation/product-creation.component';
 import { ProductListComponent } from './product-list/product-list.component';
-import { UserAuthGuard } from '../user/user-auth.guard';
 import { AdminAuthGuard } from './admin-auth.guard';
 
 const routes: Routes = [
@@ -14,11 +13,13 @@ const routes: Routes = [
     children: [
       { 
         path: 'product-creation', 
-        component: ProductCreationComponent 
+        component: ProductCreationComponent,
+        canActivate: [AdminAuthGuard] 
       },
       { 
         path: 'product-list', 
-        component: ProductListComponent 
+        component: ProductListComponent,
+        canActivate: [AdminAuthGuard]  
       },
       { path: '', redirectTo: 'product-creation' }
     ]
