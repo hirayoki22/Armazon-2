@@ -12,7 +12,7 @@ export class ProductListComponent implements OnInit {
   products: Product[] = [];
   start: number = 0;
   count: number = 8;
-  isloading: boolean = true;
+  isloading: boolean = false;
   noMoreProducts: boolean = false;
   @ViewChildren('card') cards: QueryList<ElementRef<HTMLElement>>;
 
@@ -24,14 +24,14 @@ export class ProductListComponent implements OnInit {
 
   private loadProducts(): void {
     this.ps.getProducts2(this.start, this.count).subscribe(products => {
-      if (products.length) {
-        products.forEach(product => this.products.push(product));
-      } else {
-        window.onscroll = null;
-        this.noMoreProducts = true;
-      }
-      this.isloading = false;
-      this.onScroll();
+      // if (products.length) {
+      //   products.forEach(product => this.products.push(product));
+      // } else {
+      //   window.onscroll = null;
+      //   this.noMoreProducts = true;
+      // }
+      // this.isloading = false;
+      // this.onScroll();
     });
   }
 
