@@ -2,21 +2,21 @@
   <app-spinner overlayStyle="fixed" [loading]="isloading"></app-spinner>
   
   <ul>
-    <li
-      style="display: flex; justify-content: flex-start; margin-bottom: 2rem; padding: 1rem; background-color: #fff;"
-      *ngFor="let product of products">
+    <li #card *ngFor="let product of products">
 
-      <div class="image" style="width: 120px; height: 120px; overflow: hidden; margin-right: 1.5rem;">
-        <img image-loader style="width: 100%; height: 100%; object-fit: contain; object-position: center center;" [src]="product.productImage" [alt]="product.productName">
+      <div class="image">
+        <img 
+          image-loader 
+          [src]="product.productImage" 
+          [alt]="product.productName">
       </div>
-      <strong>{{ product.productName }}</strong>
+      
+      <p class="product-name">{{ product.productName }}</p>
     </li>
   </ul>
 
-  <h1 
-    *ngIf="noMoreProducts"
-    style="text-align: center; margin: 2rem 0; font-weight: 400; font-size: 1.1rem;">No more products to display</h1>
+  <span *ngIf="noMoreProducts">End of the list</span>
 
 </section>
 
-<div class="spacer" style="display: none; height: 2000px;"></div>
+<span class="spacer" style="display: none; height: 2000px;"></span>

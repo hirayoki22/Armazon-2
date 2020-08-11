@@ -9,12 +9,12 @@ import { Product } from 'src/app/product.model';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
+  @ViewChildren('card') cards: QueryList<ElementRef<HTMLElement>>;
   products: Product[] = [];
   start: number = 0;
   count: number = 8;
   isloading: boolean = true;
   noMoreProducts: boolean = false;
-  @ViewChildren('card') cards: QueryList<ElementRef<HTMLElement>>;
 
   constructor(private ps: ProductService) { }
 
