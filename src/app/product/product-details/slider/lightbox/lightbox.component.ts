@@ -2,7 +2,7 @@ import { Component, AfterViewInit } from '@angular/core';
 import { ViewChild, ElementRef } from '@angular/core';
 import { Input } from '@angular/core';
 
-import { LightboxService } from './lightbox.service';
+import { LightboxService } from '../../../services/lightbox.service';
 
 @Component({
   selector: 'lightbox',

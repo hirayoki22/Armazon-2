@@ -2,7 +2,7 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { ProductVariant } from '../../product-variant.model';
+import { ProductVariant } from '../../models/product-variant.model';
 
 @Component({
   selector: 'variant-section',

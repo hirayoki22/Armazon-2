@@ -3,7 +3,7 @@ import { ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { Input } from '@angular/core';
 import { fromEvent } from 'rxjs';
 
-import { LightboxService } from './lightbox/lightbox.service';
+import { LightboxService } from '../../services/lightbox.service';
 
 @Component({
   selector: 'image-slider',

@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { CartService } from './cart.service';
-import { CartItem } from './cart-item.model';
-import { Product } from '../product.model';
+import { CartService } from '../services/cart.service';
+import { CartItem } from '../models/cart-item.model';
+import { Product } from '../models/product.model';
 
 @Component({
   selector: 'app-cart',
@@ -81,7 +81,6 @@ export class CartComponent implements OnInit {
   }
 
   onClose(): void {
-    // this.cartItems = [];
     this.viewCart = false;
   }
 }

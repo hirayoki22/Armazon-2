@@ -1,10 +1,10 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { ProductService } from '../product.service';
-import { Product } from '../product.model';
-import { ProductVariant } from '../product-variant.model';
-import { CartService } from '../cart/cart.service';
+import { ProductService } from '../services/product.service';
+import { Product } from '../models/product.model';
+import { ProductVariant } from '../models/product-variant.model';
+import { CartService } from '../services/cart.service';
 import { delay } from 'rxjs/operators';
 
 @Component({
