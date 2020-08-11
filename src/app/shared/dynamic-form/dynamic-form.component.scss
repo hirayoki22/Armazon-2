@@ -41,6 +41,7 @@
 
         & + label {
           top: 0;
+          color: #222;
           font-size: 0.75rem;
         }
       }
@@ -67,15 +68,17 @@
       left: 0;
       top: calc(100% - 0.9rem - 1px - 0.5rem);
       width: 100%;
+      color: rgba(76, 78, 90, 0.8);
       font-size: 0.9rem;
       white-space: nowrap;
       text-overflow: ellipsis;
-      transition: 0.2s ease;
+      transition: color 0.2s, 0.2s ease;
       overflow: hidden;
       user-select: none;
 
       &.shrink {
         top: 0;
+        color: #222;
         font-size: 0.75rem;
       }
     } 
@@ -89,9 +92,9 @@
       background-color: #fff;
       z-index: 5;
 
-      .material-icons {
+      .icon {
         margin-left: auto;
-        font-size: 1.3rem;
+        font-size: 1rem;
       }
     }
     

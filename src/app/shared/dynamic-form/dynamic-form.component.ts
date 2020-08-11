@@ -12,6 +12,7 @@ import { DynamicFormService } from './dynamic-form.service';
 })
 export class DynamicFormComponent implements OnInit {
   @Input() fields: FormField[] = [];
+  @Input() submitBtnLabel: string = 'Submit';
   @Input() enableValidCSS: boolean = false;
   @Input() disableFeedback: boolean = false;
   @Input() submitOnInvalid: boolean = true;
