@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {  ViewChild, ElementRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { FormField } from '../form-field.class';
@@ -10,6 +11,7 @@ import { DynamicFormService } from '../dynamic-form.service';
   styleUrls: ['../dynamic-form.component.scss']
 })
 export class TextFieldComponent implements OnInit {
+  @ViewChild('input') input: ElementRef<HTMLInputElement>;
   @Input() field: FormField;
   form: FormGroup;
   enableValidCSS: boolean;

@@ -1,5 +1,6 @@
 <div [formGroup]="form" class="form-group-wrapper">
   <input
+    #input
     [formControlName]="field.fieldKey"
     [class.invalid]="enableValidCSS && (control.touched && control.invalid) ||
     (control.touched && form?.errors)"
