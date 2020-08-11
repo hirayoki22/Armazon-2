@@ -45,13 +45,11 @@ export class ProductListComponent implements OnInit {
         
         if (rect.top < container.clientHeight) {
           window.onscroll = null;
-          // this.isloading = true;
           this.start += this.count;
           this.loadProducts();
         }
-  
       }
     }
-    
   }
+
 }

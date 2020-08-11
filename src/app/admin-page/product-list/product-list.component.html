@@ -1,8 +1,8 @@
 <section class="product-list-section">
+  <app-spinner overlayStyle="fixed" [loading]="isloading"></app-spinner>
   
   <ul>
     <li
-      #card
       style="display: flex; justify-content: flex-start; margin-bottom: 2rem; padding: 1rem; background-color: #fff;"
       *ngFor="let product of products">
 
@@ -17,7 +17,6 @@
     *ngIf="noMoreProducts"
     style="text-align: center; margin: 2rem 0; font-weight: 400; font-size: 1.1rem;">No more products to display</h1>
 
-  <app-spinner overlayStyle="fixed" [loading]="isloading"></app-spinner>
 </section>
 
 <div class="spacer" style="display: none; height: 2000px;"></div>
