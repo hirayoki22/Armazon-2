@@ -4,5 +4,77 @@
   padding: 4rem 2.5rem 4rem;
   background-color: #fff;
 
+  .product-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 5rem;
+    width: 100%;
+
+    li {
+      display: flex;
+      width: inherit;
+      padding: 1.5rem 0;
+      
+      &:not(:last-of-type) {
+        border-bottom: thin solid #e7edff;
+      }
+
+      .product-image {
+        flex-shrink: 0;
+        width: 150px;
+        height: 150px;
+        margin-right: 1.5rem;
+        transition: width .3s ease, height .3s ease;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          object-position: center center;
+        }
+      }
+
+      .product-name {
+        display: block;
+        width: 100%;
+        color: #2587f7;
+        line-height: 1.5rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .product-list-section {
   
+    .product-list {
+  
+      li {
+        .product-image {
+          width: 110px;
+          height: 110px;
+        }
+
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .product-list-section {
+    
+    .product-list {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;  
+  
+      li {
+        .product-image {
+          width: 110px;
+          height: 110px;
+        }
+
+      }
+    }
+  }
 }

@@ -1,10 +1,9 @@
 <section class="product-list-section">
   <app-spinner overlayStyle="fixed" [loading]="isloading"></app-spinner>
   
-  <ul>
+  <ul class="product-list">
     <li #card *ngFor="let product of products">
-
-      <div class="image">
+      <div class="product-image">
         <img 
           image-loader 
           [src]="product.productImage" 
