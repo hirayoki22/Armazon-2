@@ -34,7 +34,7 @@ export class ProductService {
   getProducts2(start: number, end: number): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.URL5}?start=${start}&count=${end}`)
     .pipe(
-      delay(400),
+      // delay(300),
       catchError(this.errorHandler)
     );
   }
