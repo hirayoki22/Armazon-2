@@ -14,6 +14,7 @@ export class ProductService {
   private URL2 = 'http://127.0.0.1/market-api/product-category.php';
   private URL3 = 'http://127.0.0.1/market-api/product-variant.php';
   private URL4 = 'http://127.0.0.1/market-api/product-variant-options.php';
+  private URL5 = 'http://127.0.0.1/market-api/filtered-products.php';
 
   constructor(private http: HttpClient) { }
 
@@ -31,11 +32,9 @@ export class ProductService {
   }
 
   getProducts2(start: number, end: number): Observable<Product[]> {
-    const URL = 'http://127.0.0.1/market-api/test.php';
-
-    return this.http.get<Product[]>(`${URL}?start=${start}&count=${end}`)
+    return this.http.get<Product[]>(`${this.URL5}?start=${start}&count=${end}`)
     .pipe(
-      delay(300),
+      delay(400),
       catchError(this.errorHandler)
     );
   }
