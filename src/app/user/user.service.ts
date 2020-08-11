@@ -10,6 +10,7 @@ export interface LoginState {
   error?: { username: boolean, password: boolean },
   message?: string 
 }
+export interface AuthInfo { active: boolean; role?: 'ADMIN' | 'USER' }
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -31,13 +32,19 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  get isLoggedin():  Observable<boolean> {
-    return this.http.get<{ active: boolean }>(this.URL5, httpOptions)
+  get isLoggedin(): Observable<boolean> {
+    return this.http.get<AuthInfo>(this.URL5, httpOptions)
     .pipe(
-      // tap(res => console.log(res)),
-      map(state => state.active),
+      map(authInfo => authInfo.active),
       catchError(this.errorHandler)
-    )
+    );
+  }
+
+  get isAdmin(): Observable<AuthInfo> {
+    return this.http.get<AuthInfo>(this.URL5, httpOptions)
+    .pipe(
+      catchError(this.errorHandler)
+    );
   }
 
   loginRequest(login: LoginInfo): Observable<LoginState> {
@@ -47,7 +54,6 @@ export class UserService {
       httpOptions
     ).pipe(
       delay(400),
-      // tap(res => console.log(res)),
       catchError(this.errorHandler)
     );
   }
@@ -56,7 +62,6 @@ export class UserService {
     return this.http.get<LoginState>(this.URL4, httpOptions)
     .pipe(
       delay(300),
-      // tap(res => console.log(res)),
       catchError(this.errorHandler)
     );
   }
