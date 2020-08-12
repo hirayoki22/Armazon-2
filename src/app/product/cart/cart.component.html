@@ -3,9 +3,17 @@
 
   <div class="cart">
     <div 
-      *ngIf="!cartItems?.length && !isLoading" 
+      *ngIf="!isLoggedin" 
+      class="not-loggedin-msg">
+      <h3>Please log into your account</h3>
+      <a href="/user/login" class="btn-xl-filled">Login</a>
+    </div>
+
+    <div 
+      *ngIf="isLoggedin && !isLoading && !cartItems?.length" 
       class="empty-cart-msg">
-      <h3>Your cart is empty</h3>
+      <h3>Is very lonely in here</h3>
+      <a href="/product" class="btn-xl-filled">Start shopping</a>
     </div>
 
     <div *ngIf="cartItems?.length" class="content">

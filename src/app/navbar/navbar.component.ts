@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+
+import { UserService } from '../user/services/user.service';
 import { CartService } from '../product/services/cart.service';
 
 @Component({
@@ -9,12 +11,21 @@ import { CartService } from '../product/services/cart.service';
 export class NavbarComponent implements OnInit {
   itemCount: number | string;
 
-  constructor(private cs: CartService) { }
+  constructor(
+    private us: UserService,
+    private cs: CartService
+  ) { }
 
   ngOnInit(): void {
-    this.initItemCount();
+    this.us.isLoggedin.subscribe(loggedin => {
+      if (loggedin) {
+        this.initItemCount();
 
-    this.cs.cartChange$.subscribe(() => this.initItemCount());
+        this.cs.cartChange$.subscribe(() => {
+          this.initItemCount()
+        });
+      }
+    });
   }
 
   private initItemCount(): void {

@@ -163,6 +163,8 @@ img {
 }
 
 .btn-xl {
+  display: flex;
+  align-items: center;
   justify-content: center;
   position: relative;
   width: 190px;
