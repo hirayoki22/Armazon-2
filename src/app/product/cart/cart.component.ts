@@ -33,12 +33,14 @@ export class CartComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.cs.cartViewState$.subscribe(state => {
-      this.viewCart = state;
-      this.isLoading = true;
+    this.cs.cartViewState$.subscribe(view => {
+      this.viewCart = view;
+      this.isLoading = !this.cartItems.length ? true : false;
 
       this.cs.getShoppingCart(1).subscribe(items => {
-        this.cartItems = items;
+       
+          this.cartItems = items;
+        
         this.isLoading = false;
       });
     });
