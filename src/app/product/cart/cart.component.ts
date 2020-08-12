@@ -64,7 +64,6 @@ export class CartComponent implements OnInit {
 
       case quantity <= product.totalStock:
         const item = {
-          userId: 1,
           productId: product.productId,
           quantity: quantity
         };
@@ -80,7 +79,7 @@ export class CartComponent implements OnInit {
   }
 
   onRemove(productId: number): void {
-    this.cs.removeFromCart(1, productId).subscribe();
+    this.cs.removeFromCart(productId).subscribe();
   }
 
   proceedToCheckOut(): void {
