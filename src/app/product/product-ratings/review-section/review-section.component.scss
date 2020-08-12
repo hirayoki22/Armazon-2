@@ -36,8 +36,11 @@
     .content {
       .rating-headline {
         display: flex;
-        align-items: center;
         margin-bottom: 0.5rem;
+
+        star-rating {
+          padding-top: 0.3rem;
+        }
 
         .headline {
           margin-left: 0.5rem;          
