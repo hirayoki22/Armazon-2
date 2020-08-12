@@ -14,7 +14,7 @@ import { Product } from '../models/product.model';
 export class CartComponent implements OnInit {
   @ViewChild('itemList') itemList: ElementRef<HTMLElement>;
   cartItems: CartItem[] = [];
-  viewCart: boolean = true;
+  viewCart: boolean = false;
   isLoading: boolean = true;
 
   get subtotal(): number {
