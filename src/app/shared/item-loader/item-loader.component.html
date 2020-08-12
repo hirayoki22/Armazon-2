@@ -1,11 +1,18 @@
-<div class="skeleton-container">
-  <div class="empty-content">
-    <div class="top">
-      <div class="circle"></div>
-      
-      <div class="left">
-        <div class="bar"></div>
-        <div class="bar"></div>
+<div 
+  [@showSpinner]="isLoading ? 'show' : 'hide'" 
+  class="loader-wrapper">
+  <div 
+    *ngFor="let fake of fakeItemsCount"
+    class="skeleton-container">
+    <div class="empty-content-wrapper">
+      <div class="content">
+        <div class="square"></div>
+        
+        <div class="left">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
       </div>
     </div>
   </div>
