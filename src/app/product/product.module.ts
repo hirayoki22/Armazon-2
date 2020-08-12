@@ -6,7 +6,6 @@ import { ProductRoutingModule } from './product-routing.module';
 import { ProductComponent } from './product.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
-// import { CartComponent } from './cart/cart.component';
 import { VariantSectionComponent } from './product-details/variant-section/variant-section.component';
 import { SliderComponent } from './product-details/slider/slider.component';
 import { QuantitySelectorComponent } from './product-details/quantity-selector/quantity-selector.component';
@@ -16,6 +15,7 @@ import { ReviewSectionComponent } from './product-ratings/review-section/review-
 import { PaginationCntrlsComponent } from './product-ratings/pagination-cntrls/pagination-cntrls.component';
 import { LightboxComponent } from './product-details/slider/lightbox/lightbox.component';
 import { ReviewFormComponent } from './product-ratings/review-form/review-form.component';
+import { SearchComponent } from './search/search.component';
 
 
 @NgModule({
@@ -23,7 +23,6 @@ import { ReviewFormComponent } from './product-ratings/review-form/review-form.c
     ProductComponent,
     CheckoutComponent,
     ProductDetailsComponent,
-    // CartComponent,
     VariantSectionComponent,
     SliderComponent,
     QuantitySelectorComponent,
@@ -33,6 +32,7 @@ import { ReviewFormComponent } from './product-ratings/review-form/review-form.c
     PaginationCntrlsComponent,
     LightboxComponent,
     ReviewFormComponent,
+    SearchComponent,
   ],
   imports: [
     CommonModule,
