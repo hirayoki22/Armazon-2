@@ -11,6 +11,9 @@ import { MainComponent } from './main/main.component';
 import { FooterComponent } from './footer/footer.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
+
+import { CartComponent } from './product/cart/cart.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +21,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     MainComponent,
     SearchBarComponent,
     FooterComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
