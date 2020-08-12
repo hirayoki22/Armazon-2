@@ -31,12 +31,12 @@ export class CartService {
     this.cartViewStateSource.next(view);
   }
 
-  getItemCount(): Observable<number> {
+  get itemCount(): Observable<number> {
     return this.http.get<{total: number}>(
       `${this.URL}?count=true`,
       httpOptions
     ).pipe(
-      map(count => count.total),
+      map(count => count?.total ? count.total : 0),
       catchError(this.errorHandler)
     );
   }
