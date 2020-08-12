@@ -1,7 +1,7 @@
 <section class="container">
   <app-spinner [loading]="isLoading" overlayStyle="fixed"></app-spinner>
   
-  <div class="wrapper-l">
+  <div *ngIf="userAccount" class="wrapper-l">
     <button (click)="onLogout()" class="btn-xl">Log out</button>
 
     <div *ngIf="!isLoading">
@@ -9,6 +9,6 @@
     </div>
 
     <a *ngIf="userAccount.accountRole == 'ADMIN'" 
-      routerLink="/admin-page">Admin Panel</a>
+      routerLink="../admin-page">Admin Panel</a>
   </div>
 </section>
