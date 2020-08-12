@@ -24,7 +24,7 @@ export class ProductListComponent implements OnInit {
   }
 
   private loadProducts(): void {
-    this.ps.getProducts2(this.start, this.count).subscribe(products => {
+    this.ps.getOffsetProducts(this.start, this.count).subscribe(products => {
       if (products.length) {
         products.forEach(product => this.products.push(product));
       } else {

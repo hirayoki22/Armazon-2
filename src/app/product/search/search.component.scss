@@ -1,6 +1,7 @@
 .products-section {
   margin: 2rem 0;
   padding: 70px 1.5rem 0;
+  animation: reveal .4s ease;
   
   .banner {
     background: url('../../../assets/img/banner-2.webp') center center/cover;
