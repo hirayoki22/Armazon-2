@@ -12,7 +12,6 @@
         class="option-icon-l"
         [class.active]="activeVariant == variant.variantId">
         <img [src]="variant.iconUrl" draggable="false">
-        
       </button>
     </div>
   </section>
@@ -26,7 +25,7 @@
         *ngFor="let variant of sizeVariants;"
         class="option-icon"
         [class.active]="activeVariant == variant.variantId">
-        <span>{{ variant.optionValue }}</span>
+        {{ variant.optionValue }}
       </button>
     </div>
   </section>
@@ -40,7 +39,7 @@
         *ngFor="let variant of styleVariants;"
         class="option-icon"
         [class.active]="activeVariant == variant.variantId">
-        <span>{{ variant.optionValue }}</span>
+        {{ variant.optionValue }}
       </button>
     </div>
   </section>
@@ -54,7 +53,7 @@
         *ngFor="let variant of modelVariants;"
         class="option-icon"
         [class.active]="activeVariant == variant.variantId">
-        <span>{{ variant.optionValue }}</span>
+        {{ variant.optionValue }}
       </button>
     </div>
   </section>
@@ -68,7 +67,7 @@
         *ngFor="let variant of configurationVariants;"
         class="option-icon"
         [class.active]="activeVariant == variant.variantId">
-        <span>{{ variant.optionValue }}</span>
+        {{ variant.optionValue }}
       </button>
     </div>
   </section>
@@ -82,7 +81,7 @@
         *ngFor="let variant of capacityVariants;"
         class="option-icon"
         [class.active]="activeVariant">
-        <span>{{ variant.optionValue }}</span>
+        {{ variant.optionValue }}
       </button>
     </div>
   </section>
