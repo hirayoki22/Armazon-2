@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
 
-import { ProductService } from 'src/app/product.service';
+import { ProductService } from 'src/app/product/services/product.service';
 
 @Component({
   selector: 'search-bar',

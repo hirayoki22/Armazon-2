@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
 import { MyAsyncValidators } from 'src/app/shared/validators/async-validators.service';
 
-import { ProductService } from 'src/app/product.service';
+import { ProductService } from 'src/app/product/services/product.service';
 
 interface VariantOption { optionId: number; option: string };
 interface VariantField { key: string, label: string, fieldType?: 'input' | 'dropdown' };

@@ -6,8 +6,8 @@ import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { MainComponent } from './main/main.component';
 import { SearchBarComponent } from './navbar/search-bar/search-bar.component';
+import { MainComponent } from './main/main.component';
 import { FooterComponent } from './footer/footer.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 

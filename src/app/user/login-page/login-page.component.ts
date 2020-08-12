@@ -51,7 +51,7 @@ export class LoginPageComponent implements OnInit {
           this.unsetCustomFeedback(0);
         }
       } else {
-        this.router.navigate(['/']);
+        this.router.navigate(['/product']);
       }
       this.isLoading = false;
     });

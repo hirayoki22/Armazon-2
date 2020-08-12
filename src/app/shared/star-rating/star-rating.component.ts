@@ -1,8 +1,8 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
 
-import { ReviewRatingService } from 'src/app/product-ratings/review-rating.service';
-import { Rating } from 'src/app/product-ratings/rating.model';
+import { Rating } from 'src/app/product/models/rating.model';
+import { ReviewRatingService } from 'src/app/product/services/review-rating.service';
 
 @Component({
   selector: 'star-rating',
