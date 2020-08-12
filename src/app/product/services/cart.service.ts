@@ -1,9 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject, throwError } from 'rxjs';
-import { delay, map, catchError, tap, distinctUntilChanged } from 'rxjs/operators';
+import { delay, map, catchError, tap } from 'rxjs/operators';
 
 import { CartItem } from '../models/cart-item.model';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    Authorization: '2454789645'
+  }),
+  withCredentials: true,
+};
 
 @Injectable({
   providedIn: 'root'
@@ -25,15 +32,17 @@ export class CartService {
   }
 
   getItemCount(): Observable<number> {
-    return this.http.get<{total: number}>(`${this.URL}?count=true`)
-    .pipe(
+    return this.http.get<{total: number}>(
+      `${this.URL}?count=true`,
+      httpOptions
+    ).pipe(
       map(count => count.total),
       catchError(this.errorHandler)
     );
   }
 
   getShoppingCart(): Observable<CartItem[]> {
-    return this.http.get<CartItem[]>(this.URL).pipe(
+    return this.http.get<CartItem[]>(this.URL, httpOptions).pipe(
       delay(300),
       catchError(this.errorHandler)
     );
