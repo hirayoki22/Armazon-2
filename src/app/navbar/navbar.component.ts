@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
   }
 
   private initItemCount(): void {
-    this.cs.getItemCount(1).subscribe(count => {
+    this.cs.getItemCount().subscribe(count => {
       this.itemCount = this.formatItemCount(count);
     });
   }

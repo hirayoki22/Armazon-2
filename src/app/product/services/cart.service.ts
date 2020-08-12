@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, Subject, throwError } from 'rxjs';
-import { delay, map, catchError, tap } from 'rxjs/operators';
+import { delay, map, catchError, tap, distinctUntilChanged } from 'rxjs/operators';
 
 import { CartItem } from '../models/cart-item.model';
 
@@ -24,17 +24,16 @@ export class CartService {
     this.cartViewStateSource.next(view);
   }
 
-  getItemCount(userId: number): Observable<number> {
-    return this.http.get<{total: number}>(`${this.URL}?userId=${userId}&count=true`)
+  getItemCount(): Observable<number> {
+    return this.http.get<{total: number}>(`${this.URL}?count=true`)
     .pipe(
       map(count => count.total),
       catchError(this.errorHandler)
     );
   }
 
-  getShoppingCart(userId: number): Observable<CartItem[]> {
-    return this.http.get<CartItem[]>(`${this.URL}?userId=${userId}`)
-    .pipe(
+  getShoppingCart(): Observable<CartItem[]> {
+    return this.http.get<CartItem[]>(this.URL).pipe(
       delay(300),
       catchError(this.errorHandler)
     );

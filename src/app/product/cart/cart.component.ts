@@ -37,9 +37,9 @@ export class CartComponent implements OnInit {
       this.viewCart = view;
       this.isLoading = !this.cartItems.length ? true : false;
 
-      this.cs.getShoppingCart(1).subscribe(items => {
+      this.cs.getShoppingCart().subscribe(items => {
        
-          this.cartItems = items;
+        this.cartItems = items;
         
         this.isLoading = false;
       });
