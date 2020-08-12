@@ -12,8 +12,8 @@ interface VariantField { key: string, label: string, fieldType?: 'input' | 'drop
   templateUrl: './variant-form.component.html',
   styleUrls: [
     './variant-form.component.scss',
-    '../../../shared/dynamic-form/dynamic-form.component.scss',
-    '../../../shared/dynamic-form/input-feedback/input-feedback.component.scss',
+    '../../../../shared/dynamic-form/dynamic-form.component.scss',
+    '../../../../shared/dynamic-form/input-feedback/input-feedback.component.scss',
   ]
 })
 export class VariantFormComponent implements OnInit {
