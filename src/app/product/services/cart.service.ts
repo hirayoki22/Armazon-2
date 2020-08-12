@@ -36,13 +36,21 @@ export class CartService {
   }
 
   get itemCount(): Observable<number> {
-    return this.http.get<{total: number}>(
-      `${this.URL}?count=true`,
-      httpOptions
-    ).pipe(
-      map(count => count?.total ? count.total : 0),
-      catchError(this.errorHandler)
-    );
+    return this.us.isLoggedin.pipe(
+      switchMap(state => {
+        if (state) {
+          return this.http.get<{total: number}>(
+            `${this.URL}?count=true`,
+            httpOptions
+          ).pipe(
+            map(count => count?.total ? count.total : 0),
+            catchError(this.errorHandler)
+          );
+        } else {
+          return of(0);
+        }
+      })
+    )
   }
 
   getShoppingCart(): Observable<CartItem[] | boolean> {
