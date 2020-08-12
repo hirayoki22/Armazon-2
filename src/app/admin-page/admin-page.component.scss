@@ -1,6 +1,6 @@
 main {
   margin: 2rem 0;
-  padding-top: 70px;
+  padding: 70px 1.5rem 0;
   animation: reveal .4s ease;
 
   .navbar {
@@ -48,6 +48,8 @@ main {
 
 @media (max-width: 768px) {
   main {
+    padding: 70px 0 0;
+    
     .navbar {
       &-link {     
         width: 100%;

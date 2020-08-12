@@ -7,5 +7,8 @@
     <div *ngIf="!isLoading">
       <h3>{{ userAccount.fullName }}</h3>
     </div>
+
+    <a *ngIf="userAccount.accountRole == 'ADMIN'" 
+      routerLink="/admin-page">Admin Panel</a>
   </div>
 </section>
