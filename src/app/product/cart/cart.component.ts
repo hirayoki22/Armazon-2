@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { UserService } from 'src/app/user/services/user.service';
 import { CartService } from '../services/cart.service';
 import { CartItem } from '../models/cart-item.model';
 import { Product } from '../models/product.model';
@@ -17,7 +16,7 @@ export class CartComponent implements OnInit {
   cartItems: CartItem[] = [];
   viewCart: boolean = false;
   isLoading: boolean = false;
-  isLoggedin: boolean = false;
+  isLoggedin: boolean = true;
 
   get subtotal(): number {
     return Math.round(this.cartItems.map(item => item.subtotal)
@@ -31,23 +30,22 @@ export class CartComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private us: UserService,
     private cs: CartService
   ) { }
 
   ngOnInit(): void {
     this.cs.cartViewState$.subscribe(view => {
       this.viewCart = view;
-
-      this.us.isLoggedin.subscribe(loggedin => {
-        if (loggedin) { 
+      this.isLoading = true;
+      
+      this.cs.getShoppingCart().subscribe(res => {
+        if (typeof res === 'boolean') {
+          this.isLoggedin = false;
+        } else {
+          this.cartItems = res;
           this.isLoggedin = true;
-          this.isLoading = true;
-          this.cs.getShoppingCart().subscribe(items => {
-            this.cartItems = items;
-            this.isLoading = false;
-          });
         }
+        this.isLoading = false;
       });
     });
   }
