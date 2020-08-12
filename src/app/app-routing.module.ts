@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+
 import { MainComponent } from './main/main.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
