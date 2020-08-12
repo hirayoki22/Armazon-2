@@ -4,7 +4,6 @@ import { SharedModule } from '../shared/shared.module';
 
 import { ProductRoutingModule } from './product-routing.module';
 import { ProductComponent } from './product.component';
-import { CheckoutComponent } from './checkout/checkout.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { VariantSectionComponent } from './product-details/variant-section/variant-section.component';
 import { SliderComponent } from './product-details/slider/slider.component';
@@ -17,11 +16,9 @@ import { LightboxComponent } from './product-details/slider/lightbox/lightbox.co
 import { ReviewFormComponent } from './product-ratings/review-form/review-form.component';
 import { SearchComponent } from './search/search.component';
 
-
 @NgModule({
   declarations: [
     ProductComponent,
-    CheckoutComponent,
     ProductDetailsComponent,
     VariantSectionComponent,
     SliderComponent,

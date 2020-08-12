@@ -6,23 +6,23 @@ import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { SearchBarComponent } from './navbar/search-bar/search-bar.component';
-import { MainComponent } from './main/main.component';
-import { FooterComponent } from './footer/footer.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-
-
 import { CartComponent } from './product/cart/cart.component';
+import { SearchBarComponent } from './navbar/search-bar/search-bar.component';
+import { FooterComponent } from './footer/footer.component';
+import { MainComponent } from './main/main.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    MainComponent,
+    CartComponent,
     SearchBarComponent,
     FooterComponent,
-    PageNotFoundComponent,
-    CartComponent
+    MainComponent,
+    CheckoutComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

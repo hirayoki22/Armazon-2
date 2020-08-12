@@ -27,6 +27,7 @@ const routes: Routes = [
         component: UserAccountComponent ,
         canActivate: [ UserAuthGuard ]  
       },
+      { path: 'admin-page', loadChildren: () => import('./admin-page/admin-page.module').then(m => m.AdminPageModule) },
       { path: '', redirectTo: 'login' }
     ] 
   }
