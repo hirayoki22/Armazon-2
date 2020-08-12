@@ -1,7 +1,9 @@
 <aside-panel
   [showPanel]="viewCart"
   (showPanel)="onClose()">
-  <app-spinner [loading]="isLoading"></app-spinner>
+  <!-- <app-spinner [loading]="isLoading"></app-spinner> -->
+
+  <item-loader></item-loader>
 
   <div class="cart">
     <div 

@@ -16,7 +16,7 @@ import { DropdownComponent } from './dynamic-form/dropdown/dropdown.component';
 import { TextFieldComponent } from './dynamic-form/text-field/text-field.component';
 import { TextareaComponent } from './dynamic-form/textarea/textarea.component';
 import { InputFeedbackComponent } from './dynamic-form/input-feedback/input-feedback.component';
-
+import { ItemLoaderComponent } from './item-loader/item-loader.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,8 @@ import { InputFeedbackComponent } from './dynamic-form/input-feedback/input-feed
     DropdownComponent,
     TextFieldComponent,
     TextareaComponent,
-    InputFeedbackComponent
+    InputFeedbackComponent,
+    ItemLoaderComponent
   ],
   imports: [ 
     CommonModule,
@@ -52,7 +53,8 @@ import { InputFeedbackComponent } from './dynamic-form/input-feedback/input-feed
     DropdownComponent,
     TextFieldComponent,
     TextareaComponent,
-    InputFeedbackComponent
+    InputFeedbackComponent,
+    ItemLoaderComponent
   ]
 })
 export class SharedModule { }
