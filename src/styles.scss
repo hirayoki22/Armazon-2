@@ -37,6 +37,8 @@ html::-webkit-scrollbar-thumb {
   color: #4c4e5a;
   font-size: .9rem;
   font-family: 'Poppins', Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
 }
 
