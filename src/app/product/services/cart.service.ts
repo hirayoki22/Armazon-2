@@ -48,12 +48,11 @@ export class CartService {
     );
   }
 
-  addToCart(item: { 
-    userId: number, 
+  addToCart(item: {  
     productId: number, 
     quantity: number 
   }): Observable<any> {
-    return this.http.post<any>(this.URL, item).pipe(
+    return this.http.post<any>(this.URL, item, httpOptions).pipe(
       tap(() => {
         this.cartViewStateSource.next(true);
         this.cartChangeSource.next(true);
@@ -66,7 +65,7 @@ export class CartService {
     productId: number, 
     quantity: number 
   }): Observable<any> {
-    return this.http.put<any>(this.URL, item).pipe(
+    return this.http.put<any>(this.URL, item, httpOptions).pipe(
       tap(() => {
         this.cartViewStateSource.next(true);
         this.cartChangeSource.next(true);
@@ -76,8 +75,10 @@ export class CartService {
   }
 
   removeFromCart(productId: number): Observable<any> { 
-    return this.http.delete<any>(`${this.URL}?productId=${productId}`)
-    .pipe(
+    return this.http.delete<any>(
+      `${this.URL}?productId=${productId}`,
+      httpOptions
+    ).pipe(
       tap(() => {
         this.cartViewStateSource.next(true);
         this.cartChangeSource.next(true);

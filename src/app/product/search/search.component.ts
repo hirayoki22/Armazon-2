@@ -29,7 +29,6 @@ export class SearchComponent implements OnInit {
 
   onAddToCart(productId: number, quantity = 1): void {
     const details = {
-      userId: 1,
       productId: productId,
       quantity: quantity
     }
