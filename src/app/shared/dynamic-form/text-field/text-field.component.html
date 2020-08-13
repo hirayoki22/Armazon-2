@@ -5,7 +5,8 @@
     [class.invalid]="enableValidCSS && (control.touched && control.invalid) ||
     (control.touched && form?.errors)"
     [class.valid]="enableValidCSS && control.dirty && control.valid"
-    [type]="showPassword ? 'text' : field.inpuType">
+    [type]="showPassword ? 'text' : field.inpuType"
+    [autoFocus]="field.fieldOrder == 1">
   <label [class.shrink]="control.value">{{ field.fieldLabel }}</label>
 
   <div *ngIf="control.pending" class="loader">
