@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'home', component: MainComponent },
   { path: 'product', loadChildren: () => import('./product/product.module').then(m => m.ProductModule) },
   { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
-  { path: 'order-checkout', component: CheckoutComponent },
+  { path: 'checkout', component: CheckoutComponent },
   { path: '404', component: PageNotFoundComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/404' },
