@@ -19,6 +19,15 @@ export class TextFieldComponent implements OnInit {
  
   get control() { return this.form.get(this.field.fieldKey); }
 
+  get inputClass(): {} {
+    return {
+      valid: this.enableValidCSS && this.control.dirty && this.control.valid,
+      invalid: this.enableValidCSS && 
+      (this.control.dirty && this.control.invalid) ||
+      (this.control.dirty && this.form?.errors)
+    }
+  }
+
   constructor(private ds: DynamicFormService) { }
 
   ngOnInit(): void {

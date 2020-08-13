@@ -16,6 +16,15 @@ export class DropdownComponent implements OnInit {
  
   get control() { return this.form.get(this.field.fieldKey); }
 
+  get inputClass(): {} {
+    return {
+      valid: this.enableValidCSS && this.control.dirty 
+      && this.control.valid,
+      invalid: this.enableValidCSS && this.control.dirty 
+      && this.control.invalid
+    }
+  }
+
   constructor(private ds: DynamicFormService) { }
 
   ngOnInit(): void {

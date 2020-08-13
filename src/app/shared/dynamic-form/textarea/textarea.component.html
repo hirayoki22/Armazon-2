@@ -1,8 +1,7 @@
 <div [formGroup]="form" class="form-group-wrapper">
   <textarea
     [formControlName]="field.fieldKey"
-    [class.invalid]="enableValidCSS && control.touched && control.invalid"
-    [class.valid]="enableValidCSS && control.dirty && control.valid"
+    [class]="inputClass"
     [class.expanded]="control.value"></textarea>
   <label [class.shrink]="control.value">{{ field.fieldLabel }}</label>
 </div>

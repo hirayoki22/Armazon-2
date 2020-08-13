@@ -1,8 +1,7 @@
 <div [formGroup]="form" class="form-group-wrapper">
   <select 
     [formControlName]="field.fieldKey"
-    [class.invalid]="enableValidCSS && control.touched && control.invalid"
-    [class.valid]="enableValidCSS && control.dirty && control.valid">
+    [class]="inputClass">
     <option [ngValue]="null">
       Choose a {{ field.fieldLabel | lowercase }}
     </option>
