@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -12,7 +13,11 @@ export class AppComponent implements OnInit {
   hideFooter: boolean = true;
   title = 'Armazon 2';
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private ts: Title
+  ) { }
 
   ngOnInit(): void {
     this.hideUrlOnRoute();
@@ -24,8 +29,22 @@ export class AppComponent implements OnInit {
     ).subscribe((navigation: NavigationEnd) => {
       const url = navigation.urlAfterRedirects;
 
-      this.hideNavbar = url == '/user/login' || url == '/user/signup' || url == '/404';
-      this.hideFooter = url == '/user/login' || url == '/user/signup' || url == '/404';
+      // console.log(this.route.firstChild.snapshot.data);
+
+      this.changePageTitle();
+      this.hideNavbarFooter(url);
     });
+  }
+
+  private hideNavbarFooter(url: string): void {
+    const routes = ['/user/login', '/user/signup', '/404'];
+    
+    this.hideNavbar = routes.includes(url);
+    this.hideFooter = routes.includes(url);
+  }
+
+  private changePageTitle(): void {
+    const routeTitle = this.route.firstChild.snapshot.data['title'];
+    this.ts.setTitle(routeTitle ? routeTitle : this.title);
   }
 }
