@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute, RouteConfigLoadEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -41,6 +41,7 @@ export class AppComponent implements OnInit {
 
   private changePageTitle(): void {
     const routeTitle = this.route.firstChild.snapshot.data['title'];
-    this.ts.setTitle(routeTitle ? routeTitle : this.title);
+    
+    if (routeTitle) { this.ts.setTitle(routeTitle); }
   }
 }

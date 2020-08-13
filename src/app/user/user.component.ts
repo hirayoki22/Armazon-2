@@ -16,14 +16,14 @@ export class UserComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.router.events.pipe(
-      filter(events => events instanceof RouteConfigLoadEnd)
-    ).subscribe((navigation: RouteConfigLoadEnd) => {
-      const url = navigation;
+    // this.router.events.pipe(
+    //   filter(events => events instanceof RouteConfigLoadEnd)
+    // ).subscribe((navigation: RouteConfigLoadEnd) => {
+    //   const url = navigation;
 
-      // console.log(this.route.firstChild.snapshot.data);
-      this.changePageTitle();
-    });
+    //   // console.log(this.route.firstChild.snapshot.data);
+    //   this.changePageTitle();
+    // });
   }
 
   private changePageTitle(): void {
