@@ -20,10 +20,6 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.hideUrlOnRoute();
-  }
-
-  private hideUrlOnRoute(): void {
     this.router.events.pipe(
       filter(events => events instanceof NavigationEnd)
     ).subscribe((navigation: NavigationEnd) => {
