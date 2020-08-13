@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
-import { UserAccount } from '../models/user-account.model';
 import { UserService } from '../services/user.service';
+import { UserAccount } from '../models/user-account.model';
 
 @Component({
   selector: 'app-user-account',
@@ -12,7 +14,13 @@ export class UserAccountComponent implements OnInit {
   userAccount: UserAccount;
   isLoading: boolean = true;
 
-  constructor(private us: UserService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private title: Title,
+    private us: UserService
+  ) { 
+    this.title.setTitle(this.route.snapshot.data['title']); 
+  }
 
   ngOnInit(): void {
     this.us.getUserAccount().subscribe(userAccount => {

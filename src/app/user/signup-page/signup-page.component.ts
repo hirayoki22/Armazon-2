@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, ValidatorFn } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { OwnValidators } from '../../shared/validators/sync-validators';
 import { MyAsyncValidators } from '../../shared/validators/async-validators.service';
 
 import { UserService } from '../services/user.service';
 import { FormField } from 'src/app/shared/dynamic-form/form-field.class';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-signup-page',
@@ -26,9 +27,13 @@ export class SignupPageComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
+    private title: Title,
     private us: UserService,
     private asyncValidator: MyAsyncValidators
-  ) { }
+  ) { 
+    this.title.setTitle(this.route.snapshot.data['title']); 
+  }
 
   ngOnInit(): void {
     this.fields = this.getFields();

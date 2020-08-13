@@ -10,7 +10,8 @@ export class AdminPageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    
+    const title = <HTMLTitleElement>document.head.querySelector('title');
+    title.textContent = 'Admin Page';
   }
 
 }

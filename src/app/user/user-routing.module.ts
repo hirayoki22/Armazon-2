@@ -21,14 +21,20 @@ const routes: Routes = [
       {
         path: 'signup', 
         component: SignupPageComponent,
-        canActivate: [ UserAuthGuard ]
+        canActivate: [ UserAuthGuard ],
+        data: { title: 'Signup Page' }  
       },
       { 
         path: 'account', 
         component: UserAccountComponent ,
-        canActivate: [ UserAuthGuard ]  
+        canActivate: [ UserAuthGuard ],
+        data: { title: 'User Account' }  
       },
-      { path: 'admin-page', loadChildren: () => import('./admin-page/admin-page.module').then(m => m.AdminPageModule) },
+      { 
+        path: 'admin-page', 
+        loadChildren: () => import('./admin-page/admin-page.module').then(m => m.AdminPageModule),
+        data: { tile: 'Admin Account'} 
+      },
       { path: '', redirectTo: 'login' }
     ] 
   }

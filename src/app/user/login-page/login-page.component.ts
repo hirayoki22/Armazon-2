@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, Validators } from '@angular/forms';
 import { UserService, LoginInfo, LoginState } from '../services/user.service';
 import { FormField } from 'src/app/shared/dynamic-form/form-field.class';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login-page',
@@ -19,10 +20,14 @@ export class LoginPageComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
+    private title: Title,
     private us: UserService
-  ) { }
+  ) {
+    this.title.setTitle(this.route.snapshot.data['title']); 
+  }
 
-  ngOnInit(): void {
+  ngOnInit(): void {   
     this.fields = this.initFields();
   }
 
