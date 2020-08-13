@@ -1,11 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError, Subject } from 'rxjs';
-import { map, catchError, tap, delay } from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Observable, throwError, Subject, of } from 'rxjs';
+import { map, catchError, tap, delay, switchMap } from 'rxjs/operators';
 
+import { UserService } from 'src/app/user/services/user.service';
 import { Rating } from '../models/rating.model';
 import { Review } from '../models/review.model';
 import { NewReview } from '../models/new-review.model';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    Authorization: '2454789645'
+  }),
+  withCredentials: true,
+};
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +25,10 @@ export class ReviewRatingService {
   private ratingViewStateSource: Subject<number> = new Subject();
   ratingViewState$: Observable<number> = this.ratingViewStateSource.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private us: UserService
+  ) { }
 
   openRatingsPanel(id: number): void {
     this.ratingViewStateSource.next(id);
@@ -56,10 +67,19 @@ export class ReviewRatingService {
   }
 
   submitNewReview(review: NewReview): Observable<any> {
-    return this.http.post<NewReview>(this.URL2, review).pipe(
-      delay(500),
-      // tap(res => console.log(res)),
-      catchError(this.errorHandler)
+    return this.us.isLoggedin.pipe(
+      switchMap(state => {
+        if (state) {
+          return this.http.post<NewReview>(this.URL2, review, httpOptions)
+          .pipe(
+            delay(500),
+            tap(res => console.log(res)),
+            catchError(this.errorHandler)
+          );
+        } else {
+          return of(false);
+        }
+      })
     );
   }
 

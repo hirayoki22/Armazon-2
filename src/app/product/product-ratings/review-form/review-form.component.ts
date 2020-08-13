@@ -47,7 +47,6 @@ export class ReviewFormComponent implements OnInit {
   onSubmit(form?: FormGroup): void {
     const review: NewReview = {
       productId: this.product.productId,
-      userId: 8,
       headline: form.get('headline').value.trim(),
       review: form.get('review').value.trim(),
       rating: form.get('rating').value      
@@ -55,12 +54,16 @@ export class ReviewFormComponent implements OnInit {
 
     this.isLoading = true;
     this.rs.submitNewReview(review).subscribe(res => {
-      if (res.existingRecord) {
-        this.userReviewExists = true;
-        form.reset();
+      if (typeof res === 'boolean') {
+        location.href = '/user/login';
       } else {
-        this.reviewSubmitted = true;
-        setTimeout(() => location.reload(), 2000);
+        if (res?.existingRecord) {
+          this.userReviewExists = true;
+          form.reset();
+        } else {
+          this.reviewSubmitted = true;
+          setTimeout(() => location.reload(), 2000);
+        }
       }
       this.isLoading = false;
     });
