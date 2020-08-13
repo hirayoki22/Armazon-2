@@ -15,7 +15,8 @@ const routes: Routes = [
       { 
         path: 'login',  
         component: LoginPageComponent,
-        canActivate: [ UserAuthGuard ]  
+        canActivate: [ UserAuthGuard ],
+        data: { pageName: 'Login Page'}  
       },
       {
         path: 'signup', 

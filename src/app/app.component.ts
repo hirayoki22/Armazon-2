@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { filter, tap } from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ import { filter, tap } from 'rxjs/operators';
 export class AppComponent implements OnInit {
   hideNavbar: boolean = true;
   hideFooter: boolean = true;
-  title = 'marketplace';
+  title = 'Armazon 2';
 
   constructor(private router: Router) { }
 

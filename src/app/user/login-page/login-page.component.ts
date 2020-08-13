@@ -19,7 +19,7 @@ export class LoginPageComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private us: UserService,
+    private us: UserService
   ) { }
 
   ngOnInit(): void {
