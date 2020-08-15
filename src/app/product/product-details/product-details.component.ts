@@ -14,7 +14,7 @@ import { delay } from 'rxjs/operators';
 })
 export class ProductDetailsComponent implements OnInit, AfterViewInit {
   product: Product;
-  originalProduct: number = 0;
+  originalId: number = 0;
   variants: ProductVariant[] = [];
   quantity: number = 1;
   isLoading: boolean = true;
@@ -32,28 +32,44 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.route.paramMap.subscribe(params => {
-      this.originalProduct = +params.get('id');
+    const variantId = +this.route.snapshot.queryParamMap.get('variantId');
+    this.originalId = +this.route.snapshot.paramMap.get('id')
 
-      this.ps.getProductById(this.originalProduct).pipe(delay(300))
-      .subscribe(product => {
-        this.product = product;        
-
-        if (this.product.hasVariant) {
-          this.ps.getProductVariant(this.product.productId)
-          .subscribe(variants => this.variants = variants);
-        }
-        this.isLoading = false;        
-      });
+    if (!variantId) { 
+      this.getProductInfo(this.originalId); 
+    } else {
+      this.getProductInfo(variantId);
+    }
+    
+    this.ps.getProductVariant(this.originalId)
+    .subscribe(variants => this.variants = variants);
+    
+    this.route.queryParamMap.subscribe(params => {
+      const variantId = +params.get('variantId');
+      
+      if (this.validVariant(variantId) && !this.isLoading) {
+        this.getProductInfo(variantId);
+      }
     });
   }
 
-  updateProductInfo(productId: number): void {    
-    this.reloading = true;
+  validVariant(id: number): boolean {
+    return id && this.variants.some(variant => {
+      return variant.variantId === id;
+    });
+  }
+
+  getProductInfo(productId: number): void {    
+    if (!this.product) {
+      this.isLoading = true;
+    } else {
+      this.reloading = true;
+    }
 
     this.ps.getProductById(productId).pipe(delay(300))
     .subscribe(product => {
       this.product = product;
+      this.isLoading = false;
       this.reloading = false;
     });
   }

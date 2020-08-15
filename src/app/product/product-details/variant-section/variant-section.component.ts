@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
-import { Input, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ProductVariant } from '../../models/product-variant.model';
 
@@ -11,7 +11,6 @@ import { ProductVariant } from '../../models/product-variant.model';
 })
 export class VariantSectionComponent implements OnInit, OnChanges {
   @Input() variants: ProductVariant[];
-  @Output('variantId') notifyChange: EventEmitter<number> = new EventEmitter();
   colorVariants: ProductVariant[] = [];
   sizeVariants: ProductVariant[] = [];
   styleVariants: ProductVariant[] = [];
@@ -22,14 +21,25 @@ export class VariantSectionComponent implements OnInit, OnChanges {
   hoveredVariant: number = 0;
 
   get variantValue(): string {
-    return this.variants.find(val => val.variantId == this.hoveredVariant).optionValue;
+    return this.variants.find(val => {
+      return val.variantId == this.hoveredVariant;
+    }).optionValue;
   }
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
-    this.activeVariant = +this.route.snapshot.paramMap.get('id');
-    this.hoveredVariant = this.activeVariant;
+    this.route.queryParamMap.subscribe(params => {
+      const originalId = +this.route.snapshot.paramMap.get('id');
+      const variantId = +params.get('variantId');
+
+      this.activeVariant = variantId || originalId;
+      this.hoveredVariant = this.activeVariant;
+    });
+
   }
 
   ngOnChanges(): void {
@@ -44,10 +54,14 @@ export class VariantSectionComponent implements OnInit, OnChanges {
   }
 
   onChange(productId: number): void {
-    if (productId !== this.activeVariant) {
-      this.activeVariant = productId;
-      this.notifyChange.emit(productId);
-    }
+    this.router.navigate(
+      [],
+      { 
+        relativeTo: this.route,
+        queryParams: { variantId: productId },
+        queryParamsHandling: 'merge',
+      }
+    );
   }
 
 }

@@ -57,6 +57,7 @@
 
           &.active {
             opacity: 1;
+            pointer-events: none;
           }
   
           &:not(.active)::after {

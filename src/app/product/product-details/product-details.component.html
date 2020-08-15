@@ -32,12 +32,10 @@
             </div>   
             
             <!-- Product rating / review -->
-            <star-rating [productId]="originalProduct"></star-rating>
+            <star-rating [productId]="originalId"></star-rating>
           </div>
 
-          <variant-section 
-            [variants]="variants"
-            (variantId)="updateProductInfo($event)"></variant-section>
+          <variant-section [variants]="variants"></variant-section>
 
           <quantity-selector
             [limit]="product?.totalStock"
