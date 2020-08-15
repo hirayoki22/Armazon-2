@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "Armazon 2",
+			"path": "."
+		},
+		{
+			"name": "market-api",
+			"path": "..\\..\\market-api"
+		}
+	],
+	"settings": {}
+}
