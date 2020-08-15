@@ -13,7 +13,7 @@ const routes: Routes = [
     children: [
       { path: 'search', component: SearchComponent },
       { 
-        path: 'product-details/:id', 
+        path: 'details/:id', 
         component: ProductDetailsComponent,
         canActivate: [ProductExistsGuard]
       },
