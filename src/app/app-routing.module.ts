@@ -11,7 +11,7 @@ const routes: Routes = [
     component: MainComponent, 
     data: { title: 'Home' } 
   },
-  { path: 'product', loadChildren: () => import('./product/product.module').then(m => m.ProductModule), data: {title: 'Product'} },
+  { path: 'products', loadChildren: () => import('./product/product.module').then(m => m.ProductModule), data: {title: 'Product'} },
   { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
   { 
     path: 'checkout', 

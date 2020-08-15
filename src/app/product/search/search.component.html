@@ -13,7 +13,7 @@
     <ul class="products">
       <li *ngFor="let product of products">
         <a *ngIf="product.images" 
-          [routerLink]="['../details/', product.productId]"
+          [routerLink]="['../', product.productId]"
           class="product-image">
           <img 
             image-loader 
@@ -22,7 +22,7 @@
         </a>
   
         <div class="product-info">
-          <a [routerLink]="['../details/', product.productId]" 
+          <a [routerLink]="['../', product.productId]" 
             class="product-name" [title]="product.productName">
             {{ product.productName | textClip:75 }}
           </a>
