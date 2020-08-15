@@ -11,13 +11,13 @@ const routes: Routes = [
     path: '', 
     component: ProductComponent,
     children: [
+      { path: '', redirectTo: 'search', pathMatch: 'full' },
       { path: 'search', component: SearchComponent },
       { 
         path: 'details/:id', 
         component: ProductDetailsComponent,
         canActivate: [ProductExistsGuard]
-      },
-      { path: '', redirectTo: 'search' }
+      }
     ] 
   }
 ];

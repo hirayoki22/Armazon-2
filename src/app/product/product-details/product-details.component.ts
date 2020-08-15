@@ -53,13 +53,13 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     });
   }
 
-  validVariant(id: number): boolean {
+  private validVariant(id: number): boolean {
     return id && this.variants.some(variant => {
       return variant.variantId === id;
     });
   }
 
-  getProductInfo(productId: number): void {    
+  private getProductInfo(productId: number): void {    
     if (!this.product) {
       this.isLoading = true;
     } else {

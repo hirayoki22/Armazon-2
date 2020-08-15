@@ -12,6 +12,7 @@ const routes: Routes = [
     path: '', 
     component: UserComponent,
     children: [
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
       { 
         path: 'login',  
         component: LoginPageComponent,
@@ -34,8 +35,7 @@ const routes: Routes = [
         path: 'admin-page', 
         loadChildren: () => import('./admin-page/admin-page.module').then(m => m.AdminPageModule),
         data: { tile: 'Admin Account'} 
-      },
-      { path: '', redirectTo: 'login' }
+      }
     ] 
   }
 ];
