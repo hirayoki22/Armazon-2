@@ -50,7 +50,7 @@ export class CartService {
           return of(0);
         }
       })
-    )
+    );
   }
 
   getShoppingCart(): Observable<CartItem[] | boolean> {
