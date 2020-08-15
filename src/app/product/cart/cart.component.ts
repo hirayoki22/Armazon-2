@@ -82,7 +82,10 @@ export class CartComponent implements OnInit {
 
   proceedToCheckOut(): void {
     this.viewCart = false;
-    this.router.navigate(['./checkout'], { state: { data: this.cartItems } });
+    this.router.navigate(
+      ['./checkout'], 
+      { state: { data: this.cartItems } }
+    );
   }
 
   onClose(): void {

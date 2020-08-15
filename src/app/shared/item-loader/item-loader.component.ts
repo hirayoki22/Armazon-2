@@ -21,7 +21,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   ]
 })
 export class ItemLoaderComponent implements OnInit {
-  fakeItemsCount: any = Array(6);
+  fakeItemsCount: any = Array(4);
   @Input() isLoading = false;
 
   constructor() { }
