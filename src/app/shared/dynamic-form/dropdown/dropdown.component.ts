@@ -31,5 +31,21 @@ export class DropdownComponent implements OnInit {
     this.form = this.ds.form;
     this.enableValidCSS = this.ds.enableValidCSS;
   }
+
+  formatedOptions(options: any[]): any[] {
+    let formated = [];
+
+    if (!options) {
+      return [];
+    } else {
+      options.forEach(option => {
+        formated.push({
+          key:   option[Object.keys(option)[1]],
+          value: option[Object.keys(option)[0]]
+        });
+      });
+    }
+    return formated;
+  }
   
 }

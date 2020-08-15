@@ -4,9 +4,10 @@
     [class]="inputClass">
     <option [ngValue]="null">
       Choose a {{ field.fieldLabel | lowercase }}
+    
     </option>
     <option 
-      *ngFor="let option of field.selectOptions" 
+      *ngFor="let option of formatedOptions(field.dropdownOptions | async)" 
       [ngValue]="option.value">{{ option.key }}</option>
   </select>
 </div>

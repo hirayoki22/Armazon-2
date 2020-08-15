@@ -5,6 +5,8 @@ import { OwnValidators } from '../../../shared/validators/sync-validators';
 
 import { ProductService } from 'src/app/product/services/product.service';
 import { FormField } from 'src/app/shared/dynamic-form/form-field.class';
+import { Observable } from 'rxjs';
+import { Category } from 'src/app/product/models/category.model';
 
 @Component({
   selector: 'app-product-creation',
@@ -16,16 +18,14 @@ export class ProductCreationComponent implements OnInit {
   fields: FormField[];
   isVariant: boolean = false;
   isLoading: boolean = false;
+  
 
   constructor(private ps: ProductService) { }
 
   ngOnInit(): void {
     this.fields = this.initFields();
 
-    this.ps.getCategories().subscribe(categories => {
-      this.fields[3].selectOptions = 
-        this.fields[3].formatedOptions(categories);
-    });
+    this.fields[3].dropdownOptions = this.ps.getCategories();
   }
 
   onSubmit(form: FormGroup): void {

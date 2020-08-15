@@ -1,4 +1,5 @@
 import { ValidatorFn, AsyncValidatorFn } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 interface SelectOption { key: string | number, value: any };
 export interface customFeedback { condition: boolean, message: string };
@@ -14,7 +15,7 @@ export class FormField {
     sync?: ValidatorFn[],
     async?: AsyncValidatorFn[]
   };
-  selectOptions: SelectOption[];
+  dropdownOptions: Observable<{ [key: string]: any }[]>;
   customFeedback: customFeedback;
 
   constructor(params: {
@@ -28,7 +29,7 @@ export class FormField {
       sync?: ValidatorFn[],
       async?: AsyncValidatorFn[]
     },
-    selectOptions?: { [key: string]: any }[],
+    dropdownOptions?: Observable<{ [key: string]: any }[]>,
     customFeedback?: customFeedback;
   }) {
     this.fieldType  = params.fieldType  || 'input';
@@ -38,7 +39,7 @@ export class FormField {
     this.inpuType   = params.inpuType   || 'text';
     this.value      = params.value      || null;
     this.validators = params.validators || null;
-    this.selectOptions = this.formatedOptions(params.selectOptions);
+    this.dropdownOptions = params.dropdownOptions;
     this.customFeedback = params.customFeedback || null;
   }
 
