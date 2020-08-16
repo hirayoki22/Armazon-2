@@ -95,8 +95,14 @@ img {
   animation: reveal 0.4s ease forwards;
   z-index: 1000;
 
+  &.show {
+    pointer-events: all;
+    animation: reveal 0.4s ease forwards;
+  }
+
   &.hide {
-    animation: hide 0.4s ease forwards;
+    pointer-events: none;
+    animation: hide .3s ease forwards;
   }
 }
 

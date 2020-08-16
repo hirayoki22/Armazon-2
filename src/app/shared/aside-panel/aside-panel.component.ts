@@ -1,5 +1,4 @@
 import { Component, OnChanges } from '@angular/core';
-import { ViewChild, ElementRef } from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
 import { fromEvent } from 'rxjs';
 
@@ -9,8 +8,6 @@ import { fromEvent } from 'rxjs';
   styleUrls: ['./aside-panel.component.scss']
 })
 export class AsidePanelComponent implements OnChanges {
-  @ViewChild('overlay') overlay: ElementRef<HTMLElement>;
-  @ViewChild('panel') panel: ElementRef<HTMLElement>;
   @Input() showPanel: boolean;
   @Output('showPanel') notifyChange = new EventEmitter<boolean>();
 
@@ -24,28 +21,13 @@ export class AsidePanelComponent implements OnChanges {
         if (e.key == 'Escape') { this.onClose(); }
       });
     } else {
-      document.body.classList.remove('active-sidepanel');
+      this.onClose();
     }
   }
 
   onClose(): void {
-    if (!this.overlay) { return; }
-    
-    const overlay = this.overlay.nativeElement;
-    const panel = this.panel.nativeElement;
-
-    panel.classList.add('slide-out');
-    overlay.classList.add('hide');
-    window.onkeyup = null;
-
-    setTimeout(() => {
-      document.body.classList.remove('active-sidepanel');
-      overlay.classList.remove('hide');
-      panel.classList.remove('slide-out');
-
-      this.showPanel = false;
-      this.notifyChange.emit(this.showPanel);
-    }, 200);
+    document.body.classList.remove('active-sidepanel');
+    this.notifyChange.emit(this.showPanel = false);
   }
 
   onClickOutside(e: MouseEvent): void {
