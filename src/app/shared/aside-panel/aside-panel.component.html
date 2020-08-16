@@ -1,9 +1,10 @@
 <div 
+  #overlay
   (click)="onClickOutside($event)" 
-  [class]="{'show': showPanel, 'hide': !showPanel}"
+  *ngIf="showPanel" 
   class="overlay">
 
-  <aside [class.slide-out]="!showPanel" class="panel">
+  <aside #panel class="panel">
     <div class="top">
       <button 
         (click)="onClose()"
