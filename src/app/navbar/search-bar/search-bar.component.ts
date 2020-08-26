@@ -1,24 +1,38 @@
-import { Component, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { ViewChild, ElementRef } from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
-import { fromEvent } from 'rxjs';
+import { fromEvent, Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 import { ProductService } from 'src/app/product/services/product.service';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl } from '@angular/forms';
+import { SrchMatch } from 'src/app/product/models/srch-match.model';
 
 @Component({
   selector: 'search-bar',
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss']
 })
-export class SearchBarComponent implements OnChanges {
+export class SearchBarComponent implements OnInit, OnChanges {
   @ViewChild('overlay') overlay: ElementRef<HTMLElement>;
   @Input() showSearchbox: boolean;
   @Output('showSearchbox') notifyChange = new EventEmitter<boolean>();
-  control: FormControl = new FormControl(null);
+  srchControl: FormControl = new FormControl(null);
+  matches$: Observable<SrchMatch[]>;
   isFocused: boolean = false;
 
   constructor(private ps: ProductService) { }
+
+  ngOnInit(): void {
+    this.srchControl.valueChanges.pipe(
+      map(keyword => keyword.toLowerCase()),
+      switchMap(keyword => {
+        if (keyword.length > 1) {
+          return this.ps.searchProduct(keyword);
+        }
+      })
+    ).subscribe(res => console.log(res));
+  }
 
   ngOnChanges(): void {
     if (this.showSearchbox) {

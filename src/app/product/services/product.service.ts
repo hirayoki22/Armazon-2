@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { tap, map, catchError, delay } from 'rxjs/operators';
+import { tap, map, catchError, delay, distinctUntilChanged } from 'rxjs/operators';
 
 import { Product } from '../models/product.model';
 import { ProductVariant } from '../models/product-variant.model';
@@ -65,7 +65,10 @@ export class ProductService {
   }
 
   searchProduct(keyword: string): Observable<SrchMatch[]> {
-    return this.http.get<SrchMatch[]>(this.URL6).pipe(
+    return this.http.get<SrchMatch[]>(`${this.URL6}?keyword=${keyword}`)
+    .pipe(
+      delay(20),
+      distinctUntilChanged(),
       catchError(this.errorHandler)
     );
   }

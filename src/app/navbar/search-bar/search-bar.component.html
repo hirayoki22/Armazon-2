@@ -8,7 +8,7 @@
       <div class="top-area">
         <div 
           class="form-group"
-          [class.focused]="isFocused || control.value">
+          [class.focused]="isFocused || srchControl.value">
           <button class="srch-btn">
             <i class="material-icons">search</i>
           </button>
@@ -17,7 +17,7 @@
             autoFocus="true"
             (focus)="isFocused = true"
             (blur)="isFocused = false"
-            [formControl]="control"
+            [formControl]="srchControl"
             type="text" 
             placeholder="Looking for a product?">
         </div>
@@ -37,31 +37,13 @@
           </button>
         </div>
         <ul class="search-results">
-          <li>
-            <a [routerLink]="['/products/', 29]">
+          <li *ngFor="let match of matches$ | async">
+            <a href="/products/{{ match.productId }}">
               <img 
-                src="http://127.0.0.1/market-api/product-images/full/product_29/product_29-5f121c9cbe1ba9.72430253.jpg"
-                alt="Product icon"
+                [src]="match.productImage"
+                [alt]="match.productName"
                 class="product-srch-icon">
-              <span class="product-srch-name">
-                Mens Slouchy Long Oversized Beanie Knit Cap for Summer Winter - Bright Blue
-              </span>
-            </a>
-          </li>
-          <li>
-            <a [routerLink]="['/products/', 46]">
-              <img src="http://127.0.0.1/market-api/product-images/full/product_46/product_46-5f123cc9886a21.76147139.jpg" class="product-srch-icon">
-              <span class="product-srch-name">
-                Mens Slouchy Long Oversized Beanie Knit Cap for Summer Winter - Claret & Grey
-              </span>
-            </a>
-          </li>
-          <li>
-            <a [routerLink]="['/products/', 78]">
-              <img src="http://127.0.0.1/market-api/product-images/full/product_78/product_78-5f31c8b2ac76d2.45930135.jpg" class="product-srch-icon">
-              <span class="product-srch-name">
-                Mens Slouchy Beanie Hat Thin Baggy Summer Skull Cap
-              </span>
+              <span class="product-srch-name">{{ match.productName }}</span>
             </a>
           </li>
         </ul>
