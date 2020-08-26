@@ -6,6 +6,7 @@ import { Product } from '../models/product.model';
 import { ProductVariant } from '../models/product-variant.model';
 import { CartService } from '../services/cart.service';
 import { delay } from 'rxjs/operators';
+import { SrchMatch } from '../models/srch-match.model';
 
 @Component({
   selector: 'app-product-details',
@@ -71,7 +72,35 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
       this.product = product;
       this.isLoading = false;
       this.reloading = false;
+      this.setSrchHistory();
     });
+  }
+
+  private setSrchHistory(): void {
+    let srchHistory: SrchMatch[] = JSON.parse(localStorage.getItem('search-history'));
+    const images: string[] = this.product?.images;
+
+    const srchItem: SrchMatch = {
+      categoryId: this.product.categoryId,
+      productId: this.product.productId,
+      productImage: images[0],
+      productName: this.product.productName
+    }
+
+    if (!srchHistory || !srchHistory.length) {
+      localStorage.setItem('search-history', JSON.stringify([srchItem]));
+    } else {
+      if (srchHistory.some(item => item.productId == srchItem.productId)) {
+        srchHistory = srchHistory.filter(item => {
+          return item.productId !== srchItem.productId;
+        });
+      }
+      if (srchHistory.length == 6) {
+        srchHistory.pop();
+      }
+      srchHistory.unshift(srchItem);
+      localStorage.setItem('search-history', JSON.stringify(srchHistory));
+    }
   }
 
   onBuyNow(productId: number): void {

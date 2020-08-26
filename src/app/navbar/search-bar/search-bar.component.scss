@@ -4,6 +4,7 @@
   padding: 2rem 1.5rem;
   background-color: #fff;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  transition: all .3s ease;
 
   .top-area {
     display: flex;
@@ -99,12 +100,13 @@
       }
     }
 
-    .search-results {
+    .search-results,
+    .search-history {
       width: 100%;
-  
+
       li {
         width: inherit;
-        
+
         &:not(:last-child) {
           margin-bottom: 1rem;
         }

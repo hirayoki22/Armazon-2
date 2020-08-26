@@ -30,13 +30,7 @@
       </div>
 
       <div class="bottom-content">
-        <div class="title">
-          <p>Search history</p>
-          <button class="clear-history-btn">
-            Clear
-          </button>
-        </div>
-        <ul *ngIf="matches$" class="search-results">
+        <ul class="search-results">
           <li 
             *ngFor="let match of matches$ | async">
             <a href="/products/{{ match.productId }}">
@@ -48,6 +42,27 @@
             </a>
           </li>
         </ul>
+        
+        <div *ngIf="srchHistory && !srchControl.value">
+          <div class="title">
+            <p>Search history</p>
+            <button 
+              (click)="clearSrchHistory()" 
+              class="clear-history-btn">Clear</button>
+          </div>
+          <ul class="search-history">
+          <li 
+            *ngFor="let srchItem of srchHistory">
+            <a href="/products/{{ srchItem.productId }}">
+              <img 
+                [src]="srchItem.productImage"
+                [alt]="srchItem.productName"
+                class="product-srch-icon">
+              <span class="product-srch-name">{{ srchItem.productName }}</span>
+            </a>
+          </li>
+        </ul>
+        </div>
       </div>      
     </div>
   </section>

@@ -19,20 +19,22 @@ export class SearchBarComponent implements OnChanges {
   @Output('showSearchbox') notifyChange = new EventEmitter<boolean>();
   srchControl: FormControl = new FormControl(null);
   matches$: Observable<SrchMatch[]>;
+  srchHistory: SrchMatch[];
   isFocused: boolean = false;
 
   constructor(private ps: ProductService) { }
 
   ngOnChanges(): void {
     if (this.showSearchbox) {
+      this.srchHistory = localStorage.getItem('search-history') ?
+      JSON.parse(localStorage.getItem('search-history')) : null;
       
       this.matches$ = this.srchControl.valueChanges.pipe(
         map(keyword => keyword?.toLowerCase().trim()),
         distinctUntilChanged(),
         debounceTime(25),
         switchMap(keyword => {
-          return keyword?.length > 1 ? 
-          this.ps.searchProduct(keyword) : of ([]);
+          return keyword?.length ? this.ps.searchProduct(keyword) : of ([]);
         })
       );
         
@@ -43,6 +45,11 @@ export class SearchBarComponent implements OnChanges {
     } else {
       document.body.classList.remove('active-sidepanel');
     }
+  }
+
+  clearSrchHistory(): void {
+    localStorage.removeItem('search-history');
+    this.srchHistory = null;
   }
 
   onClose(): void {
