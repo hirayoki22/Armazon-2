@@ -5,6 +5,7 @@ import { tap, map, catchError, delay } from 'rxjs/operators';
 
 import { Product } from '../models/product.model';
 import { ProductVariant } from '../models/product-variant.model';
+import { SrchMatch } from '../models/srch-match.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class ProductService {
   private URL3 = 'http://127.0.0.1/market-api/product-variant.php';
   private URL4 = 'http://127.0.0.1/market-api/product-variant-options.php';
   private URL5 = 'http://127.0.0.1/market-api/filtered-products.php';
+  private URL6 = 'http://127.0.0.1/market-api/product-search.php';
 
   constructor(private http: HttpClient) { }
 
@@ -60,6 +62,12 @@ export class ProductService {
         unsubscribe() { subscriber.unsubscribe(); }
       }
     });
+  }
+
+  searchProduct(keyword: string): Observable<SrchMatch[]> {
+    return this.http.get<SrchMatch[]>(this.URL6).pipe(
+      catchError(this.errorHandler)
+    );
   }
 
   getCategories(): Observable<any> {
