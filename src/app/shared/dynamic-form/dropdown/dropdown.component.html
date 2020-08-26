@@ -1,10 +1,14 @@
-<div [formGroup]="form" class="form-group-wrapper">
+<div 
+  [formGroup]="form" 
+  class="form-group-wrapper"
+  [class.focused]="isFocused || control.value">
   <select 
+    (focus)="isFocused = true"
+    (blur)="isFocused = false"
     [formControlName]="field.fieldKey"
     [class]="inputClass">
     <option [ngValue]="null">
       Choose a {{ field.fieldLabel | lowercase }}
-    
     </option>
     <option 
       *ngFor="let option of formatedOptions(field.dropdownOptions | async)" 

@@ -184,25 +184,9 @@
         margin: 1.2rem auto 0;
         padding: 0.2rem 0;
         transition: color .3s ease;
-       
-        &::before {
-          content: '';
-          position: absolute;
-          left: 0;
-          bottom: -2px;
-          transform: scaleX(0);
-          width: 100%;
-          height: 1px;
-          background-color: #2587f7;
-          transition: transform .3s ease;
-        }
     
         &:hover{
           color: #2587f7;
-
-          &::before {
-            transform: scaleX(1);
-          }
         }
       }
     }

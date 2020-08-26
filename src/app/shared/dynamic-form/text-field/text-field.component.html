@@ -1,6 +1,10 @@
-<div [formGroup]="form" class="form-group-wrapper">
+<div 
+  [formGroup]="form" 
+  class="form-group-wrapper"
+  [class.focused]="isFocused || control.value">
   <input
-    #input
+    (focus)="isFocused = true"
+    (blur)="isFocused = false"
     [formControlName]="field.fieldKey"
     [class]="inputClass"
     [type]="showPassword ? 'text' : field.inpuType"

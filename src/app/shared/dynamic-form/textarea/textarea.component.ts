@@ -12,6 +12,7 @@ import { DynamicFormService } from '../dynamic-form.service';
 export class TextareaComponent implements OnInit {
   @Input() field: FormField;
   form: FormGroup;
+  isFocused: boolean = false;
   enableValidCSS: boolean;
  
   get control() { return this.form.get(this.field.fieldKey); }
