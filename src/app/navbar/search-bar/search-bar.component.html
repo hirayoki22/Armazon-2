@@ -6,8 +6,15 @@
   <section class="search-area">
     <div class="wrapper-l">
       <div class="top-area">
-        <div class="form-group">
-          <input [formControl]="control" type="text">
+        <div 
+          class="form-group"
+          [class.focused]="isFocused || control.value">
+          <input 
+            (focus)="isFocused = true"
+            (blur)="isFocused = false"
+            [formControl]="control"
+            type="text" 
+            placeholder="Looking for a product?">
         </div>
         
         <button 

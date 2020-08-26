@@ -1,11 +1,12 @@
 .search-area {
   width: 100%;
   min-height: 250px;
+  padding: 2rem;
   background-color: #fff;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
 
   .top-area {
-
+    display: flex;
     width: 100%;
 
     .form-group {
@@ -13,7 +14,8 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      width: 100%;
+      flex: 1;
+      margin-right: 3rem;
       border-bottom: thin solid #c7cad8;
   
       &::after {
@@ -21,7 +23,6 @@
         position: absolute;
         left: 0;
         bottom: -1px;
-        transform-origin: left;
         transform: scaleX(0);
         width: 100%;
         height: 1px;
@@ -38,10 +39,15 @@
 
       input {
         width: 100%;
+
+        &::placeholder {
+          color: rgba(76, 78, 90, 0.7);
+        }
       }
     }
 
     .close-btn {
+      flex-shrink: 0;
       margin-left: auto;
       padding: 0.6rem;
       border-radius: 40px;

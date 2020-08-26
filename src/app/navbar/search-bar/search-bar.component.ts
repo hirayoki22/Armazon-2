@@ -16,6 +16,7 @@ export class SearchBarComponent implements OnChanges {
   @Input() showSearchbox: boolean;
   @Output('showSearchbox') notifyChange = new EventEmitter<boolean>();
   control: FormControl = new FormControl(null);
+  isFocused: boolean = false;
 
   constructor(private ps: ProductService) { }
 
