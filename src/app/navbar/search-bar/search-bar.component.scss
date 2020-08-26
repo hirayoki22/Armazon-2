@@ -1,10 +1,18 @@
+@keyframes grow {
+  to {
+    transform: scaleY(1);
+  }
+}
+
 .search-area {
   width: 100%;
   min-height: 350px;
+  transform: scaleY(0);
+  transform-origin: top;
   padding: 2rem 1.5rem;
   background-color: #fff;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-  transition: all .3s ease;
+  animation: grow .3s ease forwards;
 
   .top-area {
     display: flex;
@@ -100,10 +108,17 @@
       }
     }
 
+    .search-results {
+      margin-top: 3rem;
+    }
+
+    .search-history {
+      margin-top: 1rem;
+    }
+
     .search-results,
     .search-history {
       width: 100%;
-      margin-top: 2rem;
 
       li {
         width: inherit;
