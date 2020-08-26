@@ -5,7 +5,12 @@ import { MyAsyncValidators } from 'src/app/shared/validators/async-validators.se
 import { ProductService } from 'src/app/product/services/product.service';
 
 interface VariantOption { optionId: number; option: string };
-interface VariantField { key: string, label: string, fieldType?: 'input' | 'dropdown' };
+interface VariantField { 
+  key: string, 
+  label: string, 
+  fieldType?: 'input' | 'dropdown',
+  inputType?: string
+};
 
 @Component({
   selector: 'variant-form',
@@ -21,9 +26,20 @@ export class VariantFormComponent implements OnInit {
   variantOptions: VariantOption[];
 
   fields: VariantField[] = [
-    { key: 'productId', label: 'Original product ID' },
-    { key: 'optionId', label: 'Option', fieldType: 'dropdown' },
-    { key: 'optionValue', label: 'Option value/label' }
+    { 
+      key: 'optionId', 
+      label: 'Option', 
+      fieldType: 'dropdown' 
+    },
+    { 
+      key: 'productId', 
+      label: 'Original product ID', 
+      inputType: 'number' 
+    },
+    { 
+      key: 'optionValue', 
+      label: 'Option value/label' 
+    }
   ];
 
   control(key: string): AbstractControl { return this.form.get(key); }
