@@ -36,7 +36,7 @@
             Clear
           </button>
         </div>
-        <ul class="search-results">
+        <ul *ngIf="matches$" class="search-results">
           <li 
             *ngFor="let match of matches$ | async">
             <a href="/products/{{ match.productId }}">
