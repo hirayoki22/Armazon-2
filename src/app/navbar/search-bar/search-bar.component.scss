@@ -122,12 +122,11 @@
           align-items: center;
           padding: 1rem 0;
           border-radius: 4px;
+          transition: opacity .4s ease;
           overflow: hidden;
   
           &:hover {
-            .product-srch-name {
-              opacity: 0.8;
-            }
+            opacity: 0.8;
           }
   
           .product-srch-icon {
@@ -143,8 +142,7 @@
             color: initial;
             font-weight: 500;
             white-space: nowrap;
-            text-overflow: ellipsis;
-            transition: opacity .4s ease;
+            text-overflow: ellipsis;            
             overflow: hidden;
           }
         }
