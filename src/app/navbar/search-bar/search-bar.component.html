@@ -14,6 +14,7 @@
           </button>
 
           <input 
+            #input
             autoFocus="true"
             (focus)="isFocused = true"
             (blur)="isFocused = false"
@@ -22,7 +23,7 @@
             placeholder="Looking for a product?">
 
           <button 
-            (click)="srchControl.setValue('')"
+            (click)="srchControl.setValue(''); input.focus()"
             class="reset-srch-control"
             [class.visible]="srchControl.value">
             <i class="material-icons">clear</i>
