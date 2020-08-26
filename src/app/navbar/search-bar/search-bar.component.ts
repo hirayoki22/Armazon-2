@@ -24,14 +24,16 @@ export class SearchBarComponent implements OnInit, OnChanges {
   constructor(private ps: ProductService) { }
 
   ngOnInit(): void {
-    this.srchControl.valueChanges.pipe(
+    this.matches$ = this.srchControl.valueChanges.pipe(
       map(keyword => keyword.toLowerCase()),
       switchMap(keyword => {
         if (keyword.length > 1) {
           return this.ps.searchProduct(keyword);
+        } else {
+          return [];
         }
       })
-    ).subscribe(res => console.log(res));
+    )
   }
 
   ngOnChanges(): void {
