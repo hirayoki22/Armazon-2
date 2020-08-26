@@ -19,7 +19,8 @@
         *ngSwitchDefault
         [formControlName]="field.key"
         [class.invalid]="control(field.key).touched && control(field.key).invalid"
-        [class.valid]="control(field.key).dirty && control(field.key).valid">
+        [class.valid]="control(field.key).dirty && control(field.key).valid"
+        [type]="field?.inputType">
 
       <label 
         *ngIf="field.fieldType !== 'dropdown'"
