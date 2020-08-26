@@ -12,10 +12,6 @@ import { CartService } from '../services/cart.service';
 export class SearchComponent implements OnInit {
   products: Product[] = [];
 
-  getCardAnimation(index: number): string {
-    return `slideUp .4s ease ${index / 7 + 0.7}s forwards`;
-  }
-
   constructor(
     private ps: ProductService,
     private cs: CartService
