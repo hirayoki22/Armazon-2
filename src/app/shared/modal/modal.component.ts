@@ -31,10 +31,10 @@ export class ModalComponent implements OnChanges {
   }
 
   onClose(): void {
-    if (!this.overlay) { return; }
-
     const overlay = this.overlay.nativeElement;
     const modal = this.modal.nativeElement;
+
+    if (!this.overlay) { return; }
 
     modal.classList.add('hide');
     overlay.classList.add('hide');
@@ -46,7 +46,7 @@ export class ModalComponent implements OnChanges {
 
       this.showModal = false;
       this.notifyChange.emit(this.showModal);
-    }, 200);
+    }, 300);
   }
 
   onClickOutside(e: MouseEvent): void {

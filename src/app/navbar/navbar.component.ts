@@ -9,7 +9,7 @@ import { CartService } from '../product/services/cart.service';
 })
 export class NavbarComponent implements OnInit {
   itemCount: number | string;
-  openSearchbox: boolean = false;
+  showSearchbox: boolean = false;
 
   constructor(private cs: CartService) { }
 

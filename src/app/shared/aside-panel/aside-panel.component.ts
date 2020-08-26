@@ -29,10 +29,10 @@ export class AsidePanelComponent implements OnChanges {
   }
 
   onClose(): void {
-    if (!this.overlay) { return; }
-    
     const overlay = this.overlay.nativeElement;
     const panel = this.panel.nativeElement;
+
+    if (!this.overlay) { return; }    
 
     panel.classList.add('slide-out');
     overlay.classList.add('hide');
@@ -45,7 +45,7 @@ export class AsidePanelComponent implements OnChanges {
 
       this.showPanel = false;
       this.notifyChange.emit(this.showPanel);
-    }, 200);
+    }, 300);
   }
 
   onClickOutside(e: MouseEvent): void {

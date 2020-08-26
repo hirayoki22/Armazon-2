@@ -1,4 +1,8 @@
-<div #overlay class="overlay">
+<div 
+  #overlay 
+  (click)="onClickOutside($event)"
+  *ngIf="showSearchbox"
+  class="overlay">
   <section class="search-area">
     <h1>Searching ...</h1>
   </section>
