@@ -88,7 +88,7 @@
     .title {
       display: flex;
       align-items: center;
-      padding: 2rem 0;
+      margin-top: 2rem;
 
       p, button {
         font-size: .8rem;
@@ -103,6 +103,7 @@
     .search-results,
     .search-history {
       width: 100%;
+      margin-top: 2rem;
 
       li {
         width: inherit;
