@@ -1,7 +1,7 @@
 .search-area {
   width: 100%;
   min-height: 250px;
-  padding: 2rem;
+  padding: 1.5rem;
   background-color: #fff;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
 
@@ -15,6 +15,7 @@
       flex-direction: column;
       justify-content: space-between;
       flex: 1;
+      margin-top: 1.5rem;
       margin-right: 3rem;
       border-bottom: thin solid #c7cad8;
   
@@ -39,6 +40,7 @@
 
       input {
         width: 100%;
+        padding: 1rem 0;
 
         &::placeholder {
           color: rgba(76, 78, 90, 0.7);
@@ -48,14 +50,18 @@
 
     .close-btn {
       flex-shrink: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       margin-left: auto;
-      padding: 0.6rem;
+      width: 35px;
+      height: 35px;
       border-radius: 40px;
       transition: background-color .4s ease;
 
       .material-icons {
         color: #7a8196;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         transition: color .4s ease;
       }
 
