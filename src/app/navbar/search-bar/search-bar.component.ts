@@ -9,7 +9,7 @@ import { ProductService } from 'src/app/product/services/product.service';
   styleUrls: ['./search-bar.component.scss']
 })
 export class SearchBarComponent implements OnInit {
-  @Input() showSearch: boolean = false;
+  @Input() openSearchbox: boolean = false;
 
   constructor(private ps: ProductService) { }
 
