@@ -125,12 +125,12 @@
           overflow: hidden;
   
           &:hover {
-            &::after {
-              opacity: 1;
+            .product-srch-name {
+              opacity: 0.8;
             }
           }
   
-          img {
+          .product-srch-icon {
             width: 60px;
             height: 60px;
             margin-right: 2rem;
@@ -138,9 +138,14 @@
             object-position: center center;
           }
   
-          span {
+          .product-srch-name {
+            padding-bottom: 0.2rem;
             color: initial;
             font-weight: 500;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            transition: opacity .4s ease;
+            overflow: hidden;
           }
         }
       }
