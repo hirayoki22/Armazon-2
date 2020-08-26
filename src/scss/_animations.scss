@@ -28,13 +28,6 @@
   }
 }
 
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(100%);
-  }
-}
-
 @keyframes slideIn {
   from {
     opacity: 0;
@@ -51,28 +44,7 @@
 
 @keyframes zoomIn {
   from {
-    transform: scale(3.5);
-    opacity: 0;
-  }
-}
-
-@keyframes zoomOut {
-  to {
-    transform: scale(3.5);
-    opacity: 0;
-  }
-}
-
-@keyframes fileAdded {
-  from {
-    transform: scale(0.94, 0.94);
-    opacity: 0;
-  }
-}
-
-@keyframes fileRemoved {
-  to {
-    transform: scale(0.90, 0.90);
+    transform: scale(1.4);
     opacity: 0;
   }
 }

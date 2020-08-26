@@ -11,7 +11,9 @@
     </div>
 
     <ul class="products">
-      <li *ngFor="let product of products">
+      <li 
+        *ngFor="let product of products; index as index"
+        [style.animation]="getCardAnimation(index)">
         <a *ngIf="product.images" 
           [routerLink]="['../', product.productId]"
           class="product-image">
