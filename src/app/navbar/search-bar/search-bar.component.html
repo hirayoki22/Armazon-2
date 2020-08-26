@@ -6,6 +6,9 @@
   <section class="search-area">
     <div class="wrapper-l">
       <div class="top-area">
+        <div class="form-group">
+          <input [formControl]="control" type="text">
+        </div>
         
         <button 
           (click)="onClose()"

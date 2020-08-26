@@ -4,6 +4,7 @@ import { Input, Output, EventEmitter } from '@angular/core';
 import { fromEvent } from 'rxjs';
 
 import { ProductService } from 'src/app/product/services/product.service';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'search-bar',
@@ -14,6 +15,7 @@ export class SearchBarComponent implements OnChanges {
   @ViewChild('overlay') overlay: ElementRef<HTMLElement>;
   @Input() showSearchbox: boolean;
   @Output('showSearchbox') notifyChange = new EventEmitter<boolean>();
+  control: FormControl = new FormControl(null);
 
   constructor(private ps: ProductService) { }
 

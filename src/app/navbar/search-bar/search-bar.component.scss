@@ -5,7 +5,41 @@
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
 
   .top-area {
+
     width: 100%;
+
+    .form-group {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      border-bottom: thin solid #c7cad8;
+  
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        transform-origin: left;
+        transform: scaleX(0);
+        width: 100%;
+        height: 1px;
+        background-color: #2587f7;
+        transition: transform .4s ease;
+        z-index: 1;
+      }
+  
+      &.focused {
+        &::after {
+          transform: scaleY(1);
+        }
+      }
+
+      input {
+        width: 100%;
+      }
+    }
 
     .close-btn {
       margin-left: auto;
@@ -21,9 +55,9 @@
 
       &:hover {
         .material-icons {
-          color: darken(#7a8196, 15);
+          color: darken(#7a8196, 5);
         }
-        background-color: #e6e9f0;
+        background-color: #eef0f5;
       }
     }
   }
