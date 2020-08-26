@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnChanges } from '@angular/core';
 import { ViewChild, ElementRef } from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
 import { Observable, fromEvent, of } from 'rxjs';
@@ -13,7 +13,7 @@ import { SrchMatch } from 'src/app/product/models/srch-match.model';
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss']
 })
-export class SearchBarComponent implements OnInit, OnChanges {
+export class SearchBarComponent implements OnChanges {
   @ViewChild('overlay') overlay: ElementRef<HTMLElement>;
   @Input() showSearchbox: boolean;
   @Output('showSearchbox') notifyChange = new EventEmitter<boolean>();
@@ -23,22 +23,20 @@ export class SearchBarComponent implements OnInit, OnChanges {
 
   constructor(private ps: ProductService) { }
 
-  ngOnInit(): void {
-    this.matches$ = this.srchControl.valueChanges.pipe(
-      map(keyword => keyword.toLowerCase().trim()),
-      distinctUntilChanged(),
-      debounceTime(25),
-      switchMap(keyword => {
-        return keyword.length > 1 ? 
-        this.ps.searchProduct(keyword) : of ([]);
-      })
-    );
-  }
-
   ngOnChanges(): void {
     if (this.showSearchbox) {
+      
+      this.matches$ = this.srchControl.valueChanges.pipe(
+        map(keyword => keyword?.toLowerCase().trim()),
+        distinctUntilChanged(),
+        debounceTime(25),
+        switchMap(keyword => {
+          return keyword?.length > 1 ? 
+          this.ps.searchProduct(keyword) : of ([]);
+        })
+      );
+        
       document.body.classList.add('active-sidepanel');
-
       fromEvent(window, 'keyup').subscribe((e: KeyboardEvent) => {
         if (e.key == 'Escape') { this.onClose(); }
       });
