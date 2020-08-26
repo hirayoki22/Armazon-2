@@ -1,8 +1,8 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { ViewChild, ElementRef } from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
-import { fromEvent, Observable, of } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { Observable, fromEvent, of } from 'rxjs';
+import { map, switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 import { ProductService } from 'src/app/product/services/product.service';
 import { FormControl } from '@angular/forms';
@@ -26,13 +26,11 @@ export class SearchBarComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.matches$ = this.srchControl.valueChanges.pipe(
       map(keyword => keyword.toLowerCase().trim()),
+      distinctUntilChanged(),
+      debounceTime(25),
       switchMap(keyword => {
-        console.log(keyword);
-        if (keyword.length > 1) {
-          return this.ps.searchProduct(keyword);
-        } else {
-          return of([]);
-        }
+        return keyword.length > 1 ? 
+        this.ps.searchProduct(keyword) : of ([]);
       })
     );
   }
@@ -54,6 +52,7 @@ export class SearchBarComponent implements OnInit, OnChanges {
 
     if (!this.overlay) { return; }
 
+    this.srchControl.reset();
     overlay.classList.add('hide');
     window.onkeyup = null;
 
