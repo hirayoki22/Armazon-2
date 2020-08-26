@@ -37,7 +37,7 @@
           </button>
         </div>
         <ul class="search-results">
-          <li *ngFor="let match of matches$ | async">
+          <li *ngFor="let match of matches$ | async; index as index">
             <a href="/products/{{ match.productId }}">
               <img 
                 [src]="match.productImage"
