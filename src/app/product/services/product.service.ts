@@ -67,8 +67,7 @@ export class ProductService {
   searchProduct(keyword: string): Observable<SrchMatch[]> {
     return this.http.get<SrchMatch[]>(`${this.URL6}?keyword=${keyword}`)
     .pipe(
-      distinctUntilChanged(),
-      debounceTime(50),
+      debounceTime(25),
       catchError(this.errorHandler)
     );
   }
