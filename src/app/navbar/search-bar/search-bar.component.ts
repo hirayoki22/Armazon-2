@@ -17,7 +17,7 @@ export class SearchBarComponent implements OnChanges {
   @ViewChild('overlay') overlay: ElementRef<HTMLElement>;
   @Input() showSearchbox: boolean;
   @Output('showSearchbox') notifyChange = new EventEmitter<boolean>();
-  srchControl: FormControl = new FormControl(null);
+  srchControl: FormControl = new FormControl('');
   matches$: Observable<SrchMatch[]>;
   srchHistory: SrchMatch[];
   isFocused: boolean = false;

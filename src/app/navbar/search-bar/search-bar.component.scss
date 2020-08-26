@@ -6,7 +6,7 @@
 
 .search-area {
   width: 100%;
-  min-height: 350px;
+  min-height: 450px;
   transform: scaleY(0);
   transform-origin: top;
   padding: 2rem 1.5rem;
@@ -27,7 +27,8 @@
       width: 35px;
       height: 35px;
       border-radius: 40px;
-      transition: background-color .4s ease;
+      transition: background-color .4s ease,
+      opacity .4s ease;
 
       .material-icons {
         color: #7a8196;
@@ -84,6 +85,23 @@
 
         &::placeholder {
           color: rgba(76, 78, 90, 0.7);
+        }
+      }
+
+      .reset-srch-control {
+        opacity: 0;
+        width: 25px;
+        height: 25px;
+        pointer-events: none;
+
+        &.visible {
+          opacity: 1;
+          pointer-events: all;
+        }
+
+        .material-icons {
+          color: initial;
+          font-size: 1rem;
         }
       }
     }

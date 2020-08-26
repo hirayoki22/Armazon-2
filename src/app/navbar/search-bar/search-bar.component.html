@@ -20,6 +20,13 @@
             [formControl]="srchControl"
             type="text" 
             placeholder="Looking for a product?">
+
+          <button 
+            (click)="srchControl.setValue('')"
+            class="reset-srch-control"
+            [class.visible]="srchControl.value">
+            <i class="material-icons">clear</i>
+          </button>
         </div>
         
         <button 
