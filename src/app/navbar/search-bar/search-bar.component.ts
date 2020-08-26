@@ -1,7 +1,7 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { ViewChild, ElementRef } from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
-import { fromEvent, Observable } from 'rxjs';
+import { fromEvent, Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
 import { ProductService } from 'src/app/product/services/product.service';
@@ -25,15 +25,16 @@ export class SearchBarComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.matches$ = this.srchControl.valueChanges.pipe(
-      map(keyword => keyword.toLowerCase()),
+      map(keyword => keyword.toLowerCase().trim()),
       switchMap(keyword => {
+        console.log(keyword);
         if (keyword.length > 1) {
           return this.ps.searchProduct(keyword);
         } else {
-          return [];
+          return of([]);
         }
       })
-    )
+    );
   }
 
   ngOnChanges(): void {
