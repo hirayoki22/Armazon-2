@@ -112,6 +112,7 @@
 
   .bottom-content {
     width: 100%;
+    height: inherit;
     user-select: none;
 
     .title {
@@ -135,6 +136,7 @@
 
     .search-history {
       margin-top: 1rem;
+      overflow-y: auto;
     }
 
     .search-results,
