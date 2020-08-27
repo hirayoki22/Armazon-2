@@ -25,8 +25,6 @@ export class AppComponent implements OnInit {
     ).subscribe((navigation: NavigationEnd) => {
       const url = navigation.urlAfterRedirects;
 
-      // console.log(this.route.firstChild.snapshot.data);
-
       this.changePageTitle();
       this.hideNavbarFooter(url);
     });

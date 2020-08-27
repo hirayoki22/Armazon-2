@@ -3,6 +3,8 @@ import { ViewChild, ElementRef } from '@angular/core';
 import { Input } from '@angular/core';
 
 import { LightboxService } from '../../../services/lightbox.service';
+import { fromEvent } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'lightbox',
@@ -27,6 +29,22 @@ export class LightboxComponent implements AfterViewInit {
       this.currentImage  = data.index;
       this.moveIndicator();
       setTimeout(() => this.scrollIntoView(data.scrollBehavior));
+
+      this.onScroll();
+    });
+  }
+
+  private onScroll(): void {
+    fromEvent(this.imageContainer.nativeElement, 'scroll').pipe(
+      map(e => e.target as HTMLElement)
+    ).subscribe(container => {
+      const indicator = this.rangeIndicator.nativeElement;
+      const range = indicator.parentElement;
+      const limit = container.scrollWidth - container.clientWidth;
+      const percentage = Math.round(container.scrollLeft / limit * 100);
+
+      // console.log(range);
+      indicator.style.transform = `translateX(${percentage}%)`;
     });
   }
 
