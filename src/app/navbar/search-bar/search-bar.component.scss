@@ -25,13 +25,18 @@
     transition: background-color .4s ease,
     opacity .4s ease;
 
+    &:disabled {
+      opacity: 0.6;
+      cursor: default;
+    }
+
     .material-icons {
       color: #7a8196;
       font-size: 1.2rem;
       transition: color .4s ease;
     }
 
-    &:hover {
+    &:not(:disabled):hover {
       .material-icons {
         color: darken(#7a8196, 5);
       }
