@@ -1,3 +1,8 @@
+.overlay {
+  overflow: hidden;
+  overflow-y: auto;
+}
+
 .search-area {
   width: 100%;
   min-height: 450px;
@@ -136,7 +141,6 @@
 
     .search-history {
       margin-top: 1rem;
-      overflow-y: auto;
     }
 
     .search-results,
@@ -164,7 +168,7 @@
         }
 
         .product-srch-details {
-          max-width: 700px;
+          max-width: 500px;
           overflow: hidden;
           
           .product-srch-name {
