@@ -49,10 +49,10 @@ export class LightboxComponent implements AfterViewInit {
     ).subscribe(container => {
       const scrolled = container.scrollLeft;
       const limit = container.scrollWidth - container.clientWidth;
-      const steps = (100 * (this.images.length - 1));
-      const percentage = scrolled / limit * steps;
+      const percentage = (100 * (this.images.length - 1));
+      const steps = scrolled / limit * percentage;
       
-      indicator.style.transform = `translateX(${percentage}%)`;
+      indicator.style.transform = `translateX(${steps}%)`;
     });
   }
 
