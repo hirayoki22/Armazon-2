@@ -1,6 +1,7 @@
 import { Component, OnChanges } from '@angular/core';
 import { ViewChild, ElementRef } from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, fromEvent, of } from 'rxjs';
 import { map, switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
@@ -17,12 +18,15 @@ export class SearchBarComponent implements OnChanges {
   @ViewChild('overlay') overlay: ElementRef<HTMLElement>;
   @Input() showSearchbox: boolean;
   @Output('showSearchbox') notifyChange = new EventEmitter<boolean>();
-  srchControl: FormControl = new FormControl('');
+  srchControl: FormControl = new FormControl(null);
   matches$: Observable<SrchMatch[]>;
   srchHistory: SrchMatch[];
   isFocused: boolean = false;
 
-  constructor(private ps: ProductService) { }
+  constructor(
+    private router: Router,
+    private ps: ProductService
+  ) { }
 
   ngOnChanges(): void {
     if (this.showSearchbox) {
@@ -45,6 +49,18 @@ export class SearchBarComponent implements OnChanges {
     } else {
       document.body.classList.remove('active-sidepanel');
     }
+  }
+
+  beginSearch(): void {
+    this.router.navigate(
+      ['/products'],
+      {
+        queryParams: { 
+          keyword: this.srchControl.value.trim().toLowerCase()
+        }
+      }
+    );
+    this.onClose();
   }
 
   clearSrchHistory(): void {

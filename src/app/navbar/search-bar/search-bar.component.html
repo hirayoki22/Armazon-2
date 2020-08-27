@@ -15,7 +15,10 @@
         <div 
           class="form-group"
           [class.focused]="isFocused || srchControl.value">
-          <button class="btn-circle srch-btn">
+          <button 
+            (click)="beginSearch()"
+            [disabled]="!srchControl.value"
+            class="btn-circle srch-btn">
             <i class="material-icons">search</i>
           </button>
 
