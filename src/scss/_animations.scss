@@ -48,3 +48,9 @@
     opacity: 0;
   }
 }
+
+@keyframes grow {
+  to {
+    transform: scaleY(1);
+  }
+}
