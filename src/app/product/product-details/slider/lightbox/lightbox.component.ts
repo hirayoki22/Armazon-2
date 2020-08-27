@@ -34,7 +34,7 @@ export class LightboxComponent implements AfterViewInit {
     });
   }
 
-  private onScroll(): void {
+  onScroll(): void {
     const indicator = this.rangeIndicator.nativeElement;
 
     if (window.innerWidth > 768) { 
@@ -44,16 +44,7 @@ export class LightboxComponent implements AfterViewInit {
       indicator.style.transition = 'transform .1s linear';
     }
 
-    fromEvent(this.imageContainer.nativeElement, 'scroll').pipe(
-      map(e => e.target as HTMLElement)
-    ).subscribe(container => {
-      const scrolled = container.scrollLeft;
-      const limit = container.scrollWidth - container.clientWidth;
-      const percentage = (100 * (this.images.length - 1));
-      const steps = scrolled / limit * percentage;
-      
-      indicator.style.transform = `translateX(${steps}%)`;
-    });
+    this.moveIndicator(true);
   }
 
   private scrollIntoView(behavior: 'auto' | 'smooth'): void {
@@ -62,10 +53,15 @@ export class LightboxComponent implements AfterViewInit {
     slides[this.currentImage].scrollIntoView({ behavior: behavior });    
   }
 
-  private moveIndicator(): void {
+  private moveIndicator(precise = false): void {
+    const container = this.imageContainer.nativeElement;
     const indicator = this.rangeIndicator.nativeElement;
-    const steps = 100 * this.currentImage;
+    const scrolled = container.scrollLeft;
+    const limit = container.scrollWidth - container.clientWidth;
+    const percentage = (100 * (this.images.length - 1));
+    let steps: number = 0;
 
+    steps = !precise ? 100 * this.currentImage : scrolled / limit * percentage;
     indicator.style.transform = `translateX(${steps}%)`;
   }
 
