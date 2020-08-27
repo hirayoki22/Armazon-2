@@ -25,7 +25,7 @@
 
   <!-- Small Screen -->
   <div class="preview-s-wrapper">
-    <ul (scroll)="onPreviewScroll($event.target)" class="preview-s">
+    <ul class="preview-s">
       <li *ngFor="let image of images; index as index" class="slide">
         <img 
           (click)="openLightbox(index)"
@@ -35,13 +35,6 @@
           draggable="false">
       </li>
     </ul>
-
-    <div class="indicator-wrapper">
-      <span 
-        *ngFor="let i of images; index as index" 
-        class="indicator"
-        [class.active]="activePreview == index"></span>
-    </div>
   </div>
 </div>
 

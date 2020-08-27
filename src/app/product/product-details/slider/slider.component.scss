@@ -83,35 +83,6 @@
       }        
     }
 
-    .indicator-wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      margin-top: 1.5rem;
-      overflow: hidden;
-
-      .indicator {
-        display: block;
-        width: 8px;
-        height: 8px;
-        border: 2px solid transparent;
-        border-radius: 15px;
-        background-color: #d4d8e4;
-        transition: background-color 0.4s ease,
-        border-color 0.4s ease;
-
-        &:not(:last-of-type) {
-          margin-right: 0.2rem;
-        }
-
-        &.active {
-          border-color: rgba(248, 96, 129, 0.815);
-          background-color: transparent;
-        }
-      }
-    }
-
     .thumbnail-wrapper {        
       display: none;  
     }

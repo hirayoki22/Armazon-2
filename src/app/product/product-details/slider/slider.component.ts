@@ -14,7 +14,6 @@ export class SliderComponent implements OnChanges, AfterViewInit {
   @ViewChildren('preview') previews: QueryList<ElementRef<HTMLElement>>;
   @Input() images: string[];
   altImages: string[];
-  activePreview: number = 0;
   showAllImages: boolean = false;
 
   constructor(private ls: LightboxService) { }
@@ -40,19 +39,6 @@ export class SliderComponent implements OnChanges, AfterViewInit {
 
   openLightbox(index: number): void {
     this.ls.openLightbox({index: index, scrollBehavior: 'auto'});
-  }
-
-  onPreviewScroll(list: HTMLElement): void {
-    const slides = Array.from(list.children);
-
-    slides.forEach((slide, index) => {
-      const rects = slide.getBoundingClientRect();
-      const left = rects.left;
-
-      if ((index != this.activePreview) && left <= list.clientWidth) {
-        this.activePreview = index;
-      }
-    });
   }
 
 }
