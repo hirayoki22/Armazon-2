@@ -162,10 +162,12 @@
         }
 
         .product-srch-details {
-          width: 100%;
+          flex: 1;
+          overflow: hidden;
           
           .product-srch-name {
             display: inline-block;
+            width: 100%;
             margin-bottom: 0.5rem;
             padding-bottom: 0.4rem;
             color: initial;
