@@ -80,20 +80,18 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     let srchHistory: SrchMatch[] = JSON.parse(localStorage.getItem('search-history'));
 
     const srchItem: SrchMatch = {
-      productId: product.productId,
+      productId:    product.productId,
       productImage: product.images[0],
-      productName: product.productName,
-      categoryId: product.categoryId,
-      category: product.category
+      productName:  product.productName,
+      categoryId:   product.categoryId,
+      category:     product.category
     }
 
     if (!srchHistory || !srchHistory.length) {
       localStorage.setItem('search-history', JSON.stringify([srchItem]));
     } else {
       if (srchHistory.some(item => item.productId == srchItem.productId)) {
-        srchHistory = srchHistory.filter(item => {
-          return item.productId !== srchItem.productId;
-        });
+        srchHistory = srchHistory.filter(item => item.productId !== srchItem.productId);
       }
       if (srchHistory.length == 6) {
         srchHistory.pop();
