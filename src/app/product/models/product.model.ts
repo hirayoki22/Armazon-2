@@ -8,6 +8,7 @@ export interface Product {
   available?: boolean;
   totalStock: number;
   categoryId: number;
+  category?: string;
   images?: [];
   hasVariant: boolean;
 }

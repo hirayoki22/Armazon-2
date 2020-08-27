@@ -7,6 +7,7 @@ import { ProductVariant } from '../models/product-variant.model';
 import { CartService } from '../services/cart.service';
 import { delay } from 'rxjs/operators';
 import { SrchMatch } from '../models/srch-match.model';
+import { Category } from '../models/category.model';
 
 @Component({
   selector: 'app-product-details',
@@ -69,22 +70,30 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
 
     this.ps.getProductById(productId).pipe(delay(300))
     .subscribe(product => {
-      this.product = product;
-      this.isLoading = false;
-      this.reloading = false;
-      this.setSrchHistory();
+      this.ps.getCategories().subscribe((categories: Category[]) => {
+        const category = categories.find(category => {
+          return category.categoryId == product.categoryId;
+        });
+        this.product = product;
+        this.product.category = category.category;
+
+        this.setSrchHistory(this.product);
+        this.isLoading = false;
+        this.reloading = false;
+      });
     });
   }
 
-  private setSrchHistory(): void {
+  private setSrchHistory(product: Product): void {
     let srchHistory: SrchMatch[] = JSON.parse(localStorage.getItem('search-history'));
-    const images: string[] = this.product?.images;
+    const images: string[] = product?.images;
 
     const srchItem: SrchMatch = {
-      categoryId: this.product.categoryId,
-      productId: this.product.productId,
+      categoryId: product.categoryId,
+      category: product.category,
+      productId: product.productId,
       productImage: images[0],
-      productName: this.product.productName
+      productName: product.productName
     }
 
     if (!srchHistory || !srchHistory.length) {
@@ -108,12 +117,11 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
   }
 
   onAddToCart(productId: number): void {
-    const details = {
-      userId: 1,
+    const item = {
       productId: productId,
       quantity: this.quantity
     }
-    this.cs.addToCart(details).subscribe();
+    this.cs.addToCart(item).subscribe();
   }
 
 }
