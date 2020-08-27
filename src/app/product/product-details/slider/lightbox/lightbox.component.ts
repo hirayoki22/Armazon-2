@@ -35,16 +35,25 @@ export class LightboxComponent implements AfterViewInit {
   }
 
   private onScroll(): void {
+    const indicator = this.rangeIndicator.nativeElement;
+
+    if (window.innerWidth > 768) { 
+      indicator.style.transition = 'transform .6s linear';
+      return; 
+    } else {
+      indicator.style.transition = 'transform .1s linear';
+    }
+
     fromEvent(this.imageContainer.nativeElement, 'scroll').pipe(
       map(e => e.target as HTMLElement)
     ).subscribe(container => {
-      const indicator = this.rangeIndicator.nativeElement;
-      const range = indicator.parentElement;
+      const scrolled = container.scrollLeft;
       const limit = container.scrollWidth - container.clientWidth;
-      const percentage = Math.round(container.scrollLeft / limit * 100);
-
-      // console.log(range);
-      indicator.style.transform = `translateX(${percentage}%)`;
+      const steps = (100 * (this.images.length - 1));
+      const percentage = Math.round(scrolled / limit * steps);
+      
+      // indicator.style.transform = `translateX(${percentage}%)`;
+      console.log(percentage);
     });
   }
 
