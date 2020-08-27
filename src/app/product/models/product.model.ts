@@ -9,6 +9,6 @@ export interface Product {
   totalStock: number;
   categoryId: number;
   category: string;
-  images: [];
+  images: string[];
   hasVariant: boolean;
 }

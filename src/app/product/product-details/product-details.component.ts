@@ -72,21 +72,19 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
       this.product   = product;
       this.isLoading = false;
       this.reloading = false;
-
       this.setSrchHistory(this.product);
     });
   }
 
   private setSrchHistory(product: Product): void {
     let srchHistory: SrchMatch[] = JSON.parse(localStorage.getItem('search-history'));
-    const images: string[] = product?.images;
 
     const srchItem: SrchMatch = {
-      categoryId: product.categoryId,
-      category: product.category,
       productId: product.productId,
-      productImage: images[0],
-      productName: product.productName
+      productImage: product.images[0],
+      productName: product.productName,
+      categoryId: product.categoryId,
+      category: product.category
     }
 
     if (!srchHistory || !srchHistory.length) {
