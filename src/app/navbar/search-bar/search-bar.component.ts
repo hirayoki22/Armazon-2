@@ -34,7 +34,7 @@ export class SearchBarComponent implements OnChanges {
       JSON.parse(localStorage.getItem('search-history')) : null;
       
       this.matches$ = this.srchControl.valueChanges.pipe(
-        map(keyword => keyword?.toLowerCase().trim()),
+        map(keyword => keyword?.toLowerCase()?.trim()),
         distinctUntilChanged(),
         debounceTime(25),
         switchMap(keyword => {
