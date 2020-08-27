@@ -42,12 +42,12 @@ export class SearchBarComponent implements OnChanges {
         })
       );
         
-      document.body.classList.add('active-sidepanel');
+      document.body.classList.add('active-modal');
       fromEvent(window, 'keyup').subscribe((e: KeyboardEvent) => {
         if (e.key == 'Escape') { this.onClose(); }
       });
     } else {
-      document.body.classList.remove('active-sidepanel');
+      document.body.classList.remove('active-modal');
     }
   }
 
@@ -69,16 +69,16 @@ export class SearchBarComponent implements OnChanges {
   }
 
   onClose(): void {
-    const overlay = this.overlay.nativeElement;
-
     if (!this.overlay) { return; }
-
+    
+    const overlay = this.overlay.nativeElement;
+    
     this.srchControl.reset();
     overlay.classList.add('hide');
     window.onkeyup = null;
 
     setTimeout(() => {
-      document.body.classList.remove('active-sidepanel');
+      document.body.classList.remove('active-modal');
       overlay.classList.remove('hide');
 
       this.showSearchbox = false;
