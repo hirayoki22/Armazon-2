@@ -42,15 +42,19 @@
 
       <div class="bottom-content">
         <ul class="search-results">
-          <li 
-            *ngFor="let match of matches$ | async">
-            <a href="/products/{{ match.productId }}">
-              <img 
-                [src]="match.productImage"
-                [alt]="match.productName"
-                class="product-srch-icon">
-              <span class="product-srch-name">{{ match.productName }}</span>
-            </a>
+          <li *ngFor="let match of matches$ | async">
+            <img 
+              [src]="match.productImage"
+              [alt]="match.productName"
+              class="product-srch-icon">
+            <div class="product-srch-details">
+              <a 
+                href="/products/{{ match.productId }}"
+                class="product-srch-name">
+                {{ match.productName }}
+              </a>
+              <p class="product-srch-category">{{ match.category }}</p>
+            </div>
           </li>
         </ul>
         
@@ -62,17 +66,21 @@
               class="clear-history-btn">Clear</button>
           </div>
           <ul class="search-history">
-          <li 
-            *ngFor="let srchItem of srchHistory">
-            <a href="/products/{{ srchItem.productId }}">
+            <li *ngFor="let srchItem of srchHistory">
               <img 
                 [src]="srchItem.productImage"
                 [alt]="srchItem.productName"
                 class="product-srch-icon">
-              <span class="product-srch-name">{{ srchItem.productName }}</span>
-            </a>
-          </li>
-        </ul>
+              <div class="product-srch-details">
+                <a 
+                  href="/products/{{ srchItem.productId }}"
+                  class="product-srch-name">
+                  {{ srchItem.productName }}
+                </a>
+                <p class="product-srch-category">{{ srchItem.category }}</p>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>      
     </div>
