@@ -10,6 +10,7 @@ export class AdminPageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    window.scrollTo({ top: 0 });
     const title = <HTMLTitleElement>document.head.querySelector('title');
     title.textContent = 'Admin Page';
   }

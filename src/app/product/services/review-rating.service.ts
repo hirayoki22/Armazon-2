@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError, Subject, of } from 'rxjs';
-import { map, catchError, tap, delay, switchMap } from 'rxjs/operators';
+import { map, catchError, delay, switchMap } from 'rxjs/operators';
 
 import { UserService } from 'src/app/user/services/user.service';
 import { Rating } from '../models/rating.model';
@@ -73,7 +73,6 @@ export class ReviewRatingService {
           return this.http.post<NewReview>(this.URL2, review, httpOptions)
           .pipe(
             delay(500),
-            tap(res => console.log(res)),
             catchError(this.errorHandler)
           );
         } else {
