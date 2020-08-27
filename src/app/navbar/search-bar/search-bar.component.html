@@ -5,6 +5,12 @@
   class="overlay">
   <section class="search-area">
     <div class="wrapper-l">
+      <button 
+        (click)="onClose()"
+        type="button" class="close-btn" title="Close">
+        <i class="material-icons">close</i>
+      </button>
+      
       <div class="top-area">
         <div 
           class="form-group"
@@ -29,12 +35,6 @@
             <i class="material-icons">clear</i>
           </button>
         </div>
-        
-        <button 
-          (click)="onClose()"
-          type="button" class="close-btn" title="Close">
-          <i class="material-icons">close</i>
-        </button>
       </div>
 
       <div class="bottom-content">
