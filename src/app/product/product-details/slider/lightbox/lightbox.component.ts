@@ -3,8 +3,6 @@ import { ViewChild, ElementRef } from '@angular/core';
 import { Input } from '@angular/core';
 
 import { LightboxService } from '../../../services/lightbox.service';
-import { fromEvent } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'lightbox',
