@@ -4,18 +4,18 @@
   *ngIf="showSearchbox"
   class="overlay">
   <section class="search-area">
+    <button 
+      (click)="onClose()"
+      class="btn-circle close-btn" title="Close">
+      <i class="material-icons">close</i>
+    </button>
+
     <div class="wrapper-l">
-      <button 
-        (click)="onClose()"
-        type="button" class="close-btn" title="Close">
-        <i class="material-icons">close</i>
-      </button>
-      
       <div class="top-area">
         <div 
           class="form-group"
           [class.focused]="isFocused || srchControl.value">
-          <button class="srch-btn">
+          <button class="btn-circle srch-btn">
             <i class="material-icons">search</i>
           </button>
 
@@ -29,8 +29,8 @@
             placeholder="Looking for a product?">
 
           <button 
-            (click)="srchControl.setValue(''); input.focus()"
-            class="reset-srch-control"
+            (click)="srchControl.reset(); input.focus()"
+            class="btn-circle reset-srch-control"
             [class.visible]="srchControl.value">
             <i class="material-icons">clear</i>
           </button>
