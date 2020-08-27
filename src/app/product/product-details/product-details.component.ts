@@ -7,7 +7,6 @@ import { ProductVariant } from '../models/product-variant.model';
 import { CartService } from '../services/cart.service';
 import { delay } from 'rxjs/operators';
 import { SrchMatch } from '../models/srch-match.model';
-import { Category } from '../models/category.model';
 
 @Component({
   selector: 'app-product-details',
@@ -70,17 +69,11 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
 
     this.ps.getProductById(productId).pipe(delay(300))
     .subscribe(product => {
-      this.ps.getCategories().subscribe((categories: Category[]) => {
-        const category = categories.find(category => {
-          return category.categoryId == product.categoryId;
-        });
-        this.product = product;
-        this.product.category = category.category;
+      this.product   = product;
+      this.isLoading = false;
+      this.reloading = false;
 
-        this.setSrchHistory(this.product);
-        this.isLoading = false;
-        this.reloading = false;
-      });
+      this.setSrchHistory(this.product);
     });
   }
 
