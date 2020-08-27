@@ -5,10 +5,10 @@ export interface Product {
   productDesc: string;
   productImage?: string;
   price: number;
-  available?: boolean;
+  available: boolean;
   totalStock: number;
   categoryId: number;
-  category?: string;
-  images?: [];
+  category: string;
+  images: [];
   hasVariant: boolean;
 }

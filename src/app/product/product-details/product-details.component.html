@@ -16,7 +16,8 @@
               <h3>{{ product?.productName }}</h3>
               <strong>{{ product?.price | currency }}</strong>
             </div>
-            <p class="brand">By <span>{{ product?.brand }}</span></p> 
+            <p class="category">{{ product.category }}</p>
+            <p class="brand">By <span>{{ product.brand }}</span></p> 
   
             <div [ngSwitch]="product?.available" >
               <div *ngSwitchCase="false">
