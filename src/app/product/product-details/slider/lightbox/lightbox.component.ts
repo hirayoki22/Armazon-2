@@ -45,12 +45,12 @@ export class LightboxComponent implements AfterViewInit {
   }
 
   private moveIndicator(): void {
-    const container = this.imageContainer.nativeElement;
-    const indicator = this.rangeIndicator.nativeElement;
+    const container  = this.imageContainer.nativeElement;
+    const indicator  = this.rangeIndicator.nativeElement;
     const percentage = (100 * (this.images.length - 1));
-    const scrolled = container.scrollLeft;
-    const limit = container.scrollWidth - container.clientWidth;
-    const steps = scrolled / limit * percentage;
+    const scrolled   = container.scrollLeft;
+    const limit      = container.scrollWidth - container.clientWidth;
+    const steps      = scrolled / limit * percentage;
 
     indicator.style.transform = `translateX(${steps}%)`;
   }
