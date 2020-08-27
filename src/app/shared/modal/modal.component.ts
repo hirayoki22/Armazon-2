@@ -31,10 +31,10 @@ export class ModalComponent implements OnChanges {
   }
 
   onClose(): void {
+    if (!this.overlay) { return; }
+
     const overlay = this.overlay.nativeElement;
     const modal = this.modal.nativeElement;
-
-    if (!this.overlay) { return; }
 
     modal.classList.add('hide');
     overlay.classList.add('hide');
