@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { CartService } from '../product/services/cart.service';
+import { ShoppingBagService } from '../product/services/shopping-bag.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,12 +11,12 @@ export class NavbarComponent implements OnInit {
   itemCount: number | string;
   showSearchbox: boolean = false;
 
-  constructor(private cs: CartService) { }
+  constructor(private cs: ShoppingBagService) { }
 
   ngOnInit(): void {
     this.initItemCount();
 
-    this.cs.cartChange$.subscribe(() => {
+    this.cs.bagChange$.subscribe(() => {
       this.initItemCount()
     });
   }
@@ -32,6 +32,6 @@ export class NavbarComponent implements OnInit {
   }
 
   openCart(): void {
-    this.cs.openShoppingCart(true);
+    this.cs.openShoppingBag(true);
   }
 }
