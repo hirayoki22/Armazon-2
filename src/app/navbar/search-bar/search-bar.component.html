@@ -43,19 +43,19 @@
       <div class="bottom-content">
         <ul class="search-results">
           <li *ngFor="let match of matches$ | async">
-            <img 
-              [src]="match.productImage"
-              [alt]="match.productName"
-              draggable="false"
-              class="product-srch-icon">
-            <div class="product-srch-details">
-              <a 
-                href="/products/{{ match.productId }}"
-                class="product-srch-name">
-                <strong class="highlight">{{srchControl.value}}</strong><span>{{match.productName.slice(srchControl.value.length)}}</span>
-              </a>
-              <p class="product-srch-category">{{ match.category }}</p>
-            </div>
+            <a href="/products/{{ match.productId }}">
+              <img 
+                [src]="match.productImage"
+                [alt]="match.productName"
+                draggable="false"
+                class="product-srch-icon">
+              <div class="product-srch-details">
+                <p class="product-srch-name">
+                  <strong class="highlight">{{srchControl.value | lowercase}}</strong><span>{{match.productName.slice(srchControl.value.length) | lowercase}}</span>
+                </p>
+                <p class="product-srch-category">{{ match.category }}</p>
+              </div>
+            </a>
           </li>
         </ul>
         
@@ -68,19 +68,19 @@
           </div>
           <ul class="search-history">
             <li *ngFor="let srchItem of srchHistory">
-              <img 
-                [src]="srchItem.productImage"
-                [alt]="srchItem.productName"
-                draggable="false"
-                class="product-srch-icon">
-              <div class="product-srch-details">
-                <a 
-                  href="/products/{{ srchItem.productId }}"
-                  class="product-srch-name">
-                  {{ srchItem.productName }}
-                </a>
-                <p class="product-srch-category">{{ srchItem.category }}</p>
-              </div>
+              <a href="/products/{{ srchItem.productId }}">
+                <img 
+                  [src]="srchItem.productImage"
+                  [alt]="srchItem.productName"
+                  draggable="false"
+                  class="product-srch-icon">
+                <div class="product-srch-details">
+                  <p class="product-srch-name">
+                    {{ srchItem.productName }}
+                  </p>
+                  <p class="product-srch-category">{{ srchItem.category }}</p>
+                </div>
+              </a>
             </li>
           </ul>
         </div>
