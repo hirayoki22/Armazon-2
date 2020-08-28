@@ -23,10 +23,10 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: 40px;
-      height: 40px;
+      width: 35px;
+      height: 35px;
       justify-content: center;
-      border-radius: 40px;
+      border-radius: 100%;
       background-color: rgba(230, 233, 240, 0.623);     
       transition: background-color .4s ease, 
       opacity .3s ease;
@@ -35,7 +35,6 @@
 
       &:disabled {
         opacity: 0;
-        pointer-events: none;
       }
 
       .material-icons {

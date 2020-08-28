@@ -1,18 +1,19 @@
 <app-modal [showModal]="openLightbox" (showModal)="onClose()">
-
   <div *ngIf="images?.length" class="lightbox">
     <div class="top-content">
       <button 
         (click)="onNavButtonClick('previous')"
         [disabled]="currentImage == 0"
-        class="nav-button before">
+        class="nav-button before"
+        aria-label="Previous image">
         <i class="material-icons">navigate_before</i>
       </button>
 
       <button 
         (click)="onNavButtonClick('next')"
         [disabled]="currentImage == images.length - 1"
-        class="nav-button after">
+        class="nav-button after"
+        aria-label="Next image">
         <i class="material-icons">navigate_next</i>
       </button>
 
@@ -46,5 +47,4 @@
       </button>
     </div>
   </div>
-
 </app-modal>
