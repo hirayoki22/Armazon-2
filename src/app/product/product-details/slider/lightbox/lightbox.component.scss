@@ -44,14 +44,26 @@
       &:hover {
         background-color: #c7cad8; 
       }
-    }
 
-    .before {
-      left: 2rem;
-    }
+      &.before {
+        left: 2rem;
+      }
+  
+      &.after {
+        right: 2rem;
+      }
 
-    .after {
-      right: 2rem;
+      @media (max-width: 768px) {
+        & {
+          &.before {
+            left: 1.5rem;
+          }
+      
+          &.after {
+            right: 1.5rem;
+          }
+        }
+      }
     }
   }
   
@@ -113,6 +125,13 @@
     margin-top: auto;
     padding: 0 5rem;
     background-color: #fff;
+    transition: all .3s ease;
+
+    @media (max-width: 768px) {
+      & {
+        padding: 0 4rem;
+      }
+    }
 
     .range-clickable-area {
       width: 100%;
@@ -140,48 +159,4 @@
       }
     }
   } 
-}
-
-@media (max-width: 768px) {
-  .lightbox {
-
-    .top-content {
-      
-      .nav-button {
-        .before {
-          left: 1rem;
-        }
-    
-        .after {
-          right: 1rem;
-        }
-      }
-
-      .image-container {
-        scroll-behavior: smooth;
-
-        .slide {
-
-          .slide-image-frame {
-            cursor: default;
-
-            img {
-              width: 100%;
-            }
-          }          
-        }
-      }
-    }
-
-    .bottom-content {
-      padding: 0 4rem;
-
-      .range {
-
-        .indicator {
-          transition: transform .4s ease;
-        }
-      }
-    } 
-  }
 }
