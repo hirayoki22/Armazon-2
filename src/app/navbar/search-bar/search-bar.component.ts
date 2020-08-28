@@ -80,13 +80,12 @@ export class SearchBarComponent implements OnChanges {
     if (!this.overlay) { return; }
     
     const overlay = this.overlay.nativeElement;
-    
+
     overlay.classList.add('hide');
     window.onkeyup = null;
     
     setTimeout(() => {
       document.body.classList.remove('active-modal');
-      overlay.classList.remove('hide');
       
       this.showSearchbox = false;
       this.notifyChange.emit(this.showSearchbox);

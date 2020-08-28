@@ -3,7 +3,7 @@
   (click)="onClickOutside($event)"
   *ngIf="showSearchbox"
   class="overlay">
-  <section class="search-area">
+  <section #searchbox class="search-area">
     <button 
       (click)="onClose()"
       class="btn-circle close-btn" 
