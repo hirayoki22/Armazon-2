@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-admin-page',
@@ -7,12 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private ts: Title
+  ) { }
 
   ngOnInit(): void {
     window.scrollTo({ top: 0 });
-    const title = <HTMLTitleElement>document.head.querySelector('title');
-    title.textContent = 'Admin Page';
+
+    this.route.data.subscribe(res => console.log(res));
+
+    this.ts.setTitle(this.route.firstChild.snapshot.data['title']);
   }
 
 }

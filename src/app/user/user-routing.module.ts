@@ -33,8 +33,7 @@ const routes: Routes = [
       },
       { 
         path: 'admin-page', 
-        loadChildren: () => import('./admin-page/admin-page.module').then(m => m.AdminPageModule),
-        data: { tile: 'Admin Account'} 
+        loadChildren: () => import('./admin-page/admin-page.module').then(m => m.AdminPageModule)
       }
     ] 
   }

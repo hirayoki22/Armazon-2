@@ -14,12 +14,14 @@ const routes: Routes = [
       { 
         path: 'product-creation', 
         component: ProductCreationComponent,
-        canActivate: [AdminAuthGuard] 
+        canActivate: [AdminAuthGuard],
+        data: { title: 'Add Product' }
       },
       { 
         path: 'product-list', 
         component: ProductListComponent,
-        canActivate: [AdminAuthGuard]  
+        canActivate: [AdminAuthGuard],
+        data: { title: 'Existing Products' }  
       },
       { path: '', redirectTo: 'product-creation' }
     ]
