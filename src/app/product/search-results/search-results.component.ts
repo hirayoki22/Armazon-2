@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Product } from '../models/product.model';
 import { ProductService } from '../services/product.service';
-import { CartService } from '../services/cart.service';
+import { ShoppingBagService } from '../services/shopping-bag.service';
 
 @Component({
   templateUrl: './search-results.component.html',
@@ -13,7 +13,7 @@ export class SearchResultsComponent implements OnInit {
 
   constructor(
     private ps: ProductService,
-    private cs: CartService
+    private cs: ShoppingBagService
   ) { }
 
   ngOnInit(): void {
@@ -22,12 +22,12 @@ export class SearchResultsComponent implements OnInit {
     });
   }
 
-  onAddToCart(productId: number, quantity = 1): void {
+  onAddToBag(productId: number, quantity = 1): void {
     const details = {
       productId: productId,
       quantity: quantity
     }
-    this.cs.addToCart(details).subscribe();
+    this.cs.addToBag(details).subscribe();
   }
   
 }
