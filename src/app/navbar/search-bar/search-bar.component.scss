@@ -173,13 +173,16 @@
 
           .product-srch-name {
             position: relative;
-            display: flex;
+            display: inline-block;
             width: 100%;
             margin-bottom: 0.5rem;
             padding-bottom: 0.2rem;
             color: initial;
             font-weight: 500;
             white-space: nowrap;   
+            text-transform: lowercase;
+            text-overflow: ellipsis;
+            overflow: hidden;
 
             .highlight {
               color: #2587f7;
