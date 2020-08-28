@@ -32,12 +32,11 @@
             <p class="stock-label">
               {{ product.totalStock > 0 ? 'In stock' : 'Not in stock' }}
             </p>
-
-            <star-rating [productId]="product.productId"></star-rating>
           </div>
         </div>
 
         <div class="action-buttons">
+          <star-rating [productId]="product.productId"></star-rating>
           <button 
             (click)="onAddToBag(product.productId)"
             class="add-to-cart-btn" 
