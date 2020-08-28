@@ -6,7 +6,7 @@ import { Observable, fromEvent, of } from 'rxjs';
 import { map, switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 import { ProductService } from 'src/app/product/services/product.service';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { SrchMatch } from 'src/app/product/models/srch-match.model';
 
 @Component({
@@ -18,7 +18,7 @@ export class SearchBarComponent implements OnChanges {
   @ViewChild('overlay') overlay: ElementRef<HTMLElement>;
   @Input() showSearchbox: boolean;
   @Output('showSearchbox') notifyChange = new EventEmitter<boolean>();
-  srchControl: FormControl = new FormControl(null);
+  srchControl: FormControl = new FormControl(null, Validators.required);
   matches$: Observable<SrchMatch[]>;
   srchHistory: SrchMatch[];
   isFocused: boolean = false;

@@ -17,7 +17,7 @@
           [class.focused]="isFocused || srchControl.value">
           <button 
             (click)="beginSearch()"
-            [disabled]="!srchControl.value"
+            [disabled]="srchControl.invalid"
             class="btn-circle srch-btn">
             <i class="material-icons">search</i>
           </button>
