@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { CartService } from '../services/cart.service';
-import { CartItem } from '../models/cart-item.model';
+import { ShoppingBagService } from '../services/shopping-bag.service';
+import { BagItem } from '../models/shopping-bag-item.model';
 import { Product } from '../models/product.model';
 
 @Component({
@@ -13,7 +13,7 @@ import { Product } from '../models/product.model';
 })
 export class ShoppingBag implements OnInit {
   @ViewChild('itemList') itemList: ElementRef<HTMLElement>;
-  bagItems: CartItem[] = [];
+  bagItems: BagItem[] = [];
   showShoppingBag: boolean = false;
   isLoading: boolean = false;
   isLoggedin: boolean = true;
@@ -30,15 +30,15 @@ export class ShoppingBag implements OnInit {
 
   constructor(
     private router: Router,
-    private cs: CartService
+    private cs: ShoppingBagService
   ) { }
 
   ngOnInit(): void {
-    this.cs.cartViewState$.subscribe(view => {
+    this.cs.bagViewState$.subscribe(view => {
       this.showShoppingBag = view;
       this.isLoading = true;
       
-      this.cs.getShoppingCart().subscribe(res => {
+      this.cs.getShoppingBag().subscribe(res => {
         if (typeof res === 'boolean') {
           this.isLoggedin = false;
         } else {
@@ -77,7 +77,7 @@ export class ShoppingBag implements OnInit {
   }
 
   onRemove(productId: number): void {
-    this.cs.removeFromCart(productId).subscribe();
+    this.cs.removeFromBag(productId).subscribe();
   }
 
   proceedToCheckOut(): void {

@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Observable, Subject, throwError, of } from 'rxjs';
 import { delay, map, catchError, tap, switchMap } from 'rxjs/operators';
 
-import { CartItem } from '../models/cart-item.model';
+import { BagItem } from '../models/shopping-bag-item.model';
 import { UserService } from 'src/app/user/services/user.service';
 
 const httpOptions = {
@@ -16,14 +16,14 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class CartService {
-  private URL = 'http://127.0.0.1/market-api/shopping-cart.php';
+export class ShoppingBagService {
+  private URL = 'http://127.0.0.1/market-api/shopping-bag.php';
 
-  private cartViewStateSource: Subject<boolean> = new Subject();
-  cartViewState$: Observable<boolean> = this.cartViewStateSource.asObservable();
+  private bagViewStateSource: Subject<boolean> = new Subject();
+  bagViewState$: Observable<boolean> = this.bagViewStateSource.asObservable();
 
-  private cartChangeSource: Subject<boolean> = new Subject();
-  cartChange$: Observable<boolean> = this.cartChangeSource.asObservable();
+  private bagChangeSource: Subject<boolean> = new Subject();
+  bagChange$: Observable<boolean> = this.bagChangeSource.asObservable();
 
 
   constructor(
@@ -31,8 +31,8 @@ export class CartService {
     private us: UserService
   ) { }
 
-  openShoppingCart(view: boolean): void {
-    this.cartViewStateSource.next(view);
+  openShoppingBag(view: boolean): void {
+    this.bagViewStateSource.next(view);
   }
 
   get itemCount(): Observable<number> {
@@ -53,11 +53,11 @@ export class CartService {
     );
   }
 
-  getShoppingCart(): Observable<CartItem[] | boolean> {
+  getShoppingBag(): Observable<BagItem[] | boolean> {
     return this.us.isLoggedin.pipe(
       switchMap(state => {
         if (state) {
-          return this.http.get<CartItem[]>(this.URL, httpOptions)
+          return this.http.get<BagItem[]>(this.URL, httpOptions)
           .pipe(
             delay(300),
             catchError(this.errorHandler)
@@ -69,20 +69,20 @@ export class CartService {
     ); 
   }
 
-  addToCart(item: {productId: number, quantity: number}) {
+  addToBag(item: {productId: number, quantity: number}) {
     return this.us.isLoggedin.pipe(
       switchMap(loggedin => {
         if (loggedin) {
           return this.http.post<any>(this.URL, item, httpOptions)
           .pipe(
             tap(() => {
-              this.cartViewStateSource.next(true);
-              this.cartChangeSource.next(true);
+              this.bagViewStateSource.next(true);
+              this.bagChangeSource.next(true);
             }),
             catchError(this.errorHandler)
           );
         } else {
-          return of(this.cartViewStateSource.next(true));
+          return of(this.bagViewStateSource.next(true));
         }
       })
     );
@@ -94,21 +94,21 @@ export class CartService {
   }): Observable<any> {
     return this.http.put<any>(this.URL, item, httpOptions).pipe(
       tap(() => {
-        this.cartViewStateSource.next(true);
-        this.cartChangeSource.next(true);
+        this.bagViewStateSource.next(true);
+        this.bagChangeSource.next(true);
       }),
       catchError(this.errorHandler)
     );
   }
 
-  removeFromCart(productId: number): Observable<any> { 
+  removeFromBag(productId: number): Observable<any> { 
     return this.http.delete<any>(
       `${this.URL}?productId=${productId}`,
       httpOptions
     ).pipe(
       tap(() => {
-        this.cartViewStateSource.next(true);
-        this.cartChangeSource.next(true);
+        this.bagViewStateSource.next(true);
+        this.bagChangeSource.next(true);
       }),
       catchError(this.errorHandler)
     );
