@@ -23,10 +23,6 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  onBuyNow(productId: number): void {
-    console.log('Buying product ', productId);
-  }
-
   onAddToCart(productId: number, quantity = 1): void {
     const details = {
       productId: productId,
