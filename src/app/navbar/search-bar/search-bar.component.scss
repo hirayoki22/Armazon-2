@@ -142,13 +142,10 @@
             .product-srch-name {
               position: relative;
               width: 100%;
-              margin-bottom: 0.5rem;
-              padding-bottom: 0.2rem;
+              margin-bottom: 0.7rem;
               color: #222;
               font-weight: 500;
               white-space: nowrap;   
-              text-overflow: ellipsis;
-              overflow: hidden;
 
               .highlight {
                 color: #2587f7;
@@ -160,7 +157,6 @@
             }
 
             .product-srch-category {
-              padding-bottom: 0.2rem;
               font-size: .8rem;
             }
           } 
