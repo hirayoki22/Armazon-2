@@ -6,7 +6,7 @@
 
     <div *ngIf="!isLoading" class="details-container">
       <div class="slider-wrapper" [class.reloading]="reloading">
-        <image-slider [images]="product.images" ></image-slider>
+        <image-slider [images]="product.images"></image-slider>
       </div>
   
       <div *ngIf="!isLoading" class="product-information">  
@@ -32,7 +32,6 @@
               </div>
             </div>   
             
-            <!-- Product rating / review -->
             <star-rating [productId]="originalId"></star-rating>
           </div>
 
@@ -54,7 +53,7 @@
             (click)="onAddToCart(product?.productId)"
             [disabled]="!product?.available || !product?.totalStock"
             type="button" 
-            class="btn-xl-filled add-to-cart-btn">Add to cart</button>
+            class="btn-xl-filled add-to-cart-bag">Add to bag</button>
         </div>
   
         <div class="about-product" [class.reloading]="reloading">
@@ -63,7 +62,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </section>
 

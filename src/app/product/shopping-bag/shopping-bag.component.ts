@@ -7,24 +7,24 @@ import { CartItem } from '../models/cart-item.model';
 import { Product } from '../models/product.model';
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss']
+  selector: 'shopping-bag',
+  templateUrl: './shopping-bag.component.html',
+  styleUrls: ['./shopping-bag.component.scss']
 })
-export class CartComponent implements OnInit {
+export class ShoppingBag implements OnInit {
   @ViewChild('itemList') itemList: ElementRef<HTMLElement>;
-  cartItems: CartItem[] = [];
-  viewCart: boolean = false;
+  bagItems: CartItem[] = [];
+  showShoppingBag: boolean = false;
   isLoading: boolean = false;
   isLoggedin: boolean = true;
 
   get subtotal(): number {
-    return Math.round(this.cartItems.map(item => item.subtotal)
+    return Math.round(this.bagItems.map(item => item.subtotal)
     .reduce((a, b) => a + b, 0) * 100) / 100;
   }
 
   get itemCount(): number {
-    return this.cartItems.map(item => item.quantity)
+    return this.bagItems.map(item => item.quantity)
     .reduce((a, b) => a + b, 0);
   }
 
@@ -35,14 +35,14 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.cs.cartViewState$.subscribe(view => {
-      this.viewCart = view;
+      this.showShoppingBag = view;
       this.isLoading = true;
       
       this.cs.getShoppingCart().subscribe(res => {
         if (typeof res === 'boolean') {
           this.isLoggedin = false;
         } else {
-          this.cartItems = res;
+          this.bagItems = res;
           this.isLoggedin = true;
         }
         this.isLoading = false;
@@ -81,15 +81,15 @@ export class CartComponent implements OnInit {
   }
 
   proceedToCheckOut(): void {
-    this.viewCart = false;
+    this.showShoppingBag = false;
     this.router.navigate(
       ['./checkout'], 
-      { state: { data: this.cartItems } }
+      { state: { data: this.bagItems } }
     );
   }
 
   onClose(): void {
-    this.viewCart = false;
-    this.cartItems = [];
+    this.showShoppingBag = false;
+    this.bagItems = [];
   }
 }

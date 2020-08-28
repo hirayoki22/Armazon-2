@@ -1,4 +1,4 @@
-<aside-panel [showPanel]="viewCart" (showPanel)="onClose()">
+<aside-panel [showPanel]="showShoppingBag" (showPanel)="onClose()">
   <item-loader [isLoading]="isLoading"></item-loader>
 
   <div class="cart">
@@ -10,17 +10,17 @@
     </div>
 
     <div 
-      *ngIf="isLoggedin && !isLoading && !cartItems?.length" 
+      *ngIf="isLoggedin && !isLoading && !bagItems?.length" 
       class="empty-cart-msg">
       <h3>Is very lonely in here</h3>
       <a href="/product" class="btn-xl-filled">Start shopping</a>
     </div>
 
-    <div *ngIf="cartItems?.length" class="content">
+    <div *ngIf="bagItems?.length" class="content">
       <ul #itemList class="item-list">
         <h3 class="title">Shopping Cart</h3>
 
-        <li *ngFor="let item of cartItems">
+        <li *ngFor="let item of bagItems">
           <div *ngIf="item.productImage" class="product-image">
             <img image-loader [src]="item.productImage" [alt]="item.productName">
           </div>
@@ -69,7 +69,7 @@
     </div>
 
     <div 
-      *ngIf="cartItems?.length && !isLoading" 
+      *ngIf="bagItems?.length && !isLoading" 
       class="bottom">
       <div class="subtotal">
         <span class="subtotal-items">Items: <strong>{{ itemCount | number }}</strong></span>

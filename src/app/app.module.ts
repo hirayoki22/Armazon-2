@@ -6,7 +6,7 @@ import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { CartComponent } from './product/cart/cart.component';
+import { ShoppingBag } from './product/shopping-bag/shopping-bag.component';
 import { SearchBarComponent } from './navbar/search-bar/search-bar.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainComponent } from './main/main.component';
@@ -17,7 +17,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
   declarations: [
     AppComponent,
     NavbarComponent,
-    CartComponent,
+    ShoppingBag,
     SearchBarComponent,
     FooterComponent,
     MainComponent,
