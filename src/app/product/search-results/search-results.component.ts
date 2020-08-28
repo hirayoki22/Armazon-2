@@ -5,11 +5,10 @@ import { ProductService } from '../services/product.service';
 import { CartService } from '../services/cart.service';
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  templateUrl: './search-results.component.html',
+  styleUrls: ['./search-results.component.scss']
 })
-export class SearchComponent implements OnInit {
+export class SearchResultsComponent implements OnInit {
   products: Product[] = [];
 
   constructor(
