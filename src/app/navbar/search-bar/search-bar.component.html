@@ -51,7 +51,7 @@
                 class="product-srch-icon">
               <div class="product-srch-details">
                 <p class="product-srch-name">
-                  <strong class="highlight">{{srchControl.value | lowercase}}</strong><span>{{match.productName.slice(srchControl.value.length) | lowercase}}</span>
+                  <strong class="highlight">{{srchMatchHighlight(match.productName)}}</strong><span>{{srchMatchRemainder(match.productName)}}</span>
                 </p>
                 <p class="product-srch-category">{{ match.category }}</p>
               </div>

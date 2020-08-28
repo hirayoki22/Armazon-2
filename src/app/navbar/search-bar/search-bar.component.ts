@@ -23,6 +23,14 @@ export class SearchBarComponent implements OnChanges {
   srchHistory: SrchMatch[];
   isFocused: boolean = false;
 
+  srchMatchHighlight(name: string): string {
+    return name.slice(0, this.srchControl.value.length).toLowerCase();
+  }
+
+  srchMatchRemainder(name: string): string {
+    return name.slice(this.srchControl.value.length).toLowerCase();
+  }
+
   constructor(
     private router: Router,
     private ps: ProductService
