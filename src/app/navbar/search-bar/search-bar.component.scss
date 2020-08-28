@@ -118,12 +118,14 @@
   .bottom-content {
     width: 100%;
     height: inherit;
+    margin-top: 2rem;
+    padding-bottom: 5rem;
     user-select: none;
 
     .title {
       display: flex;
       align-items: center;
-      margin-top: 2rem;
+      margin-bottom: 1rem;
 
       p, button {
         font-size: .8rem;
@@ -133,14 +135,6 @@
         margin-left: .85rem;
         text-decoration: underline;
       }
-    }
-
-    .search-results {
-      margin-top: 3rem;
-    }
-
-    .search-history {
-      margin-top: 1rem;
     }
 
     .search-results,
@@ -154,7 +148,7 @@
           position: relative;
           display: flex;
           align-items: center;
-          max-width: 532px;
+          max-width: 650px;
           padding: 1rem 1rem 1rem 0;
           border-radius: 4px;
           overflow: hidden;
