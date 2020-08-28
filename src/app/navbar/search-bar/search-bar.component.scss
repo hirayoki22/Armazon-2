@@ -13,36 +13,6 @@
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
   animation: grow .3s ease forwards;
   
-  .btn-circle {
-    flex-shrink: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 35px;
-    height: 35px;
-    border-radius: 40px;
-    transition: background-color .4s ease,
-    opacity .4s ease;
-
-    &:disabled {
-      opacity: 0.6;
-      cursor: default;
-    }
-
-    .material-icons {
-      color: #7a8196;
-      font-size: 1.2rem;
-      transition: color .4s ease;
-    }
-
-    &:not(:disabled):hover {
-      .material-icons {
-        color: darken(#7a8196, 5);
-      }
-      background-color: #eef0f5;
-    }
-  }
-
   .close-btn {
     margin-left: auto;
   }
