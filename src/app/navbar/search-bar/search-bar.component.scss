@@ -136,16 +136,27 @@
           }
 
           .product-srch-details {
-            width: inherit;
-            overflow: hidden;
+            width: inherit;            
+
+            &::after {
+              content: '';
+              position: absolute;
+              top: 0;
+              right: -15px;
+              width: 30px;
+              height: 70%;
+              background-image: linear-gradient(90deg, transparent, #fff 60%);
+            }
 
             .product-srch-name {
               position: relative;
               width: 100%;
-              margin-bottom: 0.7rem;
+              margin-bottom: 0.5rem;
+              padding-bottom: 0.2rem;
               color: #222;
               font-weight: 500;
-              white-space: nowrap;   
+              white-space: nowrap;
+              overflow: hidden;  
 
               .highlight {
                 color: #2587f7;
