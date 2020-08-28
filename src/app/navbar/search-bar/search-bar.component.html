@@ -56,7 +56,7 @@
                   {{ srchControl.value }}
                 </strong>
                 <span>
-                  {{ getStyledName(match.productName | lowercase) }}
+                  {{ match.productName.slice(srchControl.value.length) }}
                 </span>
               </a>
               <p class="product-srch-category">{{ match.category }}</p>

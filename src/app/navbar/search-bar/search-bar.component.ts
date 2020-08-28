@@ -29,7 +29,7 @@ export class SearchBarComponent implements OnChanges {
   ) { }
 
   getStyledName(name: string): string {
-    const keyword = this.srchControl.value.trim().toLowerCase();
+    const keyword = this.srchControl.value;
     return name.slice(keyword.length);
   }
 

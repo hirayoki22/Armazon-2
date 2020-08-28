@@ -169,6 +169,7 @@
 
         .product-srch-details {
           max-width: 500px;
+          overflow: hidden;
 
           .product-srch-name {
             position: relative;
@@ -184,9 +185,9 @@
               color: #2587f7;
             }
 
-            &:hover {
-              text-decoration: underline;
-            }
+            // &:hover {
+            //   text-decoration: underline;
+            // }
           }
 
           .product-srch-category {
