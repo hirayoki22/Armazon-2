@@ -6,7 +6,9 @@
   <section class="search-area">
     <button 
       (click)="onClose()"
-      class="btn-circle close-btn" title="Close">
+      class="btn-circle close-btn" 
+      title="Close"
+      aria-label="Close">
       <i class="material-icons">close</i>
     </button>
 
@@ -18,7 +20,8 @@
           <button 
             (click)="beginSearch()"
             [disabled]="srchControl.invalid"
-            class="btn-circle srch-btn">
+            class="btn-circle srch-btn"
+            aria-label="Search">
             <i class="material-icons">search</i>
           </button>
 
@@ -34,7 +37,8 @@
           <button 
             (click)="srchControl.reset(); input.focus()"
             class="btn-circle reset-srch-control"
-            [class.visible]="srchControl.value">
+            [class.visible]="srchControl.value"
+            aria-label="Clear search field">
             <i class="material-icons">clear</i>
           </button>
         </div>
@@ -64,7 +68,8 @@
             <p>Search history</p>
             <button 
               (click)="clearSrchHistory()" 
-              class="clear-history-btn">Clear</button>
+              class="clear-history-btn"
+              aria-label="Clear history">Clear</button>
           </div>
           <ul class="search-history">
             <li *ngFor="let srchItem of srchHistory">

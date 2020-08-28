@@ -1,20 +1,32 @@
 <nav class="navbar">
   <div class="wrapper-l navbar-wrapper">
-    <a routerLink="/" class="logo">
+    <a routerLink="/" class="logo" aria-label="Armazon logo">
       <span>A</span>
       <span>rmazon</span>
     </a>
     
     <div class="user-options">
-      <button (click)="showSearchbox = true" class="search-btn nav-btn" type="button">
+      <button 
+        (click)="showSearchbox = true" 
+        class="search-btn nav-btn" 
+        aria-label="Search"
+        type="button">
         <i class="material-icons">search</i>
       </button>
 
-      <button routerLink="/user" class="login-btn nav-btn" type="button">
+      <button 
+        routerLink="/user" 
+        class="login-btn nav-btn" 
+        type="button"
+        aria-label="User profile">
         <i class="material-icons">person</i>
       </button>
   
-      <button (click)="openCart()" class="cart-btn nav-btn" type="button">
+      <button 
+        (click)="openCart()" 
+        class="cart-btn nav-btn" 
+        type="button"
+        aria-label="Shopping bag">
         <i class="fas fa-shopping-bag"></i>
         <span *ngIf="itemCount" class="badge">
           {{ itemCount }}
