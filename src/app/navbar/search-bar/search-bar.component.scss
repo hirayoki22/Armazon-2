@@ -174,7 +174,7 @@
               width: 100%;
               margin-bottom: 0.5rem;
               padding-bottom: 0.2rem;
-              color: initial;
+              color: #222;
               font-weight: 500;
               white-space: nowrap;   
               text-overflow: ellipsis;
@@ -184,9 +184,9 @@
                 color: #2587f7;
               }
 
-              // &:hover {
-              //   text-decoration: underline;
-              // }
+              span {
+                color: #222;
+              }
             }
 
             .product-srch-category {
