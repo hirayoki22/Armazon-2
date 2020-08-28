@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProductComponent } from './product.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ProductExistsGuard } from './guards/product-exists.guard';
-import { SearchComponent } from './search-results/search.component';
+import { SearchResultsComponent } from './search-results/search-results.component';
 
 const routes: Routes = [
   { 
@@ -12,7 +12,7 @@ const routes: Routes = [
     component: ProductComponent,
     children: [
       { path: '', redirectTo: 'results', pathMatch: 'full' },
-      { path: 'results', component: SearchComponent },
+      { path: 'results', component: SearchResultsComponent },
       { 
         path: ':id', 
         component: ProductDetailsComponent,

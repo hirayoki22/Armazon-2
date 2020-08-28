@@ -50,7 +50,7 @@
             class="btn-xl buy-now-btn">Buy now</button>
   
           <button 
-            (click)="onAddToCart(product?.productId)"
+            (click)="onAddToBag(product?.productId)"
             [disabled]="!product?.available || !product?.totalStock"
             type="button" 
             class="btn-xl-filled add-to-cart-bag">Add to bag</button>

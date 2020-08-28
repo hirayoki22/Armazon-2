@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../services/product.service';
 import { Product } from '../models/product.model';
 import { ProductVariant } from '../models/product-variant.model';
-import { CartService } from '../services/cart.service';
+import { ShoppingBagService } from '../services/shopping-bag.service';
 import { delay } from 'rxjs/operators';
 import { SrchMatch } from '../models/srch-match.model';
 
@@ -25,7 +25,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
   constructor(
     private route: ActivatedRoute,
     private ps: ProductService,
-    private cs: CartService
+    private cs: ShoppingBagService
   ) { }
 
   ngOnInit(): void {
@@ -105,12 +105,12 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     console.log('Buying product ', productId);
   }
 
-  onAddToCart(productId: number): void {
+  onAddToBag(productId: number): void {
     const item = {
       productId: productId,
       quantity: this.quantity
     }
-    this.cs.addToCart(item).subscribe();
+    this.cs.addToBag(item).subscribe();
   }
 
 }
