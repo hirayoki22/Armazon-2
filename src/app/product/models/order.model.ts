@@ -1,7 +1,7 @@
-import { CartItem } from '../models/cart-item.model';
+import { BagItem } from '../models/shopping-bag-item.model';
 
 export interface Order {
   userId: number;
-  items: CartItem[];
+  items: BagItem[];
   total: number;
 }

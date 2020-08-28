@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { CartItem } from '../product/models/cart-item.model';
+import { BagItem } from '../product/models/shopping-bag-item.model';
 import { OrderService } from '../product/services/order.service';
 import { Order } from '../product/models/order.model';
 
@@ -11,7 +11,7 @@ import { Order } from '../product/models/order.model';
   styleUrls: ['./checkout.component.scss']
 })
 export class CheckoutComponent implements OnInit {
-  cartItems: CartItem[] = [];
+  bagItems: BagItem[] = [];
   subtotal: number = 0;
   isLoading: boolean = false;
 
@@ -22,14 +22,14 @@ export class CheckoutComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.cartItems = history.state.data;
-    console.log(this.cartItems);
+    this.bagItems = history.state.data;
+    console.log(this.bagItems);
   }
 
   completeCheckout(): void {
     const order: Order = {
       userId: 1,
-      items: this.cartItems,
+      items: this.bagItems,
       total: this.subtotal
     };
     
