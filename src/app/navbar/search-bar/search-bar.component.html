@@ -52,7 +52,12 @@
               <a 
                 href="/products/{{ match.productId }}"
                 class="product-srch-name">
-                {{ match.productName }}
+                <strong class="highlight">
+                  {{ srchControl.value }}
+                </strong>
+                <span>
+                  {{ getStyledName(match.productName | lowercase) }}
+                </span>
               </a>
               <p class="product-srch-category">{{ match.category }}</p>
             </div>

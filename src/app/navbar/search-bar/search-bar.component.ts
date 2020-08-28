@@ -28,6 +28,11 @@ export class SearchBarComponent implements OnChanges {
     private ps: ProductService
   ) { }
 
+  getStyledName(name: string): string {
+    const keyword = this.srchControl.value.trim().toLowerCase();
+    return name.slice(keyword.length);
+  }
+
   ngOnChanges(): void {
     if (this.showSearchbox) {
       this.srchHistory = localStorage.getItem('search-history') ?
@@ -41,7 +46,7 @@ export class SearchBarComponent implements OnChanges {
           return keyword?.length ? this.ps.searchProduct(keyword) : of ([]);
         })
       );
-        
+
       document.body.classList.add('active-modal');
       fromEvent(window, 'keyup').subscribe((e: KeyboardEvent) => {
         if (e.key == 'Escape') { this.onClose(); }
@@ -73,16 +78,16 @@ export class SearchBarComponent implements OnChanges {
     
     const overlay = this.overlay.nativeElement;
     
-    this.srchControl.reset();
     overlay.classList.add('hide');
     window.onkeyup = null;
-
+    
     setTimeout(() => {
       document.body.classList.remove('active-modal');
       overlay.classList.remove('hide');
-
+      
       this.showSearchbox = false;
       this.notifyChange.emit(this.showSearchbox);
+      this.srchControl.reset();
     }, 300);
   }
 
