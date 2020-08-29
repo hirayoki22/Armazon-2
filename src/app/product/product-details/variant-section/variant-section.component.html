@@ -1,8 +1,11 @@
 <div *ngIf="variants.length" class="variant-wrapper">
   <section *ngIf="colorVariants?.length" class="variant-option color">
-    <button class="variant-type">
-      <h3>Color</h3>
-      <p>{{ variantValue }}</p>
+    <button class="show-all-btn">
+      <div class="variant-type">
+        <h3>Color</h3>
+        <p>{{ variantValue }}</p>
+      </div>
+      <i class="material-icons">keyboard_arrow_right</i>
     </button>
 
     <div class="option-flex">
