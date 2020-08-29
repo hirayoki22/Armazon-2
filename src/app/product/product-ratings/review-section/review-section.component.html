@@ -26,9 +26,13 @@
           <p [innerHTML]="getReviewBody(review)"></p>
 
           <div 
-            *ngIf="isLong(review.review) && !review.expandReview" 
-            class="read-more-btn">
-            <button (click)="review.expandReview = true">Read more</button>
+            *ngIf="isLong(review.review)" 
+            class="read-more-btn"
+            [class.expanded]="review.expandReview">
+            <button (click)="review.expandReview = !review.expandReview">
+              <span *ngIf="!review.expandReview">Read more</span>
+              <span *ngIf="review.expandReview">Read less</span>
+            </button>
           </div>
         </div>        
       </article>

@@ -78,17 +78,25 @@
             background: linear-gradient(transparent, #fff);
             z-index: 1;
 
+            &.expanded {
+              background: none;
+            }
+
             button {
-              position: relative;
-              width: fit-content;
-              color: #2587f7;
+              margin-top: 1.5rem;
+              padding: 0.2rem 0.5rem;
               font-size: 0.8rem;
-              white-space: nowrap;
-              text-shadow: 0 0 6px #ddd;
-              transition: color .4s ease;
+              
+              span {
+                color: #2587f7;
+                white-space: nowrap;
+                transition: color .4s ease;
+              }
             
               &:hover {
-                color: lighten(#2587f7, 10);
+                span {
+                  color: darken(#2587f7, 10);
+                }
               }
             }
           }
