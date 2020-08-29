@@ -189,8 +189,12 @@
     }
 
     .checkout-btn {
-      width: 100%;
+      width: 60%;
       margin-top: 1.5rem;
+
+      @media (max-width: 600px) {
+        width: 100%;
+      }
     }
   }
 }
