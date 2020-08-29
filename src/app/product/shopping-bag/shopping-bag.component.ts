@@ -45,7 +45,7 @@ export class ShoppingBag implements OnInit {
           this.bagItems = res;
           this.isLoggedin = true;
         }
-        // this.isLoading = false;
+        this.isLoading = false;
       });
     });
   }
