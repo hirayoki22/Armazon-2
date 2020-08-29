@@ -14,12 +14,14 @@ export class SliderComponent implements OnChanges, AfterViewInit {
   @ViewChildren('preview') previews: QueryList<ElementRef<HTMLElement>>;
   @Input() images: string[];
   altImages: string[];
+  hasMoreImages: boolean = false;
   showAllImages: boolean = false;
 
   constructor(private ls: LightboxService) { }
 
   ngOnChanges(): void {
     this.altImages = this.images.slice(0, 4);
+    this.hasMoreImages = this.images.length > this.altImages.length;
   }
 
   toggleAllImages(): void {
