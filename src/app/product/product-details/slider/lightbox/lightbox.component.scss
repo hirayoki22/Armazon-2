@@ -54,14 +54,12 @@
       }
 
       @media (max-width: 768px) {
-        & {
-          &.before {
-            left: 1.5rem;
-          }
-      
-          &.after {
-            right: 1.5rem;
-          }
+        &.before {
+          left: 1.5rem;
+        }
+    
+        &.after {
+          right: 1.5rem;
         }
       }
     }
@@ -111,7 +109,7 @@
           cursor: zoom-out;
 
           img {
-            transform: scale(2);
+            transform: scale(1.3);
           }
         }
       }
@@ -128,9 +126,7 @@
     transition: all .3s ease;
 
     @media (max-width: 768px) {
-      & {
-        padding: 0 4rem;
-      }
+      padding: 0 4rem;
     }
 
     .range-clickable-area {
