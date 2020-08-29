@@ -7,7 +7,9 @@
 
   <input 
     (change)="onChange(+$event.target.value)"
-    type="number" class="quantity" [value]="quantity">
+    [value]="quantity"
+    type="number"
+    class="quantity"> 
 
   <button 
     (click)="selectQuantity('plus')"

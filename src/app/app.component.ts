@@ -33,8 +33,8 @@ export class AppComponent implements OnInit {
   private hideNavbarFooter(url: string): void {
     const routes = ['/user/login', '/user/signup', '/404'];
     
-    this.hideNavbar = routes.includes(url);
-    this.hideFooter = routes.includes(url);
+    this.hideNavbar = routes.some(route => url.includes(route));
+    this.hideFooter = routes.some(route => url.includes(route));
   }
 
   private changePageTitle(): void {
