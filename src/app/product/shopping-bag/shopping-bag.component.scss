@@ -191,6 +191,7 @@
     .checkout-btn {
       width: 60%;
       margin-top: 1.5rem;
+      transition: width .3s ease;
 
       @media (max-width: 600px) {
         width: 100%;
