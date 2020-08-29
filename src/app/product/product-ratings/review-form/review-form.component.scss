@@ -20,6 +20,10 @@
     &::-webkit-scrollbar {
       display: none;
     }
+
+    @media (max-width: 768px) {
+      padding: 87.19px 2.5rem 2.5rem;
+    }
   }
 
   .product-details {
@@ -33,8 +37,8 @@
     .product-image {
       display: flex;
       flex-wrap: wrap;
-      width: 300px;
-      height: 300px;
+      width: 240px;
+      height: 240px;
       margin-bottom: 0.6rem;
       overflow: hidden;
       user-select: none;
@@ -108,6 +112,10 @@
       font-size: 1.2rem;
       font-weight: 300;
       text-align: center;
+
+      @media (max-width: 768px) {
+        font-size: 1rem;
+      }
     }
 
     .icon {
@@ -123,27 +131,6 @@
       .material-icons {
         color: #fff;
         font-size: 2.5rem;
-      }
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  .container {
-    .scrollable-area {
-      padding: 87.19px 2.5rem 2.5rem;
-    }
-
-    .product-details {  
-      .product-image {
-        width: 250px;
-        height: 250px;
-      }
-    }
-
-    .success-msg {
-      h3 {
-        font-size: 1rem;
       }
     }
   }
