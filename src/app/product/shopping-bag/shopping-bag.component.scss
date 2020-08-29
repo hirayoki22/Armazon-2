@@ -122,10 +122,10 @@
               content: '';
               position: absolute;
               top: 0;
-              right: 0;
+              right: -15px;
               width: 30px;
               height: 100%;
-              background-image: linear-gradient(90deg, transparent, #fff);
+              background-image: linear-gradient(90deg, transparent, #fff 60%);
             }
           }
         }
