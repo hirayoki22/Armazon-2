@@ -99,9 +99,13 @@
         width: calc(100% - 130px);
         overflow: hidden;
 
-        .product-name {
-          display: block;
+        .product-name,
+        .price,
+        .stock-label {
           margin-bottom: 0.5rem;
+        }
+
+        .product-name {
           color: #2587f7;
           font-weight: 500;
           line-height: 1.5rem;
@@ -114,7 +118,6 @@
         }
 
         .price {
-          margin-bottom: 0.5rem;
           font-size: 0.9rem;
           font-weight: 600;
         }
@@ -126,6 +129,7 @@
 
         .quantity {
           display: flex;
+          align-items: center;
         }
 
         .subtotal {
