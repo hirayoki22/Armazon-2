@@ -50,13 +50,11 @@
           margin-bottom: 0.5rem;
           color: #2587f7;
           font-weight: 500;
-          line-height: 1.5rem;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          transition: color 0.3s ease;
+          line-height: 1.3rem;
+          transition: color .4s ease;
 
           &:hover {
-            color: #66a6ff;
+            color: darken(#2587f7, 10);
           }
         }
 
