@@ -29,36 +29,25 @@
       display: none;
     }
 
-    @media (max-width: 768px) {
-      display: flex;
-      width: 100%;
-      height: 350px;          
+    @media (max-width: 600px) {
+      display: flex;  
     }
 
     .preview {
       height: 484px;
       cursor: pointer;
 
-      @media (max-width: 768px) {
+      @media (max-width: 600px) {
         flex-shrink: 0;
         width: 100%;
         height: 350px;    
         scroll-snap-align: center;
-
-        &:not(:last-of-type) {
-          margin-right: 1.5rem;
-        }
-
-        img {
-          width: 100%;
-          height: 100%;
-        }
       }
 
-      // img {
-      //   display: block;
-      //   min-height: 100%;
-      // }
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 
@@ -66,7 +55,7 @@
     margin: 2rem auto 0;
     height: 40px;         
 
-    @media (max-width: 768px) {
+    @media (max-width: 600px) {
       display: none;
     }
 
