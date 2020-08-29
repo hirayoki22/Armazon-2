@@ -24,13 +24,13 @@ export class QuantitySelectorComponent implements OnInit {
       this.quantity = this.quantity < this.limit ?
       this.quantity += 1 : this.quantity;
     }
-
     this.notifyChange.emit(this.quantity);
   }
 
   onChange(value: number): void {
-    this.quantity = value;
-    this.notifyChange.emit(this.quantity);
+    this.quantity = value > this.limit ? this.limit : value;
+    console.log(value);
+    // this.notifyChange.emit(this.quantity);
   }
 
 }
