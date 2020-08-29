@@ -7,7 +7,7 @@ import { ReviewRatingService } from '../services/review-rating.service';
 import { ReviewFormService } from '../services/review-form.service';
 
 @Component({
-  selector: 'app-product-ratings',
+  selector: 'product-ratings',
   templateUrl: './product-ratings.component.html',
   styleUrls: ['./product-ratings.component.scss']
 })
