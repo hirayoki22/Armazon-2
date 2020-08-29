@@ -7,7 +7,6 @@ import { ProductComponent } from './product.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { VariantSectionComponent } from './product-details/variant-section/variant-section.component';
 import { SliderComponent } from './product-details/slider/slider.component';
-import { QuantitySelectorComponent } from './product-details/quantity-selector/quantity-selector.component';
 import { ProductRatingsComponent } from './product-ratings/product-ratings.component';
 import { RatingGraphComponent } from './product-ratings/rating-graph/rating-graph.component';
 import { ReviewSectionComponent } from './product-ratings/review-section/review-section.component';
@@ -22,7 +21,6 @@ import { SearchResultsComponent } from './search-results/search-results.componen
     ProductDetailsComponent,
     VariantSectionComponent,
     SliderComponent,
-    QuantitySelectorComponent,
     ProductRatingsComponent,
     RatingGraphComponent,
     ReviewSectionComponent,

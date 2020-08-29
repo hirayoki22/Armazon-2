@@ -7,9 +7,9 @@ import { Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./quantity-selector.component.scss']
 })
 export class QuantitySelectorComponent implements OnInit {
+  @Input() quantity: number = 1;  
   @Input() limit: number;
   @Output('quantity') notifyChange: EventEmitter<number> = new EventEmitter();
-  quantity: number = 1;  
 
   constructor() { }
 

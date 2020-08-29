@@ -50,16 +50,17 @@
               </p>
             </div>
 
-            <div class="options">
-              <label for="quantity">
-                Qty: 
-                <input 
-                  (change)="quantityChanges(item, $event.target.value)"
-                  [value]="item.quantity"
-                  name="quantity"
-                  class="quantity"
-                  type="number" min="1" [max]="item.totalStock">
-              </label>
+            <div class="quantity">
+              Qty: 
+              <quantity-selector
+                [limit]="item.totalStock"
+                (quantity)="quantityChanges(item, $event)"></quantity-selector>
+              <input 
+                (change)="quantityChanges(item, $event.value)"
+                [value]="item.quantity"
+                name="quantity"
+                class="quantity"
+                type="number" min="1" [max]="item.totalStock">
             </div>
 
             <div *ngIf="item.quantity > 1" class="subtotal">

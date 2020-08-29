@@ -18,6 +18,7 @@ import { TextareaComponent } from './dynamic-form/textarea/textarea.component';
 import { InputFeedbackComponent } from './dynamic-form/input-feedback/input-feedback.component';
 import { ItemLoaderComponent } from './item-loader/item-loader.component';
 import { InputAutofocusDirective } from './input-autofocus/input-autofocus.directive';
+import { QuantitySelectorComponent } from './quantity-selector/quantity-selector.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { InputAutofocusDirective } from './input-autofocus/input-autofocus.direc
     TextareaComponent,
     InputFeedbackComponent,
     ItemLoaderComponent,
-    InputAutofocusDirective
+    InputAutofocusDirective,
+    QuantitySelectorComponent
   ],
   imports: [ 
     CommonModule,
@@ -57,7 +59,8 @@ import { InputAutofocusDirective } from './input-autofocus/input-autofocus.direc
     TextareaComponent,
     InputFeedbackComponent,
     ItemLoaderComponent,
-    InputAutofocusDirective
+    InputAutofocusDirective,
+    QuantitySelectorComponent
   ]
 })
 export class SharedModule { }
