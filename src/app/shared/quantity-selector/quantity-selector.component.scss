@@ -6,9 +6,15 @@
 
   button {
     padding: 0.5rem 0.7rem;
+    transition: opacity .4s ease;
 
     .material-icons {
       font-size: 0.95rem;
+    }
+
+    &:disabled {
+      opacity: 0;
+      cursor: default;
     }
   }
 
