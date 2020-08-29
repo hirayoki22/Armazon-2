@@ -1,4 +1,7 @@
-<aside-panel [showPanel]="showShoppingBag" (showPanel)="onClose()">
+<aside-panel 
+  [title]="'Shopping bag'"
+  [showPanel]="showShoppingBag" 
+  (showPanel)="onClose()">
   <item-loader [isLoading]="isLoading"></item-loader>
 
   <div class="cart">
@@ -17,10 +20,15 @@
     </div>
 
     <div *ngIf="bagItems?.length" class="content">
+      <h3 class="title">Shopping bag</h3>
       <ul #itemList class="item-list">
-        <h3 class="title">Shopping bag</h3>
-
         <li *ngFor="let item of bagItems">
+          <button 
+            (click)="onRemove(item.productId)"
+            class="remove-btn">
+            <i class="material-icons">remove_circle_outline</i>
+          </button>
+
           <div *ngIf="item.productImage" class="product-image">
             <img image-loader [src]="item.productImage" [alt]="item.productName">
           </div>
@@ -41,18 +49,14 @@
 
             <div class="options">
               <label for="quantity">
-                Quantity: 
+                Qty: 
                 <input 
                   (change)="quantityChanges(item, $event.target.value)"
                   [value]="item.quantity"
                   name="quantity"
-                  id="quantity"
+                  class="quantity"
                   type="number" min="1" [max]="item.totalStock">
               </label>
-
-              <button 
-                (click)="onRemove(item.productId)"
-                class="remove-btn">Remove</button>
             </div>
 
             <div *ngIf="item.quantity > 1" class="subtotal">

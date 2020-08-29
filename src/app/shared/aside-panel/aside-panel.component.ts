@@ -12,6 +12,7 @@ export class AsidePanelComponent implements OnChanges {
   @ViewChild('overlay') overlay: ElementRef<HTMLElement>;
   @ViewChild('panel') panel: ElementRef<HTMLElement>;
   @Input() showPanel: boolean;
+  @Input() title: string;
   @Output('showPanel') notifyChange = new EventEmitter<boolean>();
 
   constructor() { }
