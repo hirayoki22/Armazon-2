@@ -67,10 +67,10 @@
 
       .reset-srch-control {
         opacity: 0;
-        width: 25px;
-        height: 25px;
+        width: 20px;
+        height: 20px;
         pointer-events: none;
-        background-color: #eef0f5;
+        background-color: #dee2ec;
 
         &.visible {
           opacity: 1;
@@ -79,7 +79,11 @@
 
         .material-icons {
           color: initial;
-          font-size: 1rem;
+          font-size: 0.95rem;
+        }
+
+        &:hover {
+          background-color: darken(#dee2ec, 10);
         }
       }
     }
