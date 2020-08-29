@@ -9,6 +9,8 @@
     (change)="onChange(+$event.target.value)"
     [value]="quantity"
     type="number"
+    [max]="limit"
+    min="1"
     class="quantity"> 
 
   <button 
