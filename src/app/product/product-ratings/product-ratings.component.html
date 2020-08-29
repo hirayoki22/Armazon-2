@@ -1,11 +1,13 @@
-<aside-panel [showPanel]="viewRatings" (showPanel)="viewRatings = $event">
+<aside-panel 
+  [title]="'Rating & reviews'"
+  [showPanel]="viewRatings" 
+  (showPanel)="viewRatings = $event">
   <div #container class="rating-container">
     <div *ngIf="isLoading" class="spinner-spacer">
       <app-spinner [loading]="isLoading"></app-spinner>
     </div>
 
     <div class="top">
-      <h3 class="title">Rating & Reviews</h3>
       <p class="rating">{{ rating.overall | number:'1.1-1' }}</p>
 
       <star-rating 
@@ -34,5 +36,4 @@
     </div>
   </div>
 </aside-panel>
-
 <review-form></review-form>
