@@ -12,6 +12,11 @@
   transition: width .3s ease, height .3s ease;
   animation: zoomIn .2s ease;
   overflow: hidden;
+
+  @media (max-width: 600px) {
+    width: 100% !important;
+    height: 100% !important;
+  }
   
   .top {
     position: absolute;
@@ -28,13 +33,6 @@
 
     .close-btn {
       margin-left: auto;
-    }
-  }
-
-  @media (max-width: 600px) {
-    & {
-      width: 100% !important;
-      height: 100% !important;
     }
   }
 }
