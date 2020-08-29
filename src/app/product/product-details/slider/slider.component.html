@@ -16,10 +16,10 @@
     </div>
   
     <button 
-      *ngIf="altImages?.length <= 4 && images.length > altImages?.length"
-      (click)="altImages = images" class="btn-xl show-more-btn">
+      (click)="toggleAllImages()" class="btn-xl show-more-btn">
       <i class="material-icons">photo_camera</i>
-      <span>Show more images</span>
+      <span *ngIf="images.length > altImages.length">Show more</span>
+      <span *ngIf="images.length == altImages.length">Show less</span>
     </button>
   </div>
 
@@ -37,5 +37,4 @@
     </ul>
   </div>
 </div>
-
 <lightbox [images]="images"></lightbox>
