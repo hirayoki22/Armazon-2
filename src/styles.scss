@@ -167,11 +167,10 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 35px;
-  height: 35px;
-  border-radius: 40px;
-  transition: background-color .4s ease,
-  opacity .4s ease;
+  // width: 35px;
+  // height: 35px;
+  // border-radius: 40px;
+  transition: opacity .4s ease;
 
   &:disabled {
     opacity: 0.6;
@@ -188,7 +187,6 @@ img {
     .material-icons {
       color: darken(#7a8196, 5);
     }
-    background-color: #eef0f5;
   }
 }
 

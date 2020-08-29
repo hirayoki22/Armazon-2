@@ -66,7 +66,9 @@ export class ShoppingBag implements OnInit {
           quantity: quantity
         };
     
-        this.cs.updateItemQuantity(item).subscribe();        
+        this.cs.updateItemQuantity(item).subscribe(() => {
+          this.itemList.nativeElement.scrollTo({ top: 0 });
+        });        
         break;
     
       default:
