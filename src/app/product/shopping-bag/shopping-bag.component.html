@@ -25,7 +25,8 @@
         <li *ngFor="let item of bagItems">
           <button 
             (click)="onRemove(item.productId)"
-            class="remove-btn">
+            class="remove-btn"
+            title="Remove from bag">
             <i class="material-icons">remove</i>
           </button>
 
@@ -36,7 +37,9 @@
           <div class="product-info">
             <a 
               [routerLink]="['/products/', item.productId]" 
-              target="_blank" class="product-name">
+              target="_blank" 
+              class="product-name"
+              [title]="item.productName">
               {{ item.productName | textClip:80 }}
             </a>  
     
@@ -76,14 +79,19 @@
       *ngIf="bagItems?.length && !isLoading" 
       class="bottom">
       <div class="subtotal">
-        <span class="subtotal-items">Items: <strong>{{ itemCount | number }}</strong></span>
-        <span class="subtotal-amount">Order Total: <strong>{{ subtotal | currency }}</strong></span>
+        <span class="subtotal-items">
+          Items: <strong>{{ itemCount | number }}</strong>
+        </span>
+        <span class="subtotal-amount">
+          Order Total: <strong>{{ subtotal | currency }}</strong>
+        </span>
       </div>
 
       <button 
         (click)="proceedToCheckOut()" 
-        class="checkout-btn" type="button">
-        Proceed to Checkout
+        class="checkout-btn btn-xl-filled" 
+        type="button">
+        Proceed to checkout
       </button>
     </div>
   </div>
