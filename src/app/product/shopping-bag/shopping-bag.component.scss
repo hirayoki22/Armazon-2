@@ -97,7 +97,7 @@
       }
 
       .product-info {
-        width: calc(100% - 130px);
+        flex: 1;
         overflow: hidden;
 
         .product-name,
@@ -106,15 +106,27 @@
           margin-bottom: 0.5rem;
         }
 
-        .product-name {
+        .product-name {          
+          display: inline-block;
+          width: 100%;
           color: #2587f7;
           font-weight: 500;
-          line-height: 1.5rem;
-          
+          line-height: 1.3rem;
+
           @media (max-width: 600px) {
+            position: relative;
             white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis;
+
+            &::after {
+              content: '';
+              position: absolute;
+              top: 0;
+              right: 0;
+              width: 30px;
+              height: 100%;
+              background-image: linear-gradient(90deg, transparent, #fff);
+            }
           }
         }
 

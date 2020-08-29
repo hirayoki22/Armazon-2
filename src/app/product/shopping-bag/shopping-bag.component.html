@@ -40,8 +40,7 @@
 
           <div class="product-info">
             <a 
-              [routerLink]="['/products/', item.productId]" 
-              target="_blank" 
+              [routerLink]="['/products/', item.productId]"
               class="product-name"
               [title]="item.productName">
               {{ item.productName | textClip:80 }}
@@ -50,11 +49,13 @@
             <div>
               <p class="price">{{ item.price | currency }}</p>
               <p class="stock-label">
-                {{ item.totalStock > 0 ? 'In stock' : 'Not in stock' }}
+                {{ item.totalStock ? 'In stock' : 'Not in stock' }}
               </p>
             </div>
 
-            <div class="quantity">
+            <div 
+              *ngIf="item.available && item.totalStock" 
+              class="quantity">
               <span>Qty: </span>
               <quantity-selector
                 [quantity]="item.quantity"
