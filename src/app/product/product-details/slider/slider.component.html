@@ -23,19 +23,5 @@
       <span *ngIf="images.length == altImages.length">Show less</span>
     </button>
   </div>
-
-  <!-- Small Screen -->
-  <div class="preview-s-wrapper">
-    <ul class="preview-s">
-      <li *ngFor="let image of images; index as index" class="slide">
-        <img 
-          (click)="openLightbox(index)"
-          image-loader
-          [src]="image" 
-          alt="Product Image"
-          draggable="false">
-      </li>
-    </ul>
-  </div>
 </div>
 <lightbox [images]="images"></lightbox>

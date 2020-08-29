@@ -37,7 +37,7 @@ export class SliderComponent implements OnChanges, AfterViewInit {
 
   resizeImagePreviews(): void {
     const previews = this.previews.map(pre => pre.nativeElement);
-    
+
     previews.map(preview => {
       const width = preview.getBoundingClientRect().width;
       preview.style.height = `${width}px`;
