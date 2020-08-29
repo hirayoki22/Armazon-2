@@ -54,13 +54,25 @@
 
       .remove-btn {
         flex-shrink: 0;
+        display: flex;
+        justify-content: center;
+        width: 1.1rem;
+        height: 1.1rem;
+        margin: auto;
         margin-right: 1rem;
-        transition: opacity .4s ease;
+        transition: background-color .4s ease,
+        opacity .4s ease;
+        border-radius: 100%;
+        border: thin solid #7a8196;
 
         .material-icons {
           color: #7a8196;
           font-size: 1.2rem;
           transition: color .4s ease;
+        }
+
+        &:hover {
+          background-color: #eef0f5;
         }
       }
 
@@ -143,7 +155,6 @@
     align-items: center;
     width: 100%;
     padding: 1.5rem 2rem;
-    border-top: thin solid #e7edff;
     background-color: #fff;
 
     &::after {
