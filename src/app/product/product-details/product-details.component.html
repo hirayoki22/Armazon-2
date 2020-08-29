@@ -37,9 +37,11 @@
 
           <variant-section [variants]="variants"></variant-section>
 
-          <quantity-selector
-            [limit]="product?.totalStock"
-            (quantity)="quantity = $event"></quantity-selector>
+          <div class="quantity">
+            <quantity-selector
+              [limit]="product?.totalStock"
+              (quantity)="quantity = $event"></quantity-selector>
+          </div>
         </div>
   
         <div class="action-buttons">

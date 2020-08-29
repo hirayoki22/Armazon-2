@@ -27,7 +27,7 @@
             (click)="onRemove(item.productId)"
             class="remove-btn"
             title="Remove from bag">
-            <i class="material-icons">remove</i>
+            <i class="material-icons">clear</i>
           </button>
 
           <div *ngIf="item.productImage" class="product-image">
@@ -51,7 +51,7 @@
             </div>
 
             <div class="quantity">
-              Qty: 
+              <span>Qty: </span>
               <quantity-selector
                 [quantity]="item.quantity"
                 [limit]="item.totalStock"
