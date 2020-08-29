@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class TextClipPipe implements PipeTransform {
 
   transform(text: string, limit: number): string {
-    return text.length > limit ? text.slice(0, limit) + ' . . .' : text;
+    return text.length > limit ? text.slice(0, limit) + '...' : text;
   }
 
 }
