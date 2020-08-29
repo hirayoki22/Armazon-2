@@ -1,11 +1,11 @@
-.cart {
+.shopping-bag {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
   height: 100%;
 
-  .empty-cart-msg,
+  .empty-bag-msg,
   .not-loggedin-msg {
     margin: 15rem auto;
     user-select: none;

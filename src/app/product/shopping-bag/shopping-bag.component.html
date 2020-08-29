@@ -4,7 +4,7 @@
   (showPanel)="onClose()">
   <item-loader [isLoading]="isLoading"></item-loader>
 
-  <div class="cart">
+  <div class="shopping-bag">
     <div 
       *ngIf="!isLoggedin" 
       class="not-loggedin-msg">
@@ -14,7 +14,7 @@
 
     <div 
       *ngIf="isLoggedin && !isLoading && !bagItems?.length" 
-      class="empty-cart-msg">
+      class="empty-bag-msg">
       <h3>Is very lonely in here</h3>
       <a href="/product" class="btn-xl-filled">Start shopping</a>
     </div>
