@@ -82,6 +82,7 @@
         margin-right: 1.5rem;
         background-color: #fff;
         transition: all .3s ease;
+        user-select: none;
 
         @media (max-width: 600px) {
           width: 90px;

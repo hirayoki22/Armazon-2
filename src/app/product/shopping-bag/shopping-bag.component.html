@@ -31,7 +31,11 @@
           </button>
 
           <div *ngIf="item.productImage" class="product-image">
-            <img image-loader [src]="item.productImage" [alt]="item.productName">
+            <img 
+              image-loader 
+              [src]="item.productImage" 
+              [alt]="item.productName"
+              draggable="false">
           </div>
 
           <div class="product-info">
