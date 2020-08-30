@@ -1,10 +1,18 @@
 <aside-panel 
-  *ngIf="variantOption"
-  [title]="variantOption.label"
+  *ngIf="option"
+  [title]="option.label"
   [showPanel]="showPanel" 
   (showPanel)="onClose()">
 
   <div class="variant-panel">
-
+    <button         
+      *ngFor="let variant of option.variants;"
+      class="option-btn">
+      <span>{{ variant.optionValue }}</span>
+      <img 
+        *ngIf="option.label == 'Color'"
+        [src]="variant.iconUrl" 
+        draggable="false">
+    </button>
   </div>
 </aside-panel> 

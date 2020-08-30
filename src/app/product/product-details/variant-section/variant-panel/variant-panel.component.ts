@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Output, EventEmitter } from '@angular/core';
 import { VariantPanelService } from 'src/app/product/services/variant-panel.service';
 import { VariantOption } from '../variant-section.component';
 
@@ -9,19 +9,21 @@ import { VariantOption } from '../variant-section.component';
   styleUrls: ['./variant-panel.component.scss']
 })
 export class VariantPanelComponent implements OnInit {
-  variantOption: VariantOption;
+  option: VariantOption;
   showPanel: boolean = false;
+  activeVariant: number = 0;
 
   constructor(private panelService: VariantPanelService) { }
 
   ngOnInit(): void {
-    this.panelService.$panelState.subscribe(option => {
-      console.log(option);
+    this.panelService.$panelState.subscribe((option: VariantOption) => {
+      this.showPanel = true;
+      this.option = option;
     });
   }
 
   onClose(): void {
     this.showPanel = false;
-
+    this.option = null;
   }
 }
