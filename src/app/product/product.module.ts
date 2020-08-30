@@ -14,6 +14,7 @@ import { PaginationCntrlsComponent } from './product-ratings/pagination-cntrls/p
 import { LightboxComponent } from './product-details/slider/lightbox/lightbox.component';
 import { ReviewFormComponent } from './product-ratings/review-form/review-form.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
+import { VariantPanelComponent } from './product-details/variant-section/variant-panel/variant-panel.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { SearchResultsComponent } from './search-results/search-results.componen
     LightboxComponent,
     ReviewFormComponent,
     SearchResultsComponent,
+    VariantPanelComponent,
   ],
   imports: [
     CommonModule,

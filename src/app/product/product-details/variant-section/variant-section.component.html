@@ -4,7 +4,9 @@
     <section 
       *ngIf="option.variants.length"
       class="variant-option color">
-      <button class="show-all-btn">
+      <button 
+        (click)="showAllOptions(option.label)"
+        class="show-all-btn">
         <div class="variant-type">
           <h3>{{ option.label }}</h3>
           <p>{{ dynamicVariantValue(index) }}</p>
@@ -14,7 +16,7 @@
 
       <div class="option-flex">
         <button         
-          (click)="onChange(variant.variantId)"
+          (click)="onOptionChange(variant.variantId)"
           *ngFor="let variant of option.variants;"
           (mouseover)="hoveredVariant = variant.variantId"
           (mouseout)="hoveredVariant = activeVariant"
@@ -32,3 +34,7 @@
     </section>
   </div>
 </div>
+<variant-panel
+  [variantLabel]="variantPanelLabel"
+  [showPanel]="showPanel"
+  (showPanel)="showPanel = false"></variant-panel>

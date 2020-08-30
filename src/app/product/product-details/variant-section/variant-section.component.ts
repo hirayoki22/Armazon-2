@@ -16,6 +16,8 @@ export class VariantSectionComponent implements OnInit, OnChanges {
   variantOptions: VariantOption[];
   activeVariant: number = 0;
   hoveredVariant: number = 0;
+  showPanel: boolean = true;
+  variantPanelLabel: string;
 
   dynamicVariantValue(index: 0): string {
     return this.variantOptions[index].variants.find(val => {
@@ -29,7 +31,6 @@ export class VariantSectionComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit(): void {
-    
     this.route.queryParamMap.subscribe(params => {
       const originalId = +this.route.snapshot.paramMap.get('id');
       const variantId = +params.get('variantId');
@@ -37,7 +38,12 @@ export class VariantSectionComponent implements OnInit, OnChanges {
       this.activeVariant = variantId || originalId;
       this.hoveredVariant = this.activeVariant;
     });
+  }
 
+  ngOnChanges(): void {
+    if (this.variants.length) {
+      this.initVariants();
+    }
   }
 
   private initVariants(): void {
@@ -56,13 +62,12 @@ export class VariantSectionComponent implements OnInit, OnChanges {
     });
   }
 
-  ngOnChanges(): void {
-    if (this.variants.length) {
-      this.initVariants();
-    }
+  showAllOptions(label: string): void {
+    this.showPanel = true;
+    this.variantPanelLabel = label;
   }
 
-  onChange(productId: number): void {
+  onOptionChange(productId: number): void {
     this.router.navigate(
       [],
       { 
@@ -72,5 +77,4 @@ export class VariantSectionComponent implements OnInit, OnChanges {
       }
     );
   }
-
 }
