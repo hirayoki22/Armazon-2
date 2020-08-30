@@ -12,8 +12,7 @@ const routes: Routes = [
     data: { title: 'Home' } 
   },
   { 
-    path: 'products', loadChildren: () => import('./product/product.module').then(m => m.ProductModule), 
-    data: { title: 'Products' } 
+    path: 'products', loadChildren: () => import('./product/product.module').then(m => m.ProductModule)
   },
   { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
   { 

@@ -5,7 +5,7 @@ import { ProductService } from '../services/product.service';
 import { Product } from '../models/product.model';
 import { ProductVariant } from '../models/product-variant.model';
 import { ShoppingBagService } from '../services/shopping-bag.service';
-import { delay } from 'rxjs/operators';
+import { delay, tap, switchMap } from 'rxjs/operators';
 import { SrchMatch } from '../models/srch-match.model';
 
 @Component({
@@ -42,9 +42,6 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
       this.getProductInfo(variantId);
     }
     
-    this.ps.getProductVariant(this.originalId)
-    .subscribe(variants => this.variants = variants);
-    
     this.route.queryParamMap.subscribe(params => {
       const variantId = +params.get('variantId');
       
@@ -67,13 +64,33 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
       this.reloading = true;
     }
 
-    this.ps.getProductById(productId).pipe(delay(300))
-    .subscribe(product => {
-      this.product   = product;
+    this.ps.getProductById(productId).pipe(
+      delay(300),
+      tap(product => {
+        this.product = product;
+        this.setSrchHistory(this.product)
+      }),
+      switchMap(() => this.ps.getProductVariant(this.originalId))
+    ).subscribe(variants => {
+      this.variants  = variants;
+
+      this.setPageTitle({
+        name: this.product.productName,
+        category: this.product.category,
+        variant: this.variants.find(val => val.variantId == this.product.productId).optionValue
+      });
       this.isLoading = false;
       this.reloading = false;
-      this.setSrchHistory(this.product);
     });
+  }
+
+  private setPageTitle(params: {
+    name: string,
+    category: string,
+    variant: string
+  }): void {
+    const title = <HTMLTitleElement>document.head.querySelector('title');
+    title.textContent = `${params.name}, ${params.variant}, ${params.category} - Armazon 2`;
   }
 
   private setSrchHistory(product: Product): void {
