@@ -3,6 +3,8 @@ import { ViewChildren, ElementRef, QueryList } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
 import { VariantPanelService } from 'src/app/product/services/variant-panel.service';
 import { VariantOption } from '../variant-section.component';
+import { ProductService } from 'src/app/product/services/product.service';
+import { map } from 'rxjs/operators';
 
 interface PanelData { option: VariantOption, activeVariant: number }
 
@@ -17,15 +19,25 @@ export class VariantPanelComponent implements AfterViewInit {
   option: VariantOption;
   activeVariant: number = 0;
 
-  constructor(private panelService: VariantPanelService) { }
+  get priceDifference(): number {
+    return 0;
+  }
+
+  constructor(
+    private ps: ProductService,
+    private panelService: VariantPanelService
+  ) { }
 
   ngAfterViewInit(): void {
     this.panelService.$panelState.subscribe((data: PanelData) => {
       this.option = data.option;
       this.activeVariant = data.activeVariant;
-      
-      console.log(data);
+
       setTimeout(() =>this.scrollToOption(), 60);
+
+      this.ps.getProductById(this.activeVariant).pipe(
+        map(product => product.price)
+      ).subscribe(price => console.log(price));
     });
   }
 

@@ -8,7 +8,6 @@ import { VariantPanelService } from '../../services/variant-panel.service';
 export interface VariantOption { 
   label: string; 
   variants?: ProductVariant[]; 
-  optionValue?: string 
 }
 
 @Component({
@@ -24,10 +23,16 @@ export class VariantSectionComponent implements OnInit, OnChanges {
   showPanel: boolean = true;
   variantPanelLabel: string;
 
-  dynamicVariantValue(variantOptions: VariantOption): string {
-    return variantOptions.variants.find(val => {
+  dynamicVariantValue(variantOption: VariantOption): string {
+    return variantOption.variants.find(val => {
       return val.variantId == this.hoveredVariant;
-    })?.optionValue;
+    })?.optionValue || 'N/A';
+  }
+
+  optionIsInactive(variantOption: VariantOption): boolean {
+    return variantOption.variants.some(val => {
+      return val.variantId == this.hoveredVariant;
+    });
   }
 
   constructor(
@@ -50,18 +55,6 @@ export class VariantSectionComponent implements OnInit, OnChanges {
     if (this.variants && this.variants.length) {
       this.initVariants();
       console.log()
-    }
-  }
-
-  onMouseover(variantId: number, label: string): void {
-    if (label == 'Color') { 
-      this.hoveredVariant = variantId;
-    }
-  }
-
-  onMouseout(label: string): void {
-    if (label == 'Color') { 
-      this.hoveredVariant = this.activeVariant;
     }
   }
 
@@ -97,5 +90,17 @@ export class VariantSectionComponent implements OnInit, OnChanges {
         queryParamsHandling: 'merge',
       }
     );
+  }
+
+  onMouseover(variantId: number, label: string): void {
+    if (label == 'Color') { 
+      this.hoveredVariant = variantId;
+    }
+  }
+
+  onMouseout(label: string): void {
+    if (label == 'Color') { 
+      this.hoveredVariant = this.activeVariant;
+    }
   }
 }

@@ -6,6 +6,7 @@
       *ngIf="option.variants.length"
       class="variant-option color">
       <button 
+        [disabled]="!optionIsInactive(option)"
         (click)="showAllOptions(option)"
         class="show-all-btn">
         <div class="variant-type">
