@@ -79,20 +79,23 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
         category: this.product.category,
         variant: this.variants.find(val => {
           return val.variantId == this.product.productId;
-        }).optionValue
+        })?.optionValue
       });
       this.isLoading = false;
       this.reloading = false;
     });
   }
 
-  private setPageTitle(params: {
+  private setPageTitle(param: {
     name: string,
     category: string,
-    variant: string
+    variant?: string
   }): void {
-    const title = <HTMLTitleElement>document.head.querySelector('title');
-    title.textContent = `${params.name}, ${params.variant}, ${params.category} - Armazon 2`;
+    const titleTag = <HTMLTitleElement>document.head.querySelector('title');
+    const _title1 = `${param.name}, ${param.variant}, ${param.category} - Armazon 2`; 
+    const _title2 = `${param.name}, ${param.category} - Armazon 2`; 
+
+    titleTag.textContent = param.variant ? _title1 : _title2;
   }
 
   private setSrchHistory(product: Product): void {
