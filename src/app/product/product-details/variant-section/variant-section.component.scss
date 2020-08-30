@@ -8,13 +8,15 @@
     height: auto;
   }
 
-  .variant-option {
-    width: 100%;
-    overflow: hidden;
-
+  .variant-option-wrapper {
     &:not(:last-of-type) {
       margin-bottom: 2rem;
     }
+  }
+
+  .variant-option {
+    width: 100%;
+    overflow: hidden;
     
     .show-all-btn {
       justify-content: space-between;

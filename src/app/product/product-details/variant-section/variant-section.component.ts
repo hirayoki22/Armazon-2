@@ -5,7 +5,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductVariant } from '../../models/product-variant.model';
 import { VariantPanelService } from '../../services/variant-panel.service';
 
-export interface VariantOption { label: string; variants: ProductVariant[] }
+export interface VariantOption { 
+  label: string; 
+  variants?: ProductVariant[]; 
+  optionValue?: string 
+}
 
 @Component({
   selector: 'variant-section',
@@ -20,7 +24,7 @@ export class VariantSectionComponent implements OnInit, OnChanges {
   showPanel: boolean = true;
   variantPanelLabel: string;
 
-  dynamicVariantValue(index: 0): string {
+  dynamicVariantValue(index: number): string {
     return this.variantOptions[index].variants.find(val => {
       return val.variantId == this.hoveredVariant;
     }).optionValue;
@@ -43,19 +47,19 @@ export class VariantSectionComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
-    if (this.variants.length) {
+    if (this.variants && this.variants.length) {
       this.initVariants();
     }
   }
 
   private initVariants(): void {
     this.variantOptions = [
-      { label: 'Configuration', variants: [] },
-      { label: 'Capacity',      variants: [] },
-      { label: 'Color',         variants: [] },
-      { label: 'Style',         variants: [] },
-      { label: 'Model',         variants: [] },
-      { label: 'Size',          variants: [] }
+      { label: 'Configuration' },
+      { label: 'Capacity' },
+      { label: 'Color' },
+      { label: 'Style' },
+      { label: 'Model' },
+      { label: 'Size' }
     ];
 
     this.variantOptions.map(option => {
@@ -65,6 +69,12 @@ export class VariantSectionComponent implements OnInit, OnChanges {
   }
 
   showAllOptions(variantOption: VariantOption): void {
+    const isActive = variantOption.variants.some(val => {
+      return val.variantId == this.activeVariant;
+    });
+
+    if (!isActive) { return; }
+
     this.panelService.openVariantPanel({
       option: variantOption,
       activeVariant: this.activeVariant

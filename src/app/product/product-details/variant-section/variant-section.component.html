@@ -1,6 +1,7 @@
 <div *ngIf="variants.length" class="variant-wrapper">
   <div 
-    *ngFor="let option of variantOptions; index as index" >
+    *ngFor="let option of variantOptions; index as index" 
+    class="variant-option-wrapper">
     <section 
       *ngIf="option.variants.length"
       class="variant-option color">
