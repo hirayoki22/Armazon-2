@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { ProductVariant } from '../../models/product-variant.model';
 
+interface VariantOption { label: string; variants: ProductVariant[] }
+
 @Component({
   selector: 'variant-section',
   templateUrl: './variant-section.component.html',
@@ -11,17 +13,12 @@ import { ProductVariant } from '../../models/product-variant.model';
 })
 export class VariantSectionComponent implements OnInit, OnChanges {
   @Input() variants: ProductVariant[];
-  colorVariants: ProductVariant[] = [];
-  sizeVariants: ProductVariant[] = [];
-  styleVariants: ProductVariant[] = [];
-  modelVariants: ProductVariant[] = [];
-  configurationVariants: ProductVariant[] = [];
-  capacityVariants: ProductVariant[] = [];
+  variantOptions: VariantOption[];
   activeVariant: number = 0;
   hoveredVariant: number = 0;
 
-  get variantValue(): string {
-    return this.variants.find(val => {
+  dynamicVariantValue(index: 0): string {
+    return this.variantOptions[index].variants.find(val => {
       return val.variantId == this.hoveredVariant;
     }).optionValue;
   }
@@ -32,6 +29,7 @@ export class VariantSectionComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit(): void {
+    
     this.route.queryParamMap.subscribe(params => {
       const originalId = +this.route.snapshot.paramMap.get('id');
       const variantId = +params.get('variantId');
@@ -42,14 +40,27 @@ export class VariantSectionComponent implements OnInit, OnChanges {
 
   }
 
+  private initVariants(): void {
+    this.variantOptions = [
+      { label: 'Configuration', variants: [] },
+      { label: 'Capacity',      variants: [] },
+      { label: 'Color',         variants: [] },
+      { label: 'Style',         variants: [] },
+      { label: 'Model',         variants: [] },
+      { label: 'Size',          variants: [] }
+    ];
+
+    this.variantOptions.map(option => {
+      option.variants = 
+      this.variants.filter(val => val.option == option.label);
+    });
+
+    console.log(this.variantOptions);
+  }
+
   ngOnChanges(): void {
     if (this.variants.length) {
-      this.colorVariants = this.variants.filter(val => val.option == 'Color');
-      this.sizeVariants  = this.variants.filter(val => val.option == 'Size');
-      this.styleVariants = this.variants.filter(val => val.option == 'Style');
-      this.modelVariants = this.variants.filter(val => val.option == 'Model');
-      this.configurationVariants = this.variants.filter(val => val.option == 'Configuration');
-      this.capacityVariants = this.variants.filter(val => val.option == 'Capacity');
+      this.initVariants();
     }
   }
 
