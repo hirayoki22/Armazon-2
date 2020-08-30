@@ -5,14 +5,18 @@
   (showPanel)="onClose()">
 
   <div class="variant-panel">
-    <button         
-      *ngFor="let variant of option.variants;"
-      class="option-btn">
-      <span>{{ variant.optionValue }}</span>
-      <img 
-        *ngIf="option.label == 'Color'"
-        [src]="variant.iconUrl" 
-        draggable="false">
-    </button>
+    <div class="option-list">
+      <button         
+        *ngFor="let variant of option.variants;"
+        class="option"
+        [class.active]="activeVariant == variant.variantId">
+        <img 
+          *ngIf="option.label == 'Color'"
+          [src]="variant.iconUrl" 
+          draggable="false">
+        <span class="option-name">{{ variant.optionValue }}</span>
+        <span class="price-difference">-$20.00</span>
+      </button>
+    </div>
   </div>
 </aside-panel> 

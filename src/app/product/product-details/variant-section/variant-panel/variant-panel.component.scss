@@ -1,6 +1,60 @@
 .variant-panel {
   width: 100%;
-  padding: 67px 2rem 5rem;
-
+  height: 100%;
+  padding: 5rem 1.5rem;
   
+  .option-list {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .option {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: 1rem 1.2rem;
+      border: 1px solid #e6e9f0;
+      border-radius: 4px;
+      transition: all .4s ease;
+
+      &:not(:last-child) {
+        margin-bottom: 1.5rem;
+      }
+
+      &:hover {
+        border-color: darken(#e6e9f0, 25);
+      }
+
+      &.active {
+        border: 2px solid #F72551;
+      }
+
+      img {
+        flex-shrink: 0;
+        width: 55px;
+        height: 55px;
+        object-fit: contain;
+      } 
+
+      .option-name {
+        font-size: .85rem;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
+      .price-difference {
+        font-size: .85rem;
+        margin-left: auto;
+      }
+    }
+  }
+
 }

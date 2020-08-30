@@ -3,6 +3,8 @@ import { Output, EventEmitter } from '@angular/core';
 import { VariantPanelService } from 'src/app/product/services/variant-panel.service';
 import { VariantOption } from '../variant-section.component';
 
+interface PanelData { option: VariantOption, activeVariant: number }
+
 @Component({
   selector: 'variant-panel',
   templateUrl: './variant-panel.component.html',
@@ -16,14 +18,16 @@ export class VariantPanelComponent implements OnInit {
   constructor(private panelService: VariantPanelService) { }
 
   ngOnInit(): void {
-    this.panelService.$panelState.subscribe((option: VariantOption) => {
+    this.panelService.$panelState.subscribe((data: PanelData) => {
+      this.option = data.option;
+      this.activeVariant = data.activeVariant;
       this.showPanel = true;
-      this.option = option;
     });
   }
 
   onClose(): void {
     this.showPanel = false;
+    this.activeVariant = 0;
     this.option = null;
   }
 }
