@@ -72,12 +72,14 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
       }),
       switchMap(() => this.ps.getProductVariant(this.originalId))
     ).subscribe(variants => {
-      this.variants  = variants;
+      this.variants = variants;
 
       this.setPageTitle({
         name: this.product.productName,
         category: this.product.category,
-        variant: this.variants.find(val => val.variantId == this.product.productId).optionValue
+        variant: this.variants.find(val => {
+          return val.variantId == this.product.productId;
+        }).optionValue
       });
       this.isLoading = false;
       this.reloading = false;
