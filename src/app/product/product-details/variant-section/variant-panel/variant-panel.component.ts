@@ -36,7 +36,7 @@ export class VariantPanelComponent implements AfterViewInit {
       return variant.variantId == this.activeVariant;
     });
 
-    optionBtns[index].scrollIntoView({ block: 'center' });
+    optionBtns[index]?.scrollIntoView({ block: 'center' });
   }
 
   onOptionClick(variantId: number): void {

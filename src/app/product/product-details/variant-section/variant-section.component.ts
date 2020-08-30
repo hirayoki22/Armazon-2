@@ -69,12 +69,6 @@ export class VariantSectionComponent implements OnInit, OnChanges {
   }
 
   showAllOptions(variantOption: VariantOption): void {
-    const isActive = variantOption.variants.some(val => {
-      return val.variantId == this.activeVariant;
-    });
-
-    if (!isActive) { return; }
-
     this.panelService.openVariantPanel({
       option: variantOption,
       activeVariant: this.activeVariant
