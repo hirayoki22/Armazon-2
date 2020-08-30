@@ -17,7 +17,8 @@
   
     <button 
       *ngIf="hasMoreImages"
-      (click)="toggleAllImages()" class="btn-xl show-more-btn">
+      (click)="toggleAllImages()" 
+      class="btn-xl show-more-btn">
       <i class="material-icons">photo_camera</i>
       <span *ngIf="images.length > altImages.length">Show more</span>
       <span *ngIf="images.length == altImages.length">Show less</span>

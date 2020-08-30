@@ -24,15 +24,15 @@ export class SliderComponent implements OnChanges, AfterViewInit {
     this.hasMoreImages = this.images.length > this.altImages.length;
   }
 
-  toggleAllImages(): void {
-    this.altImages = this.altImages.length < this.images.length ?
-    this.images : this.images.slice(0, 4);
-  }
-
   ngAfterViewInit(): void {
     fromEvent(window, 'resize').subscribe(() => {
       this.resizeImagePreviews();
     });   
+  }
+
+  toggleAllImages(): void {
+    this.altImages = this.altImages.length < this.images.length ?
+    this.images : this.images.slice(0, 4);
   }
 
   resizeImagePreviews(): void {
