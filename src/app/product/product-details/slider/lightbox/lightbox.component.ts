@@ -16,7 +16,7 @@ export class LightboxComponent implements AfterViewInit {
   currentImage: number = 0;
   openLightbox: boolean = false;
   viewFullImage: boolean = false;
-
+  tempDisabled: boolean = false;
 
   constructor(private ls: LightboxService) { }
 
@@ -25,6 +25,7 @@ export class LightboxComponent implements AfterViewInit {
       this.openLightbox  = true;
       this.viewFullImage = false;
       this.currentImage  = data.index;
+
       setTimeout(() => {
         this.scrollIntoView(data.scrollBehavior)
         this.moveIndicator();
@@ -33,6 +34,7 @@ export class LightboxComponent implements AfterViewInit {
   }
 
   onScroll(): void {
+    this.onNavBtnClickLimitter();
     this.moveIndicator();
   }
 
@@ -53,6 +55,20 @@ export class LightboxComponent implements AfterViewInit {
     indicator.style.transform = `translateX(${steps}%)`;
   }
 
+  private onNavBtnClickLimitter(): void {
+    const container = this.imageContainer.nativeElement;
+    const slides = Array.from(container.children);
+    const rects = slides[this.currentImage].getBoundingClientRect();
+    const containerLeft = Math.round(container.getBoundingClientRect().left);
+    const slideLeft = Math.round(rects.left);
+
+    this.tempDisabled = true;
+
+    if (slideLeft == containerLeft || slideLeft == containerLeft + 1) {
+      this.tempDisabled = false;
+    }
+  }
+
   onNavButtonClick(direction: 'previous' | 'next'): void {
     switch (direction) {
       case 'previous':
@@ -69,7 +85,11 @@ export class LightboxComponent implements AfterViewInit {
         console.log('Invalid direction: ', direction);
         break;
     }
-    this.ls.openLightbox({index: this.currentImage, scrollBehavior: 'smooth'});
+    
+    this.ls.openLightbox({
+      index: this.currentImage, 
+      scrollBehavior: 'smooth'
+    });
   }
 
   onRangeClick(e: MouseEvent): void {
@@ -85,16 +105,19 @@ export class LightboxComponent implements AfterViewInit {
       this.currentImage = (position > this.images.length - 1) ? 
       this.images.length - 1 : (position > 0) ? position : 0;
       
-      this.ls.openLightbox({index: this.currentImage, scrollBehavior: 'smooth'});
+      this.ls.openLightbox({
+        index: this.currentImage, 
+        scrollBehavior: 'smooth'
+      });
     }
   }
 
   onMouseMove(e: MouseEvent): void {
     if (!this.viewFullImage) { return; }
 
-    const frame = <HTMLElement>e.currentTarget;
-    const image = <HTMLImageElement>frame.firstChild;
-    const rects = image.getBoundingClientRect();
+    const frame  = <HTMLElement>e.currentTarget;
+    const image  = <HTMLImageElement>frame.firstChild;
+    const rects  = image.getBoundingClientRect();
     const mouseX = e.clientX - rects.left;
     const mouseY = e.clientY - rects.top;
     const posX   = (mouseX / rects.width) * 100;

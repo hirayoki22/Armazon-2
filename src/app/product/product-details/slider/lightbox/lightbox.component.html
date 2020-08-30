@@ -3,7 +3,7 @@
     <div class="top-content">
       <button 
         (click)="onNavButtonClick('previous')"
-        [disabled]="currentImage == 0"
+        [disabled]="currentImage == 0 || tempDisabled"
         class="nav-button before"
         aria-label="Previous image">
         <i class="material-icons">navigate_before</i>
@@ -11,7 +11,7 @@
 
       <button 
         (click)="onNavButtonClick('next')"
-        [disabled]="currentImage == images.length - 1"
+        [disabled]="currentImage == images.length - 1 || tempDisabled"
         class="nav-button after"
         aria-label="Next image">
         <i class="material-icons">navigate_next</i>
