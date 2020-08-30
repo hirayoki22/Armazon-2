@@ -1,9 +1,10 @@
 <aside-panel 
-  [title]="variantLabel"
+  *ngIf="variantOption"
+  [title]="variantOption.label"
   [showPanel]="showPanel" 
   (showPanel)="onClose()">
 
   <div class="variant-panel">
-    
+
   </div>
 </aside-panel> 

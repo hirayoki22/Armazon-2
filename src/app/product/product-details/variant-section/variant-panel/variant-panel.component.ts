@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Input, Output, EventEmitter } from '@angular/core';
+
+import { VariantPanelService } from 'src/app/product/services/variant-panel.service';
+import { VariantOption } from '../variant-section.component';
 
 @Component({
   selector: 'variant-panel',
@@ -7,16 +9,19 @@ import { Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./variant-panel.component.scss']
 })
 export class VariantPanelComponent implements OnInit {
-  @Input() variantLabel: string;
-  @Input() showPanel: boolean = false;
-  @Output('showPanel') notifyChange = new EventEmitter();
+  variantOption: VariantOption;
+  showPanel: boolean = false;
 
-  constructor() { }
+  constructor(private panelService: VariantPanelService) { }
 
   ngOnInit(): void {
+    this.panelService.$panelState.subscribe(option => {
+      console.log(option);
+    });
   }
 
   onClose(): void {
-    this.notifyChange.emit();
+    this.showPanel = false;
+
   }
 }

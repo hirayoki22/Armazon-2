@@ -3,8 +3,9 @@ import { Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ProductVariant } from '../../models/product-variant.model';
+import { VariantPanelService } from '../../services/variant-panel.service';
 
-interface VariantOption { label: string; variants: ProductVariant[] }
+export interface VariantOption { label: string; variants: ProductVariant[] }
 
 @Component({
   selector: 'variant-section',
@@ -27,7 +28,8 @@ export class VariantSectionComponent implements OnInit, OnChanges {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private panelService: VariantPanelService
   ) { }
 
   ngOnInit(): void {
@@ -62,9 +64,8 @@ export class VariantSectionComponent implements OnInit, OnChanges {
     });
   }
 
-  showAllOptions(label: string): void {
-    this.showPanel = true;
-    this.variantPanelLabel = label;
+  showAllOptions(variantOption: VariantOption): void {
+    this.panelService.openVariantPanel(variantOption);
   }
 
   onOptionChange(productId: number): void {

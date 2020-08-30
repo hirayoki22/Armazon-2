@@ -5,7 +5,7 @@
       *ngIf="option.variants.length"
       class="variant-option color">
       <button 
-        (click)="showAllOptions(option.label)"
+        (click)="showAllOptions(option)"
         class="show-all-btn">
         <div class="variant-type">
           <h3>{{ option.label }}</h3>
@@ -34,7 +34,4 @@
     </section>
   </div>
 </div>
-<variant-panel
-  [variantLabel]="variantPanelLabel"
-  [showPanel]="showPanel"
-  (showPanel)="showPanel = false"></variant-panel>
+<variant-panel></variant-panel>
