@@ -24,10 +24,10 @@ export class VariantSectionComponent implements OnInit, OnChanges {
   showPanel: boolean = true;
   variantPanelLabel: string;
 
-  dynamicVariantValue(index: number): string {
-    return this.variantOptions[index].variants.find(val => {
+  dynamicVariantValue(variantOptions: VariantOption): string {
+    return variantOptions.variants.find(val => {
       return val.variantId == this.hoveredVariant;
-    }).optionValue;
+    })?.optionValue;
   }
 
   constructor(
