@@ -5,7 +5,8 @@
 
   <div class="variant-panel">
     <div class="option-list">
-      <button         
+      <button     
+        (click)="onOptionClick(variant.variantId)"    
         #optionBtn
         *ngFor="let variant of option?.variants;"
         class="option"

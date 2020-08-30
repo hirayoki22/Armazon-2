@@ -13,6 +13,7 @@ interface PanelData { option: VariantOption, activeVariant: number }
 })
 export class VariantPanelComponent implements AfterViewInit {
   @ViewChildren('optionBtn') optionBtns: QueryList<ElementRef<HTMLElement>>; 
+  @Output('onOptionChange') notifyChange = new EventEmitter<number>();
   option: VariantOption;
   activeVariant: number = 0;
 
@@ -38,8 +39,12 @@ export class VariantPanelComponent implements AfterViewInit {
     optionBtns[index].scrollIntoView({ block: 'center' });
   }
 
+  onOptionClick(variantId: number): void {
+    this.notifyChange.emit(variantId);
+    this.onClose();
+  }
+
   onClose(): void {
-    this.activeVariant = 0;
     this.option = null;
   }
 }

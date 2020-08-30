@@ -17,7 +17,7 @@
       <div class="option-flex">
         <button         
           (click)="onOptionChange(variant.variantId)"
-          *ngFor="let variant of option.variants;"
+          *ngFor="let variant of option.variants.slice(0, 6)"
           (mouseover)="hoveredVariant = variant.variantId"
           (mouseout)="hoveredVariant = activeVariant"
           [class]="option.label !== 'Color' ? 'option-icon' : 'option-icon-l'"
@@ -34,4 +34,4 @@
     </section>
   </div>
 </div>
-<variant-panel></variant-panel>
+<variant-panel (onOptionChange)="onOptionChange($event)"></variant-panel>
