@@ -35,9 +35,9 @@ export class VariantPanelComponent implements AfterViewInit {
 
       setTimeout(() =>this.scrollToOption(), 60);
 
-      this.ps.getProductById(this.activeVariant).pipe(
-        map(product => product.price)
-      ).subscribe(price => console.log(price));
+      // this.ps.getProductById(this.activeVariant).pipe(
+      //   map(product => product.price)
+      // ).subscribe(price => console.log(price));
     });
   }
 
