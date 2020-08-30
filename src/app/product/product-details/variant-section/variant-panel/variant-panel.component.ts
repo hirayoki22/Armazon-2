@@ -24,6 +24,7 @@ export class VariantPanelComponent implements AfterViewInit {
       this.option = data.option;
       this.activeVariant = data.activeVariant;
       
+      console.log(data);
       setTimeout(() =>this.scrollToOption(), 60);
     });
   }
