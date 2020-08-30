@@ -54,8 +54,6 @@ export class VariantSectionComponent implements OnInit, OnChanges {
       option.variants = 
       this.variants.filter(val => val.option == option.label);
     });
-
-    console.log(this.variantOptions);
   }
 
   ngOnChanges(): void {
