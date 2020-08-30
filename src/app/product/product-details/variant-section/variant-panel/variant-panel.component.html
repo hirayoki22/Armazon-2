@@ -1,13 +1,13 @@
 <aside-panel 
-  *ngIf="option"
-  [title]="option.label"
-  [showPanel]="showPanel" 
+  [title]="option?.label"
+  [showPanel]="option" 
   (showPanel)="onClose()">
 
   <div class="variant-panel">
     <div class="option-list">
       <button         
-        *ngFor="let variant of option.variants;"
+        #optionBtn
+        *ngFor="let variant of option?.variants;"
         class="option"
         [class.active]="activeVariant == variant.variantId">
         <img 
