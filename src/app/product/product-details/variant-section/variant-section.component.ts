@@ -46,6 +46,18 @@ export class VariantSectionComponent implements OnInit, OnChanges {
     });
   }
 
+  onMouseover(variantId: number, label: string): void {
+    if (label == 'Color') { 
+      this.hoveredVariant = variantId;
+    }
+  }
+
+  onMouseout(label: string): void {
+    if (label == 'Color') { 
+      this.hoveredVariant = this.activeVariant;
+    }
+  }
+
   ngOnChanges(): void {
     if (this.variants && this.variants.length) {
       this.initVariants();

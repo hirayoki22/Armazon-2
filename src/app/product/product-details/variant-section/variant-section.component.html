@@ -10,7 +10,9 @@
         class="show-all-btn">
         <div class="variant-type">
           <h3>{{ option.label }}</h3>
-          <p>{{ dynamicVariantValue(option) }}</p>
+          <p *ngIf="option.label == 'Color'">
+            {{ dynamicVariantValue(option) }}
+          </p>
         </div>
         <i class="material-icons">keyboard_arrow_right</i>
       </button>
@@ -19,8 +21,8 @@
         <button         
           (click)="onOptionChange(variant.variantId)"
           *ngFor="let variant of option.variants.slice(0, 6)"
-          (mouseover)="hoveredVariant = variant.variantId"
-          (mouseout)="hoveredVariant = activeVariant"
+          (mouseover)="onMouseover(variant.variantId, option.label)"
+          (mouseout)="onMouseout(option.label)"
           [class]="option.label !== 'Color' ? 'option-icon' : 'option-icon-l'"
           [class.active]="activeVariant == variant.variantId">
           <img 
