@@ -3,6 +3,6 @@ export interface ProductVariant {
   option: string;
   optionValue: string;
   available: boolean;
+  price: number;
   iconUrl?: string;
-  price?: number;
 }

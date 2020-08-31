@@ -3,8 +3,6 @@ import { ViewChildren, ElementRef, QueryList } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
 import { VariantPanelService } from 'src/app/product/services/variant-panel.service';
 import { VariantOption } from '../variant-section.component';
-import { ProductService } from 'src/app/product/services/product.service';
-import { map } from 'rxjs/operators';
 
 interface PanelData { option: VariantOption, activeVariant: number }
 
@@ -19,14 +17,25 @@ export class VariantPanelComponent implements AfterViewInit {
   option: VariantOption;
   activeVariant: number = 0;
 
-  get priceDifference(): number {
-    return 0;
+  getPriceDiff(price: number): string {
+    const currPrice = this.option.variants.find(val => {
+      return val.variantId == this.activeVariant;
+    }).price;
+    const priceDiff = 
+      Math.round(((currPrice - price) + Number.EPSILON) * 100) / 100;
+    const formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD'
+    });
+
+    console.log(currPrice - price);
+
+    return (priceDiff == 0) ? '' : (priceDiff < 0) ? 
+    `+ ${formatter.format(Math.abs(priceDiff))}` : 
+    `- ${formatter.format(Math.abs(priceDiff))}`;
   }
 
-  constructor(
-    private ps: ProductService,
-    private panelService: VariantPanelService
-  ) { }
+  constructor(private panelService: VariantPanelService) { }
 
   ngAfterViewInit(): void {
     this.panelService.$panelState.subscribe((data: PanelData) => {
@@ -34,10 +43,6 @@ export class VariantPanelComponent implements AfterViewInit {
       this.activeVariant = data.activeVariant;
 
       setTimeout(() =>this.scrollToOption());
-
-      // this.ps.getProductById(this.activeVariant).pipe(
-      //   map(product => product.price)
-      // ).subscribe(price => console.log(price));
     });
   }
 

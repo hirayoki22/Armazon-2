@@ -15,7 +15,9 @@
           [src]="variant.iconUrl" 
           draggable="false">
         <span class="option-name">{{ variant.optionValue }}</span>
-        <span class="price-difference">-$20.00</span>
+        <div class="price-difference">
+          {{ getPriceDiff(variant.price) }}
+        </div>
       </button>
     </div>
   </div>

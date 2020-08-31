@@ -44,7 +44,7 @@ export class VariantSectionComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(params => {
       const originalId = +this.route.snapshot.paramMap.get('id');
-      const variantId = +params.get('variantId');
+      const variantId  = +params.get('variantId');
 
       this.activeVariant = variantId || originalId;
       this.hoveredVariant = this.activeVariant;
@@ -54,7 +54,6 @@ export class VariantSectionComponent implements OnInit, OnChanges {
   ngOnChanges(): void {
     if (this.variants && this.variants.length) {
       this.initVariants();
-      console.log()
     }
   }
 
