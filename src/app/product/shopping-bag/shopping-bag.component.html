@@ -9,14 +9,18 @@
       *ngIf="!isLoggedin" 
       class="not-loggedin-msg">
       <h3>Please log into your account</h3>
-      <a href="/user/login" class="btn-xl-filled">Login</a>
+      <a 
+        href="/user/login" 
+        class="btn-xl-filled">Login</a>
     </div>
 
     <div 
       *ngIf="isLoggedin && !isLoading && !bagItems?.length" 
       class="empty-bag-msg">
       <h3>Is very lonely in here</h3>
-      <a href="/product" class="btn-xl-filled">Start shopping</a>
+      <a 
+        href="/product" 
+        class="btn-xl-filled">Start shopping</a>
     </div>
 
     <div *ngIf="bagItems?.length" class="content">
@@ -40,7 +44,7 @@
 
           <div class="product-info">
             <a 
-              [routerLink]="['/products/', item.productId]"
+              href="{{ '/products/' + item.productId }}"
               class="product-name"
               [title]="item.productName">
               {{ item.productName | textClip:80 }}
