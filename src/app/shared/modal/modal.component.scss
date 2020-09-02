@@ -22,6 +22,9 @@
   overflow: hidden;
 
   &.isSrchArea {
+    width: 100%;
+    height: unset;
+    min-height: 250px;
     transform: scaleY(0);
     transform-origin: top;
     animation: grow .3s ease forwards;
