@@ -10,7 +10,7 @@ export class InputAutofocusDirective implements AfterContentInit {
 
   public ngAfterContentInit(): void {
     if (this.shouldFocus) {
-      setTimeout(() => this.ele.nativeElement.focus(), 100);
+      setTimeout(() => this.ele.nativeElement.focus(), 50);
     }
   }
 }

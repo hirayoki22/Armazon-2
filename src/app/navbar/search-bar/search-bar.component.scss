@@ -1,6 +1,21 @@
+.overlay {
+  overflow: hidden;
+  overflow-y: auto;
+}
+
 .search-area {
   width: 100%;
-  padding: 67px 1.5rem 3rem;
+  min-height: 250px;
+  transform: scaleY(0);
+  transform-origin: top;
+  padding: 1.5rem 1.5rem 3rem;
+  background-color: #fff;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  animation: grow .3s ease forwards;
+
+  .close-btn {
+    margin-left: auto;
+  }
 
   .search-form {
     flex: 1;

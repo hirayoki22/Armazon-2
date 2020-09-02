@@ -1,7 +1,8 @@
 import { Component, OnChanges } from '@angular/core';
+import { ViewChild, ElementRef } from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable, fromEvent, of } from 'rxjs';
 import { map, switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 import { ProductService } from 'src/app/product/services/product.service';
@@ -14,6 +15,7 @@ import { SrchMatch } from 'src/app/product/models/srch-match.model';
   styleUrls: ['./search-bar.component.scss']
 })
 export class SearchBarComponent implements OnChanges {
+  @ViewChild('overlay') overlay: ElementRef<HTMLElement>;
   @Input() showSearchbox: boolean;
   @Output('showSearchbox') notifyChange = new EventEmitter<boolean>();
   srchForm: FormGroup = new FormGroup({
@@ -53,6 +55,13 @@ export class SearchBarComponent implements OnChanges {
           return keyword?.length ? this.ps.searchProduct(keyword) : of ([]);
         })
       );
+      
+      document.body.classList.add('active-modal');
+      fromEvent(window, 'keyup').subscribe((e: KeyboardEvent) => {
+        if (e.key == 'Escape') { this.onClose(); }
+      });
+    } else {
+      document.body.classList.remove('active-modal');
     }
   }
 
@@ -74,10 +83,23 @@ export class SearchBarComponent implements OnChanges {
   }
 
   onClose(): void {
+    if (!this.overlay) { return; }
+    
+    const overlay = this.overlay.nativeElement;
+
+    overlay.classList.add('hide');
+    window.onkeyup = null;
+    
     setTimeout(() => {
+      document.body.classList.remove('active-modal');
+      
       this.showSearchbox = false;
       this.notifyChange.emit(this.showSearchbox);
       this.srchForm.reset();
     }, 300);
+  }
+
+  onClickOutside(e: MouseEvent): void {
+    if (e.target == e.currentTarget) { this.onClose(); }
   }
 }

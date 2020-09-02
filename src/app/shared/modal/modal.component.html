@@ -2,13 +2,8 @@
   #overlay
   (click)="onClickOutside($event)" 
   *ngIf="showModal" 
-  class="overlay"
-  [class.isSrchArea]="isSrchArea">
-  <div 
-    #modal class="modal" 
-    [style.width]="width"
-    [style.height]="height"
-    [class.isSrchArea]="isSrchArea">
+  class="overlay">
+  <div #modal class="modal" [style.width]="width" [style.height]="height">
     <div class="top">
       <button 
         (click)="onClose()"

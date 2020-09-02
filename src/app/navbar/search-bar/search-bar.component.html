@@ -1,8 +1,17 @@
-<app-modal
-  [isSrchArea]="true"
-  [showModal]="showSearchbox"
-  (showModal)="onClose()">
+<div 
+  #overlay
+  *ngIf="showSearchbox"
+  (click)="onClickOutside($event)"
+  class="overlay">
   <section class="search-area">
+    <button 
+      (click)="onClose()"
+      class="btn-circle close-btn" 
+      title="Close"
+      aria-label="Close">
+      <i class="material-icons">close</i>
+    </button>
+  
     <div class="wrapper-l">
       <form 
         [formGroup]="srchForm"
@@ -15,7 +24,7 @@
           aria-label="Search">
           <i class="material-icons">search</i>
         </button>
-
+  
         <input 
           #input
           autoFocus="true"
@@ -24,16 +33,16 @@
           [formControl]="srchControl"
           type="text" 
           placeholder="Find just what you need">
-
+  
         <button 
-          (click)="srchControl.reset(); input.focus();"
+          (click)="srchControl.reset(); input.focus()"
           class="btn-circle reset-srch-control"
           [class.visible]="srchControl.value"
           aria-label="Clear search field">
           <i class="material-icons">clear</i>
         </button>
       </form>
-
+  
       <div class="search-results">
         <ul class="results-list">
           <li *ngFor="let match of matches$ | async">
@@ -82,4 +91,4 @@
       </div>      
     </div>
   </section>
-</app-modal>
+</div>

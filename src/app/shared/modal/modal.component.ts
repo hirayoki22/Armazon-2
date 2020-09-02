@@ -13,7 +13,6 @@ export class ModalComponent implements OnChanges {
   @ViewChild('modal') modal: ElementRef<HTMLElement>;
   @Input() width: string = '100%';
   @Input() height: string = 'auto';
-  @Input() isSrchArea: boolean = false;
   @Input() showModal: boolean;
   @Output('showModal') notifyChange = new EventEmitter<boolean>();
 
