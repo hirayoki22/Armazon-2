@@ -11,8 +11,10 @@ import { fromEvent } from 'rxjs';
 export class ModalComponent implements OnChanges {
   @ViewChild('overlay') overlay: ElementRef<HTMLElement>;
   @ViewChild('modal') modal: ElementRef<HTMLElement>;
-  @Input() width: string = '98vw';
-  @Input() height: string = '96vh';
+  @Input() width: string = '';
+  @Input() height: string = '';
+  @Input() minHeight: string = '';
+  @Input() isSrchArea: boolean = false;
   @Input() showModal: boolean;
   @Output('showModal') notifyChange = new EventEmitter<boolean>();
 

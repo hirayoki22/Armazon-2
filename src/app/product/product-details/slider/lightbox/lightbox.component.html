@@ -1,4 +1,8 @@
-<app-modal [showModal]="openLightbox" (showModal)="onClose()">
+<app-modal 
+  [width]="'98vw'"
+  [height]="'96vh'"
+  [showModal]="openLightbox" 
+  (showModal)="onClose()">
   <div *ngIf="images?.length" class="lightbox">
     <div class="top-content">
       <button 

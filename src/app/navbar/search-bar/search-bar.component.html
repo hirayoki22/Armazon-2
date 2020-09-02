@@ -1,17 +1,10 @@
-<div 
-  #overlay 
-  (click)="onClickOutside($event)"
-  *ngIf="showSearchbox"
-  class="overlay">
+<app-modal
+  [isSrchArea]="true"
+  [width]="'100%'"
+  [minHeight]="'250px'"
+  [showModal]="showSearchbox"
+  (showModal)="onClose()">
   <section class="search-area">
-    <button 
-      (click)="onClose()"
-      class="btn-circle close-btn" 
-      title="Close"
-      aria-label="Close">
-      <i class="material-icons">close</i>
-    </button>
-
     <div class="wrapper-l">
       <div class="top-area">
         <form 
@@ -36,7 +29,7 @@
             placeholder="Find just what you need">
 
           <button 
-            (click)="srchControl.reset(); input.focus()"
+            (click)="srchControl.reset(); input.focus();"
             class="btn-circle reset-srch-control"
             [class.visible]="srchControl.value"
             aria-label="Clear search field">
@@ -93,4 +86,4 @@
       </div>      
     </div>
   </section>
-</div>
+</app-modal>
