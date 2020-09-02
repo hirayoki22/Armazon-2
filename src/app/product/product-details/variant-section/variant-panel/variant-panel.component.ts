@@ -27,9 +27,7 @@ export class VariantPanelComponent implements AfterViewInit {
       style: 'currency',
       currency: 'USD'
     });
-
-    console.log(currPrice - price);
-
+    
     return (priceDiff == 0) ? '' : (priceDiff < 0) ? 
     `+ ${formatter.format(Math.abs(priceDiff))}` : 
     `- ${formatter.format(Math.abs(priceDiff))}`;
