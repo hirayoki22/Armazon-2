@@ -19,8 +19,9 @@
         class="search-form"
         [class.focused]="isFocused || srchControl.value">
         <button 
-          [disabled]="srchForm.invalid"
           class="btn-circle srch-btn"
+          [disabled]="srchForm.invalid"
+          type="button"
           aria-label="Search">
           <i class="material-icons">search</i>
         </button>
@@ -38,6 +39,7 @@
           (click)="srchControl.reset(); input.focus()"
           class="btn-circle reset-srch-control"
           [class.visible]="srchControl.value"
+          type="button"
           aria-label="Clear search field">
           <i class="material-icons">clear</i>
         </button>
