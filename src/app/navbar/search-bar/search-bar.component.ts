@@ -66,6 +66,7 @@ export class SearchBarComponent implements OnChanges {
   }
 
   onSubmit(): void {
+    this.onClose();
     this.router.navigate(
       ['/products'],
       {
@@ -74,7 +75,7 @@ export class SearchBarComponent implements OnChanges {
         }
       }
     );
-    this.onClose();
+    
   }
 
   clearSrchHistory(): void {
