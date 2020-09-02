@@ -5,6 +5,7 @@ import { ProductComponent } from './product.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ProductExistsGuard } from './guards/product-exists.guard';
 import { SearchResultsComponent } from './search-results/search-results.component';
+import { SearchResultsGuard } from './guards/search-results.guard';
 
 const routes: Routes = [
   { 
@@ -12,7 +13,11 @@ const routes: Routes = [
     component: ProductComponent,
     children: [
       { path: '', redirectTo: 'results', pathMatch: 'full' },
-      { path: 'results', component: SearchResultsComponent },
+      { 
+        path: 'results', 
+        component: SearchResultsComponent,
+        canActivate: [SearchResultsGuard] 
+      },
       { 
         path: ':id', 
         component: ProductDetailsComponent,
