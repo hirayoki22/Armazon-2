@@ -4,37 +4,35 @@
   (showModal)="onClose()">
   <section class="search-area">
     <div class="wrapper-l">
-      <div class="top-area">
-        <form 
-          [formGroup]="srchForm"
-          (ngSubmit)="onSubmit()"
-          class="search-form"
-          [class.focused]="isFocused || srchControl.value">
-          <button 
-            [disabled]="srchForm.invalid"
-            class="btn-circle srch-btn"
-            aria-label="Search">
-            <i class="material-icons">search</i>
-          </button>
+      <form 
+        [formGroup]="srchForm"
+        (ngSubmit)="onSubmit()"
+        class="search-form"
+        [class.focused]="isFocused || srchControl.value">
+        <button 
+          [disabled]="srchForm.invalid"
+          class="btn-circle srch-btn"
+          aria-label="Search">
+          <i class="material-icons">search</i>
+        </button>
 
-          <input 
-            #input
-            autoFocus="true"
-            (focus)="isFocused = true"
-            (blur)="isFocused = false"
-            [formControl]="srchControl"
-            type="text" 
-            placeholder="Find just what you need">
+        <input 
+          #input
+          autoFocus="true"
+          (focus)="isFocused = true"
+          (blur)="isFocused = false"
+          [formControl]="srchControl"
+          type="text" 
+          placeholder="Find just what you need">
 
-          <button 
-            (click)="srchControl.reset(); input.focus();"
-            class="btn-circle reset-srch-control"
-            [class.visible]="srchControl.value"
-            aria-label="Clear search field">
-            <i class="material-icons">clear</i>
-          </button>
-        </form>
-      </div>
+        <button 
+          (click)="srchControl.reset(); input.focus();"
+          class="btn-circle reset-srch-control"
+          [class.visible]="srchControl.value"
+          aria-label="Clear search field">
+          <i class="material-icons">clear</i>
+        </button>
+      </form>
 
       <div class="bottom-content">
         <ul class="search-results">

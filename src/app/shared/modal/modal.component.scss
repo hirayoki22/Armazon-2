@@ -4,6 +4,7 @@
   justify-content: center;
   
   &.isSrchArea {
+    display: block !important;
     justify-content: unset;
     align-items: unset;
     overflow: hidden;
