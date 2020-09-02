@@ -2,80 +2,74 @@
   width: 100%;
   padding: 67px 1.5rem 3rem;
 
-  .top-area {
+  .search-form {
+    flex: 1;
     position: relative;
+    display: flex;
     align-items: center;
-    width: 100%;
+    border-bottom: thin solid #c7cad8;
 
-    .search-form {
-      flex: 1;
-      position: relative;
-      display: flex;
-      align-items: center;
-      border-bottom: thin solid #c7cad8;
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      transform: scaleX(0);
+      width: 100%;
+      height: 1px;
+      background-color: #F72551;
+      transition: transform .3s ease;
+      z-index: 1;
+    }
 
+    &.focused {
       &::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: -1px;
-        transform: scaleX(0);
-        width: 100%;
-        height: 1px;
-        background-color: #F72551;
-        transition: transform .3s ease;
-        z-index: 1;
+        transform: scaleY(1);
       }
-  
-      &.focused {
-        &::after {
-          transform: scaleY(1);
-        }
-      }
+    }
 
-      .srch-btn {
-        .material-icons {
-          color: initial;
-          font-size: 1.4rem;
-        }
-      }
-
-      input {
-        width: 100%;
-        padding: 1rem 0.5rem;
+    .srch-btn {
+      .material-icons {
         color: initial;
+        font-size: 1.4rem;
+      }
+    }
 
-        &::placeholder {
-          color: rgba(76, 78, 90, 0.7);
-        }
+    input {
+      width: 100%;
+      padding: 1rem 0.5rem;
+      color: initial;
+
+      &::placeholder {
+        color: rgba(76, 78, 90, 0.7);
+      }
+    }
+
+    .reset-srch-control {
+      opacity: 0;
+      width: 20px;
+      height: 20px;
+      pointer-events: none;
+      background-color: #dee2ec;
+      border-radius: 100%;
+
+      &.visible {
+        opacity: 1;
+        pointer-events: all;
       }
 
-      .reset-srch-control {
-        opacity: 0;
-        width: 20px;
-        height: 20px;
-        pointer-events: none;
-        background-color: #dee2ec;
-        border-radius: 100%;
+      .material-icons {
+        color: initial;
+        font-size: 0.95rem;
+      }
 
-        &.visible {
-          opacity: 1;
-          pointer-events: all;
-        }
-
-        .material-icons {
-          color: initial;
-          font-size: 0.95rem;
-        }
-
-        &:hover {
-          background-color: darken(#dee2ec, 10);
-        }
+      &:hover {
+        background-color: darken(#dee2ec, 10);
       }
     }
   }
 
-  .bottom-content {
+  .search-results {
     width: 100%;
     height: inherit;
     margin-top: 2rem;
@@ -97,7 +91,7 @@
       }
     }
 
-    .search-results,
+    .results-list,
     .search-history {
       width: 100%;
 
