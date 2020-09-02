@@ -14,12 +14,13 @@
 
     <div class="wrapper-l">
       <div class="top-area">
-        <div 
-          class="form-group"
+        <form 
+          [formGroup]="srchForm"
+          (ngSubmit)="onSubmit()"
+          class="search-form"
           [class.focused]="isFocused || srchControl.value">
           <button 
-            (click)="beginSearch()"
-            [disabled]="srchControl.invalid"
+            [disabled]="srchForm.invalid"
             class="btn-circle srch-btn"
             aria-label="Search">
             <i class="material-icons">search</i>
@@ -41,7 +42,7 @@
             aria-label="Clear search field">
             <i class="material-icons">clear</i>
           </button>
-        </div>
+        </form>
       </div>
 
       <div class="bottom-content">

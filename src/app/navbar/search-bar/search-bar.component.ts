@@ -6,7 +6,7 @@ import { Observable, fromEvent, of } from 'rxjs';
 import { map, switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 import { ProductService } from 'src/app/product/services/product.service';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormGroup, AbstractControl } from '@angular/forms';
 import { SrchMatch } from 'src/app/product/models/srch-match.model';
 
 @Component({
@@ -18,10 +18,16 @@ export class SearchBarComponent implements OnChanges {
   @ViewChild('overlay') overlay: ElementRef<HTMLElement>;
   @Input() showSearchbox: boolean;
   @Output('showSearchbox') notifyChange = new EventEmitter<boolean>();
-  srchControl: FormControl = new FormControl(null, Validators.required);
+  srchForm: FormGroup = new FormGroup({
+    srchControl: new FormControl(null, Validators.required)
+  });
   matches$: Observable<SrchMatch[]>;
   srchHistory: SrchMatch[];
   isFocused: boolean = false;
+
+  get srchControl(): AbstractControl {
+    return this.srchForm.get('srchControl');
+  }
 
   srchMatchHighlight(name: string): string {
     return name.slice(0, this.srchControl.value.length).toLowerCase();
@@ -41,7 +47,7 @@ export class SearchBarComponent implements OnChanges {
       this.srchHistory = localStorage.getItem('search-history') ?
       JSON.parse(localStorage.getItem('search-history')) : null;
       
-      this.matches$ = this.srchControl.valueChanges.pipe(
+      this.matches$ = this.srchForm.get('srchControl').valueChanges.pipe(
         map(keyword => keyword?.toLowerCase()?.trim()),
         distinctUntilChanged(),
         debounceTime(25),
@@ -59,7 +65,7 @@ export class SearchBarComponent implements OnChanges {
     }
   }
 
-  beginSearch(): void {
+  onSubmit(): void {
     this.router.navigate(
       ['/products'],
       {
@@ -89,7 +95,7 @@ export class SearchBarComponent implements OnChanges {
       
       this.showSearchbox = false;
       this.notifyChange.emit(this.showSearchbox);
-      this.srchControl.reset();
+      this.srchForm.reset();
     }, 300);
   }
 
