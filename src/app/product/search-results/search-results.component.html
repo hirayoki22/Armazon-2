@@ -12,12 +12,12 @@
 
     <ul class="products">
       <li *ngFor="let product of products">
-        <a *ngIf="product.images" 
+        <a *ngIf="product.productImage" 
           [routerLink]="['../', product.productId]"
           class="product-image">
           <img 
             image-loader 
-            [src]="product.images[0]" 
+            [src]="product.productImage" 
             [alt]="product.productName">
         </a>
   
@@ -29,9 +29,7 @@
   
           <div>
             <p class="price">{{ product.price | currency }}</p>
-            <p class="stock-label">
-              {{ product.totalStock > 0 ? 'In stock' : 'Not in stock' }}
-            </p>
+            <p class="stock-label">In stock</p>
           </div>
         </div>
 

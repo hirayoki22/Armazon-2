@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { map, switchMap } from 'rxjs/operators';
 
-import { Product } from '../models/product.model';
+import { SrchMatch } from '../models/srch-match.model';
 import { ProductService } from '../services/product.service';
 import { ShoppingBagService } from '../services/shopping-bag.service';
 
@@ -9,17 +11,19 @@ import { ShoppingBagService } from '../services/shopping-bag.service';
   styleUrls: ['./search-results.component.scss']
 })
 export class SearchResultsComponent implements OnInit {
-  products: Product[] = [];
+  products: SrchMatch[] = [];
 
   constructor(
+    private route: ActivatedRoute,
     private ps: ProductService,
     private cs: ShoppingBagService
   ) { }
 
   ngOnInit(): void {
-    this.ps.getProducts().subscribe(prodcuts => {
-      this.products = prodcuts
-    });
+    this.route.queryParamMap.pipe(
+      map(param => param.get('keyword')),
+      switchMap(keyword => this.ps.searchProduct(keyword))
+    ).subscribe(products => this.products = products);
   }
 
   onAddToBag(productId: number, quantity = 1): void {
