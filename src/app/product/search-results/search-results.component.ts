@@ -24,7 +24,7 @@ export class SearchResultsComponent implements OnInit {
       map(param => param),
       switchMap(param => this.ps.searchProduct(
         param.get('keyword'), 
-        +param.get('categoryId'))
+        +param.get('category'))
       )
     ).subscribe(products => this.products = products);
   }

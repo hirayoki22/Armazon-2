@@ -61,7 +61,8 @@ export class SearchBarComponent implements OnChanges {
         switchMap(keyword => {
           return keyword?.length ? 
           this.ps.searchProduct(keyword, this.categoryId.value) : of ([]);
-        })
+        }),
+        map(matches => matches.slice(0, 6))
       );
 
       this.categories$ = this.ps.getCategories();
