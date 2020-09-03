@@ -64,9 +64,11 @@ export class ProductService {
     });
   }
 
-  searchProduct(keyword: string): Observable<SrchMatch[]> {
-    return this.http.get<SrchMatch[]>(`${this.URL6}?keyword=${keyword}`)
-    .pipe(
+  searchProduct(keyword: string, categoryId = null): Observable<SrchMatch[]> {
+    return this.http.get<SrchMatch[]>(
+      !categoryId ? `${this.URL6}?keyword=${keyword}` :
+      `${this.URL6}?keyword=${keyword}&categoryId=${categoryId}`
+    ).pipe(
       catchError(this.errorHandler)
     );
   }

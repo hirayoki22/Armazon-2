@@ -8,6 +8,7 @@ import { map, switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operato
 import { ProductService } from 'src/app/product/services/product.service';
 import { FormControl, Validators, FormGroup, AbstractControl } from '@angular/forms';
 import { SrchMatch } from 'src/app/product/models/srch-match.model';
+import { Category } from 'src/app/product/models/category.model';
 
 @Component({
   selector: 'search-bar',
@@ -19,14 +20,20 @@ export class SearchBarComponent implements OnChanges {
   @Input() showSearchbox: boolean;
   @Output('showSearchbox') notifyChange = new EventEmitter<boolean>();
   srchForm: FormGroup = new FormGroup({
-    srchControl: new FormControl(null, Validators.required)
+    srchControl: new FormControl(null, Validators.required),
+    categoryId: new FormControl(null)
   });
   matches$: Observable<SrchMatch[]>;
+  categories$: Observable<Category[]>;
   srchHistory: SrchMatch[];
   isFocused: boolean = false;
 
   get srchControl(): AbstractControl {
     return this.srchForm.get('srchControl');
+  }
+
+  get categoryId(): AbstractControl {
+    return this.srchForm.get('categoryId');
   }
 
   srchMatchHighlight(name: string): string {
@@ -47,14 +54,17 @@ export class SearchBarComponent implements OnChanges {
       this.srchHistory = localStorage.getItem('search-history') ?
       JSON.parse(localStorage.getItem('search-history')) : null;
       
-      this.matches$ = this.srchForm.get('srchControl').valueChanges.pipe(
+      this.matches$ = this.srchControl.valueChanges.pipe(
         map(keyword => keyword?.toLowerCase()?.trim()),
         distinctUntilChanged(),
         debounceTime(25),
         switchMap(keyword => {
-          return keyword?.length ? this.ps.searchProduct(keyword) : of ([]);
+          return keyword?.length ? 
+          this.ps.searchProduct(keyword, this.categoryId.value) : of ([]);
         })
       );
+
+      this.categories$ = this.ps.getCategories();
       
       document.body.classList.add('active-modal');
       fromEvent(window, 'keyup').subscribe((e: KeyboardEvent) => {
@@ -71,11 +81,11 @@ export class SearchBarComponent implements OnChanges {
       ['/products'],
       {
         queryParams: { 
-          keyword: this.srchControl.value.trim().toLowerCase()
+          keyword: this.srchControl.value.trim().toLowerCase(),
+          category: this.categoryId.value
         }
       }
     );
-    
   }
 
   clearSrchHistory(): void {

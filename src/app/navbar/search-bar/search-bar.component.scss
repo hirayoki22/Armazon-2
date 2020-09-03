@@ -109,6 +109,7 @@
     .results-list,
     .search-history {
       width: 100%;
+      animation: reveal .3s ease;
 
       li {
         width: auto;

@@ -31,7 +31,7 @@
           autoFocus="true"
           (focus)="isFocused = true"
           (blur)="isFocused = false"
-          [formControl]="srchControl"
+          formControlName="srchControl"
           type="text" 
           placeholder="Find just what you need">
   
@@ -46,6 +46,18 @@
       </form>
   
       <div class="search-results">
+        <!-- Category Selection -->
+        <div [formGroup]="srchForm">
+          <select formControlName="categoryId">
+            <option [ngValue]="null">All</option>
+            <option 
+              *ngFor="let category of categories$ | async"
+              [ngValue]="category.categoryId">
+              {{ category.category }}
+            </option>
+          </select>
+        </div>
+
         <ul class="results-list">
           <li *ngFor="let match of matches$ | async">
             <a href="/products/{{ match.productId }}">
