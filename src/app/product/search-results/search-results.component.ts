@@ -21,8 +21,11 @@ export class SearchResultsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParamMap.pipe(
-      map(param => param.get('keyword')),
-      switchMap(keyword => this.ps.searchProduct(keyword))
+      map(param => param),
+      switchMap(param => this.ps.searchProduct(
+        param.get('keyword'), 
+        +param.get('category'))
+      )
     ).subscribe(products => this.products = products);
   }
 
