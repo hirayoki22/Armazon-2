@@ -199,7 +199,7 @@ img {
   border-radius: 60px;
   background-color: lighten(#e6e9f0, 5);  
   transition: background-color .4s ease,
-  border-color .4s ease, opacity .4s ease;
+  opacity .4s ease;
   overflow: hidden;        
   
   &:disabled {
@@ -208,7 +208,6 @@ img {
   }
 
   &:not(:disabled):hover {
-    border-color: #e6e9f0; 
     background-color: #e6e9f0; 
   }
 }
