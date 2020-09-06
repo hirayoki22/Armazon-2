@@ -85,18 +85,22 @@
   }
 
   .search-results {
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
-    border-radius: 4px;
-    background-color: #e6e9f0;
-  }
-
-  .search-results {
     width: 100%;
     height: inherit;
     margin-top: 2rem;
     padding-bottom: 5rem;
     user-select: none;
+
+    .srch-category {
+      width: fit-content;
+      margin-bottom: 1.5rem;
+      border-radius: 4px;
+      background-color: lighten(#e6e9f0, 5);
+
+      select {
+        padding: 0.5rem;
+      }
+    }
 
     .title {
       display: flex;
