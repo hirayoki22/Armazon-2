@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
 
   private changePageTitle(): void {
     const routeTitle = this.route.firstChild.snapshot.data['title'];
-    
+
     if (routeTitle) { this.ts.setTitle(routeTitle); }
   }
 }
