@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError, of } from 'rxjs';
-import { tap, map, catchError, delay } from 'rxjs/operators';
+import { catchError, delay } from 'rxjs/operators';
 
 import { Product } from '../models/product.model';
 import { ProductVariant } from '../models/product-variant.model';
