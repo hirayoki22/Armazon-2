@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, of } from 'rxjs';
 import { tap, map, catchError, delay } from 'rxjs/operators';
 
 import { Product } from '../models/product.model';
@@ -47,15 +47,10 @@ export class ProductService {
     );
   }
 
-  verifyProductExists(id: number): Observable<boolean> {
-    return new Observable(subscriber => {
-      this.getProductById(id).subscribe(product => {
-        if (!product) {          
-          location.href = '/404';
-          subscriber.next(false);
-        } else {
-          subscriber.next(true);
-        }
+  productExists(id: number): Observable<boolean> {
+    return !id ? of(false) : new Observable(subscriber => {
+      this.getProductById(id).subscribe(product => {      
+        subscriber.next(!product ? false : true);
       });
 
       return {
