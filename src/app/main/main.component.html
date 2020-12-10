@@ -1,29 +1,5 @@
 <section class="landing-section">
   <div class="wrapper-l">
 
-    <h1>Armazon 2</h1>
-
-    <div class="video-container">
-      <video 
-      (timeupdate)="onPlaying($event.target)"
-      #video src="assets/video2.mp4"></video>
-      
-      <div class="controls-wrapper">
-        <div class="progress-bar">
-          <div 
-            #progressBar
-            class="progress-bar-inner"></div>
-        </div>
-        <div class="controls">
-          <button 
-            (click)="playPauseVideo()"
-            class="play-pause-btn"
-            aria-label="Play & pause button">
-            <i *ngIf="!isPlaying" class="material-icons">play_arrow</i>
-            <i *ngIf="isPlaying" class="material-icons">pause</i>
-          </button>
-        </div>
-      </div>
-    </div>
   </div>  
 </section>
