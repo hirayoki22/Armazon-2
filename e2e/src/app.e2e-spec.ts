@@ -8,10 +8,23 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display welcome', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('marketplace app is running!');
+    expect(page.getTitleText()).toEqual('Welcome!');
   });
+
+  it('should have aria label logo ', () => {
+    page.navigateTo();
+    expect(page.getLogo()).toEqual('Armazon logo');
+  });
+  
+  it('should navigate to user/login ', () => {
+    page.navigateTo();
+    page.getLoginButton().click();
+    expect(page.getUserLoginPage()).toEqual('Log in to your Armazon account');
+  });
+  
+  
 
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser
